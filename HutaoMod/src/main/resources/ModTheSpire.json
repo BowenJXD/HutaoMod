@@ -1,0 +1,10 @@
+﻿{
+  "modid": "HuTaoMod",
+  "name": "HuTaoMod【胡桃MOD】",
+  "author_list": ["Aaron喏"],
+  "description": "以原神中的胡桃为主角的MOD。 A mod themed after Genshin character: Hu Tao.",
+  "version": "1.0-SNAPSHOT",
+  "sts_version": "12-18-2022",
+  "mts_version": "3.23.3",
+  "dependencies": ["basemod", "stslib"]
+}
