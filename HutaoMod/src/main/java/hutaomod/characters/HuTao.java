@@ -18,6 +18,9 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.relics.Vajra;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import hutaomod.cards.base.HutaoA;
+import hutaomod.cards.base.HutaoE;
+import hutaomod.cards.base.HutaoQ;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.utils.PathDefine;
 
@@ -80,6 +83,17 @@ public class HuTao extends CustomPlayer {
     // 初始卡组的ID，可直接写或引用变量
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
+        retVal.add(HutaoA.ID);
+        retVal.add(HutaoA.ID);
+        retVal.add(HutaoA.ID);
+        retVal.add(HutaoA.ID);
+        retVal.add(HutaoA.ID);
+        retVal.add(HutaoE.ID);
+        retVal.add(HutaoE.ID);
+        retVal.add(HutaoE.ID);
+        retVal.add(HutaoE.ID);
+        retVal.add(HutaoQ.ID);
+        
         return retVal;
     }
 
@@ -121,7 +135,7 @@ public class HuTao extends CustomPlayer {
     // 翻牌事件出现的你的职业牌（一般设为打击）
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new HuTaoA();
+        return new HutaoA();
     }
 
     // 卡牌轨迹颜色
