@@ -1,4 +1,4 @@
-﻿package hutaomod.actions;
+package hutaomod.actions;
 
 import com.evacipated.cardcrawl.mod.stslib.patches.ColoredDamagePatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -10,10 +10,9 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import hutaomod.hooks.SubscriptionManager;
+import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.ModHelper;
 
-import java.util.Iterator;
 import java.util.function.Consumer;
 
 public class CardDamageAction extends AbstractGameAction {
@@ -98,23 +97,17 @@ public class CardDamageAction extends AbstractGameAction {
         // Apply damage
         this.target.damage(this.info);
 
-        // callback
+        // Callback
         if (callback != null) addToTop(new TriggerCallbackAction(this.callback, new CallbackInfo(target, info)));
 
         // Check to remove actions except HealAction, GainBlockAction, UseCardAction, TriggerCallbackAction, and DamageAction
         if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
-            Iterator<AbstractGameAction> i = AbstractDungeon.actionManager.actions.iterator();
 
-            while (i.hasNext()) {
-                AbstractGameAction e = (AbstractGameAction) i.next();
-                if (!(e instanceof HealAction)
-                        && !(e instanceof GainBlockAction)
-                        && !(e instanceof UseCardAction)
-                        && !(e instanceof TriggerCallbackAction)
-                        && e.actionType != ActionType.DAMAGE) {
-                    i.remove();
-                }
-            }
+            AbstractDungeon.actionManager.actions.removeIf(e -> !(e instanceof HealAction)
+                    && !(e instanceof GainBlockAction)
+                    && !(e instanceof UseCardAction)
+                    && !(e instanceof TriggerCallbackAction)
+                    && e.actionType != ActionType.DAMAGE);
         }
         //
     }

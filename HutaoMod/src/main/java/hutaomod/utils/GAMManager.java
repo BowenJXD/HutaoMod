@@ -1,6 +1,7 @@
-﻿package hutaomod.utils;
+package hutaomod.utils;
 
 import basemod.BaseMod;
+import basemod.interfaces.PostDungeonUpdateSubscriber;
 import basemod.interfaces.PostUpdateSubscriber;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -15,7 +16,7 @@ import java.util.function.Predicate;
 /**
  * util for {@link com.megacrit.cardcrawl.actions.GameActionManager}
  */
-public class GAMManager implements PostUpdateSubscriber {
+public class GAMManager implements PostDungeonUpdateSubscriber {
     private static GAMManager instance = null;
     
     public AbstractGameAction currentAction;
@@ -38,7 +39,7 @@ public class GAMManager implements PostUpdateSubscriber {
     }
     
     @Override
-    public void receivePostUpdate() {
+    public void receivePostDungeonUpdate() {
         if (currentAction != AbstractDungeon.actionManager.currentAction) {
             currentAction = AbstractDungeon.actionManager.currentAction;
             if (currentAction != null) {

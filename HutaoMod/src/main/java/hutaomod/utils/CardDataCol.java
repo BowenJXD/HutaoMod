@@ -8,6 +8,7 @@ public enum CardDataCol {
     Rarity,
     Type,
     Target,
+    YinYang,
     // -2费不显示能量图标（如诅咒卡状态卡等），-1费为X费（旋风斩等）。
     Cost,
     Description,
@@ -19,6 +20,5 @@ public enum CardDataCol {
     UpgradeDamage,
     UpgradeBlock,
     UpgradeMagicNumber,
-    YinYang,
 }
 

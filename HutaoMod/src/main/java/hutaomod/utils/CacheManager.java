@@ -41,8 +41,16 @@ public class CacheManager {
         }
         if (CardCrawlGame.playtime != cachedPlayTime) {
             cachedPlayTime = CardCrawlGame.playtime;
-            integerSuppliers.forEach((k, v) -> integerCaches.put(k, v.get()));
+            integerSuppliers.forEach((k, v) -> {
+                try {
+                    integerCaches.put(k, v.get());                
+                } catch (Exception e) {
+                    HuTaoMod.logger.error("CachedCondition: Error while getting integer key: {}", k);
+                    HuTaoMod.logger.error(e);
+                }
+            });
         }
+        if (!integerCaches.containsKey(key)) return 0;
         return integerCaches.get(key);
     }
 
@@ -51,10 +59,18 @@ public class CacheManager {
             HuTaoMod.logger.error("CachedCondition: Boolean Key not found: {}", key);
             return false;
         }
-        if (CardCrawlGame.playtime != cachedPlayTime) {
+        if (CardCrawlGame.playtime != cachedPlayTime || !booleanCaches.containsKey(key)) {
             cachedPlayTime = CardCrawlGame.playtime;
-            booleanSuppliers.forEach((k, v) -> booleanCaches.put(k, v.getAsBoolean()));
+            booleanSuppliers.forEach((k, v) -> {
+                try {
+                    booleanCaches.put(k, v.getAsBoolean());
+                } catch (Exception e) {
+                    HuTaoMod.logger.error("CachedCondition: Error while getting boolean key: {}", k);
+                    HuTaoMod.logger.error(e);
+                }
+            });
         }
+        if (!booleanCaches.containsKey(key)) return false;
         return booleanCaches.get(key);
     }
 

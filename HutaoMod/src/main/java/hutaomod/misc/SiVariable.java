@@ -1,4 +1,4 @@
-﻿package hutaomod.misc;
+package hutaomod.misc;
 
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;

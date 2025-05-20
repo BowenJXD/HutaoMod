@@ -1,4 +1,4 @@
-﻿package hutaomod.powers;
+package hutaomod.powers;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import hutaomod.hooks.SubscriptionManager;
+import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.utils.PathDefine;
 

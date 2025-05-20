@@ -8,7 +8,7 @@
     <groupId>hutao-mod</groupId>
     <!-- 改成你需要的名称 -->
     <artifactId>hutao-mod</artifactId>
-    <version>2.6</version>
+    <version>0.1</version>
     <packaging>jar</packaging>
 
     <!-- 改成你需要的名称 -->
@@ -93,13 +93,13 @@
             <scope>system</scope>
             <systemPath>${Steam.path}/workshop/content/646570/3189856464/VideoTheSpire.jar</systemPath>
         </dependency>-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.evacipated.cardcrawl.mod</groupId>
             <artifactId>LoadOut</artifactId>
             <version>1.0.0</version>
             <scope>system</scope>
             <systemPath>${Steam.path}/workshop/content/646570/2814267979/loadout.jar</systemPath>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 

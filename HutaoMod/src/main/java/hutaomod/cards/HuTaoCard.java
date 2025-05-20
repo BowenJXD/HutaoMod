@@ -1,27 +1,28 @@
-﻿package hutaomod.cards;
+package hutaomod.cards;
 
+import basemod.ReflectionHacks;
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.MiracleEffect;
 import hutaomod.characters.HuTao;
-import hutaomod.hooks.SubscriptionManager;
+import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.debuffs.SiPower;
 import hutaomod.utils.*;
-import loadout.actions.EasyXCostAction;
 
 import java.util.Objects;
 
 public abstract class HuTaoCard extends CustomCard {
-
     protected int upCost;
     protected String upDescription;
     protected int upDamage;
@@ -123,10 +124,15 @@ public abstract class HuTaoCard extends CustomCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         boolean yinyang = checkYinYang();
         onUse(p, m, yinyang);
-        if (yin) {
+        if (yin && yang) {
+            if (CacheManager.getBoolean(CacheManager.Key.DYING)) {
+                addToBot(new ApplyPowerAction(p, p, new SiPower(p, -1)));
+            } else {
+                addToBot(new ApplyPowerAction(p, p, new SiPower(p, 1)));
+            }
+        } else if (yin) {
             addToBot(new ApplyPowerAction(p, p, new SiPower(p, 1)));
-        }
-        if (yang) {
+        } else if (yang) {
             addToBot(new ApplyPowerAction(p, p, new SiPower(p, -1)));
         }
     }

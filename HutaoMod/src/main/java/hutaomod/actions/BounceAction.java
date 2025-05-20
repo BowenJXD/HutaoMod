@@ -1,4 +1,4 @@
-﻿package hutaomod.actions;
+package hutaomod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.utils.ModHelper;
-import loadout.actions.MultiUseAction;
 
 import java.util.function.Consumer;
 

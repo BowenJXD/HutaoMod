@@ -1,4 +1,4 @@
-﻿package hutaomod.characters;
+package hutaomod.characters;
 
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
@@ -83,16 +83,16 @@ public class HuTao extends CustomPlayer {
     // 初始卡组的ID，可直接写或引用变量
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(HutaoA.ID);
-        retVal.add(HutaoA.ID);
-        retVal.add(HutaoA.ID);
-        retVal.add(HutaoA.ID);
-        retVal.add(HutaoA.ID);
-        retVal.add(HutaoE.ID);
-        retVal.add(HutaoE.ID);
-        retVal.add(HutaoE.ID);
-        retVal.add(HutaoE.ID);
-        retVal.add(HutaoQ.ID);
+        retVal.add(HuTaoMod.makeID(HutaoA.ID));
+        retVal.add(HuTaoMod.makeID(HutaoA.ID));
+        retVal.add(HuTaoMod.makeID(HutaoA.ID));
+        retVal.add(HuTaoMod.makeID(HutaoA.ID));
+        retVal.add(HuTaoMod.makeID(HutaoA.ID));
+        retVal.add(HuTaoMod.makeID(HutaoE.ID));
+        retVal.add(HuTaoMod.makeID(HutaoE.ID));
+        retVal.add(HuTaoMod.makeID(HutaoE.ID));
+        retVal.add(HuTaoMod.makeID(HutaoE.ID));
+        retVal.add(HuTaoMod.makeID(HutaoQ.ID));
         
         return retVal;
     }
@@ -111,7 +111,7 @@ public class HuTao extends CustomPlayer {
                 75, // 当前血量
                 75, // 最大血量
                 0, // 初始充能球栏位
-                99, // 初始携带金币
+                75, // 初始携带金币
                 5, // 每回合抽牌数量
                 this, // 别动
                 this.getStartingRelics(), // 初始遗物

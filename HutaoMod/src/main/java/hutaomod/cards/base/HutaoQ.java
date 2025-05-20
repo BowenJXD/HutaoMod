@@ -1,4 +1,4 @@
-﻿package hutaomod.cards.base;
+package hutaomod.cards.base;
 
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;

@@ -1,4 +1,4 @@
-﻿package hutaomod.utils;
+package hutaomod.utils;
 
 public class PathDefine {
     public static final String MUSIC_PATH = "HuTaoResources/audio/music/";

@@ -74,22 +74,6 @@ public class RelicEventHelper {
         }
     }
 
-    public static void addReward(Consumer<List<RewardItem>> reward) {
-        if (AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
-            RewardEditor.addExtraRewardToTop(rewards -> {
-                rewards.clear();
-                reward.accept(rewards);
-            });
-            AbstractDungeon.combatRewardScreen.open(REWARD_TEXT);
-        } else if (!AbstractDungeon.getCurrRoom().rewardTime) {
-            RewardEditor.addExtraRewardToTop(reward);
-        } else {
-            ModHelper.addEffectAbstract(() -> {
-                reward.accept(AbstractDungeon.combatRewardScreen.rewards);
-            });
-        }
-    }
-
     public static void gainCards(AbstractCard... cards) {
         if (cards.length == 0) {
             HuTaoMod.logger.error("RELIC_EVENT_HELPER: No cards to gain.");
@@ -148,20 +132,6 @@ public class RelicEventHelper {
             }
         }
         return relics;
-    }
-
-    public static void rewardRelics(int amount) {
-        rewardRelics(amount, r -> true);
-    }
-
-    public static void rewardRelics(int amount, Predicate<AbstractRelic> predicate) {
-        addReward(rewards -> {
-            rewards.clear();
-            List<AbstractRelic> relics = getRelics(amount, predicate);
-            for (AbstractRelic relic : relics) {
-                rewards.add(new RewardItem(relic));
-            }
-        });
     }
 
     public static void gainRelics(AbstractRelic... relics) {

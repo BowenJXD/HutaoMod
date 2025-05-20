@@ -1,4 +1,4 @@
-﻿package hutaomod.modcore;
+package hutaomod.modcore;
 
 import basemod.AutoAdd;
 import basemod.BaseMod;
@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.*;
 import hutaomod.characters.HuTao;
 import org.apache.logging.log4j.LogManager;
@@ -27,11 +28,11 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
     // 人物选择界面的立绘
     private static final String MY_CHARACTER_PORTRAIT = "HuTaoResources/img/char/Character_Portrait.png";
     // 攻击牌的背景（小尺寸）
-    private static final String BG_ATTACK_512 = "HuTaoResources/img/512/bg_attack_512.png";
+    private static final String BG_ATTACK_512 = "HuTaoResources/img/512/bg_attack.png";
     // 能力牌的背景（小尺寸）
-    private static final String BG_POWER_512 = "HuTaoResources/img/512/bg_power_512.png";
+    private static final String BG_POWER_512 = "HuTaoResources/img/512/bg_power.png";
     // 技能牌的背景（小尺寸）
-    private static final String BG_SKILL_512 = "HuTaoResources/img/512/bg_skill_512.png";
+    private static final String BG_SKILL_512 = "HuTaoResources/img/512/bg_skill.png";
     // 在卡牌和遗物描述中的能量图标
     private static final String SMALL_ORB = "HuTaoResources/img/char/small_orb.png";
     // 攻击牌的背景（大尺寸）
@@ -70,7 +71,7 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
 
     @Override
     public void receiveEditCharacters() {
-
+        BaseMod.addCharacter(new HuTao(CardCrawlGame.playerName), HuTaoMod.MY_CHARACTER_BUTTON, MY_CHARACTER_PORTRAIT, HuTao.PlayerColorEnum.HUTAO);
     }
 
     @Override
@@ -79,6 +80,7 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
         updateLanguage();
 
         String json = Gdx.files.internal("HuTaoResources/localization/" + lang + "/keywords.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        if (json == null || json.isEmpty()) return;
         Keyword[] keywords = gson.fromJson(json, Keyword[].class);
         if (keywords != null) {
             for (Keyword keyword : keywords) {
@@ -105,8 +107,8 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
         BaseMod.loadCustomStringsFile(CharacterStrings.class, "HuTaoResources/localization/" + lang + "/characters.json");
         BaseMod.loadCustomStringsFile(RelicStrings.class, "HuTaoResources/localization/" + lang + "/relics.json");
         BaseMod.loadCustomStringsFile(PowerStrings.class, "HuTaoResources/localization/" + lang + "/powers.json");
-        BaseMod.loadCustomStringsFile(EventStrings.class, "HuTaoResources/localization/" + lang + "/events.json");
-        BaseMod.loadCustomStringsFile(MonsterStrings.class, "HuTaoResources/localization/" + lang + "/monsters.json");
+        // BaseMod.loadCustomStringsFile(EventStrings.class, "HuTaoResources/localization/" + lang + "/events.json");
+        // BaseMod.loadCustomStringsFile(MonsterStrings.class, "HuTaoResources/localization/" + lang + "/monsters.json");
         BaseMod.loadCustomStringsFile(UIStrings.class, "HuTaoResources/localization/" + lang + "/ui.json");
 
     }

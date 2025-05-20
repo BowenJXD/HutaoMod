@@ -24,26 +24,19 @@ public class DataManager {
     public static final String charset = "GBK";
     
     public Map<String, String[]> cardData;
-    public static final String CARD_CSV_ZHS = "HuTaoResources/localization/ZHS/cardData.csv";
-    public static final String CARD_CSV_ENG = "HuTaoResources/localization/ENG/cardData.csv";
+    public static final String CARD_CSV_ZHS = "HuTaoResources/localization/zhs/cardData.csv";
     public Map<String, String[]> relicData;
-    public static final String RELIC_CSV = "HuTaoResources/localization/ZHS/relicData.csv";
+    public static final String RELIC_CSV = "HuTaoResources/localization/zhs/relicData.csv";
     public Map<String, String[]> monsterData;
-    public static final String MONSTER_CSV = "HuTaoResources/localization/ZHS/monsterData.csv";
-    
-    public static final String RELIC_JSON = "HuTaoResources/localization/ZHS/relics.json";
+    public static final String MONSTER_CSV = "HuTaoResources/localization/zhs/monsterData.csv";
     
     private DataManager() {
         cardData = new HashMap<>();
         relicData = new HashMap<>();
         monsterData = new HashMap<>();
-        if (Settings.language == Settings.GameLanguage.ZHS || Settings.language == Settings.GameLanguage.ZHT) {
-            parseCSV(cardData, CARD_CSV_ZHS);
-        } else {
-            parseCSV(cardData, CARD_CSV_ENG);
-        }
-        parseCSV(relicData, RELIC_CSV);
-        parseCSV(monsterData, MONSTER_CSV);
+        parseCSV(cardData, CARD_CSV_ZHS);
+        // parseCSV(relicData, RELIC_CSV);
+        // parseCSV(monsterData, MONSTER_CSV);
     }
 
     public static DataManager getInstance() {
@@ -79,22 +72,6 @@ public class DataManager {
      */
     public static void addCards(String filePath) {
         parseCSV(getInstance().cardData, filePath);
-    }
-
-    /**
-     * 格式参照 {@link hutaomod.utils.RelicDataCol} 和relicData.csv
-     * @param filePath 文件路径
-     */
-    public static void addRelics(String filePath) {
-        parseCSV(getInstance().relicData, filePath);
-    }
-
-    /**
-     * 格式参照 {@link hutaomod.utils.MonsterDataCol} 和monsterData.csv
-     * @param filePath 文件路径
-     */
-    public static void addMonsters(String filePath) {
-        parseCSV(getInstance().monsterData, filePath);
     }
 
     private static String[] parseCSVLine(String line) {
@@ -147,12 +124,6 @@ public class DataManager {
     
     public static final int NULL_INT = -9;
 
-    public static class EnglishReplacer {
-        public static void main (String[] args) {
-            FileTextReplacer.replaceENG();
-        }
-    }
-    
     public static class ChineseReplacer {
         public static void main (String[] args) {
             FileTextReplacer.replaceZHS();
@@ -166,6 +137,7 @@ public class DataManager {
             replacements.put(" D ", " !D! ");
             replacements.put(" B ", " !B! ");
             replacements.put(" M ", " !M! ");
+            replacements.put(" Y ", " !Y! ");
             replacements.put(" E ", " [E] ");
             replacements.put("【", " hutaomod:");
             replacements.put("】", " ");
@@ -190,19 +162,6 @@ public class DataManager {
             replacements.put("  ", " ");
 
             replaceTextInFile(CARD_CSV_ZHS, replacements);
-        }
-
-        private static void replaceENG() {
-            // 替换规则
-            Map<String, String> replacements = new HashMap<>();
-            replacements.put("`", "hutaomod:");
-            // 读取文件并替换文本
-            replaceTextInFile(CARD_CSV_ENG, replacements);
-
-            replacements.clear();
-            replacements.put("  ", " ");
-
-            replaceTextInFile(CARD_CSV_ENG, replacements);
         }
         
         private static void replaceTextInFile(String filePath, Map<String, String> replacements) {
