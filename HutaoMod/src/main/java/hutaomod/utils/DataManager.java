@@ -134,10 +134,14 @@ public class DataManager {
         private static void replaceZHS() {
             // 替换规则
             Map<String, String> replacements = new HashMap<>();
+            replacements.put("阴牌", " [yinIcon] 牌");
+            replacements.put("阳牌", " [yangIcon] 牌");
+            replacements.put("【血梅香】", " [bbIcon] ");
+            replacements.put("【死气】", " [siIcon] ");
             replacements.put(" D ", " !D! ");
             replacements.put(" B ", " !B! ");
             replacements.put(" M ", " !M! ");
-            replacements.put(" Y ", " !Y! ");
+            replacements.put(" Y ", " Y( !Y! )");
             replacements.put(" E ", " [E] ");
             replacements.put("【", " hutaomod:");
             replacements.put("】", " ");
@@ -149,6 +153,7 @@ public class DataManager {
             replacements.put("」", "」 ");
             // replacements.put("能量", " [E] ");
             replacements.put("临时生命", " 临时生命 ");
+            replacements.put("燃血", " hutaomod:燃血 ");
             replacements.put("弹射", " hutaomod:弹射 ");
             replacements.put("消耗。", " 消耗 。");
             replacements.put("虚无。", " 虚无 。");

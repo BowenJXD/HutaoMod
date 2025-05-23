@@ -8,17 +8,18 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.characters.HuTao;
 
 public class HutaoE extends HuTaoCard {
     public static final String ID = HutaoE.class.getSimpleName();
     
     public HutaoE() {
-        super(ID);
+        super(ID, HuTao.PlayerColorEnum.HUTAO_RED);
+        tags.add(CardTags.STARTER_DEFEND);
     }
     
     @Override
-    public void onUse(AbstractPlayer p, AbstractMonster m, boolean yinyang) {
-        addToBot(new BloodBurnAction(p, p, 1));
+    public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new GainBlockAction(p, p, block + si));
     }
 }

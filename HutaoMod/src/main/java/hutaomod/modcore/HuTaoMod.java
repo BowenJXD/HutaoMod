@@ -7,11 +7,13 @@ import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.*;
 import hutaomod.characters.HuTao;
+import hutaomod.misc.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,7 +27,7 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
 
     // 人物选择界面按钮的图片
     private static final String MY_CHARACTER_BUTTON = "HuTaoResources/img/char/Character_Button.png";
-    // 人物选择界面的立绘
+    // 人物选择界面的背景立绘
     private static final String MY_CHARACTER_PORTRAIT = "HuTaoResources/img/char/Character_Portrait.png";
     // 攻击牌的背景（小尺寸）
     private static final String BG_ATTACK_512 = "HuTaoResources/img/512/bg_attack.png";
@@ -41,7 +43,7 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
     private static final String BG_POWER_1024 = "HuTaoResources/img/1024/bg_power.png";
     // 技能牌的背景（大尺寸）
     private static final String BG_SKILL_1024 = "HuTaoResources/img/1024/bg_skill.png";
-    // 在卡牌预览界面的能量图标
+    // 卡牌预览界面的能量图标
     private static final String BIG_ORB = "HuTaoResources/img/char/card_orb.png";
     // 小尺寸的能量图标（战斗中，牌堆预览）
     private static final String ENERGY_ORB = "HuTaoResources/img/char/cost_orb.png";
@@ -63,10 +65,20 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
     
     @Override
     public void receiveEditCards() {
+        addIcons();
+        BaseMod.addDynamicVariable(new SiVariable());
         new AutoAdd(MOD_NAME)
                 .packageFilter("hutaomod.cards")
                 .setDefaultSeen(true)
                 .cards();
+    }
+
+    private static void addIcons() {
+        CustomIconHelper.addCustomIcon(YinIcon.get());
+        CustomIconHelper.addCustomIcon(YangIcon.get());
+        CustomIconHelper.addCustomIcon(YinYangIcon.get());
+        CustomIconHelper.addCustomIcon(SiIcon.get());
+        CustomIconHelper.addCustomIcon(BloodBlossomIcon.get());
     }
 
     @Override

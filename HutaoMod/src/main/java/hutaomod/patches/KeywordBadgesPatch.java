@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.evacipated.cardcrawl.mod.stslib.patches.CommonKeywordIconsPatches;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,29 +15,29 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.utils.PathDefine;
 import javassist.CtBehavior;
-import org.xml.sax.Locator;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class KeywordIconsPatch {
+public class KeywordBadgesPatch {
     public static String yinName = "hutaomod:阴";
     public static String yangName = "hutaomod:阳";
     public static String yinYangName = "hutaomod:阴阳牌";
-    public static final Texture yinTexture = ImageMaster.loadImage(PathDefine.UI_PATH + "icons/yin.png");
-    public static final Texture yangTexture = ImageMaster.loadImage(PathDefine.UI_PATH + "icons/yang.png");
-    public static final Texture yinYangTexture = ImageMaster.loadImage(PathDefine.UI_PATH + "icons/yinyang.png");
+    public static final Texture yinTexture = ImageMaster.loadImage(PathDefine.UI_PATH + "badges/yin.png");
+    public static final Texture yangTexture = ImageMaster.loadImage(PathDefine.UI_PATH + "badges/yang.png");
+    public static final Texture yinYangTexture = ImageMaster.loadImage(PathDefine.UI_PATH + "badges/yinyang.png");
     
     @SpirePatch(clz = CommonKeywordIconsPatches.class, method = "addKeywords")
     public static class AddKeywordsPatch {
         @SpirePrefixPatch
-        public static void prefix(AbstractCard c, ArrayList<String> kws) {
+        public static void Prefix(AbstractCard c, ArrayList<String> kws) {
             HuTaoCard card = (HuTaoCard) c;
             if (card == null) return;
-            if (card.yin && card.yang) {
+            if (card.yy == HuTaoCard.YYState.YINYANG) {
                 kws.add(yinYangName);
-            } else if (card.yin) {
+            } else if (card.yy == HuTaoCard.YYState.YIN) {
                 kws.add(yinName);
-            } else if (card.yang) {
+            } else if (card.yy == HuTaoCard.YYState.YANG) {
                 kws.add(yangName);
             }
         }
@@ -47,15 +46,15 @@ public class KeywordIconsPatch {
     @SpirePatch(clz = CommonKeywordIconsPatches.class, method = "RenderBadges")
     public static class RenderBadgesPatch {
         @SpireInsertPatch(rloc = 3, localvars = {"offset_y"})
-        public static void insert(SpriteBatch sb, AbstractCard card, @ByRef int[] offset_y) {
+        public static void Insert(SpriteBatch sb, AbstractCard card, @ByRef int[] offset_y) {
             HuTaoCard c = (HuTaoCard) card;
             if (c == null) return;
             Texture texture = null;
-            if (c.yin && c.yang) {
+            if (c.yy == HuTaoCard.YYState.YINYANG) {
                 texture = yinYangTexture;
-            } else if (c.yin) {
+            } else if (c.yy == HuTaoCard.YYState.YIN) {
                 texture = yinTexture;
-            } else if (c.yang) {
+            } else if (c.yy == HuTaoCard.YYState.YANG) {
                 texture = yangTexture;
             }
             if (texture != null) {
@@ -67,14 +66,14 @@ public class KeywordIconsPatch {
     @SpirePatch(clz = CommonKeywordIconsPatches.RenderIconOnTips.class, method = "patch")
     public static class RenderIconOnTipsPatch {
         @SpireInsertPatch(locator = Locator.class, localvars = {"badge"})
-        public static void insert(SpriteBatch sb, String word, float x, float y, AbstractCard ___card, @ByRef Texture[] badge) {
+        public static void Insert(SpriteBatch sb, String word, float x, float y, AbstractCard ___card, @ByRef Texture[] badge) {
             HuTaoCard c = (HuTaoCard) ___card;
             if (c == null) return;
-            if (c.yin && c.yang) {
+            if (c.yy == HuTaoCard.YYState.YINYANG && Objects.equals(word, yinYangName)) {
                 badge[0] = yinYangTexture;
-            } else if (c.yin) {
+            } else if (c.yy == HuTaoCard.YYState.YIN && Objects.equals(word, yinName)) {
                 badge[0] = yinTexture;
-            } else if (c.yang) {
+            } else if (c.yy == HuTaoCard.YYState.YANG && Objects.equals(word, yangName)) {
                 badge[0] = yangTexture;
             }
         }
@@ -91,15 +90,15 @@ public class KeywordIconsPatch {
     @SpirePatch(clz = CommonKeywordIconsPatches.SingleCardViewRenderIconOnCard.class, method = "patch")
     public static class SingleCardViewRenderIconOnCardPatch {
         @SpireInsertPatch(rloc = 2, localvars = {"offset_y"})
-        public static void insert(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card, Hitbox ___cardHb, @ByRef int[] offset_y) {
+        public static void Insert(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card, Hitbox ___cardHb, @ByRef int[] offset_y) {
             HuTaoCard c = (HuTaoCard) ___card;
             if (c == null) return;
             Texture texture = null;
-            if (c.yin && c.yang) {
+            if (c.yy == HuTaoCard.YYState.YINYANG) {
                 texture = yinYangTexture;
-            } else if (c.yin) {
+            } else if (c.yy == HuTaoCard.YYState.YIN) {
                 texture = yinTexture;
-            } else if (c.yang) {
+            } else if (c.yy == HuTaoCard.YYState.YANG) {
                 texture = yangTexture;
             }
             if (texture != null) {
@@ -112,7 +111,7 @@ public class KeywordIconsPatch {
     @SpirePatch(clz = CommonKeywordIconsPatches.SingleCardViewRenderIconOnTips.class, method = "patch")
     public static class SingleCardViewRenderIconOnTipsPatch {
         @SpireInsertPatch(locator = Locator.class, localvars = {"badge"})
-        public static void insert(float x, float y, SpriteBatch sb, ArrayList<PowerTip> powerTips, PowerTip tip, @ByRef Texture[] badge) {
+        public static void Insert(float x, float y, SpriteBatch sb, ArrayList<PowerTip> powerTips, PowerTip tip, @ByRef Texture[] badge) {
             if (tip.header.equalsIgnoreCase(yinYangName)) {
                 badge[0] = yinYangTexture;
             } else if (tip.header.equalsIgnoreCase(yinName)) {

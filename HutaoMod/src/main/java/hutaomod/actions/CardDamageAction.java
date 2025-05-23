@@ -92,7 +92,7 @@ public class CardDamageAction extends AbstractGameAction {
         
         if (this.modifier != null) this.modifier.accept(new CallbackInfo(target, info));
         
-        info.output = (int) SubscriptionManager.getInstance().triggerPreCardDamage(this);
+        info.output = (int) SubscriptionManager.getInstance().triggerPreCardDamage(this, info.output);
         
         // Apply damage
         this.target.damage(this.info);

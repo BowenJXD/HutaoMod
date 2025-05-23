@@ -10,12 +10,14 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.modcore.HuTaoMod;
+import hutaomod.utils.GeneralUtil;
 import hutaomod.utils.PathDefine;
 
 public abstract class HuTaoPower extends AbstractPower {
     public String[] DESCRIPTIONS;
     public boolean upgraded;
     public PowerStrings powerStrings;
+    public Integer limit;
 
     public HuTaoPower(String id, AbstractCreature owner, int Amount, PowerType type, boolean upgraded){
         this.ID = id;
@@ -28,15 +30,34 @@ public abstract class HuTaoPower extends AbstractPower {
         this.upgraded = upgraded;
         this.loadRegion(this.getClass().getSimpleName());
     }
+    
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
 
     @Override
     public void updateDescription() {
         try {
-            description = DESCRIPTIONS[upgraded && DESCRIPTIONS.length > 1 ? 1 : 0];
+            description = String.format(DESCRIPTIONS[upgraded && DESCRIPTIONS.length > 1 ? 1 : 0], amount);
         } catch (Exception e) {
-            HuTaoMod.logger.error("Error while updating power description", e);
+            try {
+                description = DESCRIPTIONS[upgraded && DESCRIPTIONS.length > 1 ? 1 : 0];
+            } catch (Exception e2) {
+                HuTaoMod.logger.error("Error while updating power description", e2);
+            }
         }
     }
+
+    @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        if (limit != null && amount >= limit) {
+            amount = limit;
+            this.onLimitReached();
+        }
+    }
+    
+    public void onLimitReached(){}
 
     public void remove(int val) {
         if (this.amount == 0) {

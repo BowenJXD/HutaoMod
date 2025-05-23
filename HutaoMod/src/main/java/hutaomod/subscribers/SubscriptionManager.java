@@ -2,6 +2,8 @@ package hutaomod.subscribers;
 
 import basemod.BaseMod;
 import basemod.interfaces.ISubscriber;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -24,6 +26,7 @@ public final class SubscriptionManager {
     List<PrePowerTriggerSubscriber> prePowerTriggerSubscribers = new ArrayList<>();
     List<PreCardDamageSubscriber> preCardDamageSubscribers = new ArrayList<>();
     List<CheckYinYangSubscriber> checkYinYangSubscribers = new ArrayList<>();
+    List<PostCardMoveSubscriber> postCardMoveSubscribers = new ArrayList<>();
 
     HashMap<RunnableType, List<IRunnableSubscriber>> runnableSubscribers = new HashMap<>();
     HashMap<NumChangerType, List<INumChangerSubscriber>> numChangerSubscribers = new HashMap<>();
@@ -58,6 +61,10 @@ public final class SubscriptionManager {
         if (sub instanceof CheckYinYangSubscriber && !checkYinYangSubscribers.contains(sub)) {
             if (addToFront) checkYinYangSubscribers.add(0, (CheckYinYangSubscriber) sub);
             else checkYinYangSubscribers.add((CheckYinYangSubscriber) sub);
+        }
+        if (sub instanceof PostCardMoveSubscriber && !postCardMoveSubscribers.contains(sub)) {
+            if (addToFront) postCardMoveSubscribers.add(0, (PostCardMoveSubscriber) sub);
+            else postCardMoveSubscribers.add((PostCardMoveSubscriber) sub);
         }
 
         if (sub instanceof IRunnableSubscriber) {
@@ -94,6 +101,7 @@ public final class SubscriptionManager {
         if (sub instanceof PrePowerTriggerSubscriber) prePowerTriggerSubscribers.remove(sub);
         if (sub instanceof PreCardDamageSubscriber) preCardDamageSubscribers.remove(sub);
         if (sub instanceof CheckYinYangSubscriber) checkYinYangSubscribers.remove(sub);
+        if (sub instanceof PostCardMoveSubscriber) postCardMoveSubscribers.remove(sub);
 
         if (sub instanceof IRunnableSubscriber) {
             unsubscribeRunnableHelper((IRunnableSubscriber) sub, ((IRunnableSubscriber) sub).getSubType());
@@ -134,8 +142,8 @@ public final class SubscriptionManager {
         unsubscribeLaterHelper(PrePowerTriggerSubscriber.class);
     }
     
-    public float triggerPreCardDamage(CardDamageAction cardDamageAction) {
-        float result = 0;
+    public float triggerPreCardDamage(CardDamageAction cardDamageAction, int dmg) {
+        float result = dmg;
         
         for (PreCardDamageSubscriber sub : preCardDamageSubscribers) {
             result = sub.preCardDamage(cardDamageAction, result);
@@ -146,16 +154,24 @@ public final class SubscriptionManager {
         return result;
     }
     
-    public boolean triggerCheckYinYang(HuTaoCard card) {
-        boolean result = false;
+    public int triggerCheckYinYang(HuTaoCard card, int yyTime, boolean onUse) {
+        int result = yyTime;
         
         for (CheckYinYangSubscriber sub : checkYinYangSubscribers) {
-            result = sub.checkYinYang(card);
+            result = sub.checkYinYang(card, result, onUse);
         }
         
         unsubscribeLaterHelper(CheckYinYangSubscriber.class);
         
         return result;
+    }
+    
+    public void triggerPostCardMove(CardGroup group, AbstractCard card, boolean in) {
+        for (PostCardMoveSubscriber sub : postCardMoveSubscribers) {
+            sub.postCardMove(group, card, in);
+        }
+
+        unsubscribeLaterHelper(PostCardMoveSubscriber.class);
     }
 
     public void triggerRunnable(RunnableType type) {

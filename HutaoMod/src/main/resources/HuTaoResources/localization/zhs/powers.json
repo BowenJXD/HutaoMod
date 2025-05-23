@@ -2,13 +2,31 @@
   "HuTaoMod:Si": {
     "NAME": "死气",
     "DESCRIPTIONS": [
-      "死气的层数包含“1”时，视为 #y濒死 状态。回合开始时，若处于 #y濒死 ，则死亡，否则受到 #b%d 点伤害，并衰减1层。"
+      "死气 [si] 的层数包含“1”时，视为 #y濒死 状态。回合开始时，若处于 #y濒死 ，则死亡，否则受到 #b%d 点伤害，并衰减1层。"
     ]
   },
   "HuTaoMod:BloodBlossom": {
     "NAME": "血梅香",
     "DESCRIPTIONS": [
-      "施加或叠加后，受到 #b%d 点伤害。回合开始时，层数减半。"
+      "血梅香 [bb] 施加或叠加后，受到 #b%d 点伤害。回合开始时，层数减半。"
+    ]
+  },
+  "HuTaoMod:SSBJ": {
+    "NAME": "生死边界",
+    "DESCRIPTIONS": [
+      "每打出 #b%d 张 [yin] 牌，获得1层 #y死气 ，且随机 [yang] 牌的费用此回合- #b%d 。"
+    ]
+  },
+  "HuTaoMod:WST": {
+    "NAME": "往生堂",
+    "DESCRIPTIONS": [
+      "通过 [yin] 牌触发阴阳时，摸 #b%d 张牌。通过 [yang] 牌触发阴阳时，回馈 #b%d 。"
+    ]
+  },
+  "HuTaoMod:DEBBJ": {
+    "NAME": "第二碑半价",
+    "DESCRIPTIONS": [
+      "令下 #b%d 次阴阳时额外触发一次阴阳效果。"
     ]
   }
 }

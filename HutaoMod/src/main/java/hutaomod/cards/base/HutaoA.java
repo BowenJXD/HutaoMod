@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.characters.HuTao;
 
 public class HutaoA extends HuTaoCard {
     public static final String ID = HutaoA.class.getSimpleName();
@@ -22,11 +23,12 @@ public class HutaoA extends HuTaoCard {
     public static int effectIndex = 0;
     
     public HutaoA() {
-        super(ID);
+        super(ID, HuTao.PlayerColorEnum.HUTAO_RED);
+        tags.add(CardTags.STARTER_STRIKE);
     }
     
     @Override
-    public void onUse(AbstractPlayer p, AbstractMonster m, boolean yinyang) {
+    public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new CardDamageAction(m,this, EFFECTS[effectIndex]));
         effectIndex = (effectIndex + 1) % EFFECTS.length;
     }

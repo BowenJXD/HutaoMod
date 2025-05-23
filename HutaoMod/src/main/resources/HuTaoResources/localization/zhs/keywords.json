@@ -1,15 +1,15 @@
 [
   {
     "NAMES": [
-      "阴"
+      "阴牌","阴"
     ],
-    "DESCRIPTION": "牌的一种，打出后获得一层 #y死气 。"
+    "DESCRIPTION": "牌的一种，打出后获得1层 #y死气 [SiIcon] 。"
   },
   {
     "NAMES": [
-      "阳"
+      "阳牌","阳"
     ],
-    "DESCRIPTION": "牌的一种，通常会有Y变量，为当前 #y死气 数。打出后消耗一层 #y死气 。"
+    "DESCRIPTION": "牌的一种，通常会有Y变量，为当前 #y死气 [SiIcon] 数。打出后消耗1层 [SiIcon] 。"
   },
   {
     "NAMES": [
@@ -21,7 +21,25 @@
     "NAMES": [
       "阴阳牌"
     ],
-    "DESCRIPTION": "处于濒死时，视为阳牌，否则视为阴牌。"
+    "DESCRIPTION": "牌的一种，打出后，若 [SiIcon] 为0，获得1层，否则消耗1层。"
+  },
+  {
+    "NAMES": [
+      "阴盛阳虚"
+    ],
+    "DESCRIPTION": "其中 [YinIcon] 牌数大于 [YangIcon] 牌数，包括此牌。"
+  },
+  {
+    "NAMES": [
+      "阳盛阴虚"
+    ],
+    "DESCRIPTION": "其中 [YangIcon] 牌数大于 [YinIcon] 牌数，包括此牌。"
+  },
+  {
+    "NAMES": [
+      "阴阳平衡"
+    ],
+    "DESCRIPTION": "其中 [YinIcon] 牌数等于 [YangIcon] 牌数，包括此牌。"
   },
   {
     "NAMES": [
@@ -38,6 +56,7 @@
   },
   {
     "NAMES": [
+      "燃血X",
       "燃血"
     ],
     "DESCRIPTION": "失去X点生命。"
@@ -65,5 +84,24 @@
       "蝶引"
     ],
     "DESCRIPTION": "进入或离开弃牌堆时触发的效果。"
+  },
+  {
+    "NAMES": [
+      "弹射X",
+      "弹射"
+    ],
+    "DESCRIPTION": "执行X次：对随机敌人触发效果。"
+  },
+  {
+    "NAMES": [
+      "格挡返还"
+    ],
+    "DESCRIPTION": "对其造成伤害后，获得X层格挡。"
+  },
+  {
+    "NAMES": [
+      "多重护甲"
+    ],
+    "DESCRIPTION": "在你的回合结束时获得X点格挡。受到攻击伤害而失去生命时，层数- #b1 。"
   }
 ]

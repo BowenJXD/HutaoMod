@@ -2,19 +2,18 @@ package hutaomod.cards;
 
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomCard;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.characters.HuTao;
+import hutaomod.modcore.CustomEnum;
 import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.debuffs.SiPower;
@@ -32,17 +31,17 @@ public abstract class HuTaoCard extends CustomCard {
     public int si;
     public boolean isSiModified;
     
-    public boolean yin;
-    public boolean yang;
+    public int yyTime = 0;
+    public YYState yy = YYState.NONE;
 
     public boolean inHand = false;
 
     public CardStrings cardStrings;
 
-    public HuTaoCard(String id, String resourcePath, CardColor color){
-        super(Objects.equals(resourcePath, PathDefine.CARD_PATH) ? HuTaoMod.makeID(id) : id,
+    public HuTaoCard(String id, String imgPath, CardColor color){
+        super(HuTaoMod.makeID(id),
                 DataManager.getInstance().getCardData(id, CardDataCol.Name),
-                resourcePath + id + ".png",
+                imgPath,
                 DataManager.getInstance().getCardDataInt(id, CardDataCol.Cost),
                 DataManager.getInstance().getCardData(id, CardDataCol.Description),
                 CardType.valueOf(DataManager.getInstance().getCardData(id, CardDataCol.Type)),
@@ -63,8 +62,10 @@ public abstract class HuTaoCard extends CustomCard {
         this.upMagicNumber = DataManager.getInstance().getCardDataInt(id, CardDataCol.UpgradeMagicNumber);
         
         String yinyang = DataManager.getInstance().getCardData(id, CardDataCol.YinYang);
-        if (yinyang.contains("阴")) yin = true;
-        if (yinyang.contains("阳")) yang = true;
+        if (yinyang.contains("阴")) yy = YYState.YIN;
+        else if (yinyang.contains("阳")) yy = YYState.YANG;
+        else if (yinyang.contains("☯️")) yy = YYState.YINYANG;
+        else yy = YYState.NONE;
         
         this.exhaust = rawDescription.contains("消耗。");
         this.selfRetain = rawDescription.contains("保留。");
@@ -76,11 +77,11 @@ public abstract class HuTaoCard extends CustomCard {
     }
 
     public HuTaoCard(String id, CardColor color) {
-        this(id, PathDefine.CARD_PATH, color);
+        this(id, PathDefine.CARD_PATH + id + ".png", color);
     }
 
     public HuTaoCard(String id) {
-        this(id, PathDefine.CARD_PATH, HuTao.PlayerColorEnum.HUTAO_RED);
+        this(id, null, HuTao.PlayerColorEnum.HUTAO_RED);
     }
 
     @Override
@@ -111,10 +112,10 @@ public abstract class HuTaoCard extends CustomCard {
     }
 
     @Override
-    public void initializeDescriptionCN() {
-        si = CacheManager.getInteger(CacheManager.Key.PLAYER_SI);
-        if (si == 0) rawDescription = rawDescription.replaceAll(" !Y! ", "Y");
-        super.initializeDescriptionCN();
+    public void applyPowers() {
+        super.applyPowers();
+        si = CacheManager.getInt(CacheManager.Key.PLAYER_SI);
+        isSiModified = si == 0;
     }
 
     public void onEnterHand() { }
@@ -122,28 +123,72 @@ public abstract class HuTaoCard extends CustomCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        boolean yinyang = checkYinYang();
-        onUse(p, m, yinyang);
-        if (yin && yang) {
-            if (CacheManager.getBoolean(CacheManager.Key.DYING)) {
-                addToBot(new ApplyPowerAction(p, p, new SiPower(p, -1)));
-            } else {
+        yyTime = checkYinYang(true);
+        onUse(p, m, yyTime);
+        useYY(p, m);
+    }
+    
+    public void useYY(AbstractPlayer p, AbstractMonster m) {
+        switch (yy) {
+            case YIN:
                 addToBot(new ApplyPowerAction(p, p, new SiPower(p, 1)));
-            }
-        } else if (yin) {
-            addToBot(new ApplyPowerAction(p, p, new SiPower(p, 1)));
-        } else if (yang) {
-            addToBot(new ApplyPowerAction(p, p, new SiPower(p, -1)));
+                break;
+            case YANG:
+                addToBot(new ApplyPowerAction(p, p, new SiPower(p, -1)));
+                break;
+            case YINYANG:
+                if (CacheManager.getBool(CacheManager.Key.DYING)) {
+                    addToBot(new ApplyPowerAction(p, p, new SiPower(p, -1)));
+                } else {
+                    addToBot(new ApplyPowerAction(p, p, new SiPower(p, 1)));
+                }
         }
     }
 
-    public abstract void onUse(AbstractPlayer p, AbstractMonster m, boolean yinyang);
+    public abstract void onUse(AbstractPlayer p, AbstractMonster m, int yyTime);
     
-    public boolean checkYinYang() {
-        int y = CacheManager.getInteger(CacheManager.Key.PLAYER_SI);
-        boolean dying = CacheManager.getBoolean(CacheManager.Key.DYING);
-        if (yang && dying != SiPower.isDying(y+1)) return true;
-        if (yin && dying != SiPower.isDying(y-1)) return true;
-        return SubscriptionManager.getInstance().triggerCheckYinYang(this);
-    } 
+    public int checkYinYang(boolean onUse) {
+        int result = 0;
+        int y = CacheManager.getInt(CacheManager.Key.PLAYER_SI);
+        boolean dying = CacheManager.getBool(CacheManager.Key.DYING);
+        if (yy == YYState.YIN && dying != SiPower.isDying(y+1)) result = 1;
+        else if (yy == YYState.YANG && dying != SiPower.isDying(y-1)) result = 1;
+        else if (yy == YYState.YINYANG && si <= 0) result = 1;
+        else if (yy == YYState.YINYANG && dying != SiPower.isDying(y-1)) result = 1;
+        return SubscriptionManager.getInstance().triggerCheckYinYang(this, result, onUse);
+    }
+    
+    public void onDieying(boolean in) {}
+
+    @Override   
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        yyTime = checkYinYang(false);
+        if (tags.contains(CustomEnum.YIN_YANG) && yyTime > 0) {
+            glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR;
+        } else {
+            glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;    
+        }
+    }
+
+    public static boolean isYin(AbstractCard card) {
+        if (card instanceof HuTaoCard) {
+            return ((HuTaoCard) card).yy == YYState.YIN;
+        }
+        return false;
+    }
+    
+    public static boolean isYang(AbstractCard card) {
+        if (card instanceof HuTaoCard) {
+            return ((HuTaoCard) card).yy == YYState.YANG;
+        }
+        return false;
+    }
+    
+    public enum YYState {
+        NONE,
+        YIN,
+        YANG,
+        YINYANG,
+    }
 }

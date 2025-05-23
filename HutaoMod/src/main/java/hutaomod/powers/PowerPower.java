@@ -3,7 +3,7 @@ package hutaomod.powers;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public abstract class PowerPower extends HuTaoPower implements NonStackablePower {
+public abstract class PowerPower extends HuTaoPower {
     public PowerPower(String id, int Amount, boolean upgraded){
         super(id, AbstractDungeon.player, Amount, PowerType.BUFF, upgraded);
     }
