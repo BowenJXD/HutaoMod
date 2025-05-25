@@ -1,0 +1,1280 @@
+
+hutao_skin.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 2, 2011
+  size: 1388, 1053
+  orig: 1388, 1053
+  offset: 0, 0
+  index: -1
+goat_嘴
+  rotate: false
+  xy: 2697, 2320
+  size: 76, 50
+  orig: 76, 50
+  offset: 0, 0
+  index: -1
+goat_尾
+  rotate: true
+  xy: 2581, 2262
+  size: 72, 62
+  orig: 72, 62
+  offset: 0, 0
+  index: -1
+goat_眼a
+  rotate: false
+  xy: 1405, 856
+  size: 37, 36
+  orig: 37, 36
+  offset: 0, 0
+  index: -1
+goat_眼b
+  rotate: false
+  xy: 1427, 30
+  size: 57, 20
+  orig: 57, 20
+  offset: 0, 0
+  index: -1
+goat_身体
+  rotate: false
+  xy: 1392, 2444
+  size: 550, 527
+  orig: 550, 527
+  offset: 0, 0
+  index: -1
+pifeng_01
+  rotate: true
+  xy: 4032, 3203
+  size: 159, 56
+  orig: 159, 56
+  offset: 0, 0
+  index: -1
+pifeng_04
+  rotate: true
+  xy: 1233, 1260
+  size: 360, 120
+  orig: 360, 120
+  offset: 0, 0
+  index: -1
+pifeng_05
+  rotate: true
+  xy: 2528, 2324
+  size: 82, 44
+  orig: 82, 44
+  offset: 0, 0
+  index: -1
+pifeng_06
+  rotate: false
+  xy: 2535, 2654
+  size: 367, 310
+  orig: 367, 310
+  offset: 0, 0
+  index: -1
+pifeng_07
+  rotate: true
+  xy: 3360, 2925
+  size: 78, 266
+  orig: 78, 266
+  offset: 0, 0
+  index: -1
+pifeng_08
+  rotate: false
+  xy: 2497, 2153
+  size: 33, 27
+  orig: 33, 27
+  offset: 0, 0
+  index: -1
+pifeng_09
+  rotate: true
+  xy: 2574, 2336
+  size: 34, 78
+  orig: 34, 78
+  offset: 0, 0
+  index: -1
+pifeng_10
+  rotate: false
+  xy: 2548, 2966
+  size: 416, 327
+  orig: 416, 327
+  offset: 0, 0
+  index: -1
+pifeng_11
+  rotate: true
+  xy: 1486, 2
+  size: 23, 27
+  orig: 23, 27
+  offset: 0, 0
+  index: -1
+pifeng_12
+  rotate: true
+  xy: 1392, 2995
+  size: 69, 40
+  orig: 69, 40
+  offset: 0, 0
+  index: -1
+pifeng_13
+  rotate: true
+  xy: 2966, 2949
+  size: 241, 392
+  orig: 241, 392
+  offset: 0, 0
+  index: -1
+weijin_01
+  rotate: true
+  xy: 2528, 2243
+  size: 79, 51
+  orig: 79, 51
+  offset: 0, 0
+  index: -1
+weijin_02
+  rotate: true
+  xy: 1173, 9
+  size: 41, 53
+  orig: 41, 53
+  offset: 0, 0
+  index: -1
+weijin_03
+  rotate: false
+  xy: 3722, 3670
+  size: 26, 19
+  orig: 26, 19
+  offset: 0, 0
+  index: -1
+weijin_04
+  rotate: false
+  xy: 874, 7
+  size: 60, 43
+  orig: 60, 43
+  offset: 0, 0
+  index: -1
+weijin_07
+  rotate: false
+  xy: 3846, 2985
+  size: 34, 29
+  orig: 34, 29
+  offset: 0, 0
+  index: -1
+weijin_08
+  rotate: false
+  xy: 1233, 1028
+  size: 122, 230
+  orig: 122, 230
+  offset: 0, 0
+  index: -1
+weijin_10
+  rotate: true
+  xy: 2357, 2090
+  size: 20, 28
+  orig: 20, 28
+  offset: 0, 0
+  index: -1
+weijin_11
+  rotate: true
+  xy: 3324, 2925
+  size: 22, 28
+  orig: 22, 28
+  offset: 0, 0
+  index: -1
+weijin_12
+  rotate: true
+  xy: 2387, 2088
+  size: 21, 27
+  orig: 21, 27
+  offset: 0, 0
+  index: -1
+weijin_13
+  rotate: false
+  xy: 2385, 2059
+  size: 21, 27
+  orig: 21, 27
+  offset: 0, 0
+  index: -1
+发前_影a
+  rotate: false
+  xy: 2, 2
+  size: 15, 13
+  orig: 15, 13
+  offset: 0, 0
+  index: -1
+发前_影b
+  rotate: false
+  xy: 4032, 3138
+  size: 62, 63
+  orig: 62, 63
+  offset: 0, 0
+  index: -1
+发前_影c
+  rotate: true
+  xy: 541, 12
+  size: 38, 97
+  orig: 38, 97
+  offset: 0, 0
+  index: -1
+发前_影d
+  rotate: true
+  xy: 1486, 27
+  size: 23, 52
+  orig: 23, 52
+  offset: 0, 0
+  index: -1
+发前_影e
+  rotate: true
+  xy: 2446, 2158
+  size: 22, 49
+  orig: 22, 49
+  offset: 0, 0
+  index: -1
+发前_影f
+  rotate: true
+  xy: 3770, 2986
+  size: 28, 37
+  orig: 28, 37
+  offset: 0, 0
+  index: -1
+发前_影g
+  rotate: false
+  xy: 1456, 7
+  size: 28, 21
+  orig: 28, 21
+  offset: 0, 0
+  index: -1
+发前_影h
+  rotate: true
+  xy: 1515, 2
+  size: 18, 32
+  orig: 18, 32
+  offset: 0, 0
+  index: -1
+发前_影i
+  rotate: true
+  xy: 50, 2
+  size: 13, 10
+  orig: 13, 10
+  offset: 0, 0
+  index: -1
+发前a
+  rotate: true
+  xy: 2446, 2182
+  size: 54, 78
+  orig: 54, 78
+  offset: 0, 0
+  index: -1
+发前b
+  rotate: false
+  xy: 2066, 1908
+  size: 93, 133
+  orig: 93, 133
+  offset: 0, 0
+  index: -1
+发前c
+  rotate: true
+  xy: 1544, 1972
+  size: 75, 145
+  orig: 75, 145
+  offset: 0, 0
+  index: -1
+发前d
+  rotate: true
+  xy: 738, 18
+  size: 32, 67
+  orig: 32, 67
+  offset: 0, 0
+  index: -1
+发前e
+  rotate: false
+  xy: 1384, 9
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+发前f
+  rotate: true
+  xy: 2697, 2486
+  size: 60, 152
+  orig: 60, 152
+  offset: 0, 0
+  index: -1
+发前f_bg
+  rotate: false
+  xy: 2270, 1978
+  size: 55, 112
+  orig: 55, 112
+  offset: 0, 0
+  index: -1
+发前g
+  rotate: true
+  xy: 380, 6
+  size: 44, 109
+  orig: 44, 109
+  offset: 0, 0
+  index: -1
+发前h
+  rotate: false
+  xy: 4054, 3016
+  size: 36, 120
+  orig: 36, 120
+  offset: 0, 0
+  index: -1
+发前i
+  rotate: true
+  xy: 2572, 2446
+  size: 51, 123
+  orig: 51, 123
+  offset: 0, 0
+  index: -1
+发前j
+  rotate: false
+  xy: 2933, 2567
+  size: 91, 91
+  orig: 91, 91
+  offset: 0, 0
+  index: -1
+发前k
+  rotate: false
+  xy: 2161, 1860
+  size: 119, 106
+  orig: 119, 106
+  offset: 0, 0
+  index: -1
+发前l
+  rotate: false
+  xy: 2697, 2548
+  size: 151, 104
+  orig: 151, 104
+  offset: 0, 0
+  index: -1
+发前m
+  rotate: true
+  xy: 1932, 1881
+  size: 50, 119
+  orig: 50, 119
+  offset: 0, 0
+  index: -1
+发前n
+  rotate: false
+  xy: 1355, 1496
+  size: 58, 124
+  orig: 58, 124
+  offset: 0, 0
+  index: -1
+发前o
+  rotate: false
+  xy: 2966, 3201
+  size: 51, 92
+  orig: 51, 92
+  offset: 0, 0
+  index: -1
+发前p
+  rotate: true
+  xy: 154, 9
+  size: 41, 112
+  orig: 41, 112
+  offset: 0, 0
+  index: -1
+发前q
+  rotate: false
+  xy: 2282, 1889
+  size: 56, 87
+  orig: 56, 87
+  offset: 0, 0
+  index: -1
+发前r
+  rotate: true
+  xy: 640, 21
+  size: 29, 96
+  orig: 29, 96
+  offset: 0, 0
+  index: -1
+发前s
+  rotate: true
+  xy: 1228, 14
+  size: 36, 52
+  orig: 36, 52
+  offset: 0, 0
+  index: -1
+发前t
+  rotate: true
+  xy: 1691, 1961
+  size: 86, 138
+  orig: 86, 138
+  offset: 0, 0
+  index: -1
+发后_a
+  rotate: false
+  xy: 3643, 3364
+  size: 433, 304
+  orig: 433, 304
+  offset: 0, 0
+  index: -1
+发后_b
+  rotate: true
+  xy: 2904, 2660
+  size: 86, 236
+  orig: 86, 236
+  offset: 0, 0
+  index: -1
+发后_c
+  rotate: true
+  xy: 2264, 2624
+  size: 345, 269
+  orig: 345, 269
+  offset: 0, 0
+  index: -1
+发后_d
+  rotate: false
+  xy: 3360, 3005
+  size: 281, 185
+  orig: 281, 185
+  offset: 0, 0
+  index: -1
+发后_e
+  rotate: false
+  xy: 1944, 2405
+  size: 323, 186
+  orig: 323, 186
+  offset: 0, 0
+  index: -1
+发后_f
+  rotate: true
+  xy: 2850, 2560
+  size: 92, 81
+  orig: 92, 81
+  offset: 0, 0
+  index: -1
+发后_g
+  rotate: false
+  xy: 2079, 2971
+  size: 467, 322
+  orig: 467, 322
+  offset: 0, 0
+  index: -1
+发后_h
+  rotate: false
+  xy: 3142, 2662
+  size: 173, 107
+  orig: 173, 107
+  offset: 0, 0
+  index: -1
+发后_i
+  rotate: true
+  xy: 1392, 2049
+  size: 393, 541
+  orig: 393, 541
+  offset: 0, 0
+  index: -1
+发后_j
+  rotate: true
+  xy: 1355, 1380
+  size: 114, 92
+  orig: 114, 92
+  offset: 0, 0
+  index: -1
+发后_k
+  rotate: false
+  xy: 1357, 1157
+  size: 81, 105
+  orig: 81, 105
+  offset: 0, 0
+  index: -1
+发后_帽
+  rotate: true
+  xy: 2302, 2207
+  size: 198, 142
+  orig: 198, 142
+  offset: 0, 0
+  index: -1
+发饰a
+  rotate: true
+  xy: 1427, 2
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+发饰b
+  rotate: false
+  xy: 2358, 2057
+  size: 25, 31
+  orig: 25, 31
+  offset: 0, 0
+  index: -1
+右_youdabi_01
+  rotate: false
+  xy: 1932, 1933
+  size: 132, 108
+  orig: 132, 108
+  offset: 0, 0
+  index: -1
+右_youdabi_02
+  rotate: true
+  xy: 1355, 1264
+  size: 114, 90
+  orig: 114, 90
+  offset: 0, 0
+  index: -1
+右_youpijian_01
+  rotate: false
+  xy: 3628, 2929
+  size: 27, 34
+  orig: 27, 34
+  offset: 0, 0
+  index: -1
+右_youpijian_02
+  rotate: true
+  xy: 3657, 2923
+  size: 22, 37
+  orig: 22, 37
+  offset: 0, 0
+  index: -1
+右_youpijian_03
+  rotate: false
+  xy: 1118, 7
+  size: 53, 43
+  orig: 53, 43
+  offset: 0, 0
+  index: -1
+右_youpijian_04
+  rotate: false
+  xy: 3687, 3670
+  size: 33, 19
+  orig: 33, 19
+  offset: 0, 0
+  index: -1
+右_youpijian_05
+  rotate: false
+  xy: 3480, 2784
+  size: 140, 139
+  orig: 140, 139
+  offset: 0, 0
+  index: -1
+右_youpijian_06
+  rotate: true
+  xy: 2148, 2199
+  size: 204, 152
+  orig: 204, 152
+  offset: 0, 0
+  index: -1
+右_youpijian_07
+  rotate: false
+  xy: 491, 2
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+右_youpijian_08
+  rotate: false
+  xy: 2496, 2408
+  size: 68, 49
+  orig: 68, 49
+  offset: 0, 0
+  index: -1
+右_小臂a
+  rotate: true
+  xy: 3899, 3010
+  size: 126, 153
+  orig: 126, 153
+  offset: 0, 0
+  index: -1
+右_小臂b
+  rotate: false
+  xy: 2776, 2366
+  size: 66, 59
+  orig: 66, 59
+  offset: 0, 0
+  index: -1
+右手a
+  rotate: true
+  xy: 2581, 2207
+  size: 53, 54
+  orig: 53, 54
+  offset: 0, 0
+  index: -1
+右手b
+  rotate: true
+  xy: 3643, 3670
+  size: 19, 42
+  orig: 19, 42
+  offset: 0, 0
+  index: -1
+右手c
+  rotate: false
+  xy: 1426, 1032
+  size: 24, 22
+  orig: 24, 22
+  offset: 0, 0
+  index: -1
+右手d
+  rotate: true
+  xy: 2446, 2135
+  size: 21, 33
+  orig: 21, 33
+  offset: 0, 0
+  index: -1
+右手e
+  rotate: true
+  xy: 1435, 1008
+  size: 22, 19
+  orig: 22, 19
+  offset: 0, 0
+  index: -1
+右手f
+  rotate: true
+  xy: 2775, 2310
+  size: 54, 70
+  orig: 54, 70
+  offset: 0, 0
+  index: -1
+右手g
+  rotate: true
+  xy: 1357, 1032
+  size: 22, 67
+  orig: 22, 67
+  offset: 0, 0
+  index: -1
+右手h
+  rotate: false
+  xy: 2654, 2340
+  size: 41, 58
+  orig: 41, 58
+  offset: 0, 0
+  index: -1
+右手i
+  rotate: false
+  xy: 2349, 2143
+  size: 57, 62
+  orig: 57, 62
+  offset: 0, 0
+  index: -1
+右脚
+  rotate: true
+  xy: 1434, 2973
+  size: 320, 643
+  orig: 320, 643
+  offset: 0, 0
+  index: -1
+右脚_鞋子
+  rotate: false
+  xy: 2904, 2748
+  size: 213, 199
+  orig: 213, 199
+  offset: 0, 0
+  index: -1
+右脚_鞋子b
+  rotate: false
+  xy: 2935, 2498
+  size: 85, 67
+  orig: 85, 67
+  offset: 0, 0
+  index: -1
+嘴
+  rotate: false
+  xy: 3731, 2984
+  size: 37, 30
+  orig: 37, 30
+  offset: 0, 0
+  index: -1
+嘴牙
+  rotate: false
+  xy: 3657, 2947
+  size: 34, 27
+  orig: 34, 27
+  offset: 0, 0
+  index: -1
+围巾
+  rotate: true
+  xy: 2161, 1968
+  size: 122, 107
+  orig: 122, 107
+  offset: 0, 0
+  index: -1
+地面
+  rotate: false
+  xy: 2, 3066
+  size: 1430, 1028
+  orig: 1430, 1028
+  offset: 0, 0
+  index: -1
+头_耳朵
+  rotate: false
+  xy: 2135, 2052
+  size: 24, 38
+  orig: 24, 38
+  offset: 0, 0
+  index: -1
+左腿
+  rotate: false
+  xy: 3767, 3670
+  size: 327, 424
+  orig: 327, 424
+  offset: 0, 0
+  index: -1
+左腿_鞋子
+  rotate: true
+  xy: 3119, 2771
+  size: 176, 203
+  orig: 176, 203
+  offset: 0, 0
+  index: -1
+左臂
+  rotate: true
+  xy: 3643, 3016
+  size: 120, 254
+  orig: 120, 254
+  offset: 0, 0
+  index: -1
+左臂 中指
+  rotate: true
+  xy: 2416, 2088
+  size: 25, 20
+  orig: 25, 20
+  offset: 0, 0
+  index: -1
+左臂 中指尖
+  rotate: false
+  xy: 640, 2
+  size: 20, 17
+  orig: 20, 17
+  offset: 0, 0
+  index: -1
+左臂 大指
+  rotate: false
+  xy: 2284, 2092
+  size: 47, 35
+  orig: 47, 35
+  offset: 0, 0
+  index: -1
+左臂 大指根
+  rotate: true
+  xy: 2408, 2164
+  size: 41, 36
+  orig: 41, 36
+  offset: 0, 0
+  index: -1
+左臂 小指
+  rotate: false
+  xy: 2408, 2061
+  size: 22, 25
+  orig: 22, 25
+  offset: 0, 0
+  index: -1
+左臂 手掌
+  rotate: false
+  xy: 2851, 2488
+  size: 82, 70
+  orig: 82, 70
+  offset: 0, 0
+  index: -1
+左臂 无名
+  rotate: true
+  xy: 2327, 2056
+  size: 32, 29
+  orig: 32, 29
+  offset: 0, 0
+  index: -1
+左臂肩膀
+  rotate: true
+  xy: 268, 7
+  size: 43, 110
+  orig: 43, 110
+  offset: 0, 0
+  index: -1
+帽边
+  rotate: true
+  xy: 2496, 2459
+  size: 163, 74
+  orig: 163, 74
+  offset: 0, 0
+  index: -1
+建筑飘带a
+  rotate: true
+  xy: 1392, 2015
+  size: 32, 150
+  orig: 32, 150
+  offset: 0, 0
+  index: -1
+建筑飘带b
+  rotate: true
+  xy: 2, 17
+  size: 33, 150
+  orig: 33, 150
+  offset: 0, 0
+  index: -1
+树
+  rotate: false
+  xy: 2, 848
+  size: 1229, 1161
+  orig: 1229, 1161
+  offset: 0, 0
+  index: -1
+灯光
+  rotate: false
+  xy: 1233, 856
+  size: 170, 170
+  orig: 170, 170
+  offset: 0, 0
+  index: -1
+烟雾a
+  rotate: true
+  xy: 3020, 3192
+  size: 497, 621
+  orig: 497, 621
+  offset: 0, 0
+  index: -1
+烟雾bc
+  rotate: false
+  xy: 2, 52
+  size: 1579, 794
+  orig: 1579, 794
+  offset: 0, 0
+  index: -1
+烟雾c
+  rotate: false
+  xy: 1434, 3295
+  size: 1584, 799
+  orig: 1584, 799
+  offset: 0, 0
+  index: -1
+烟雾d
+  rotate: false
+  xy: 3020, 3691
+  size: 745, 403
+  orig: 745, 403
+  offset: 0, 0
+  index: -1
+白色上衣a
+  rotate: false
+  xy: 1935, 2043
+  size: 198, 123
+  orig: 198, 123
+  offset: 0, 0
+  index: -1
+白色上衣b
+  rotate: false
+  xy: 2697, 2427
+  size: 145, 57
+  orig: 145, 57
+  offset: 0, 0
+  index: -1
+白色上衣c
+  rotate: false
+  xy: 2446, 2238
+  size: 80, 167
+  orig: 80, 167
+  offset: 0, 0
+  index: -1
+眼R_捷毛a
+  rotate: false
+  xy: 936, 2
+  size: 12, 9
+  orig: 12, 9
+  offset: 0, 0
+  index: -1
+眼R_捷毛b
+  rotate: true
+  xy: 62, 2
+  size: 13, 10
+  orig: 13, 10
+  offset: 0, 0
+  index: -1
+眼R_眉毛
+  rotate: false
+  xy: 1392, 2973
+  size: 37, 20
+  orig: 37, 20
+  offset: 0, 0
+  index: -1
+眼R_眼影上
+  rotate: false
+  xy: 3119, 2750
+  size: 21, 19
+  orig: 21, 19
+  offset: 0, 0
+  index: -1
+眼R_眼框上
+  rotate: true
+  xy: 3628, 2965
+  size: 38, 25
+  orig: 38, 25
+  offset: 0, 0
+  index: -1
+眼R_眼框下
+  rotate: false
+  xy: 2408, 2144
+  size: 36, 18
+  orig: 36, 18
+  offset: 0, 0
+  index: -1
+眼R_眼珠
+  rotate: false
+  xy: 2411, 2115
+  size: 24, 27
+  orig: 24, 27
+  offset: 0, 0
+  index: -1
+眼R_眼白
+  rotate: false
+  xy: 2357, 2112
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+眼R_眼皮
+  rotate: true
+  xy: 2388, 2111
+  size: 30, 21
+  orig: 30, 21
+  offset: 0, 0
+  index: -1
+眼R_眼角
+  rotate: false
+  xy: 3750, 3677
+  size: 12, 12
+  orig: 12, 12
+  offset: 0, 0
+  index: -1
+眼l_捷毛a
+  rotate: true
+  xy: 36, 2
+  size: 13, 12
+  orig: 13, 12
+  offset: 0, 0
+  index: -1
+眼l_捷毛b
+  rotate: true
+  xy: 2135, 2152
+  size: 14, 11
+  orig: 14, 11
+  offset: 0, 0
+  index: -1
+眼l_眉毛
+  rotate: true
+  xy: 2333, 2090
+  size: 37, 22
+  orig: 37, 22
+  offset: 0, 0
+  index: -1
+眼l_眼影上
+  rotate: true
+  xy: 4078, 3630
+  size: 38, 12
+  orig: 38, 12
+  offset: 0, 0
+  index: -1
+眼l_眼框上
+  rotate: true
+  xy: 1405, 981
+  size: 49, 28
+  orig: 49, 28
+  offset: 0, 0
+  index: -1
+眼l_眼框下
+  rotate: false
+  xy: 3809, 2983
+  size: 35, 31
+  orig: 35, 31
+  offset: 0, 0
+  index: -1
+眼l_眼珠
+  rotate: true
+  xy: 2535, 2624
+  size: 28, 29
+  orig: 28, 29
+  offset: 0, 0
+  index: -1
+眼l_眼白
+  rotate: false
+  xy: 1540, 22
+  size: 39, 28
+  orig: 39, 28
+  offset: 0, 0
+  index: -1
+眼l_眼皮
+  rotate: true
+  xy: 2327, 1980
+  size: 37, 20
+  orig: 37, 20
+  offset: 0, 0
+  index: -1
+眼l_眼角
+  rotate: false
+  xy: 2053, 1915
+  size: 11, 16
+  orig: 11, 16
+  offset: 0, 0
+  index: -1
+眼镜
+  rotate: true
+  xy: 1357, 1056
+  size: 99, 76
+  orig: 99, 76
+  offset: 0, 0
+  index: -1
+眼镜光
+  rotate: false
+  xy: 2650, 2400
+  size: 45, 44
+  orig: 45, 44
+  offset: 0, 0
+  index: -1
+粒子a
+  rotate: false
+  xy: 2270, 1968
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+粒子b
+  rotate: false
+  xy: 936, 13
+  size: 63, 37
+  orig: 63, 37
+  offset: 0, 0
+  index: -1
+粒子c
+  rotate: false
+  xy: 2924, 2952
+  size: 12, 12
+  orig: 12, 12
+  offset: 0, 0
+  index: -1
+粒子d
+  rotate: false
+  xy: 1228, 2
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+粒子e
+  rotate: true
+  xy: 1405, 894
+  size: 41, 30
+  orig: 41, 30
+  offset: 0, 0
+  index: -1
+粒子f
+  rotate: true
+  xy: 2327, 2019
+  size: 35, 24
+  orig: 35, 24
+  offset: 0, 0
+  index: -1
+粒子g
+  rotate: false
+  xy: 1337, 13
+  size: 45, 37
+  orig: 45, 37
+  offset: 0, 0
+  index: -1
+粒子h
+  rotate: true
+  xy: 3643, 3005
+  size: 9, 10
+  orig: 9, 10
+  offset: 0, 0
+  index: -1
+粒子i
+  rotate: true
+  xy: 2282, 1838
+  size: 49, 64
+  orig: 49, 64
+  offset: 0, 0
+  index: -1
+粒子j
+  rotate: true
+  xy: 1001, 15
+  size: 35, 58
+  orig: 35, 58
+  offset: 0, 0
+  index: -1
+粒子k
+  rotate: true
+  xy: 1282, 15
+  size: 35, 53
+  orig: 35, 53
+  offset: 0, 0
+  index: -1
+粒子l
+  rotate: true
+  xy: 1935, 2434
+  size: 8, 7
+  orig: 8, 7
+  offset: 0, 0
+  index: -1
+粒子m
+  rotate: false
+  xy: 2904, 2949
+  size: 18, 15
+  orig: 18, 15
+  offset: 0, 0
+  index: -1
+粒子n
+  rotate: true
+  xy: 4054, 2986
+  size: 28, 40
+  orig: 28, 40
+  offset: 0, 0
+  index: -1
+粒子o
+  rotate: false
+  xy: 807, 7
+  size: 65, 43
+  orig: 65, 43
+  offset: 0, 0
+  index: -1
+粒子p
+  rotate: false
+  xy: 3655, 2976
+  size: 37, 38
+  orig: 37, 38
+  offset: 0, 0
+  index: -1
+粒子q
+  rotate: true
+  xy: 1405, 937
+  size: 42, 33
+  orig: 42, 33
+  offset: 0, 0
+  index: -1
+粒子r
+  rotate: false
+  xy: 2697, 2372
+  size: 77, 53
+  orig: 77, 53
+  offset: 0, 0
+  index: -1
+粒子s
+  rotate: true
+  xy: 1061, 4
+  size: 46, 55
+  orig: 46, 55
+  offset: 0, 0
+  index: -1
+红裙子
+  rotate: false
+  xy: 3643, 3138
+  size: 387, 224
+  orig: 387, 224
+  offset: 0, 0
+  index: -1
+红裙子后
+  rotate: true
+  xy: 1233, 1622
+  size: 387, 150
+  orig: 387, 150
+  offset: 0, 0
+  index: -1
+脸
+  rotate: false
+  xy: 2572, 2499
+  size: 123, 153
+  orig: 123, 153
+  offset: 0, 0
+  index: -1
+蝴蝶a
+  rotate: true
+  xy: 2269, 2407
+  size: 215, 225
+  orig: 215, 225
+  offset: 0, 0
+  index: -1
+蝴蝶bc
+  rotate: true
+  xy: 3324, 2779
+  size: 144, 154
+  orig: 144, 154
+  offset: 0, 0
+  index: -1
+蝴蝶o
+  rotate: false
+  xy: 1935, 2168
+  size: 211, 235
+  orig: 211, 235
+  offset: 0, 0
+  index: -1
+蝴蝶q
+  rotate: false
+  xy: 3026, 2568
+  size: 80, 90
+  orig: 80, 90
+  offset: 0, 0
+  index: -1
+身体
+  rotate: false
+  xy: 1944, 2593
+  size: 318, 376
+  orig: 318, 376
+  offset: 0, 0
+  index: -1
+身体影子
+  rotate: true
+  xy: 2284, 2129
+  size: 68, 63
+  orig: 68, 63
+  offset: 0, 0
+  index: -1
+霄灯a
+  rotate: false
+  xy: 1831, 1917
+  size: 99, 130
+  orig: 99, 130
+  offset: 0, 0
+  index: -1
+霄灯b
+  rotate: false
+  xy: 3240, 2582
+  size: 71, 78
+  orig: 71, 78
+  offset: 0, 0
+  index: -1
+霄灯c
+  rotate: false
+  xy: 3173, 2575
+  size: 65, 85
+  orig: 65, 85
+  offset: 0, 0
+  index: -1
+霄灯d
+  rotate: true
+  xy: 2148, 2092
+  size: 105, 134
+  orig: 105, 134
+  offset: 0, 0
+  index: -1
+霄灯e
+  rotate: false
+  xy: 3694, 2980
+  size: 35, 34
+  orig: 35, 34
+  offset: 0, 0
+  index: -1
+霄灯f
+  rotate: false
+  xy: 2574, 2372
+  size: 74, 72
+  orig: 74, 72
+  offset: 0, 0
+  index: -1
+霄灯g
+  rotate: false
+  xy: 3108, 2572
+  size: 63, 86
+  orig: 63, 86
+  offset: 0, 0
+  index: -1
+鼻子
+  rotate: true
+  xy: 1549, 2
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+鼻子影子
+  rotate: true
+  xy: 19, 2
+  size: 13, 15
+  orig: 13, 15
+  offset: 0, 0
+  index: -1
