@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.debuffs.SiPower;
+import hutaomod.subscribers.SubscriptionManager;
 
 import java.util.HashMap;
 import java.util.function.BooleanSupplier;
@@ -54,7 +55,9 @@ public class CacheManager {
             integerUpdateTime = CardCrawlGame.playtime;
             integerSuppliers.forEach((k, v) -> {
                 try {
-                    integerCaches.put(k, v.get());                
+                    int result = v.get();
+                    result = SubscriptionManager.getInstance().triggerPreCachedIntGet(key, result);
+                    integerCaches.put(k, result);                
                 } catch (Exception e) {
                     HuTaoMod.logger.error("CachedCondition: Error while getting integer key: {}", k);
                     HuTaoMod.logger.error(e);

@@ -1,23 +1,54 @@
-/*
 package hutaomod.relics;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.stances.DivinityStance;
+import hutaomod.actions.ClairvoirAction;
+import hutaomod.cards.HuTaoCard;
 import hutaomod.cards.base.HutaoA;
 import hutaomod.cards.base.HutaoQ;
 import hutaomod.powers.debuffs.BloodBlossomPower;
+import hutaomod.subscribers.CheckYinYangSubscriber;
+import hutaomod.subscribers.SubscriptionManager;
+import hutaomod.utils.GAMManager;
 import hutaomod.utils.ModHelper;
 import hutaomod.utils.RelicEventHelper;
 
 import java.util.Objects;
 
-public class PapilioCharontis extends HuTaoRelic {
+public class PapilioCharontis extends HuTaoRelic implements CheckYinYangSubscriber {
     public static final String ID = PapilioCharontis.class.getSimpleName();
-
+    boolean subscribed = false;
+    boolean c6Available = false;
+    
     public PapilioCharontis() {
         super(ID, RelicTier.STARTER);
+    }
+
+    @Override
+    public void setCounter(int counter) {
+        super.setCounter(counter);
+        if (counter >= 3 && !subscribed) {
+            SubscriptionManager.subscribe(this);
+            subscribed = true;
+        }
+        if (counter >= 4) {
+            GAMManager.addParallelAction(ID, action -> {
+                if (action instanceof ClairvoirAction) {
+                    addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 1)));
+                }
+                return false;
+            });
+        }
     }
 
     @Override
@@ -67,5 +98,35 @@ public class PapilioCharontis extends HuTaoRelic {
             }
         }
     }
+
+    @Override
+    public int checkYinYang(HuTaoCard card, int yyTime, boolean onUse) {
+        if (SubscriptionManager.checkSubscriber(this) 
+                && counter >= 3
+                && card.tags.contains(AbstractCard.CardTags.STARTER_STRIKE) 
+                && yyTime > 1 
+                && onUse) {
+            addToBot(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, card.block));
+        }
+        return 0;
+    }
+
+    @Override
+    public void atBattleStart() {
+        super.atBattleStart();
+        if (counter >= 6) {
+            c6Available = true;
+        }
+    }
+
+    @Override
+    public int onLoseHpLast(int damageAmount) {
+        if (damageAmount > AbstractDungeon.player.currentHealth && c6Available) {
+            flash();
+            addToTop(new ChangeStanceAction(DivinityStance.STANCE_ID));
+            addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new IntangiblePlayerPower(AbstractDungeon.player, 1)));
+            return 0;
+        }
+        return super.onLoseHpLast(damageAmount);
+    }
 }
-*/

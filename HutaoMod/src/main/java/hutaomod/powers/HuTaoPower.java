@@ -12,6 +12,7 @@ import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.utils.GeneralUtil;
 import hutaomod.utils.PathDefine;
+import org.apache.logging.log4j.Level;
 
 public abstract class HuTaoPower extends AbstractPower {
     public String[] DESCRIPTIONS;
@@ -43,7 +44,7 @@ public abstract class HuTaoPower extends AbstractPower {
             try {
                 description = DESCRIPTIONS[upgraded && DESCRIPTIONS.length > 1 ? 1 : 0];
             } catch (Exception e2) {
-                HuTaoMod.logger.error("Error while updating power description", e2);
+                HuTaoMod.logger.warn("Error while updating {} description", ID);
             }
         }
     }
@@ -75,7 +76,11 @@ public abstract class HuTaoPower extends AbstractPower {
             this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 128, 128);
             this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 48, 48);
         } catch (Exception e) {
-            HuTaoMod.logger.error("Error while loading power region", e);
+            String path128 = PathDefine.POWER_PATH + "InfoPower128.png";
+            String path48 = PathDefine.POWER_PATH + "InfoPower48.png";
+            this.region128 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path128), 0, 0, 128, 128);
+            this.region48 = new TextureAtlas.AtlasRegion(ImageMaster.loadImage(path48), 0, 0, 48, 48);
+            HuTaoMod.logger.warn("Error while loading {} region", ID);
         }
     }
 

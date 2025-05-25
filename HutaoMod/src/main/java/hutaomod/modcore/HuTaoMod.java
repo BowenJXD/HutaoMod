@@ -105,7 +105,7 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
     @Override
     public void receiveEditRelics() {
         new AutoAdd(MOD_NAME)
-                .packageFilter("hsrmod.relics")
+                .packageFilter("hutaomod.relics")
                 .any(CustomRelic.class, (info, relic) -> {
                     BaseMod.addRelic(relic, RelicType.SHARED);
                 });

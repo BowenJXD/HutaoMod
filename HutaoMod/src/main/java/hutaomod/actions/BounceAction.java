@@ -17,20 +17,19 @@ public class BounceAction extends AbstractGameAction {
     private AbstractCard card;
     private Consumer<AbstractMonster> callback;
 
-    public BounceAction(AbstractCard card, int usesLeft, Consumer<AbstractMonster> callback) {
+    public BounceAction(AbstractMonster target, AbstractCard card, int usesLeft, Consumer<AbstractMonster> callback) {
         this.card = card;
         this.callback = callback;
-        this.setValues(null, AbstractDungeon.player, usesLeft);
+        this.setValues(target, AbstractDungeon.player, usesLeft);
     }
 
     public void update() {
         this.isDone = true;
-        AbstractMonster monster = ModHelper.betterGetRandomMonster();
-        if (this.amount > 0 && monster != null) {
-            this.card.calculateCardDamage(monster);
-            callback.accept(monster);
+        if (this.amount > 0 && target != null) {
+            this.card.calculateCardDamage((AbstractMonster) target);
+            callback.accept((AbstractMonster) target);
             if (this.amount > 1) {
-                addToBot(new BounceAction(this.card, this.amount - 1, this.callback));
+                addToBot(new BounceAction(ModHelper.betterGetRandomMonster(), this.card, this.amount - 1, this.callback));
             }
         }
     }

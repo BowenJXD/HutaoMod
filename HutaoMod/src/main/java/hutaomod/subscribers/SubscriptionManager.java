@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.powers.HuTaoPower;
+import hutaomod.utils.CacheManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ public final class SubscriptionManager {
     List<PreCardDamageSubscriber> preCardDamageSubscribers = new ArrayList<>();
     List<CheckYinYangSubscriber> checkYinYangSubscribers = new ArrayList<>();
     List<PostCardMoveSubscriber> postCardMoveSubscribers = new ArrayList<>();
+    List<PreCachedIntGetSubscriber> preCachedIntGetSubscribers = new ArrayList<>();
 
     HashMap<RunnableType, List<IRunnableSubscriber>> runnableSubscribers = new HashMap<>();
     HashMap<NumChangerType, List<INumChangerSubscriber>> numChangerSubscribers = new HashMap<>();
@@ -66,6 +68,10 @@ public final class SubscriptionManager {
             if (addToFront) postCardMoveSubscribers.add(0, (PostCardMoveSubscriber) sub);
             else postCardMoveSubscribers.add((PostCardMoveSubscriber) sub);
         }
+        if (sub instanceof PreCachedIntGetSubscriber && !preCachedIntGetSubscribers.contains(sub)) {
+            if (addToFront) preCachedIntGetSubscribers.add(0, (PreCachedIntGetSubscriber) sub);
+            else preCachedIntGetSubscribers.add((PreCachedIntGetSubscriber) sub);
+        }
 
         if (sub instanceof IRunnableSubscriber) {
             subscribeRunnableHelper((IRunnableSubscriber) sub, ((IRunnableSubscriber) sub).getSubType());
@@ -102,6 +108,7 @@ public final class SubscriptionManager {
         if (sub instanceof PreCardDamageSubscriber) preCardDamageSubscribers.remove(sub);
         if (sub instanceof CheckYinYangSubscriber) checkYinYangSubscribers.remove(sub);
         if (sub instanceof PostCardMoveSubscriber) postCardMoveSubscribers.remove(sub);
+        if (sub instanceof PreCachedIntGetSubscriber) preCachedIntGetSubscribers.remove(sub);
 
         if (sub instanceof IRunnableSubscriber) {
             unsubscribeRunnableHelper((IRunnableSubscriber) sub, ((IRunnableSubscriber) sub).getSubType());
@@ -172,6 +179,18 @@ public final class SubscriptionManager {
         }
 
         unsubscribeLaterHelper(PostCardMoveSubscriber.class);
+    }
+    
+    public int triggerPreCachedIntGet(CacheManager.Key key, int amount) {
+        int result = amount;
+
+        for (PreCachedIntGetSubscriber sub : preCachedIntGetSubscribers) {
+            result = sub.preCachedIntGet(key, result);
+        }
+
+        unsubscribeLaterHelper(PreCachedIntGetSubscriber.class);
+
+        return result;
     }
 
     public void triggerRunnable(RunnableType type) {

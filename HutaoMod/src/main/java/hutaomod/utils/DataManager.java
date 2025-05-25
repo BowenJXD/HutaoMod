@@ -155,10 +155,14 @@ public class DataManager {
             replacements.put("临时生命", " 临时生命 ");
             replacements.put("燃血", " hutaomod:燃血 ");
             replacements.put("弹射", " hutaomod:弹射 ");
+            replacements.put("阴盛阳虚", " hutaomod:阴盛阳虚 ");
+            replacements.put("阳盛阴虚", " hutaomod:阳盛阴虚 ");
+            replacements.put("阴阳平衡", " hutaomod:阴阳平衡 ");
             replacements.put("消耗。", " 消耗 。");
             replacements.put("虚无。", " 虚无 。");
             replacements.put("固有。", " 固有 。");
             replacements.put("保留。", " 保留 。");
+            replacements.put("墓地。", " stslib:墓地 。");
 
             // 读取文件并替换文本
             replaceTextInFile(CARD_CSV_ZHS, replacements);

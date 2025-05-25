@@ -31,7 +31,7 @@ public class DEBBJPower extends BuffPower implements CheckYinYangSubscriber {
 
     @Override
     public int checkYinYang(HuTaoCard card, int yyTime, boolean onUse) {
-        if (SubscriptionManager.checkSubscriber(card) && yyTime > 0) {
+        if (SubscriptionManager.checkSubscriber(this) && yyTime > 0) {
             yyTime++;
             if (onUse) remove(1);
         }

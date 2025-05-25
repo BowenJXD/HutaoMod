@@ -21,7 +21,6 @@ public class SSBJPower extends PowerPower {
     public SSBJPower(int limit) {
         super(POWER_ID, 1);
         setLimit(limit);
-        loadRegion("InfoPower");
         
         this.updateDescription();
     }

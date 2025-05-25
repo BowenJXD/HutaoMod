@@ -2,14 +2,18 @@ package hutaomod.cards;
 
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomCard;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.characters.HuTao;
@@ -38,6 +42,10 @@ public abstract class HuTaoCard extends CustomCard {
 
     public CardStrings cardStrings;
 
+    protected static final Color WHITE_BORDER_GLOW_COLOR;
+    protected static final Color BLACK_BORDER_GLOW_COLOR;
+    protected static final Color ORANGE_BORDER_GLOW_COLOR;
+
     public HuTaoCard(String id, String imgPath, CardColor color){
         super(HuTaoMod.makeID(id),
                 DataManager.getInstance().getCardData(id, CardDataCol.Name),
@@ -64,13 +72,8 @@ public abstract class HuTaoCard extends CustomCard {
         String yinyang = DataManager.getInstance().getCardData(id, CardDataCol.YinYang);
         if (yinyang.contains("阴")) yy = YYState.YIN;
         else if (yinyang.contains("阳")) yy = YYState.YANG;
-        else if (yinyang.contains("☯️")) yy = YYState.YINYANG;
+        else if (yinyang.contains("?")) yy = YYState.YINYANG;
         else yy = YYState.NONE;
-        
-        this.exhaust = rawDescription.contains("消耗。");
-        this.selfRetain = rawDescription.contains("保留。");
-        this.isInnate = rawDescription.contains("固有。");
-        this.isEthereal = rawDescription.contains("虚无。");
 
         CommonKeywordIconsField.useIcons.set(this, true);
         assetUrl = "HuTaoMod/" + id + "_s_p.png";
@@ -81,7 +84,16 @@ public abstract class HuTaoCard extends CustomCard {
     }
 
     public HuTaoCard(String id) {
-        this(id, null, HuTao.PlayerColorEnum.HUTAO_RED);
+        this(id, PathDefine.CARD_PATH + id + ".png", HuTao.PlayerColorEnum.HUTAO_RED);
+    }
+
+    @Override
+    public void loadCardImage(String img) {
+        try {
+            super.loadCardImage(img);
+        } catch (Exception e) {
+            HuTaoMod.logger.error("Failed to load card image: {}", img);
+        }
     }
 
     @Override
@@ -101,21 +113,17 @@ public abstract class HuTaoCard extends CustomCard {
             if (upBlock != DataManager.NULL_INT) {
                 upgradeBlock(upBlock - baseBlock);
             }
-            if (upMagicNumber != DataManager.NULL_INT) {
+            if (upMagicNumber != DataManager.NULL_INT) {      
                 upgradeMagicNumber(upMagicNumber - baseMagicNumber);
             }
         }
-        this.exhaust = upDescription.contains("消耗。");
-        this.selfRetain = upDescription.contains("保留。");
-        this.isInnate = upDescription.contains("固有。");
-        this.isEthereal = upDescription.contains("虚无。");
     }
 
     @Override
     public void applyPowers() {
         super.applyPowers();
         si = CacheManager.getInt(CacheManager.Key.PLAYER_SI);
-        isSiModified = si == 0;
+        isSiModified = si != 0;
     }
 
     public void onEnterHand() { }
@@ -134,11 +142,11 @@ public abstract class HuTaoCard extends CustomCard {
                 addToBot(new ApplyPowerAction(p, p, new SiPower(p, 1)));
                 break;
             case YANG:
-                addToBot(new ApplyPowerAction(p, p, new SiPower(p, -1)));
+                addToBot(new ReducePowerAction(p, p, SiPower.POWER_ID, 1));
                 break;
             case YINYANG:
                 if (CacheManager.getBool(CacheManager.Key.DYING)) {
-                    addToBot(new ApplyPowerAction(p, p, new SiPower(p, -1)));
+                    addToBot(new ReducePowerAction(p, p, SiPower.POWER_ID, 1));
                 } else {
                     addToBot(new ApplyPowerAction(p, p, new SiPower(p, 1)));
                 }
@@ -170,6 +178,18 @@ public abstract class HuTaoCard extends CustomCard {
             glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;    
         }
     }
+    
+    protected void addToTop(AbstractGameAction... actions) {
+        for (int i = actions.length - 1; i >= 0; i--) {
+            addToTop(actions[i]);
+        }
+    }
+    
+    public int compareHandYY() {
+        int yangCount = CacheManager.getInt(CacheManager.Key.YANG_CARDS);
+        int yinCount = CacheManager.getInt(CacheManager.Key.YIN_CARDS);
+        return Integer.compare(yangCount, yinCount);
+    }
 
     public static boolean isYin(AbstractCard card) {
         if (card instanceof HuTaoCard) {
@@ -190,5 +210,11 @@ public abstract class HuTaoCard extends CustomCard {
         YIN,
         YANG,
         YINYANG,
+    }
+    
+    static {
+        WHITE_BORDER_GLOW_COLOR = Color.WHITE.cpy();
+        BLACK_BORDER_GLOW_COLOR = Color.DARK_GRAY.cpy();
+        ORANGE_BORDER_GLOW_COLOR = Color.ORANGE.cpy();
     }
 }

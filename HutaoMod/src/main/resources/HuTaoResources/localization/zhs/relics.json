@@ -1,9 +1,30 @@
 {
   "HuTaoMod:PapilioCharontis": {
     "NAME": "引蝶座",
-    "FLAVOR": "蝶引之冥，冥冥之中，似有蝶影浮现。",
+    "FLAVOR": "「生于生时，亡于亡刻。遵从自心，尽人之事。」",
     "DESCRIPTIONS": [
       "在卡组加入牌时，若已有可以升级的相同牌，则改为升级之。 NL 休息时，可以点亮一个命座，获得命座效果。 NL #y赤团开时斜飞去： NL 回合开始时，令手牌中1张 #y往生堂秘传枪法 可以免费打出1次。 NL #y最不安神晴又复雨： NL 打出 #y往生堂秘传枪法 和 #y安神秘法 时，对目标各施加1层 [bb] 。 NL #y逗留采血色： NL 打出 #y蝶引来生 时，若 HuTaoMod:阴阳 ，获得等量 stslib:临时生命 。 NL #y伴君眠花房： NL HuTaoMod:通灵 时，获得1层 力量 。 NL #y无可奈何燃花作香： NL #y安神秘法 计算Y值时，视为翻倍。 NL #y幽蝶能留一缕芳： NL 一局游戏内首次受到 #r致命伤害 时，防止该伤害，获得 无实体 ，进入 神格 。"
+    ]
+  },
+  "HuTaoMod:StaffOfHoma": {
+    "NAME": "护摩之杖",
+    "FLAVOR": "在早已失落的古老祭仪中，使用的朱赤「柴火杖」。",
+    "DESCRIPTIONS": [
+      "回合开始时，若你生命值不足一半，获得 [E] 。"
+    ]
+  },
+  "HuTaoMod:HarmonyHexagramHat": {
+    "NAME": "乾坤泰卦帽",
+    "FLAVOR": "帽子的材质偏硬，正面饰有往生堂的徽记。",
+    "DESCRIPTIONS": [
+      "回合开始的摸牌后，若你手牌： NL hutaomod:阴盛阳虚 ，获得 #b4 点 stslib:临时生命 ； NL hutaomod:阳盛阴虚 ， hutaomod:通灵 #b4 。"
+    ]
+  },
+  "HuTaoMod:PlumBranch": {
+    "NAME": "梅枝",
+    "FLAVOR": "忽然一夜梅香起，散作乾坤万里春。",
+    "DESCRIPTIONS": [
+      "回合开始时，群体：施加1层 [bbIcon] 。"
     ]
   }
 }

@@ -45,6 +45,10 @@ public class CardDamageAction extends AbstractGameAction {
         this(target, new DamageInfo(AbstractDungeon.player, card.damage, card.damageTypeForTurn), card, effect);
     }
     
+    public CardDamageAction(AbstractCreature target, int amount, AbstractCard card,  AbstractGameAction.AttackEffect effect) {
+        this(target, new DamageInfo(AbstractDungeon.player, amount, card.damageTypeForTurn), card, effect);
+    }
+    
     public CardDamageAction modifier(Consumer<CallbackInfo> modifier) {
         this.modifier = modifier;
         return this;

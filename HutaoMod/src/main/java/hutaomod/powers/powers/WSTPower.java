@@ -21,9 +21,8 @@ import java.util.stream.Collectors;
 public class WSTPower extends PowerPower implements CheckYinYangSubscriber {
     public static final String POWER_ID = HuTaoMod.makeID(WSTPower.class.getSimpleName());
     
-    public WSTPower() {
-        super(POWER_ID, 1);
-        loadRegion("InfoPower");
+    public WSTPower(int amount) {
+        super(POWER_ID, amount);
         this.updateDescription();
     }
 

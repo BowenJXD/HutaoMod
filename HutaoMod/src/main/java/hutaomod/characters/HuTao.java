@@ -3,6 +3,8 @@ package hutaomod.characters;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.math.MathUtils;
+import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -22,6 +24,7 @@ import hutaomod.cards.base.HutaoA;
 import hutaomod.cards.base.HutaoE;
 import hutaomod.cards.base.HutaoQ;
 import hutaomod.modcore.HuTaoMod;
+import hutaomod.relics.PapilioCharontis;
 import hutaomod.utils.PathDefine;
 
 import java.util.ArrayList;
@@ -55,15 +58,25 @@ public class HuTao extends CustomPlayer {
     public HuTao(String name) {
         super(name, PlayerColorEnum.HUTAO, ORB_TEXTURES,"HuTaoResources/img/UI/orb/vfx.png", LAYER_SPEED, null, null);
 
+        String charImg = null;
+        try {
+            //this.loadAnimation("HuTaoResources/img/spine/hutao_skin.atlas", "HuTaoResources/img/spine/hutao_skin.json", 0.6F);
+            AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
+            e.setTime(e.getEndTime() * MathUtils.random());
+            e.setTimeScale(0.5F);
+        } catch (Exception e) {
+            System.out.println("HuTao skin load failed");
+            System.out.println(e);
+            charImg = "HuTaoResources/img/char/character.png";
+        }
 
         // 人物对话气泡的大小，如果游戏中尺寸不对在这里修改（libgdx的坐标轴左下为原点）
         this.dialogX = (this.drawX + 0.0F * Settings.scale);
         this.dialogY = (this.drawY + 150.0F * Settings.scale);
-
-
+        
         // 初始化你的人物，如果你的人物只有一张图，那么第一个参数填写你人物图片的路径。
         this.initializeClass(
-                "HuTaoResources/img/char/character.png", // 人物图片
+                charImg, // 人物图片
                 MY_CHARACTER_SHOULDER_2, MY_CHARACTER_SHOULDER_1,
                 CORPSE_IMAGE, // 人物死亡图像
                 this.getLoadout(),
@@ -100,7 +113,7 @@ public class HuTao extends CustomPlayer {
     // 初始遗物的ID，可以先写个原版遗物凑数
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(Vajra.ID);
+        retVal.add(PapilioCharontis.ID);
         return retVal;
     }
 

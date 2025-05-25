@@ -2,31 +2,63 @@
   "HuTaoMod:Si": {
     "NAME": "死气",
     "DESCRIPTIONS": [
-      "死气 [si] 的层数包含“1”时，视为 #y濒死 状态。回合开始时，若处于 #y濒死 ，则死亡，否则受到 #b%d 点伤害，并衰减1层。"
+      "死气 [siIcon] 的层数包含“1”时，视为 #y濒死 状态。回合开始时，若处于 #y濒死 ，则死亡，否则受到 #b%d 点伤害，并衰减1层。"
     ]
   },
   "HuTaoMod:BloodBlossom": {
     "NAME": "血梅香",
     "DESCRIPTIONS": [
-      "血梅香 [bb] 施加或叠加后，受到 #b%d 点伤害。回合开始时，层数减半。"
+      "血梅香 [bbIcon] 施加或叠加后，受到 #b%d 点伤害。回合开始时，层数减半。",
+      "血梅香 [bbIcon] 施加，叠加或衰减后，受到 #b%d 点伤害。回合开始时，层数减半。"
+    ]
+  },
+  "HuTaoMod:Breath": {
+    "NAME": "调息",
+    "DESCRIPTIONS": [
+      "下 #b%d 张牌无视 [siIcon] 数触发 #y阴阳 。"
     ]
   },
   "HuTaoMod:SSBJ": {
     "NAME": "生死边界",
     "DESCRIPTIONS": [
-      "每打出 #b%d 张 [yin] 牌，获得1层 #y死气 ，且随机 [yang] 牌的费用此回合- #b%d 。"
+      "每打出 #b%d 张 [yinIcon] 牌，获得1层 #y死气 ，且随机 [yangIcon] 牌的费用此回合- #b%d 。"
     ]
   },
   "HuTaoMod:WST": {
     "NAME": "往生堂",
     "DESCRIPTIONS": [
-      "通过 [yin] 牌触发阴阳时，摸 #b%d 张牌。通过 [yang] 牌触发阴阳时，回馈 #b%d 。"
+      "通过 [yinIcon] 牌触发 #y阴阳 时，摸 #b%d 张牌。 NL 通过 [yangIcon] 牌触发 #y阴阳 时，回馈 #b%d 。"
     ]
   },
   "HuTaoMod:DEBBJ": {
     "NAME": "第二碑半价",
     "DESCRIPTIONS": [
-      "令下 #b%d 次阴阳时额外触发一次阴阳效果。"
+      "令下 #b%d 次 #y阴阳 时额外触发一次 #y阴阳 效果。"
+    ]
+  },
+  "HuTaoMod:WMT": {
+    "NAME": "万民堂",
+    "DESCRIPTIONS": [
+      "打出牌后，若施加了 [bbIcon] ，摸 #b%d 张牌。 NL [bbIcon] 衰减时，获得衰减量的格挡。"
+    ]
+  },
+  "HuTaoMod:WNZL": {
+    "NAME": "为你指路",
+    "DESCRIPTIONS": [
+      "下 #b%d 张 [yangIcon] 牌消耗所有 [siIcon] （触发 #y阴阳 ），且计算 Y 值时，视为翻倍。"
+    ]
+  },
+  "HuTaoMod:BBL": {
+    "NAME": "不卜庐",
+    "DESCRIPTIONS": [
+      "你消耗生命后，获得1点 #y力量 和 #b%d 点格挡。 NL 你回复生命值时，移除所有 #y力量 ，每移除1层令回复量增加1。"
+    ]
+  },
+  "HuTaoMod:YJT": {
+    "NAME": "玉京台",
+    "DESCRIPTIONS": [
+      "你每消耗1张牌，摸 #b%d 张牌。",
+      "你每消耗1张牌，或消耗1次生命，摸 #b%d 张牌。"
     ]
   }
 }

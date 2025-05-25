@@ -44,7 +44,7 @@ public class CardGroupPatch {
         }
     }
     
-    @SpirePatch(clz = CardGroup.class, method = "removeCard", paramtypes = "String")
+    @SpirePatch(clz = CardGroup.class, method = "removeCard", paramtypes = "java.lang.String")
     public static class RemoveByIdPatch {
         public static AbstractCard cardCache;
         
@@ -62,9 +62,11 @@ public class CardGroupPatch {
     }
     
     public static void checkDieying(CardGroup __inst, AbstractCard card, boolean in) {
-        HuTaoCard huTaoCard = (HuTaoCard) card;
-        if (card != null && __inst.type == CardGroup.CardGroupType.DISCARD_PILE) {
-            huTaoCard.onDieying(in);
+        if (card instanceof HuTaoCard) {
+            HuTaoCard huTaoCard = (HuTaoCard) card;
+            if (__inst.type == CardGroup.CardGroupType.DISCARD_PILE) {
+                huTaoCard.onDieying(in);
+            }
         }
     }
 }

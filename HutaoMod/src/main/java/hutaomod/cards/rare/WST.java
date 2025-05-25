@@ -15,7 +15,7 @@ public class WST extends HuTaoCard {
 
     @Override   
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new ApplyPowerAction(p, p, new WSTPower()));
+        addToBot(new ApplyPowerAction(p, p, new WSTPower(1)));
     }
     
 }

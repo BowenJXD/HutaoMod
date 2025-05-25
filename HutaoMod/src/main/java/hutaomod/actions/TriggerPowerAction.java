@@ -8,6 +8,7 @@ public class TriggerPowerAction extends AbstractGameAction {
     
     public TriggerPowerAction(AbstractPower power) {
         this.power = power;
+        this.actionType = ActionType.POWER;
     }
 
     @Override

@@ -24,11 +24,6 @@ public class BloodBlossomPower extends DebuffPower {
     }
 
     @Override
-    public void updateDescription() {
-        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], amount);
-    }
-
-    @Override
     public void onInitialApplication() {
         super.onInitialApplication();
         addToBot(new TriggerPowerAction(this));
@@ -44,6 +39,14 @@ public class BloodBlossomPower extends DebuffPower {
     public void atStartOfTurn() {
         super.atStartOfTurn();
         addToTop(new ReducePowerAction(owner, source, this, amount/2));
+    }
+
+    @Override
+    public void reducePower(int reduceAmount) {
+        super.reducePower(reduceAmount);
+        if (upgraded) {
+            addToBot(new TriggerPowerAction(this));
+        }
     }
 
     @Override

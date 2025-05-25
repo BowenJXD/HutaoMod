@@ -31,10 +31,10 @@ public class BloodBurnAction extends AbstractGameAction {
         if (this.duration == DURATION && this.target.currentHealth > 0) {
             AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, this.attackEffect));
         }
-        AbstractDungeon.effectList.add(new OfferingEffect());
 
         this.tickDuration();
         if (this.isDone) {
+            AbstractDungeon.effectList.add(new OfferingEffect());
             this.target.damage(new DamageInfo(this.source, this.amount, DamageInfo.DamageType.HP_LOSS));
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
                 AbstractDungeon.actionManager.clearPostCombatActions();

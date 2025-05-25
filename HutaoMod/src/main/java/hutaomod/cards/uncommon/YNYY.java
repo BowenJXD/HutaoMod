@@ -31,14 +31,10 @@ public class YNYY extends HuTaoCard {
 
     @Override
     public void triggerOnGlowCheck() {
-        super.triggerOnGlowCheck();
-        int yinCount = CacheManager.getInt(CacheManager.Key.YIN_CARDS);
-        int yangCount = CacheManager.getInt(CacheManager.Key.YANG_CARDS);
-        int handCount = AbstractDungeon.player.hand.size();
-        if (yinCount == yangCount && handCount > 0) {
-            glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        if (compareHandYY() == 0) {
+            glowColor = GOLD_BORDER_GLOW_COLOR;
         } else {
-            glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+            glowColor = BLUE_BORDER_GLOW_COLOR;
         }
     }
 }
