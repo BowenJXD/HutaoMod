@@ -31,8 +31,8 @@ public class KeywordBadgesPatch {
     public static class AddKeywordsPatch {
         @SpirePrefixPatch
         public static void Prefix(AbstractCard c, ArrayList<String> kws) {
+            if (!(c instanceof HuTaoCard)) return;
             HuTaoCard card = (HuTaoCard) c;
-            if (card == null) return;
             if (card.yy == HuTaoCard.YYState.YINYANG) {
                 kws.add(yinYangName);
             } else if (card.yy == HuTaoCard.YYState.YIN) {
@@ -47,8 +47,8 @@ public class KeywordBadgesPatch {
     public static class RenderBadgesPatch {
         @SpireInsertPatch(rloc = 3, localvars = {"offset_y"})
         public static void Insert(SpriteBatch sb, AbstractCard card, @ByRef int[] offset_y) {
+            if (!(card instanceof HuTaoCard)) return;
             HuTaoCard c = (HuTaoCard) card;
-            if (c == null) return;
             Texture texture = null;
             if (c.yy == HuTaoCard.YYState.YINYANG) {
                 texture = yinYangTexture;
@@ -67,8 +67,8 @@ public class KeywordBadgesPatch {
     public static class RenderIconOnTipsPatch {
         @SpireInsertPatch(locator = Locator.class, localvars = {"badge"})
         public static void Insert(SpriteBatch sb, String word, float x, float y, AbstractCard ___card, @ByRef Texture[] badge) {
+            if (!(___card instanceof HuTaoCard)) return;
             HuTaoCard c = (HuTaoCard) ___card;
-            if (c == null) return;
             if (c.yy == HuTaoCard.YYState.YINYANG && Objects.equals(word, yinYangName)) {
                 badge[0] = yinYangTexture;
             } else if (c.yy == HuTaoCard.YYState.YIN && Objects.equals(word, yinName)) {
@@ -91,8 +91,8 @@ public class KeywordBadgesPatch {
     public static class SingleCardViewRenderIconOnCardPatch {
         @SpireInsertPatch(rloc = 2, localvars = {"offset_y"})
         public static void Insert(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card, Hitbox ___cardHb, @ByRef int[] offset_y) {
+            if (!(___card instanceof HuTaoCard)) return;
             HuTaoCard c = (HuTaoCard) ___card;
-            if (c == null) return;
             Texture texture = null;
             if (c.yy == HuTaoCard.YYState.YINYANG) {
                 texture = yinYangTexture;

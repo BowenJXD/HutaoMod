@@ -20,7 +20,7 @@ public class XXPAHDYSR extends HuTaoCard {
     @Override
     public void upgrade() {
         super.upgrade();
-        isInnate = true;
+        selfRetain = true;
     }
 
     @Override
