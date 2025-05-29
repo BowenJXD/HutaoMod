@@ -49,6 +49,9 @@ public class PapilioCharontis extends HuTaoRelic implements CheckYinYangSubscrib
                 return false;
             });
         }
+        if (counter > 6) {
+            this.counter = 6;
+        }
     }
 
     @Override
