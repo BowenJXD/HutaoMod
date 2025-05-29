@@ -1,8 +1,6 @@
 package hutaomod.cards.base;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.CardDamageAction;
@@ -31,5 +29,11 @@ public class HutaoA extends HuTaoCard {
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new CardDamageAction(m,this, EFFECTS[effectIndex]));
         effectIndex = (effectIndex + 1) % EFFECTS.length;
+    }
+    
+    public void changeToBloodCost(int bloodCost) {
+        modifyCostForCombat(-bloodCost);
+        rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
+        initializeDescription();
     }
 }
