@@ -9,13 +9,16 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.CardDamageAllAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.characters.HuTao;
 import hutaomod.modcore.CustomEnum;
+import hutaomod.modcore.HuTaoMod;
 import hutaomod.relics.PapilioCharontis;
 import hutaomod.utils.CacheManager;
+import hutaomod.utils.ModHelper;
 
 public class HutaoQ extends HuTaoCard {
     public static final String ID = HutaoQ.class.getSimpleName();
@@ -40,7 +43,8 @@ public class HutaoQ extends HuTaoCard {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if (AbstractDungeon.player.getRelic(PapilioCharontis.ID).counter >= 5) {
+        AbstractRelic papilio = AbstractDungeon.player.getRelic(HuTaoMod.makeID(PapilioCharontis.ID));
+        if (papilio != null && papilio.counter >= 5) {
             si *= 2;
         }
     }

@@ -15,7 +15,6 @@ import hutaomod.utils.PathDefine;
 import java.util.Objects;
 
 public abstract class HuTaoRelic extends CustomRelic {
-    public String modNameCache = null;
     
     public HuTaoRelic(String id, String resourcePath, RelicTier tier) {
         super(Objects.equals(resourcePath, PathDefine.RELIC_PATH) ? HuTaoMod.makeID(id) : id,
@@ -108,13 +107,6 @@ public abstract class HuTaoRelic extends CustomRelic {
         this.initializeTips();
     }
     
-    @Override
-    protected void initializeTips() {
-        if (modNameCache == null) {
-            modNameCache = tips.get(0).body;
-        }
-        super.initializeTips();
-    }
     
     public void updateDescription(String newDescription){
         description = newDescription;

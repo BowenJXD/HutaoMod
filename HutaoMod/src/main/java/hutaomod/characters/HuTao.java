@@ -113,7 +113,7 @@ public class HuTao extends CustomPlayer {
     // 初始遗物的ID，可以先写个原版遗物凑数
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(PapilioCharontis.ID);
+        retVal.add(HuTaoMod.makeID(PapilioCharontis.ID));
         return retVal;
     }
 

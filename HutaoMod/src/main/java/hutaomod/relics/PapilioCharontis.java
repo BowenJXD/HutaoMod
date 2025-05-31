@@ -1,13 +1,17 @@
 package hutaomod.relics;
 
+import basemod.abstracts.CustomMultiPageFtue;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
+import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -23,12 +27,15 @@ import hutaomod.utils.GAMManager;
 import hutaomod.utils.ModHelper;
 import hutaomod.utils.RelicEventHelper;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class PapilioCharontis extends HuTaoRelic implements CheckYinYangSubscriber {
     public static final String ID = PapilioCharontis.class.getSimpleName();
     boolean subscribed = false;
     boolean c6Available = false;
+    boolean fullDesc = false;
+    public String modNameCache = null;
     
     public PapilioCharontis() {
         super(ID, RelicTier.STARTER);
@@ -70,6 +77,24 @@ public class PapilioCharontis extends HuTaoRelic implements CheckYinYangSubscrib
     public void onRest() {
         super.onRest();
         setCounter(counter + 1);
+    }
+
+    @Override
+    public String getUpdatedDescription() {
+        return DESCRIPTIONS[fullDesc ? 1 : 0];
+    }
+
+    @Override
+    public void atBattleStartPreDraw() {
+        super.atBattleStartPreDraw();
+        if (isObtained && !fullDesc) {
+            flash();
+            fullDesc = true;
+            description = getUpdatedDescription();
+            tips.clear();
+            this.tips.add(new PowerTip(this.name, this.description));
+            initializeTips();
+        }
     }
 
     @Override

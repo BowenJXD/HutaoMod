@@ -114,6 +114,9 @@ public class DataManager {
                     return NULL_INT + "";
                 }
                 break;
+            case Description:
+            case UpgradeDescription:
+                return "{@@}" + result;
         }
         return result;
     }
@@ -141,7 +144,7 @@ public class DataManager {
             replacements.put(" D ", " !D! ");
             replacements.put(" B ", " !B! ");
             replacements.put(" M ", " !M! ");
-            replacements.put(" Y ", " Y( !Y! )");
+            replacements.put(" Y ", " {!Y!|0=Y|@=!Y!} ");
             replacements.put(" E ", " [E] ");
             replacements.put("【", " hutaomod:");
             replacements.put("】", " ");
