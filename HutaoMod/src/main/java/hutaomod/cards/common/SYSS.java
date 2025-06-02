@@ -19,18 +19,11 @@ public class SYSS extends HuTaoCard {
     
     public SYSS() {
         super(ID);
-        tags.add(CustomEnum.YIN_YANG);
     }
     
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new BloodBurnAction(1));
-        addToBot(new GainBlockAction(p, p, block));
-        if (yyTime > 0) {
-            for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
-                if (!ModHelper.check(mon)) continue;
-                addToBot(new ApplyPowerAction(mon, p, new WeakPower(p, magicNumber * yyTime, false)));
-            }
-        }
+        addToBot(new GainBlockAction(p, p, block + si));
     }
 }

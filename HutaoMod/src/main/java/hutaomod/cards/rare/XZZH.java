@@ -1,6 +1,7 @@
 package hutaomod.cards.rare;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -22,7 +23,8 @@ public class XZZH extends HuTaoCard {
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new BloodBurnAction(magicNumber));
         int energyGain = magicNumber;
-        energyGain += (upgraded ? 2 : 1) * yyTime;
         addToBot(new GainEnergyAction(energyGain));
+        int draw = magicNumber * yyTime; 
+        addToBot(new DrawCardAction(draw));
     }
 }

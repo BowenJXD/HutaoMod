@@ -34,7 +34,7 @@ public class YNYY extends HuTaoCard {
         if (compareHandYY() == 0) {
             glowColor = GOLD_BORDER_GLOW_COLOR;
         } else {
-            glowColor = BLUE_BORDER_GLOW_COLOR;
+            glowColor = ORANGE_BORDER_GLOW_COLOR;
         }
     }
 }

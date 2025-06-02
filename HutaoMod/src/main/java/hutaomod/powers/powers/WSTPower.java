@@ -1,8 +1,6 @@
 package hutaomod.powers.powers;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.ReduceCostForTurnAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,47 +9,46 @@ import hutaomod.cards.HuTaoCard;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.PowerPower;
 import hutaomod.powers.debuffs.SiPower;
-import hutaomod.subscribers.CheckYinYangSubscriber;
-import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.GeneralUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WSTPower extends PowerPower implements CheckYinYangSubscriber {
+public class WSTPower extends PowerPower {
     public static final String POWER_ID = HuTaoMod.makeID(WSTPower.class.getSimpleName());
     
-    public WSTPower(int amount) {
-        super(POWER_ID, amount);
+    public WSTPower(int limit) {
+        super(POWER_ID, 1);
+        setLimit(limit);
+        
         this.updateDescription();
     }
 
     @Override
     public void updateDescription() {
-        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], amount, amount);
+        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], limit, amount);
     }
 
     @Override
-    public void onInitialApplication() {
-        super.onInitialApplication();
-        SubscriptionManager.subscribe(this);
-    }
-
-    @Override
-    public void onRemove() {
-        super.onRemove();
-        SubscriptionManager.unsubscribe(this);
-    }
-
-    @Override
-    public int checkYinYang(HuTaoCard card, int yyTime, boolean onUse) {
-        if (SubscriptionManager.checkSubscriber(this) && onUse && yyTime > 0) {
-            if (card.yy == HuTaoCard.YYState.YIN) {
-                addToBot(new DrawCardAction(1));
-            } else if (card.yy == HuTaoCard.YYState.YANG && card.costForTurn > 0) {
-                addToBot(new GainEnergyAction(1));
+    public void onPlayCard(AbstractCard card, AbstractMonster m) {
+        super.onPlayCard(card, m);
+        if (card instanceof HuTaoCard) {
+            HuTaoCard huTaoCard = (HuTaoCard) card;
+            if (huTaoCard.yy == HuTaoCard.YYState.YIN) {
+                stackPower(1);
             }
         }
-        return yyTime;
+    }
+
+    @Override
+    public void onLimitReached() {
+        super.onLimitReached();
+        addToBot(new ApplyPowerAction(owner, owner, new SiPower(owner, 1)));
+        List<AbstractCard> cards = AbstractDungeon.player.hand.group.stream().filter(c -> c instanceof HuTaoCard && ((HuTaoCard)c).yy == HuTaoCard.YYState.YANG).collect(Collectors.toList());
+        if (!cards.isEmpty()) {
+            AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
+            addToBot(new ReduceCostForTurnAction(card, 1));
+        }
+        reducePower(amount);
     }
 }

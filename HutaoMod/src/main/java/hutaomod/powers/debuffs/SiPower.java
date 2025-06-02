@@ -14,17 +14,18 @@ import com.megacrit.cardcrawl.vfx.stance.WrathParticleEffect;
 import hutaomod.effects.CustomAuraEffect;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.DebuffPower;
+import hutaomod.relics.PapilioCharontis;
 import hutaomod.utils.GeneralUtil;
 
 public class SiPower extends DebuffPower {
     public static final String POWER_ID = HuTaoMod.makeID(SiPower.class.getSimpleName());
     
-    public float particleTimer;
-    public float particleTimer2;
+    PapilioCharontis.ButterflySpawner spawner;
     
     public SiPower(AbstractCreature owner, int amount) {
         super(POWER_ID, owner, amount);
         updateDescription();
+        spawner = new PapilioCharontis.ButterflySpawner(owner.hb);
     }
 
     @Override
@@ -53,14 +54,8 @@ public class SiPower extends DebuffPower {
     @Override
     public void update(int slot) {
         super.update(slot);
-        if (isDying(amount)) {
-            this.particleTimer2 -= Gdx.graphics.getDeltaTime();
-            if (this.particleTimer2 < 0.0F) {
-                this.particleTimer2 = MathUtils.random(0.3F, 0.4F);
-                AbstractDungeon.effectsQueue.add(new CustomAuraEffect(
-                        owner.hb,
-                        new Color(MathUtils.random(0.9F, 1.0F), MathUtils.random(0.2F, 0.3F), MathUtils.random(0.4F, 0.5F), 0.0F)));
-            }
+        if (isDying(amount) && spawner != null) {
+            spawner.update();
         }
     }
 

@@ -6,9 +6,11 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.modcore.CustomEnum;
 import hutaomod.powers.buffs.BreathPower;
 
 public class WYWK extends HuTaoCard {
@@ -16,11 +18,13 @@ public class WYWK extends HuTaoCard {
     
     public WYWK() {
         super(ID);
+        tags.add(CustomEnum.YIN_YANG);
     }
     
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new BloodBurnAction(1));
+        addToBot(new BloodBurnAction(magicNumber));
         addToBot(new CardDamageAction(m, si + damage, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false)));
     }
 }

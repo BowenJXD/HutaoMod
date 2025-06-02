@@ -19,7 +19,7 @@ import hutaomod.subscribers.PostCardMoveSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.ModHelper;
 
-public class HDJPower extends PowerPower implements PostCardMoveSubscriber {
+public class HDJPower extends PowerPower {
     public static final String POWER_ID = HuTaoMod.makeID(HDJPower.class.getSimpleName());
     
     public HDJPower(int amount) {
@@ -28,21 +28,18 @@ public class HDJPower extends PowerPower implements PostCardMoveSubscriber {
     }
 
     @Override
-    public void onInitialApplication() {
-        super.onInitialApplication();
-        SubscriptionManager.subscribe(this);
-        for (ModHelper.FindResult r : ModHelper.findCards(c -> c instanceof HutaoA)) {
-            HutaoA hutaoA = (HutaoA) r.card;
-            if (hutaoA.cost > 0) {
-                hutaoA.changeToBloodCost(amount);
+    public void atStartOfTurnPostDraw() {
+        super.atStartOfTurnPostDraw();
+        ModHelper.addToBotAbstract(()-> {
+            for (AbstractCard card : AbstractDungeon.player.hand.group) {
+                if (card instanceof HutaoA) {
+                    HutaoA hutaoA = (HutaoA) card;
+                    if (hutaoA.cost > 0) {
+                        hutaoA.changeToBloodCost(amount);
+                    }
+                }
             }
-        }
-    }
-
-    @Override
-    public void onRemove() {
-        super.onRemove();
-        SubscriptionManager.unsubscribe(this);
+        });
     }
 
     @Override
@@ -50,18 +47,6 @@ public class HDJPower extends PowerPower implements PostCardMoveSubscriber {
         super.onUseCard(card, action);
         if (card instanceof HutaoA) {
             addToBot(new BloodBurnAction(1));
-        }
-    }
-
-    @Override
-    public void postCardMove(CardGroup group, AbstractCard card, boolean in) {
-        if (SubscriptionManager.checkSubscriber(this) 
-                && in 
-                && card instanceof HutaoA) {
-            HutaoA hutaoA = (HutaoA) card;
-            if (card.cost > 0) {
-                hutaoA.changeToBloodCost(amount);
-            }
         }
     }
 }

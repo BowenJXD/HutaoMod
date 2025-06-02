@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,6 +19,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.characters.HuTao;
 import hutaomod.modcore.CustomEnum;
+import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.debuffs.SiPower;
@@ -45,6 +47,7 @@ public abstract class HuTaoCard extends CustomCard {
     protected static final Color WHITE_BORDER_GLOW_COLOR;
     protected static final Color BLACK_BORDER_GLOW_COLOR;
     protected static final Color ORANGE_BORDER_GLOW_COLOR;
+    protected static final Color RED_BORDER_GLOW_COLOR;
 
     public HuTaoCard(String id, String imgPath, CardColor color){
         super(HuTaoMod.makeID(id),
@@ -125,9 +128,25 @@ public abstract class HuTaoCard extends CustomCard {
         si = CacheManager.getInt(CacheManager.Key.PLAYER_SI);
         isSiModified = si != 0;
     }
+    
+    public void onMove(CardGroup group, boolean in) {
+        if (group.type == CardGroup.CardGroupType.HAND) {
+            if (in) {
+                inHand = true;
+                onEnterHand();
+            } else {
+                inHand = false;
+                onLeaveHand();
+            }
+        }
+        if (group.type == CardGroup.CardGroupType.DISCARD_PILE) {
+            onDieying(in);
+        }
+    }
 
     public void onEnterHand() { }
     public void onLeaveHand() { }
+    public void onDieying(boolean in) {}
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -142,11 +161,13 @@ public abstract class HuTaoCard extends CustomCard {
                 addToBot(new ApplyPowerAction(p, p, new SiPower(p, 1)));
                 break;
             case YANG:
-                addToBot(new ReducePowerAction(p, p, SiPower.POWER_ID, 1));
+                if (p.hasPower(SiPower.POWER_ID))
+                    addToBot(new ReducePowerAction(p, p, SiPower.POWER_ID, 1));
                 break;
             case YINYANG:
                 if (CacheManager.getBool(CacheManager.Key.DYING)) {
-                    addToBot(new ReducePowerAction(p, p, SiPower.POWER_ID, 1));
+                    if (p.hasPower(SiPower.POWER_ID))
+                        addToBot(new ReducePowerAction(p, p, SiPower.POWER_ID, 1));
                 } else {
                     addToBot(new ApplyPowerAction(p, p, new SiPower(p, 1)));
                 }
@@ -166,16 +187,14 @@ public abstract class HuTaoCard extends CustomCard {
         return SubscriptionManager.getInstance().triggerCheckYinYang(this, result, onUse);
     }
     
-    public void onDieying(boolean in) {}
-
     @Override   
     public void triggerOnGlowCheck() {
         super.triggerOnGlowCheck();
         yyTime = checkYinYang(false);
         if (tags.contains(CustomEnum.YIN_YANG) && yyTime > 0) {
-            glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR;
+            glowColor = GOLD_BORDER_GLOW_COLOR;
         } else {
-            glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;    
+            glowColor = ORANGE_BORDER_GLOW_COLOR;    
         }
     }
     
@@ -215,6 +234,7 @@ public abstract class HuTaoCard extends CustomCard {
     static {
         WHITE_BORDER_GLOW_COLOR = Color.WHITE.cpy();
         BLACK_BORDER_GLOW_COLOR = Color.DARK_GRAY.cpy();
-        ORANGE_BORDER_GLOW_COLOR = Color.ORANGE.cpy();
+        ORANGE_BORDER_GLOW_COLOR = Color.CORAL.cpy();
+        RED_BORDER_GLOW_COLOR = Color.RED.cpy();
     }
 }

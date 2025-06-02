@@ -23,17 +23,18 @@ public class RHZD extends HuTaoCard implements OnPlayerDamagedSubscriber {
 
     public RHZD() {
         super(ID);
+        selfRetain = true;
     }
 
     @Override
-    public void upgrade() {
-        super.upgrade();
-        selfRetain = true;
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        return false;
     }
 
     @Override
     public void onEnterHand() {
         super.onEnterHand();
+        BaseMod.unsubscribe(this);
         BaseMod.subscribe(this);
     }
 
@@ -48,7 +49,7 @@ public class RHZD extends HuTaoCard implements OnPlayerDamagedSubscriber {
 
     @Override
     public int receiveOnPlayerDamaged(int i, DamageInfo damageInfo) {
-        if (SubscriptionManager.checkSubscriber(this) && i >= AbstractDungeon.player.currentHealth && inHand) {
+        if (SubscriptionManager.checkSubscriber(this) && i >= AbstractDungeon.player.currentHealth + AbstractDungeon.player.currentBlock && inHand) {
             addToBot(new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand));
             for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
                 int bbCount = ModHelper.getPowerCount(m, BloodBlossomPower.POWER_ID);

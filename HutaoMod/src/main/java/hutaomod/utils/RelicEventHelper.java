@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 
 public class RelicEventHelper {
 
-    public static UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(HuTaoMod.makeID("RelicEventHelper"));
+    public static UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(HuTaoMod.makeID(RelicEventHelper.class.getSimpleName()));
     public static String SELECT_TEXT = uiStrings.TEXT[0];
     public static String UPGRADE_TEXT = uiStrings.TEXT[1];
     public static String PURGE_TEXT = uiStrings.TEXT[2];
@@ -97,9 +97,9 @@ public class RelicEventHelper {
         if (cards.length == 0) {
             HuTaoMod.logger.error("RELIC_EVENT_HELPER: No cards to purge.");
             return;
-        } else if (cards.length == 1)
+        } else if (cards.length == 1) {
             AbstractDungeon.effectList.add(new PurgeCardEffect(cards[0], (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
-        else if (cards.length <= 5) {
+        } else if (cards.length <= 5) {
             float x = 0;
             for (AbstractCard card : cards) {
                 AbstractDungeon.effectList.add(new PurgeCardEffect(card, (float) Settings.WIDTH / 6.0F + x, (float) Settings.HEIGHT / 2.0F));

@@ -3,6 +3,7 @@ package hutaomod.cards.common;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -21,11 +22,12 @@ public class BAHX extends HuTaoCard {
     
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new BloodBurnAction(magicNumber));
-        addToBot(new GainBlockAction(p, p, si + (upgraded ? block : 0)));
-        for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
-            if (!ModHelper.check(mon)) continue;
-            addToBot(new ApplyPowerAction(mon, p, new BloodBlossomPower(mon, p, magicNumber)));
+        addToBot(new BloodBurnAction(1));
+        int bbCount = ModHelper.getPowerCount(m, BloodBlossomPower.POWER_ID);
+        int reduceAmount = bbCount/2;
+        if (reduceAmount > 0) {
+            addToBot(new ReducePowerAction(m, p, BloodBlossomPower.POWER_ID, reduceAmount));
         }
+        addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, magicNumber)));
     }
 }

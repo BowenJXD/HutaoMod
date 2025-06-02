@@ -27,6 +27,7 @@ public class DDD extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new BloodBurnAction(1));
-        addToBot(new ApplyPowerAction(p, p, new BufferPower(p, 1)));
+        if (!p.hasPower(BufferPower.POWER_ID))
+            addToBot(new ApplyPowerAction(p, p, new BufferPower(p, 1)));
     }
 }

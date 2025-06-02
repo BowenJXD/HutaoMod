@@ -3,6 +3,7 @@ package hutaomod.cards.rare;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import hutaomod.actions.BloodBurnAction;
 import hutaomod.cards.HuTaoCard;
 
 public class HTZYGYLG extends HuTaoCard {
@@ -15,6 +16,9 @@ public class HTZYGYLG extends HuTaoCard {
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new GainEnergyAction(si + magicNumber));
+        addToBot(new BloodBurnAction(si));
+        int diff = 6 - energyOnUse;
+        int amt = Math.min(si + magicNumber, diff);
+        if (amt > 0) addToBot(new GainEnergyAction(amt));
     }
 }

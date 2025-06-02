@@ -1,10 +1,17 @@
 package hutaomod.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.subscribers.SubscriptionManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardGroupPatch {
     @SpirePatch(clz = CardGroup.class, method = "addToHand")
@@ -61,12 +68,34 @@ public class CardGroupPatch {
         }
     }
     
+    @SpirePatch(clz = EmptyDeckShuffleAction.class, method = "update")
+    public static class EmptyDeckShufflePatch {
+        static List<AbstractCard> groupCache;
+        
+        @SpirePrefixPatch
+        public static void Prefix(EmptyDeckShuffleAction __inst) {
+            if (groupCache == null) {
+                groupCache = new ArrayList<>(AbstractDungeon.player.discardPile.group);
+            }
+        }
+        
+        @SpirePostfixPatch
+        public static void Postfix(EmptyDeckShuffleAction __inst) {
+            if (__inst.isDone && groupCache != null) {
+                CardGroup group = AbstractDungeon.player.discardPile;
+                for (AbstractCard card : groupCache) {
+                    SubscriptionManager.getInstance().triggerPostCardMove(group, card, false);
+                    checkDieying(group, card, false);
+                }
+                groupCache = null;
+            }
+        }
+    }
+    
     public static void checkDieying(CardGroup __inst, AbstractCard card, boolean in) {
         if (card instanceof HuTaoCard) {
             HuTaoCard huTaoCard = (HuTaoCard) card;
-            if (__inst.type == CardGroup.CardGroupType.DISCARD_PILE) {
-                huTaoCard.onDieying(in);
-            }
+            huTaoCard.onMove(__inst, in);
         }
     }
 }

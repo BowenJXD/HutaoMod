@@ -24,8 +24,9 @@ public class JZWB extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new VFXAction(new ClashEffect(m.hb.cX, m.hb.cY)));
-        addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.NONE));
-        addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.NONE));
-        addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, magicNumber)));
+        for (int i = 0; i < 2; i++) {
+            addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.NONE));
+            addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, 1)));
+        }
     }
 }

@@ -17,9 +17,14 @@ public class YB extends HuTaoCard {
     
     public YB() {
         super(ID);
+    }
+
+    @Override
+    public void upgrade() {
+        super.upgrade();
         GraveField.grave.set(this, true);
     }
-    
+
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
     }

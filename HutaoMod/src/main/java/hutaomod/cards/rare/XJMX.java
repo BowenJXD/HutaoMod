@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.cards.HuTaoCard;
-import hutaomod.powers.buffs.DEBBJPower;
 import hutaomod.powers.debuffs.BloodBlossomPower;
 
 public class XJMX extends HuTaoCard {

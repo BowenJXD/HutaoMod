@@ -116,7 +116,10 @@ public class DataManager {
                 break;
             case Description:
             case UpgradeDescription:
-                return "{@@}" + result;
+                if (!Objects.equals(result, "")) {
+                    return "{@@}" + result;
+                }
+                break;
         }
         return result;
     }
@@ -166,6 +169,7 @@ public class DataManager {
             replacements.put("固有。", " 固有 。");
             replacements.put("保留。", " 保留 。");
             replacements.put("墓地。", " stslib:墓地 。");
+            replacements.put("蝶引：", " hutaomod:蝶引 ：");
 
             // 读取文件并替换文本
             replaceTextInFile(CARD_CSV_ZHS, replacements);

@@ -5,6 +5,7 @@ import basemod.interfaces.PostDungeonUpdateSubscriber;
 import basemod.interfaces.PostUpdateSubscriber;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -51,8 +52,11 @@ public class GAMManager implements PostDungeonUpdateSubscriber {
         if (currentAction != AbstractDungeon.actionManager.currentAction) {
             currentAction = AbstractDungeon.actionManager.currentAction;
             if (currentAction != null) {
-                System.out.printf("Current action: %s | source: %s | target: %s | amount: %d%n", 
-                        currentAction, currentAction.source, currentAction.target, currentAction.amount);
+                System.out.printf("action: %-50s | source: %-30s | target: %-30s | amount: %-4d%n",
+                        currentAction.getClass().getSimpleName().isEmpty() ? currentAction : currentAction.getClass().getSimpleName() + '@' + currentAction.hashCode(), 
+                        currentAction.source != null ? currentAction.source.getClass().getSimpleName() + '@' + currentAction.source.hashCode() : "null",
+                        currentAction.target != null ? currentAction.target.getClass().getSimpleName() + '@' + currentAction.target.hashCode() : "null",
+                        currentAction.amount);
             }
         }
         if (currentAction != null && currentAction.isDone) {
@@ -69,6 +73,9 @@ public class GAMManager implements PostDungeonUpdateSubscriber {
         List<AbstractCard> cards = AbstractDungeon.actionManager.cardsPlayedThisTurn;
         if (!cards.isEmpty() && cards.get(cards.size() - 1) != currentCard) {
             currentCard = cards.get(cards.size() - 1);
+            int cardIndex = cards.size() - 1;
+            System.out.printf("===================== turn %-2d card %-2d: %-20s, D: %-3d, B: %-3d, M: %-3d", GameActionManager.turn, cardIndex, 
+                    currentCard, currentCard.damage, currentCard.block, currentCard.magicNumber);
         }
     }
 }

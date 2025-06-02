@@ -19,8 +19,7 @@ public class DRMJ extends HuTaoCard {
     
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new BloodBurnAction(magicNumber));
-        addToBot(new DrawCardAction(magicNumber));
+        addToBot(new BloodBurnAction(1));
         addToBot(new ApplyPowerAction(p, p, new BreathPower(p, magicNumber)));
     }
 }

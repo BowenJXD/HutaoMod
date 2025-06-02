@@ -31,6 +31,6 @@ public class SFZ extends HuTaoCard {
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new VFXAction(new GhostIgniteEffect(m.hb.cX, m.hb.cY)));
         addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        addToBot(new ApplyPowerAction(m, p, new BlockReturnPower(p, this.magicNumber)));
+        addToBot(new ApplyPowerAction(m, p, new BlockReturnPower(m, this.magicNumber)));
     }
 }

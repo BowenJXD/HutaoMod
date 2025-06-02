@@ -3,6 +3,7 @@ package hutaomod.actions;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -43,18 +44,22 @@ public class ScrayAction extends AbstractGameAction {
         AbstractPlayer p = AbstractDungeon.player;
         if (filter != null) {
             addToTop(new SelectCardsAction(p.drawPile.group, amount, TEXT[0], true, filter, cards -> {
-                addToTop(new MoveCardsAction(p.discardPile, p.drawPile, cards::contains, amount));
+                for (AbstractCard card : cards) {
+                    addToTop(new DiscardSpecificCardAction(card, p.drawPile));
+                }
             }));
         } else {
-            addToTop(new SelectCardsAction(p.drawPile.group, amount, TEXT[0], true, c -> p.drawPile.group.indexOf(c) < amount, cards -> {
-                addToTop(new MoveCardsAction(p.discardPile, p.drawPile, cards::contains, amount));
+            addToTop(new SelectCardsAction(p.drawPile.group, amount, TEXT[0], true, c -> p.drawPile.group.indexOf(c) >= p.drawPile.group.size() - amount, cards -> {
+                for (AbstractCard card : cards) {
+                    addToTop(new DiscardSpecificCardAction(card, p.drawPile));
+                }
             }));
         }
         isDone = true;
     }
     
     static {
-        uiStrings = CardCrawlGame.languagePack.getUIString(HuTaoMod.makeID(ScrayAction.class.getName()));
+        uiStrings = CardCrawlGame.languagePack.getUIString(HuTaoMod.makeID(ScrayAction.class.getSimpleName()));
         TEXT = uiStrings.TEXT;
     }
 }

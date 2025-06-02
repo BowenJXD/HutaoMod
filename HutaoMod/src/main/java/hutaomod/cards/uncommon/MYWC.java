@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -31,8 +32,10 @@ public class MYWC extends HuTaoCard {
         if (yinCount != yangCount) {
             int bbCount = ModHelper.getPowerCount(m, BloodBlossomPower.POWER_ID);
             int diff = Math.max(yinCount, yangCount) - bbCount;
-            if (diff != 0) {
+            if (diff > 0) {
                 addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, diff)));
+            } else if (diff < 0) {
+                addToBot(new ReducePowerAction(m, p, BloodBlossomPower.POWER_ID, -diff));
             }
         }
     }
@@ -42,7 +45,7 @@ public class MYWC extends HuTaoCard {
         if (compareHandYY() > 0) {
             glowColor = WHITE_BORDER_GLOW_COLOR;
         } else {
-            glowColor = Color.DARK_GRAY.cpy();
+            glowColor = BLACK_BORDER_GLOW_COLOR;
         }
     }
 }

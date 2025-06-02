@@ -2,6 +2,7 @@ package hutaomod.cards.base;
 
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,12 +17,14 @@ import hutaomod.cards.HuTaoCard;
 import hutaomod.characters.HuTao;
 import hutaomod.modcore.CustomEnum;
 import hutaomod.modcore.HuTaoMod;
+import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.relics.PapilioCharontis;
 import hutaomod.utils.CacheManager;
 import hutaomod.utils.ModHelper;
 
 public class HutaoQ extends HuTaoCard {
     public static final String ID = HutaoQ.class.getSimpleName();
+    public boolean specialUpgrade = false;
     
     public HutaoQ() {
         super(ID, HuTao.PlayerColorEnum.HUTAO_RED);
@@ -30,34 +33,39 @@ public class HutaoQ extends HuTaoCard {
         isMultiDamage = true;
         tags.add(CustomEnum.YIN_YANG);
     }
-    
+
     @Override
-    public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        int multiplier = 1;
-        if (CacheManager.getBool(CacheManager.Key.HALF_HP)) multiplier *= 2;
-        multiplier *= (int) Math.pow(2, yyTime);
-        addToBot(new HealAction(p, p, (magicNumber + si) * multiplier));
-        addToBot(new CardDamageAllAction(this, (damage + si) * multiplier, AbstractGameAction.AttackEffect.FIRE));
+    public void onEnterHand() {
+        super.onEnterHand();
+        if (!specialUpgrade) {
+            AbstractRelic papilio = AbstractDungeon.player.getRelic(HuTaoMod.makeID(PapilioCharontis.ID));
+            if (papilio != null && papilio.counter >= 5) {
+                specialUpgrade = true;
+            }
+        }
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        AbstractRelic papilio = AbstractDungeon.player.getRelic(HuTaoMod.makeID(PapilioCharontis.ID));
-        if (papilio != null && papilio.counter >= 5) {
-            si *= 2;
+    public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
+        int multiplier = 1;
+        if (CacheManager.getBool(CacheManager.Key.HALF_HP) && specialUpgrade) multiplier *= 2;
+        multiplier *= (int) Math.pow(2, yyTime);
+        addToBot(new HealAction(p, p, magicNumber * multiplier + si));
+        addToBot(new CardDamageAllAction(this, damage * multiplier + si, AbstractGameAction.AttackEffect.FIRE));
+        for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
+            addToBot(new ApplyPowerAction(mon, p, new BloodBlossomPower(mon, p, multiplier)));
         }
     }
 
     @Override
     public void triggerOnGlowCheck() {
         yyTime = checkYinYang(false);
-        if (yyTime > 0 && CacheManager.getBool(CacheManager.Key.HALF_HP)) {
-            glowColor = ORANGE_BORDER_GLOW_COLOR;
-        } else if (yyTime > 0 && CacheManager.getBool(CacheManager.Key.HALF_HP)) {
+        if (yyTime > 0 && CacheManager.getBool(CacheManager.Key.HALF_HP) && specialUpgrade) {
+            glowColor = RED_BORDER_GLOW_COLOR;
+        } else if (yyTime > 0 || (CacheManager.getBool(CacheManager.Key.HALF_HP) && specialUpgrade)) {
             glowColor = GOLD_BORDER_GLOW_COLOR;
         } else {
-            glowColor = BLUE_BORDER_GLOW_COLOR;
+            glowColor = ORANGE_BORDER_GLOW_COLOR;
         }
     }
 }

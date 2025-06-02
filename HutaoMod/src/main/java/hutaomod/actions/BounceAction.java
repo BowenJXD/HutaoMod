@@ -25,6 +25,9 @@ public class BounceAction extends AbstractGameAction {
 
     public void update() {
         this.isDone = true;
+        if (!ModHelper.check(target)) {
+            target = ModHelper.betterGetRandomMonster();
+        }
         if (this.amount > 0 && target != null) {
             this.card.calculateCardDamage((AbstractMonster) target);
             callback.accept((AbstractMonster) target);

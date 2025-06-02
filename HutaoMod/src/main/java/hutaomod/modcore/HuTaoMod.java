@@ -26,7 +26,7 @@ import java.nio.charset.StandardCharsets;
 public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber, EditKeywordsSubscriber, AddAudioSubscriber, PostInitializeSubscriber, StartGameSubscriber {
     public static String MOD_NAME = "HuTaoMod";
 
-    public static final Color HUTAO_RED = new Color(255.0F / 255.0F, 141.0F / 255.0F, 227.0F / 255.0F, 1.0F);
+    public static final Color HUTAO_RED = new Color(-13361921);
 
     // 人物选择界面按钮的图片
     private static final String MY_CHARACTER_BUTTON = "HuTaoResources/img/char/Character_Button.png";
@@ -57,7 +57,7 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
     
     public HuTaoMod() {
         BaseMod.subscribe(this);
-        BaseMod.addColor(HuTao.PlayerColorEnum.HUTAO_RED, HUTAO_RED, HUTAO_RED, HUTAO_RED, HUTAO_RED, HUTAO_RED, HUTAO_RED, HUTAO_RED, BG_ATTACK_512, BG_SKILL_512, BG_POWER_512, ENERGY_ORB, BG_ATTACK_1024, BG_SKILL_1024, BG_POWER_1024, BIG_ORB, SMALL_ORB);
+        BaseMod.addColor(HuTao.PlayerColorEnum.HUTAO_RED, HUTAO_RED, BG_ATTACK_512, BG_SKILL_512, BG_POWER_512, ENERGY_ORB, BG_ATTACK_1024, BG_SKILL_1024, BG_POWER_1024, BIG_ORB, SMALL_ORB);
         updateLanguage();
     }
     

@@ -1,12 +1,23 @@
 {
   "HuTaoMod:ClairvoirAction": {
     "TEXT": [
-      "通灵"
+      "通灵1张牌"
     ]
   },
   "HuTaoMod:ScrayAction": {
     "TEXT": [
-      "葬送"
+      "葬送任意张牌"
+    ]
+  },
+  "HuTaoMod:RelicEventHelper": {
+    "TEXT": [
+      "选择%d张牌",
+      "选择%d张牌升级",
+      "选择%d张牌移除",
+      "选择%d张牌获得",
+      "选择%d张牌变化",
+      "额外奖励！",
+      "选择任意张牌弃置"
     ]
   }
 }

@@ -11,6 +11,7 @@ public class YMXC extends HuTaoCard {
 
     public YMXC() {
         super(ID);
+        selfRetain = true;
     }
 
     @Override

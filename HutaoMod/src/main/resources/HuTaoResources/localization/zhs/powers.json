@@ -18,28 +18,28 @@
       "下 #b%d 张牌无视 [siIcon] 数触发 #y阴阳 。"
     ]
   },
-  "HuTaoMod:SSBJ": {
-    "NAME": "生死边界",
+  "HuTaoMod:GYSY": {
+    "NAME": "购一送一",
     "DESCRIPTIONS": [
-      "每打出 #b%d 张 [yinIcon] 牌，获得1层 #y死气 ，且随机 [yangIcon] 牌的费用此回合- #b%d 。"
+      "下 #b%d 张牌额外触发一次 #y阴阳 效果。"
     ]
   },
   "HuTaoMod:WST": {
     "NAME": "往生堂",
     "DESCRIPTIONS": [
-      "通过 [yinIcon] 牌触发 #y阴阳 时，摸 #b%d 张牌。 NL 通过 [yangIcon] 牌触发 #y阴阳 时，回馈 #b%d 。"
+      "每打出 #b%d 张 [yinIcon] 牌，获得1层 #y死气 ，且随机 [yangIcon] 牌的费用此回合- #b%d 。"
     ]
   },
-  "HuTaoMod:DEBBJ": {
-    "NAME": "第二碑半价",
+  "HuTaoMod:QYG": {
+    "NAME": "群玉阁",
     "DESCRIPTIONS": [
-      "令下 #b%d 次 #y阴阳 时额外触发一次 #y阴阳 效果。"
+      "每触发 #y阴阳 #b%d 次，摸 #b1 张牌并获得 [E] 。 NL 已触发 #b%d 次。"
     ]
   },
   "HuTaoMod:WMT": {
     "NAME": "万民堂",
     "DESCRIPTIONS": [
-      "打出牌后，若施加了 [bbIcon] ，摸 #b%d 张牌。 NL [bbIcon] 衰减时，获得衰减量的格挡。"
+      " [bbIcon] 衰减时，获得 #b%d 倍衰减量的格挡，摸 #b%d 张牌。"
     ]
   },
   "HuTaoMod:WNZL": {
@@ -54,17 +54,42 @@
       "你消耗生命后，获得1点 #y力量 和 #b%d 点格挡。 NL 你回复生命值时，移除所有 #y力量 ，每移除1层令回复量增加1。"
     ]
   },
-  "HuTaoMod:YJT": {
-    "NAME": "玉京台",
+  "HuTaoMod:WWJS": {
+    "NAME": "万文集舍",
     "DESCRIPTIONS": [
-      "你每消耗1张牌，摸 #b%d 张牌。",
-      "你每消耗1张牌，或消耗1次生命，摸 #b%d 张牌。"
+      "你每消耗 #b1 张牌，摸 #b1 张牌。",
+      "你每消耗 #b1 张牌，摸 #b1 张牌。 NL 你每消耗 #b10 点生命，获得 [E] 。 NL 已经消耗了 #b%d 点生命。"
     ]
   },
   "HuTaoMod:HDJ": {
     "NAME": "海灯节",
     "DESCRIPTIONS": [
-      "所有「往生堂秘传枪法」获得燃血1，且费用 - #b%d 。"
+      "每回合开始时，手牌中所有「往生堂秘传枪法」获得 #y燃血 #b1 ，且费用 - #b%d 。"
+    ]
+  },
+  "HuTaoMod:SSBJ": {
+    "NAME": "生死边界",
+    "DESCRIPTIONS": [
+      "受到致命伤害时，选择弃牌堆中 #b%d 张牌消耗，防止之并回复 #b%d 点生命，然后所需牌数和回复量翻倍。"
+    ]
+  },
+  "HuTaoMod:TSSC": {
+    "NAME": "桃式说唱",
+    "DESCRIPTIONS": [
+      "打出下 #b%d 张牌时，若为 #y「往生堂秘传枪法」 ，则摸 #b1 张牌。"
+    ]
+  },
+  "HuTaoMod:TD": {
+    "NAME": "桃都",
+    "DESCRIPTIONS": [
+      "每回合开始时， #y通灵 #b%d 。",
+      "每回合开始时， #y通灵 #b%d 。每回合结束时， #y葬送 #b%d 。"
+    ]
+  },
+  "HuTaoMod:WSTDSDCB": {
+    "NAME": "往生堂定时大酬宾",
+    "DESCRIPTIONS": [
+      "直到回合结束： NL 打出 [yinIcon] 牌时，若上一张为 [yangIcon] 牌， #y葬送 #b%d ； NL 打出 [yangIcon] 牌时，若上一张为 [yinIcon] 牌， #y通灵 #b%d 。"
     ]
   }
 }

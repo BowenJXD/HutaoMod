@@ -27,9 +27,10 @@ public class YYYX extends HuTaoCard {
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         int yinCount = CacheManager.getInt(CacheManager.Key.YIN_CARDS);
         int yangCount = CacheManager.getInt(CacheManager.Key.YANG_CARDS);
+        int handCount = p.hand.size();
         if (yinCount == yangCount) {
-            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, yinCount)));
-            addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, yangCount)));
+            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, handCount/2)));
+            addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, handCount/2)));
         }
     }
     
@@ -37,8 +38,10 @@ public class YYYX extends HuTaoCard {
     public void triggerOnGlowCheck() {
         if (compareHandYY() == 0) {
             glowColor = GOLD_BORDER_GLOW_COLOR;
+        } else if (compareHandYY() > 0) {
+            glowColor = WHITE_BORDER_GLOW_COLOR;
         } else {
-            glowColor = BLUE_BORDER_GLOW_COLOR;
+            glowColor = BLACK_BORDER_GLOW_COLOR;
         }
     }
 }

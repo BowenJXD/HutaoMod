@@ -9,8 +9,6 @@ import hutaomod.utils.ModHelper;
 
 public class PlumBranch extends HuTaoRelic {
     public static final String ID = PlumBranch.class.getSimpleName();
-    boolean subscribed = false;
-    boolean c6Available = false;
     
     public PlumBranch() {
         super(ID, RelicTier.BOSS);
@@ -20,7 +18,7 @@ public class PlumBranch extends HuTaoRelic {
     public void atTurnStart() {
         super.atTurnStart();
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-            addToBot(new ApplyPowerAction(m, AbstractDungeon.player, new BloodBlossomPower(m, AbstractDungeon.player, 1)));
+            addToBot(new ApplyPowerAction(m, AbstractDungeon.player, new BloodBlossomPower(m, AbstractDungeon.player, 2)));
         }
     }
 }

@@ -33,6 +33,11 @@ public class WMTPower extends PowerPower {
     }
 
     @Override
+    public void updateDescription() {
+        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], amount, amount);
+    }
+
+    @Override
     public void onInitialApplication() {
         super.onInitialApplication();
         GAMManager.addParallelAction(POWER_ID, action -> {
@@ -40,14 +45,16 @@ public class WMTPower extends PowerPower {
                 ReducePowerAction reducePowerAction = (ReducePowerAction) action;
                 try {
                     AbstractPower powerInstance = ReflectionHacks.getPrivate(reducePowerAction, ReducePowerAction.class, "powerInstance");
-                    if (Objects.equals(powerInstance.ID, BloodBlossomPower.POWER_ID)) {
-                        addToBot(new GainBlockAction(owner, action.amount));
+                    String powerID = ReflectionHacks.getPrivate(reducePowerAction, ReducePowerAction.class, "powerID");
+                    if (Objects.equals(powerID, BloodBlossomPower.POWER_ID) || Objects.equals(powerInstance.ID, BloodBlossomPower.POWER_ID)) {
+                        addToBot(new GainBlockAction(owner, action.amount * amount));
+                        addToBot(new DrawCardAction(amount));
                     }
                 } catch (Exception e) {
                     HuTaoMod.logger.error("Failed to get power instance from ReducePowerAction", e);
                 }
             }
-            return false;
+            return !SubscriptionManager.checkSubscriber(this);
         });
     }
 
@@ -55,19 +62,5 @@ public class WMTPower extends PowerPower {
     public void onRemove() {
         super.onRemove();
         GAMManager.removeParallelAction(POWER_ID);
-    }
-
-    @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        super.onApplyPower(power, target, source);
-        if (Objects.equals(power.ID, BloodBlossomPower.POWER_ID) 
-                && GAMManager.getInstance().currentCard != cardCache) {
-            if (power.amount > 0) {
-                cardCache = GAMManager.getInstance().currentCard;
-                addToBot(new DrawCardAction(amount));
-            } else if (power.amount < 0) {
-                addToBot(new GainBlockAction(owner, -power.amount));
-            }
-        }
     }
 }

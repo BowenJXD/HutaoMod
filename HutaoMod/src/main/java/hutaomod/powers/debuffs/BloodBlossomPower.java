@@ -26,13 +26,13 @@ public class BloodBlossomPower extends DebuffPower {
     @Override
     public void onInitialApplication() {
         super.onInitialApplication();
-        addToBot(new TriggerPowerAction(this));
+        addToTop(new TriggerPowerAction(this));
     }
 
     @Override
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
-        addToBot(new TriggerPowerAction(this));
+        addToTop(new TriggerPowerAction(this));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class BloodBlossomPower extends DebuffPower {
     public void reducePower(int reduceAmount) {
         super.reducePower(reduceAmount);
         if (upgraded) {
-            addToBot(new TriggerPowerAction(this));
+            addToTop(new TriggerPowerAction(this));
         }
     }
 

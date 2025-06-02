@@ -166,7 +166,7 @@ public class HuTao extends CustomPlayer {
     // 卡牌的能量字体，没必要修改
     @Override
     public BitmapFont getEnergyNumFont() {
-        return FontHelper.energyNumFontBlue;
+        return FontHelper.energyNumFontRed;
     }
 
     // 人物选择界面点击你的人物按钮时触发的方法，这里为屏幕轻微震动

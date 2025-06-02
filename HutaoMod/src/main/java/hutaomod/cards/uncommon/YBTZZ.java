@@ -26,7 +26,7 @@ public class YBTZZ extends HuTaoCard {
         addToBot(new BloodBurnAction(1));
         int bbCount = ModHelper.getPowerCount(m, BloodBlossomPower.POWER_ID);
         addToBot(new CardDamageAction(m, new DamageInfo(p, (upgraded ? damage : 0) + bbCount), this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        addToBot(new ApplyPowerAction(m, p, new StrengthPower(p, -bbCount)));
-        addToBot(new ApplyPowerAction(m, p, new GainStrengthPower(p, bbCount)));
+        addToBot(new ApplyPowerAction(m, p, new StrengthPower(m, -bbCount)));
+        addToBot(new ApplyPowerAction(m, p, new GainStrengthPower(m, bbCount)));
     }
 }
