@@ -152,6 +152,11 @@ public abstract class HuTaoCard extends CustomCard {
     public void onDieying(boolean in) {}
 
     @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        return super.canUse(p, m) && cost != -2;
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         yyTime = checkYinYang(true);
         onUse(p, m, yyTime);

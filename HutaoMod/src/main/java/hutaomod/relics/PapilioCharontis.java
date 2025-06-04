@@ -104,7 +104,7 @@ public class PapilioCharontis extends HuTaoRelic {
                 indexes = new int[]{0, 2, 4, 6, 8, 10, 11};
                 break;
             case 6:
-                indexes = new int[]{0, 2, 4, 6, 8, 10, 12};
+                indexes = new int[]{0, 2, 4, 6, 8, 10, c6Available ? 12 : 13};
                 break;
             default:
                 indexes = new int[]{0};
@@ -118,6 +118,8 @@ public class PapilioCharontis extends HuTaoRelic {
         super.onEnterRestRoom();
         if (counter >= 6) {
             c6Available = true;
+            beginLongPulse();
+            refreshDescription();
         }
     }
 
@@ -156,9 +158,6 @@ public class PapilioCharontis extends HuTaoRelic {
     @Override
     public void atBattleStart() {
         super.atBattleStart();
-        if (counter >= 6) {
-            c6Available = true;
-        }
         if (counter >= 4) {
             GAMManager.addParallelAction(relicId + 4, action -> {
                 if (AbstractDungeon.actionManager.actions != null
@@ -170,6 +169,15 @@ public class PapilioCharontis extends HuTaoRelic {
                 return false;
             });
         }
+        if (c6Available) {
+            beginLongPulse();
+        }
+    }
+
+    @Override
+    public void onVictory() {
+        super.onVictory();
+        stopPulse();
     }
 
     @Override
@@ -188,7 +196,9 @@ public class PapilioCharontis extends HuTaoRelic {
                 });
             }
             addToTop(new GainBlockAction(AbstractDungeon.player, 200));
-            // c6Available = false;
+            c6Available = false;
+            stopPulse();
+            refreshDescription();
             return 0;
         }
         return super.onLoseHpLast(damageAmount);

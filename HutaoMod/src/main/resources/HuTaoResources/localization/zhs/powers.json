@@ -91,5 +91,11 @@
     "DESCRIPTIONS": [
       "直到回合结束： NL 打出 [yinIcon] 牌时，若上一张为 [yangIcon] 牌， #y葬送 #b%d ； NL 打出 [yangIcon] 牌时，若上一张为 [yinIcon] 牌， #y通灵 #b%d 。"
     ]
+  },
+  "HuTaoMod:EndTurnClairvoir": {
+    "NAME": "回合结束通灵",
+    "DESCRIPTIONS": [
+      "回合结束时，通灵 #b%d 。"
+    ]
   }
 }

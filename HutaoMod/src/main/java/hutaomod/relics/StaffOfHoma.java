@@ -26,8 +26,6 @@ import java.util.Objects;
 
 public class StaffOfHoma extends HuTaoRelic {
     public static final String ID = StaffOfHoma.class.getSimpleName();
-    boolean subscribed = false;
-    boolean c6Available = false;
     
     public StaffOfHoma() {
         super(ID, RelicTier.BOSS);

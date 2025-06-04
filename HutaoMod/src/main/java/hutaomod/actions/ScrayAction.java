@@ -10,7 +10,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import hutaomod.modcore.HuTaoMod;
+import hutaomod.utils.ModHelper;
 
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
@@ -18,6 +21,7 @@ import java.util.function.Predicate;
  */
 public class ScrayAction extends AbstractGameAction {
     Predicate<AbstractCard> filter;
+    Consumer<List<AbstractCard>> callback;
     public static final UIStrings uiStrings;
     public static final String[] TEXT;
     
@@ -32,7 +36,12 @@ public class ScrayAction extends AbstractGameAction {
     }
     
     public ScrayAction(Predicate<AbstractCard> filter) {
-        this(AbstractDungeon.player.drawPile.size(), filter);
+        this(-1, filter);
+    }
+    
+    public ScrayAction callback(Consumer<List<AbstractCard>> callback) {
+        this.callback = callback;
+        return this;
     }
 
     @Override
@@ -43,13 +52,11 @@ public class ScrayAction extends AbstractGameAction {
         }
         AbstractPlayer p = AbstractDungeon.player;
         if (filter != null) {
-            addToTop(new SelectCardsAction(p.drawPile.group, amount, TEXT[0], true, filter, cards -> {
-                for (AbstractCard card : cards) {
-                    addToTop(new DiscardSpecificCardAction(card, p.drawPile));
-                }
-            }));
+            addToTop(new BetterMoveCardsAction(p.discardPile, p.drawPile, filter, amount == -1 ? p.drawPile.size() : amount, callback).random(true));
         } else {
-            addToTop(new SelectCardsAction(p.drawPile.group, amount, TEXT[0], true, c -> p.drawPile.group.indexOf(c) >= p.drawPile.group.size() - amount, cards -> {
+            addToTop(new SelectCardsAction(p.drawPile.group, amount, TEXT[0], true, 
+                    c -> p.drawPile.group.indexOf(c) >= p.drawPile.group.size() - amount, cards -> {
+                if (callback != null) ModHelper.addToTopAbstract(() -> callback.accept(cards));
                 for (AbstractCard card : cards) {
                     addToTop(new DiscardSpecificCardAction(card, p.drawPile));
                 }

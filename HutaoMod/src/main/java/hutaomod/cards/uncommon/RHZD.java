@@ -27,11 +27,6 @@ public class RHZD extends HuTaoCard implements OnPlayerDamagedSubscriber {
     }
 
     @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        return false;
-    }
-
-    @Override
     public void onEnterHand() {
         super.onEnterHand();
         BaseMod.unsubscribe(this);

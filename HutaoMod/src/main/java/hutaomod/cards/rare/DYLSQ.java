@@ -1,0 +1,48 @@
+package hutaomod.cards.rare;
+
+import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
+import hutaomod.actions.BounceAction;
+import hutaomod.actions.CardDamageAction;
+import hutaomod.cards.HuTaoCard;
+import hutaomod.powers.powers.BBLPower;
+import hutaomod.utils.ModHelper;
+
+public class DYLSQ extends HuTaoCard {
+    public static final String ID = DYLSQ.class.getSimpleName();
+    int costCache;
+
+    public DYLSQ() {
+        super(ID);
+        costCache = cost;
+    }
+
+    @Override
+    public void upgrade() {
+        super.upgrade();
+        GraveField.grave.set(this, true);
+    }
+
+    @Override   
+    public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
+        addToBot(new VFXAction(new ViolentAttackEffect(m.hb.cX, m.hb.cY, Color.RED.cpy())));
+        addToBot(new BounceAction(m, this, magicNumber, mon -> {
+            addToTop(new CardDamageAction(mon, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        }));
+        ModHelper.addToBotAbstract(() -> updateCost(costCache - cost));
+    }
+
+    @Override
+    public void onDieying(boolean in) {
+        super.onDieying(in);
+        addToBot(new ReduceCostAction(this));
+    }
+}

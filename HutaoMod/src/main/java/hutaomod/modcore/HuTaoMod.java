@@ -110,7 +110,7 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
         new AutoAdd(MOD_NAME)
                 .packageFilter("hutaomod.relics")
                 .any(CustomRelic.class, (info, relic) -> {
-                    BaseMod.addRelic(relic, RelicType.SHARED);
+                    BaseMod.addRelicToCustomPool(relic, HuTao.PlayerColorEnum.HUTAO_RED);
                 });
     }
 

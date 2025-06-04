@@ -27,11 +27,6 @@ public class YHCS extends HuTaoCard implements OnPlayerDamagedSubscriber {
     }
 
     @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        return false;
-    }
-
-    @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {}
 
     @Override
