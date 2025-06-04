@@ -1,10 +1,14 @@
 package hutaomod.cards.base;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -15,6 +19,7 @@ import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.CardDamageAllAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.characters.HuTao;
+import hutaomod.effects.PortraitDisplayEffect;
 import hutaomod.modcore.CustomEnum;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.debuffs.BloodBlossomPower;
@@ -47,6 +52,11 @@ public class HutaoQ extends HuTaoCard {
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
+        addToBot(new VFXAction(p, new PortraitDisplayEffect("HuTao"), 0F, true));
+        int index = MathUtils.random(0, cardStrings.EXTENDED_DESCRIPTION.length-1);
+        addToBot(new SFXAction("ult_" + index+1));
+        addToBot(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[index], 2.0F, 3.0F));
+        
         int multiplier = 1;
         if (CacheManager.getBool(CacheManager.Key.HALF_HP) && specialUpgrade) multiplier *= 2;
         multiplier *= (int) Math.pow(2, yyTime);

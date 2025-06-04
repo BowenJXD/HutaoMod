@@ -1,19 +1,27 @@
 package hutaomod.cards.uncommon;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.common.ReduceCostForTurnAction;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.ScrayAction;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.cards.base.HutaoA;
 import hutaomod.powers.buffs.TSSCPower;
 import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.powers.debuffs.SiPower;
+import hutaomod.utils.GAMManager;
 import hutaomod.utils.ModHelper;
 
+import java.util.Objects;
+
 public class TSSC extends HuTaoCard {
-    public static final String ID = TSSC.class.getSimpleName();
+    public static final String ID = TSSC.class.getSimpleName(); 
 
     public TSSC() {
         super(ID);
@@ -21,11 +29,16 @@ public class TSSC extends HuTaoCard {
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new BloodBurnAction(1));
-        if (si > 0) {
-            if (upgraded)
-                addToBot(new ScrayAction(si));
-            addToBot(new ApplyPowerAction(p, p, new TSSCPower(p, si)));
+        if (GAMManager.getInstance().currentCard instanceof HutaoA) {
+            ModHelper.findCardsInGroup(c -> c.tags.contains(CardTags.STARTER_STRIKE), p.drawPile)
+                    .stream().findAny().ifPresent(r -> {
+                        addToBot(new MoveCardsAction(p.hand, p.drawPile, c -> c == r.card));
+                        addToBot(new ReduceCostForTurnAction(r.card, 1));
+                    });
+        } else if (upgraded) {
+            addToBot(new MakeTempCardInHandAction(new HutaoA()));
         }
     }
+    
+    //TODO: add glow check
 }

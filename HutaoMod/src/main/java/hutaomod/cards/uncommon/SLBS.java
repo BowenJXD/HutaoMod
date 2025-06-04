@@ -16,6 +16,12 @@ public class SLBS extends HuTaoCard {
     public SLBS() {
         super(ID);
     }
+    
+    @Override
+    public void upgrade() {
+        super.upgrade();
+        selfRetain = true;
+    }
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {

@@ -30,6 +30,7 @@ public class GAMManager implements PostDungeonUpdateSubscriber {
     
     private GAMManager() {
         BaseMod.subscribe(this);
+        update();
     }
     
     public static GAMManager getInstance() {
@@ -49,11 +50,16 @@ public class GAMManager implements PostDungeonUpdateSubscriber {
     
     @Override
     public void receivePostDungeonUpdate() {
+        update();
+    }
+    
+    void update() {
+        if (AbstractDungeon.actionManager == null) return;
         if (currentAction != AbstractDungeon.actionManager.currentAction) {
             currentAction = AbstractDungeon.actionManager.currentAction;
             if (currentAction != null) {
                 System.out.printf("action: %-50s | source: %-30s | target: %-30s | amount: %-4d%n",
-                        currentAction.getClass().getSimpleName().isEmpty() ? currentAction : currentAction.getClass().getSimpleName() + '@' + currentAction.hashCode(), 
+                        currentAction.getClass().getSimpleName().isEmpty() ? currentAction : currentAction.getClass().getSimpleName() + '@' + currentAction.hashCode(),
                         currentAction.source != null ? currentAction.source.getClass().getSimpleName() + '@' + currentAction.source.hashCode() : "null",
                         currentAction.target != null ? currentAction.target.getClass().getSimpleName() + '@' + currentAction.target.hashCode() : "null",
                         currentAction.amount);
@@ -73,8 +79,8 @@ public class GAMManager implements PostDungeonUpdateSubscriber {
         List<AbstractCard> cards = AbstractDungeon.actionManager.cardsPlayedThisTurn;
         if (!cards.isEmpty() && cards.get(cards.size() - 1) != currentCard) {
             currentCard = cards.get(cards.size() - 1);
-            int cardIndex = cards.size() - 1;
-            System.out.printf("===================== turn %-2d card %-2d: %-20s, D: %-3d, B: %-3d, M: %-3d", GameActionManager.turn, cardIndex, 
+            int cardIndex = cards.size();
+            System.out.printf("================== turn %-2d card %-2d: %-20s, D: %-3d, B: %-3d, M: %-3d%n", GameActionManager.turn, cardIndex,
                     currentCard, currentCard.damage, currentCard.block, currentCard.magicNumber);
         }
     }

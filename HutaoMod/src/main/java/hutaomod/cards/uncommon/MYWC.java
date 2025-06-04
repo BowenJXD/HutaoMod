@@ -23,6 +23,12 @@ public class MYWC extends HuTaoCard {
     public MYWC() {
         super(ID);
     }
+    
+    @Override
+    public void upgrade() {
+        super.upgrade();
+        selfRetain = true;
+    }
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {

@@ -25,6 +25,7 @@ public class WYWK extends HuTaoCard {
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new BloodBurnAction(magicNumber));
         addToBot(new CardDamageAction(m, si + damage, this, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-        addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false)));
+        if (yyTime > 0)
+            addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber * yyTime, false)));
     }
 }

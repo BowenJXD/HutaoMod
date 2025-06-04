@@ -5,9 +5,11 @@ import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,6 +20,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.characters.HuTao;
+import hutaomod.effects.PortraitDisplayEffect;
 import hutaomod.modcore.CustomEnum;
 import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.subscribers.SubscriptionManager;
@@ -121,7 +124,7 @@ public abstract class HuTaoCard extends CustomCard {
             }
         }
     }
-
+    
     @Override
     public void applyPowers() {
         super.applyPowers();

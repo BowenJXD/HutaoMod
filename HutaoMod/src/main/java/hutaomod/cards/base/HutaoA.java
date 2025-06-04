@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.characters.HuTao;
@@ -11,6 +12,7 @@ import hutaomod.powers.debuffs.BloodBlossomPower;
 
 public class HutaoA extends HuTaoCard {
     public static final String ID = HutaoA.class.getSimpleName();
+    boolean bloodCost = false;
     
     public static final AbstractGameAction.AttackEffect[] EFFECTS = {
             AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,
@@ -29,6 +31,7 @@ public class HutaoA extends HuTaoCard {
     
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
+        if (bloodCost) addToBot(new BloodBurnAction(1));
         addToBot(new CardDamageAction(m,this, EFFECTS[effectIndex]));
         effectIndex = (effectIndex + 1) % EFFECTS.length;
         if (upgraded) {
@@ -40,5 +43,6 @@ public class HutaoA extends HuTaoCard {
         modifyCostForCombat(-bloodCost);
         rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
         initializeDescription();
+        this.bloodCost = true;
     }
 }

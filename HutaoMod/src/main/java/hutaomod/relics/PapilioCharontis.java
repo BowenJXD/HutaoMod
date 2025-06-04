@@ -216,9 +216,12 @@ public class PapilioCharontis extends HuTaoRelic {
     @Override
     public void update() {
         super.update();
-        if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD && AbstractDungeon.cardRewardScreen != null) {
+        if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD     
+                && AbstractDungeon.cardRewardScreen != null 
+                && (AbstractDungeon.getCurrRoom().rewardTime || !AbstractDungeon.getCurrRoom().combatEvent)) {
             updateSpawners(AbstractDungeon.cardRewardScreen.rewardGroup);
-        } else if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.SHOP && AbstractDungeon.shopScreen != null) {
+        } else if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.SHOP 
+                && AbstractDungeon.shopScreen != null) {
             updateSpawners(AbstractDungeon.shopScreen.coloredCards);
         } else {
             spawners.clear();

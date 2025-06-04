@@ -1,7 +1,14 @@
 {
-  "HSRMod:Trailblazer1": {
+  "HuTaoMod:HutaoA": {
     "EXTENDED_DESCRIPTION": [
       "燃血1，造成 D 点伤害。"
+    ]
+  },
+  "HuTaoMod:HutaoQ": {
+    "EXTENDED_DESCRIPTION": [
+      "吃饱喝饱，一路走好！",
+      "再会啦~",
+      "蝶火燎原！"
     ]
   }
 }

@@ -24,6 +24,12 @@ public class YYYX extends HuTaoCard {
     }
 
     @Override
+    public void upgrade() {
+        super.upgrade();
+        selfRetain = true;
+    }
+
+    @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         int yinCount = CacheManager.getInt(CacheManager.Key.YIN_CARDS);
         int yangCount = CacheManager.getInt(CacheManager.Key.YANG_CARDS);

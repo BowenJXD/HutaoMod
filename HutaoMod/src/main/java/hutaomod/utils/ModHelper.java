@@ -92,18 +92,20 @@ public class ModHelper {
         return result;
     }
 
-    public static List<FindResult> findCards(Predicate<AbstractCard> predicate, boolean hand, boolean discard, boolean draw, boolean exhaust, boolean limbo) {
+    public static List<FindResult> findCards(Predicate<AbstractCard> predicate, CardGroup.CardGroupType... types) {
         List<FindResult> result = new ArrayList<>();
-        if (hand) result.addAll(findCardsInGroup(predicate, AbstractDungeon.player.hand));
-        if (discard) result.addAll(findCardsInGroup(predicate, AbstractDungeon.player.discardPile));
-        if (draw) result.addAll(findCardsInGroup(predicate, AbstractDungeon.player.drawPile));
-        if (exhaust) result.addAll(findCardsInGroup(predicate, AbstractDungeon.player.exhaustPile));
-        if (limbo) result.addAll(findCardsInGroup(predicate, AbstractDungeon.player.limbo));
+        List<CardGroup.CardGroupType> typeList = Arrays.asList(types);
+        if (typeList.contains(CardGroup.CardGroupType.HAND)) result.addAll(findCardsInGroup(predicate, AbstractDungeon.player.hand));
+        if (typeList.contains(CardGroup.CardGroupType.DISCARD_PILE)) result.addAll(findCardsInGroup(predicate, AbstractDungeon.player.discardPile));
+        if (typeList.contains(CardGroup.CardGroupType.DRAW_PILE)) result.addAll(findCardsInGroup(predicate, AbstractDungeon.player.drawPile));
+        if (typeList.contains(CardGroup.CardGroupType.EXHAUST_PILE)) result.addAll(findCardsInGroup(predicate, AbstractDungeon.player.exhaustPile));
+        if (typeList.contains(CardGroup.CardGroupType.MASTER_DECK)) result.addAll(findCardsInGroup(predicate, AbstractDungeon.player.masterDeck));
         return result;
     }
 
     public static List<FindResult> findCards(Predicate<AbstractCard> predicate, boolean shuffle) {
-        List<FindResult> result = findCards(predicate);
+        List<FindResult> result = findCards(predicate, CardGroup.CardGroupType.HAND, CardGroup.CardGroupType.DISCARD_PILE,
+                CardGroup.CardGroupType.DRAW_PILE, CardGroup.CardGroupType.EXHAUST_PILE);
         if (shuffle) {
             Collections.shuffle(result, new java.util.Random(AbstractDungeon.cardRandomRng.randomLong()));
         }
@@ -111,7 +113,8 @@ public class ModHelper {
     }
 
     public static List<FindResult> findCards(Predicate<AbstractCard> predicate) {
-        return findCards(predicate, true, true, true, true, false);
+        return findCards(predicate, CardGroup.CardGroupType.HAND, CardGroup.CardGroupType.DISCARD_PILE,
+                CardGroup.CardGroupType.DRAW_PILE, CardGroup.CardGroupType.EXHAUST_PILE);
     }
 
     public static class FindResult {

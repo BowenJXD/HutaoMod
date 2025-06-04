@@ -135,8 +135,18 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
 
     @Override
     public void receiveAddAudio() {
+        addMp3("ult_1");
+        addMp3("ult_2");
+        addMp3("ult_3");
     }
-
+    
+    void addMp3(String key) {
+        BaseMod.addAudio(key, "HuTaoResources/localization/" + lang + "/audio/" + key + ".mp3");
+    }
+    
+    void addOgg(String key) {
+        BaseMod.addAudio(key, "HuTaoResources/localization/" + lang + "/audio/" + key + ".ogg");
+    }
 
     @Override
     public void receiveStartGame() {
