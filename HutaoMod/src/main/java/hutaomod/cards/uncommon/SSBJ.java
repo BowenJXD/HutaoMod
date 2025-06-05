@@ -11,6 +11,7 @@ public class SSBJ extends HuTaoCard {
 
     public SSBJ() {
         super(ID);
+        tags.add(CardTags.HEALING);
     }
 
     @Override

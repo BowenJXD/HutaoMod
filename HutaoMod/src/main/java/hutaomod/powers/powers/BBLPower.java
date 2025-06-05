@@ -21,6 +21,8 @@ import java.util.Objects;
 public class BBLPower extends PowerPower {
     public static final String POWER_ID = HuTaoMod.makeID(BBLPower.class.getSimpleName());
     
+    int strengthGain = 0;
+    
     public BBLPower(int amount) {
         super(POWER_ID, amount);
         this.updateDescription();
@@ -30,6 +32,7 @@ public class BBLPower extends PowerPower {
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.type == DamageInfo.DamageType.HP_LOSS && info.owner == owner) {
             addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, 1)));
+            strengthGain++;
             addToBot(new GainBlockAction(owner, owner, amount));
         }
         return super.onAttacked(info, damageAmount);
@@ -39,7 +42,8 @@ public class BBLPower extends PowerPower {
     public int onHeal(int healAmount) {
         int strengthCount = ModHelper.getPowerCount(owner, StrengthPower.POWER_ID);
         if (strengthCount > 0) {
-            addToBot(new RemoveSpecificPowerAction(owner, owner, StrengthPower.POWER_ID));
+            addToBot(new ReducePowerAction(owner, owner, StrengthPower.POWER_ID, strengthGain));
+            strengthGain = 0;
             return healAmount + strengthCount;
         }
         return super.onHeal(healAmount);

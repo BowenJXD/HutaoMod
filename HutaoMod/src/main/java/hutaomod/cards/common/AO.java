@@ -38,6 +38,8 @@ public class AO extends HuTaoCard {
             glowColor = BLACK_BORDER_GLOW_COLOR;
         } else if (upgraded) {
             glowColor = GOLD_BORDER_GLOW_COLOR;
+        } else {
+            glowColor = ORANGE_BORDER_GLOW_COLOR;
         }
     }
 }

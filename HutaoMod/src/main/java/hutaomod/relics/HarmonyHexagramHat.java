@@ -1,9 +1,11 @@
 package hutaomod.relics;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import hutaomod.actions.ClairvoirAction;
+import hutaomod.powers.buffs.EndTurnClairvoirPower;
 import hutaomod.utils.CacheManager;
 import hutaomod.utils.ModHelper;
 
@@ -17,6 +19,6 @@ public class HarmonyHexagramHat extends HuTaoRelic {
     @Override
     public void onPlayerEndTurn() {
         super.onPlayerEndTurn();
-        addToBot(new ClairvoirAction(CacheManager.getInt(CacheManager.Key.PLAYER_SI)));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EndTurnClairvoirPower(AbstractDungeon.player, CacheManager.getInt(CacheManager.Key.PLAYER_SI))));  
     }
 }

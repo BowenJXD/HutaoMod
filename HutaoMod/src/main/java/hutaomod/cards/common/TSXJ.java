@@ -12,6 +12,7 @@ import hutaomod.actions.CardDamageAction;
 import hutaomod.actions.CardDamageAllAction;
 import hutaomod.actions.ClairvoirAction;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.modcore.CustomEnum;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +22,7 @@ public class TSXJ extends HuTaoCard {
     
     public TSXJ() {
         super(ID);
+        tags.add(CustomEnum.YIN_YANG);
     }
 
     @Override

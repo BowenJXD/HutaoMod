@@ -10,6 +10,7 @@ import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.BuffPower;
 import hutaomod.subscribers.CheckYinYangSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
+import hutaomod.utils.ModHelper;
 
 public class EndTurnClairvoirPower extends BuffPower {
     public static final String POWER_ID = HuTaoMod.makeID(EndTurnClairvoirPower.class.getSimpleName());
@@ -23,6 +24,6 @@ public class EndTurnClairvoirPower extends BuffPower {
     public void atEndOfTurn(boolean isPlayer) {
         super.atEndOfTurn(isPlayer);
         addToTop(new RemoveSpecificPowerAction(owner, owner, this));
-        addToBot(new ClairvoirAction(amount));
+        ModHelper.addToBotAbstract(() -> addToBot(new ClairvoirAction(amount)));
     }
 }

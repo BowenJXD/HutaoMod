@@ -30,7 +30,7 @@ public class QKDZ extends HuTaoCard {
 
     @Override   
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new BloodBurnAction(1));
+        addToBot(new BloodBurnAction(magicNumber));
         List<AbstractCard> discard = new ArrayList<>(p.discardPile.group);
         List<AbstractCard> draw = new ArrayList<>(p.drawPile.group);
         AbstractGameAction drawToDiscard = new MoveCardsAction(p.discardPile, p.drawPile, draw::contains, 999);

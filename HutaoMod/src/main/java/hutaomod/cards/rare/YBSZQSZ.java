@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.CardDamageAllAction;
 import hutaomod.actions.ScrayAction;
 import hutaomod.cards.HuTaoCard;
@@ -36,6 +37,7 @@ public class YBSZQSZ extends HuTaoCard {
 
     @Override   
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
+        addToBot(new BloodBurnAction(magicNumber));
         addToBot(new ScrayAction(c -> true).callback(cards -> {
             for (AbstractCard card : cards) {
                 if (card.costForTurn == 0) {
