@@ -27,10 +27,10 @@ public class XJMX extends HuTaoCard {
         for (AbstractCard c : p.hand.group) {
             if (c instanceof HuTaoCard) {
                 HuTaoCard card = (HuTaoCard) c;
+                addToBot(new DiscardSpecificCardAction(c));
                 if (card.yy == YYState.YANG) {
-                    addToBot(new DiscardSpecificCardAction(c));
                     if (c.costForTurn > 0) {
-                        addToBot(new ApplyPowerAction(p, p, new BloodBlossomPower(p, p, c.costForTurn)));
+                        addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, c.costForTurn)));
                     }
                 }
             }

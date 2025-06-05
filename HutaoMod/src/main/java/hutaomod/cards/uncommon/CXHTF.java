@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.ClairvoirAction;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.modcore.CustomEnum;
 import hutaomod.powers.buffs.EndTurnClairvoirPower;
 
 public class CXHTF extends HuTaoCard {
@@ -12,6 +13,7 @@ public class CXHTF extends HuTaoCard {
     
     public CXHTF() {
         super(ID);
+        tags.add(CustomEnum.YIN_YANG);
     }
     
     @Override

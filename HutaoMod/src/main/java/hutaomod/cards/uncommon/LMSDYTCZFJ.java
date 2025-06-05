@@ -1,6 +1,7 @@
 package hutaomod.cards.uncommon;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.utility.ShowCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -25,7 +26,8 @@ public class LMSDYTCZFJ extends HuTaoCard {
     @Override
     public void onDieying(boolean in) {
         super.onDieying(in);
-        addToTop(new ScrayAction(magicNumber, c -> !Objects.equals(cardID, c.cardID)));
+        addToTop(new ScrayAction(magicNumber));
         addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EndTurnClairvoirPower(AbstractDungeon.player, 1)));
+        addToTop(new ShowCardAction(this));
     }
 }

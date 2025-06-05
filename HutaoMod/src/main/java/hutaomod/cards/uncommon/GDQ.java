@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.utility.ShowCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -37,7 +38,7 @@ public class GDQ extends HuTaoCard {
         if (upgraded && AbstractDungeon.player.hand.isEmpty()) {
             addToTop(new DrawCardAction(magicNumber));
         }
-        addToBot(new SelectCardsInHandAction(GeneralUtil.tryFormat(RelicEventHelper.DISCARD_TEXT, 1), list -> {
+        addToTop(new SelectCardsInHandAction(GeneralUtil.tryFormat(RelicEventHelper.DISCARD_TEXT, 1), list -> {
             for (AbstractCard card : list) {
                 addToTop(new DiscardSpecificCardAction(card));
             }
@@ -45,5 +46,6 @@ public class GDQ extends HuTaoCard {
                 addToTop(new DrawCardAction(magicNumber));
             }
         }));
+        addToTop(new ShowCardAction(this));
     }
 }

@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.utils.ModHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -57,7 +58,10 @@ public class ClairvoirAction extends AbstractGameAction {
         } else {
             addToTop(new SelectCardsAction(p.discardPile.group, 1, TEXT[0], true, 
                     c -> p.discardPile.group.indexOf(c) < amount, cards -> {
-                if (callback != null) ModHelper.addToTopAbstract(() -> callback.accept(cards));
+                if (callback != null) {
+                    List<AbstractCard> selectedCards = new ArrayList<>(cards);
+                    ModHelper.addToTopAbstract(() -> callback.accept(selectedCards));
+                }
                 for (AbstractCard card : cards) {
                     addToTop(new DiscardToHandAction(card));
                 }

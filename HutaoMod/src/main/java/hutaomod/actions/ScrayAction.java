@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.utils.ModHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -56,7 +57,10 @@ public class ScrayAction extends AbstractGameAction {
         } else {
             addToTop(new SelectCardsAction(p.drawPile.group, amount, TEXT[0], true, 
                     c -> p.drawPile.group.indexOf(c) >= p.drawPile.group.size() - amount, cards -> {
-                if (callback != null) ModHelper.addToTopAbstract(() -> callback.accept(cards));
+                if (callback != null) {
+                    List<AbstractCard> selectedCards = new ArrayList<>(cards);
+                    ModHelper.addToTopAbstract(() -> callback.accept(selectedCards));
+                }
                 for (AbstractCard card : cards) {
                     addToTop(new DiscardSpecificCardAction(card, p.drawPile));
                 }

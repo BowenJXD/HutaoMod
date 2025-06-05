@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.ClairvoirAction;
 import hutaomod.actions.ScrayAction;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.modcore.CustomEnum;
 
 public class TDJCMP extends HuTaoCard {
     public static final String ID = TDJCMP.class.getSimpleName();
@@ -13,7 +14,13 @@ public class TDJCMP extends HuTaoCard {
     public TDJCMP() {
         super(ID);
     }
-    
+
+    @Override
+    public void upgrade() {
+        super.upgrade();
+        tags.add(CustomEnum.YIN_YANG);
+    }
+
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         int amt = magicNumber + (upgraded ? yyTime : 0);
