@@ -4,21 +4,26 @@ import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Vampires;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.relics.Vajra;
+import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import hutaomod.cards.base.HutaoA;
 import hutaomod.cards.base.HutaoE;
@@ -27,6 +32,8 @@ import hutaomod.modcore.HuTaoMod;
 import hutaomod.relics.PapilioCharontis;
 import hutaomod.utils.PathDefine;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 
 public class HuTao extends CustomPlayer {
@@ -189,7 +196,8 @@ public class HuTao extends CustomPlayer {
     // 自定义模式选择你的人物时播放的音效
     @Override
     public String getCustomModeCharacterButtonSoundKey() {
-        return "ATTACK_HEAVY";
+        int r = MathUtils.random(0, 2);
+        return "join_" + r;
     }
 
     // 游戏中左上角显示在你的名字之后的人物名称
@@ -226,6 +234,66 @@ public class HuTao extends CustomPlayer {
     @Override
     public Color getCardRenderColor() {
         return HuTaoMod.HUTAO_RED;
+    }
+
+    @Override
+    public void playDeathAnimation() {
+        super.playDeathAnimation();
+        int r = MathUtils.random(0, 2);
+        CardCrawlGame.sound.play("down_" + r);
+    }
+    
+    boolean kehuSaid = false;
+
+    @Override
+    public void preBattlePrep() {
+        super.preBattlePrep();
+        if (AbstractDungeon.floorNum <= 2) {
+            // 获取当前时间
+            LocalDateTime dateTime = LocalDateTime.now();
+            int hour = dateTime.getHour();
+            if (hour >= 7 && hour < 11) {
+                CardCrawlGame.sound.play("morning");
+            } else if (hour >= 11 && hour < 14){
+                CardCrawlGame.sound.play("noon");
+            } else if (hour >= 18 && hour < 22) {
+                CardCrawlGame.sound.play("evening");
+            } else if (hour >= 22 || hour < 6){
+                CardCrawlGame.sound.play("night");
+            }
+        } else if (!kehuSaid && AbstractDungeon.getMonsters().monsters.size() == 3 && MathUtils.random(100) < 10) {
+            kehuSaid = true;
+            CardCrawlGame.sound.play("kehu");
+        }
+    }
+
+    @Override
+    public void damage(DamageInfo info) {
+        super.damage(info);
+        if (currentHealth < maxHealth / 2 && MathUtils.random(100) < 20) {
+            CardCrawlGame.sound.play("half");
+        } else if (info.output >= 20 && MathUtils.random(40) < info.output) {
+            CardCrawlGame.sound.play("hurt");
+        }
+    }
+    
+    boolean canTalk = true;
+
+    @Override
+    public void updateInput() {
+        super.updateInput();
+        if (hb.clicked && canTalk
+                && AbstractDungeon.currMapNode != null 
+                && AbstractDungeon.currMapNode.room instanceof RestRoom) {
+            CardCrawlGame.sound.play("qqy");
+            canTalk = false;
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    canTalk = true;
+                }
+            }, 20);
+        }
     }
 
     // 第三章面对心脏造成伤害时的特效

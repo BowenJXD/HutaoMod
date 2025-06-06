@@ -30,7 +30,7 @@ public class TSSC extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         if (GAMManager.getInstance().currentCard instanceof HutaoA) {
-            ModHelper.findCardsInGroup(c -> c.tags.contains(CardTags.STARTER_STRIKE), p.drawPile)
+            ModHelper.findCardsInGroup(c -> c.hasTag(CardTags.STARTER_STRIKE), p.drawPile)
                     .stream().findAny().ifPresent(r -> {
                         addToBot(new MoveCardsAction(p.hand, p.drawPile, c -> c == r.card));
                         addToBot(new ReduceCostForTurnAction(r.card, 1));

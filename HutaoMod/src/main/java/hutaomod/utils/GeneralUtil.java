@@ -68,11 +68,19 @@ public class GeneralUtil {
         }
         return getRandomElement(filtered, random);
     }
-
+    
     public static <T> List<T> getRandomElements(List<T> list, Random random, int count) {
         count = Math.min(count, list.size());
 
         List<T> shuffledList = new ArrayList<>(list);
+        Collections.shuffle(shuffledList, random.random);  // Randomly shuffle the list
+        return shuffledList.subList(0, count);  // Return the first x elements
+    }
+
+    public static <T> List<T> getRandomElements(List<T> list, Random random, int count, Predicate<T> predicate) {
+        count = Math.min(count, list.size());
+
+        List<T> shuffledList = list.stream().filter(predicate).collect(Collectors.toList());
         Collections.shuffle(shuffledList, random.random);  // Randomly shuffle the list
         return shuffledList.subList(0, count);  // Return the first x elements
     }

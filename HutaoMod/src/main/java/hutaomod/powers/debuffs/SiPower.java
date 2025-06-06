@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import com.megacrit.cardcrawl.vfx.stance.WrathParticleEffect;
+import hutaomod.effects.ButterflySpawner;
 import hutaomod.effects.CustomAuraEffect;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.DebuffPower;
@@ -20,12 +21,12 @@ import hutaomod.utils.GeneralUtil;
 public class SiPower extends DebuffPower {
     public static final String POWER_ID = HuTaoMod.makeID(SiPower.class.getSimpleName());
     
-    PapilioCharontis.ButterflySpawner spawner;
+    ButterflySpawner spawner;
     
     public SiPower(AbstractCreature owner, int amount) {
         super(POWER_ID, owner, amount);
         updateDescription();
-        spawner = new PapilioCharontis.ButterflySpawner(owner.hb);
+        spawner = new ButterflySpawner(owner.hb);
     }
 
     @Override

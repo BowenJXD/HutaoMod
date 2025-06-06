@@ -16,14 +16,18 @@ import hutaomod.utils.ModHelper;
 public class TDPower extends PowerPower {
     public static final String POWER_ID = HuTaoMod.makeID(TDPower.class.getSimpleName());
     
-    public TDPower(int amount) {
-        super(POWER_ID, amount);
+    public TDPower(int amount, boolean upgraded) {
+        super(POWER_ID, amount, upgraded);
         this.updateDescription();
     }
 
     @Override
     public void updateDescription() {
-        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], amount, amount);
+        if (upgraded) {
+            description = GeneralUtil.tryFormat(DESCRIPTIONS[1], amount, amount);
+        } else {
+            description = GeneralUtil.tryFormat(DESCRIPTIONS[0], amount);
+        }
     }
 
     @Override

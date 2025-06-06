@@ -199,7 +199,7 @@ public abstract class HuTaoCard extends CustomCard {
     public void triggerOnGlowCheck() {
         super.triggerOnGlowCheck();
         yyTime = checkYinYang(false);
-        if (tags.contains(CustomEnum.YIN_YANG) && yyTime > 0) {
+        if (hasTag(CustomEnum.YIN_YANG) && yyTime > 0) {
             glowColor = GOLD_BORDER_GLOW_COLOR;
         } else {
             glowColor = ORANGE_BORDER_GLOW_COLOR;    

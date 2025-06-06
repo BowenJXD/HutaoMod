@@ -1,6 +1,5 @@
 package hutaomod.cards.rare;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,12 +7,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.modcore.CustomEnum;
-import hutaomod.powers.powers.BBLPower;
 
-public class XZZH extends HuTaoCard {
-    public static final String ID = XZZH.class.getSimpleName();
+public class CXHTF extends HuTaoCard {
+    public static final String ID = CXHTF.class.getSimpleName();
 
-    public XZZH() {
+    public CXHTF() {
         super(ID);
         exhaust = true;
         tags.add(CustomEnum.YIN_YANG);

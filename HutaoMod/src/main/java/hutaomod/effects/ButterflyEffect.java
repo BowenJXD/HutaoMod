@@ -7,8 +7,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Pool;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.CardTrailEffect;
 import com.megacrit.cardcrawl.vfx.FireBurstParticleEffect;
 import com.megacrit.cardcrawl.vfx.RarePotionParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameParticleEffect;
@@ -18,6 +20,7 @@ import hutaomod.utils.PathDefine;
 
 public class ButterflyEffect extends AbstractGameEffect {
     private static TextureRegion[] frames;
+    private static final float PARTICLE_INTERVAL = 0.1f; // 每帧持续时间
     private TextureRegion currentFrame;
     private float x, y;
     private float startX, startY;
@@ -26,9 +29,11 @@ public class ButterflyEffect extends AbstractGameEffect {
     private float animationTimer = 0f;
     private float animationSpeed;
     private float particleTimer = 0f;
-
-    private float vx;
-    private float vy;
+    private Pool<TrailEffect> trailEffectPool = new Pool<TrailEffect>() {
+        protected TrailEffect newObject() {
+            return new TrailEffect();
+        }
+    };
 
     public ButterflyEffect(float x, float y, float duration, float scale, Color color, float rotation) {
         this.startingDuration = duration;
@@ -74,9 +79,11 @@ public class ButterflyEffect extends AbstractGameEffect {
         y = startY + MathUtils.sin(angleRad) * speed * timeElapsed;
         
         particleTimer += delta;
-        if (particleTimer >= 0.1f) {
-            // AbstractDungeon.topLevelEffectsQueue.add(new FireBurstParticleEffect(x, y));
-            particleTimer -= 0.1f;
+        if (particleTimer >= PARTICLE_INTERVAL) {
+            TrailEffect effect = trailEffectPool.obtain();
+            effect.init(x, y, 1, color.cpy(), trailEffectPool);
+            AbstractDungeon.topLevelEffectsQueue.add(effect);
+            particleTimer -= PARTICLE_INTERVAL;
         }
     }
 

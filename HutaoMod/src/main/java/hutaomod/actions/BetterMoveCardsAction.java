@@ -95,27 +95,7 @@ public class BetterMoveCardsAction extends AbstractGameAction {
                 this.isDone = true;
             } else if (tmp.size() == 1) {
                 AbstractCard card = tmp.getTopCard();
-                if (this.source == this.p.exhaustPile) {
-                    card.unfadeOut();
-                }
-
-                if (this.destination == this.p.hand && this.p.hand.size() == BaseMod.MAX_HAND_SIZE) {
-                    this.source.moveToDiscardPile(card);
-                    this.p.createHandIsFullDialog();
-                } else {
-                    card.untip();
-                    card.unhover();
-                    card.lighten(true);
-                    card.setAngle(0.0F);
-                    card.drawScale = 0.12F;
-                    card.targetDrawScale = 0.75F;
-                    card.current_x = CardGroup.DRAW_PILE_X;
-                    card.current_y = CardGroup.DRAW_PILE_Y;
-                    this.source.removeCard(card);
-                    this.destination.addToTop(card);
-                    AbstractDungeon.player.hand.refreshHandLayout();
-                    AbstractDungeon.player.hand.applyPowers();
-                }
+                processCard(card);
 
                 List<AbstractCard> callbackList = new ArrayList();
                 callbackList.add(card);
@@ -139,27 +119,7 @@ public class BetterMoveCardsAction extends AbstractGameAction {
                 for(int i = 0; i < Math.min(tmp.size(), amount); ++i) {
                     AbstractCard card = tmp.getNCardFromTop(i);
                     callbackList.add(card);
-                    if (this.source == this.p.exhaustPile) {
-                        card.unfadeOut();
-                    }
-
-                    if (this.destination == this.p.hand && this.p.hand.size() == BaseMod.MAX_HAND_SIZE) {
-                        this.source.moveToDiscardPile(card);
-                        this.p.createHandIsFullDialog();
-                    } else {
-                        card.untip();
-                        card.unhover();
-                        card.lighten(true);
-                        card.setAngle(0.0F);
-                        card.drawScale = 0.12F;
-                        card.targetDrawScale = 0.75F;
-                        card.current_x = CardGroup.DRAW_PILE_X;
-                        card.current_y = CardGroup.DRAW_PILE_Y;
-                        this.source.removeCard(card);
-                        this.destination.addToTop(card);
-                        this.p.hand.refreshHandLayout();
-                        this.p.hand.applyPowers();
-                    }
+                    processCard(card);
                 }
 
                 if (this.callback != null) {
@@ -200,6 +160,34 @@ public class BetterMoveCardsAction extends AbstractGameAction {
             }
 
             this.tickDuration();
+        }
+    }
+    
+    void processCard(AbstractCard card) {
+        if (this.source == this.p.exhaustPile) {
+            card.unfadeOut();
+        }
+
+        if (this.destination == this.p.hand && this.p.hand.size() == BaseMod.MAX_HAND_SIZE) {
+            this.source.moveToDiscardPile(card);
+            this.p.createHandIsFullDialog();
+        } else if (source == p.drawPile && destination == p.discardPile) {
+            source.moveToDiscardPile(card);
+        } else if (source == p.discardPile && destination == p.drawPile) {
+            source.moveToDeck(card, false);
+        } else {
+            card.untip();
+            card.unhover();
+            card.lighten(true);
+            card.setAngle(0.0F);
+            card.drawScale = 0.12F;
+            card.targetDrawScale = 0.75F;
+            card.current_x = CardGroup.DRAW_PILE_X;
+            card.current_y = CardGroup.DRAW_PILE_Y;
+            this.source.removeCard(card);
+            this.destination.addToTop(card);
+            this.p.hand.refreshHandLayout();
+            this.p.hand.applyPowers();
         }
     }
 

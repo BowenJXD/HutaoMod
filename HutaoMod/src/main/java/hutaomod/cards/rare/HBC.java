@@ -1,13 +1,10 @@
 package hutaomod.cards.rare;
 
-import basemod.BaseMod;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.cards.HuTaoCard;
-import hutaomod.powers.powers.BBLPower;
 
 public class HBC extends HuTaoCard {
     public static final String ID = HBC.class.getSimpleName();

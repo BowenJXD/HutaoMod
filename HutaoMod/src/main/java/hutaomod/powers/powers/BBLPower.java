@@ -1,51 +1,35 @@
 package hutaomod.powers.powers;
 
-import basemod.ReflectionHacks;
-import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.PowerPower;
-import hutaomod.powers.debuffs.BloodBlossomPower;
-import hutaomod.utils.GAMManager;
-import hutaomod.utils.ModHelper;
-
-import java.util.Objects;
+import hutaomod.utils.GeneralUtil;
 
 public class BBLPower extends PowerPower {
     public static final String POWER_ID = HuTaoMod.makeID(BBLPower.class.getSimpleName());
     
-    int strengthGain = 0;
-    
     public BBLPower(int amount) {
         super(POWER_ID, amount);
-        this.updateDescription();
+        updateDescription();
+    }
+
+    @Override
+    public void updateDescription() {
+        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], amount, amount);
     }
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if (info.type == DamageInfo.DamageType.HP_LOSS && info.owner == owner) {
-            addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, 1)));
-            strengthGain++;
-            addToBot(new GainBlockAction(owner, owner, amount));
+        if (damageAmount >= owner.currentHealth && AbstractDungeon.player.discardPile.size() >= amount) {
+            addToTop(new HealAction(owner, owner, amount));
+            addToTop(new MoveCardsAction(AbstractDungeon.player.exhaustPile, AbstractDungeon.player.discardPile, amount));
+            addToTop(new ApplyPowerAction(owner, owner, this));
+            return 0;
         }
         return super.onAttacked(info, damageAmount);
-    }
-
-    @Override
-    public int onHeal(int healAmount) {
-        int strengthCount = ModHelper.getPowerCount(owner, StrengthPower.POWER_ID);
-        if (strengthCount > 0) {
-            addToBot(new ReducePowerAction(owner, owner, StrengthPower.POWER_ID, strengthGain));
-            strengthGain = 0;
-            return healAmount + strengthCount;
-        }
-        return super.onHeal(healAmount);
     }
 }

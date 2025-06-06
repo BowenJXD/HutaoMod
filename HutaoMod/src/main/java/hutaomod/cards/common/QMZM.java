@@ -51,7 +51,7 @@ public class QMZM extends HuTaoCard implements CheckYinYangSubscriber {
                 && AbstractDungeon.player.discardPile.group.contains(this)        
                 && onUse 
                 && yyTime > 0
-                && card.tags.contains(CustomEnum.YIN_YANG)) {
+                && card.hasTag(CustomEnum.YIN_YANG)) {
             addToTop(new DiscardToHandAction(this));
         }
         return yyTime;

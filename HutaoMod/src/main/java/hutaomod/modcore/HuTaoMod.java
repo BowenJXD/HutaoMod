@@ -54,18 +54,18 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
     public static final Logger logger = LogManager.getLogger(MOD_NAME);
 
     String lang = "zhs";
-    
+
     public HuTaoMod() {
         BaseMod.subscribe(this);
         BaseMod.addColor(HuTao.PlayerColorEnum.HUTAO_RED, HUTAO_RED, BG_ATTACK_512, BG_SKILL_512, BG_POWER_512, ENERGY_ORB, BG_ATTACK_1024, BG_SKILL_1024, BG_POWER_1024, BIG_ORB, SMALL_ORB);
         updateLanguage();
     }
-    
+
     // 注解需要调用的方法，必须写
     public static void initialize() {
         new HuTaoMod();
     }
-    
+
     @Override
     public void receiveEditCards() {
         addIcons();
@@ -135,17 +135,42 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
 
     @Override
     public void receiveAddAudio() {
+        addMp3("chest_1");
+        addMp3("chest_2");
+        addMp3("chest_3");
+        addMp3("constellation_1");
+        addMp3("constellation_2");
+        addMp3("constellation_4");
+        addMp3("constellation_6");
+        addMp3("down_1");
+        addMp3("down_1");
+        addMp3("down_1");
+        addMp3("morning");
+        addMp3("noon");
+        addMp3("evening");
+        // addMp3("night");
+        addMp3("half");
+        addMp3("hurt");
+        addMp3("join_1");
+        addMp3("join_2");
+        addMp3("join_3");
+        addMp3("kehu");
+        addMp3("qqy");
         addMp3("ult_1");
         addMp3("ult_2");
         addMp3("ult_3");
     }
-    
-    void addMp3(String key) {
-        BaseMod.addAudio(key, "HuTaoResources/localization/" + lang + "/audio/" + key + ".mp3");
+
+    void addMp3(String... keys) {
+        for (String key : keys) {
+            BaseMod.addAudio(key, "HuTaoResources/localization/" + lang + "/audio/" + key + ".mp3");
+        }
     }
-    
-    void addOgg(String key) {
-        BaseMod.addAudio(key, "HuTaoResources/localization/" + lang + "/audio/" + key + ".ogg");
+
+    void addOgg(String... keys) {
+        for (String key : keys) {
+            BaseMod.addAudio(key, "HuTaoResources/localization/" + lang + "/audio/" + key + ".ogg");
+        }
     }
 
     @Override

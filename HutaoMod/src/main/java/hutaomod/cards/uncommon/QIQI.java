@@ -1,27 +1,32 @@
-package hutaomod.cards.rare;
+package hutaomod.cards.uncommon;
 
 import basemod.BaseMod;
 import basemod.interfaces.OnPlayerDamagedSubscriber;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.GetAllInBattleInstances;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.ModHelper;
 import hutaomod.utils.RelicEventHelper;
 
+import java.util.List;
 import java.util.Objects;
 
-public class YHCS extends HuTaoCard implements OnPlayerDamagedSubscriber {
-    public static final String ID = YHCS.class.getSimpleName();
-
-    public YHCS() {
+public class QIQI extends HuTaoCard implements OnPlayerDamagedSubscriber {
+    public static final String ID = QIQI.class.getSimpleName();
+    
+    int blizzardPotionModCache = 0;
+    
+    public QIQI() {
         super(ID);
         GraveField.grave.set(this, true);
         BaseMod.subscribe(this);
@@ -30,19 +35,26 @@ public class YHCS extends HuTaoCard implements OnPlayerDamagedSubscriber {
     @Override
     public void onMove(CardGroup group, boolean in) {
         super.onMove(group, in);
+        if (group.type == CardGroup.CardGroupType.MASTER_DECK) {
+            if (in) {
+                AbstractRoom.blizzardPotionMod += 1000;
+                blizzardPotionModCache = AbstractRoom.blizzardPotionMod;
+            } else {
+                AbstractRoom.blizzardPotionMod = blizzardPotionModCache;
+            }
+        }
     }
 
     @Override
-    public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {}
+    public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
+    }
 
     @Override
     public int receiveOnPlayerDamaged(int i, DamageInfo damageInfo) {
         if (SubscriptionManager.checkSubscriber(this) && i >= AbstractDungeon.player.currentHealth) {
             AbstractDungeon.player.masterDeck.group.stream().filter(c -> Objects.equals(c.uuid, uuid)).findFirst().ifPresent(RelicEventHelper::purgeCards);
-            int size = AbstractDungeon.player.exhaustPile.size();
-            addToBot(new MoveCardsAction(AbstractDungeon.player.hand, AbstractDungeon.player.exhaustPile, size));
-            addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, size * magicNumber));
             ModHelper.findCards(c -> Objects.equals(c.uuid, uuid)).stream().findFirst().ifPresent(r -> r.group.removeCard(r.card));
+            addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
             return 0;
         }
         return i;

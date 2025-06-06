@@ -26,7 +26,7 @@ public class WSY extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new BloodBurnAction(1));
-        addToBot(new ClairvoirAction(c -> c.tags.contains(CardTags.STARTER_STRIKE)).callback(list -> {
+        addToBot(new ClairvoirAction(c -> c.hasTag(CardTags.STARTER_STRIKE)).callback(list -> {
             addToTop(new GainBlockAction(p, p, p.hand.size()));
         }));
     }

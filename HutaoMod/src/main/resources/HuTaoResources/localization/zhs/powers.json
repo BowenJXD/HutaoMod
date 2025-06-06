@@ -2,7 +2,7 @@
   "HuTaoMod:Si": {
     "NAME": "死气",
     "DESCRIPTIONS": [
-      "死气 [siIcon] 的层数包含“1”时，视为 #y濒死 状态。回合开始时，若处于 #y濒死 ，则死亡，否则受到 #b%d 点伤害，并衰减1层。"
+      "死气 [siIcon] 的层数包含“1”时，视为处于 #r濒死 状态。回合开始时，若处于 #r濒死 ，则受到致命伤害，否则受到 #b%d 点伤害，并衰减1层。"
     ]
   },
   "HuTaoMod:BloodBlossom": {
@@ -48,10 +48,10 @@
       "下 #b%d 张 [yangIcon] 牌消耗所有 [siIcon] （触发 #y阴阳 ），且计算 Y 值时，视为翻倍。"
     ]
   },
-  "HuTaoMod:BBL": {
-    "NAME": "不卜庐",
+  "HuTaoMod:LYG": {
+    "NAME": "璃月港",
     "DESCRIPTIONS": [
-      "你消耗生命后，获得1点 #y力量 和 #b%d 点格挡。 NL 你回复生命值时，移除所有以此法获得的 #y力量 ，每移除1层令回复量增加1。"
+      "你消耗生命后，获得 #b%d 点 #y活力 和格挡。 NL 你回复生命值时，额外回复Y点。"
     ]
   },
   "HuTaoMod:WWJS": {
@@ -67,16 +67,10 @@
       "每回合开始时，手牌中所有「往生堂秘传枪法」获得 #y燃血 #b1 ，且费用 - #b%d 。"
     ]
   },
-  "HuTaoMod:SSBJ": {
-    "NAME": "生死边界",
+  "HuTaoMod:BBL": {
+    "NAME": "不卜庐",
     "DESCRIPTIONS": [
       "受到致命伤害时，选择弃牌堆中 #b%d 张牌消耗，防止之并回复 #b%d 点生命，然后所需牌数和回复量翻倍。"
-    ]
-  },
-  "HuTaoMod:TSSC": {
-    "NAME": "桃式说唱",
-    "DESCRIPTIONS": [
-      "打出下 #b%d 张牌时，若为 #y「往生堂秘传枪法」 ，则摸 #b1 张牌。"
     ]
   },
   "HuTaoMod:TD": {
@@ -86,10 +80,11 @@
       "每回合开始时， #y通灵 #b%d 。每回合结束时， #y葬送 #b%d 。"
     ]
   },
-  "HuTaoMod:WSTDSDCB": {
-    "NAME": "往生堂定时大酬宾",
+  "HuTaoMod:XZZH": {
+    "NAME": "血之灶火",
     "DESCRIPTIONS": [
-      "直到回合结束： NL 打出 [yinIcon] 牌时，若上一张为 [yangIcon] 牌， #y葬送 #b%d ； NL 打出 [yangIcon] 牌时，若上一张为 [yinIcon] 牌， #y通灵 #b%d 。"
+      "处于濒死状态时，造成的伤害和获得的格挡+ #b%d 。",
+      "处于濒死状态时，造成的伤害和获得的格挡+ #b%d ，若半血则额外+1。"
     ]
   },
   "HuTaoMod:EndTurnClairvoir": {

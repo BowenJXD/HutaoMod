@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
@@ -30,6 +31,7 @@ import hutaomod.cards.HuTaoCard;
 import hutaomod.cards.base.HutaoA;
 import hutaomod.cards.base.HutaoQ;
 import hutaomod.effects.ButterflyEffect;
+import hutaomod.effects.ButterflySpawner;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.subscribers.CheckYinYangSubscriber;
@@ -56,18 +58,21 @@ public class PapilioCharontis extends HuTaoRelic {
         super.setCounter(counter);
         if (counter == 2) {
             AbstractCard[] cards = AbstractDungeon.player.masterDeck.group.stream()
-                    .filter(c -> (c.tags.contains(AbstractCard.CardTags.STARTER_STRIKE) || c instanceof HutaoQ) && c.canUpgrade())
+                    .filter(c -> (c.hasTag(AbstractCard.CardTags.STARTER_STRIKE) || c instanceof HutaoQ) && c.canUpgrade())
                     .toArray(AbstractCard[]::new);
             RelicEventHelper.upgradeCards(cards);
         }
         if (counter == 3) {
             AbstractCard[] cards = AbstractDungeon.player.masterDeck.group.stream()
-                    .filter(c -> c.tags.contains(AbstractCard.CardTags.STARTER_DEFEND) && c.canUpgrade())
+                    .filter(c -> c.hasTag(AbstractCard.CardTags.STARTER_DEFEND) && c.canUpgrade())
                     .toArray(AbstractCard[]::new);
             RelicEventHelper.upgradeCards(cards);
         }
-        if (counter > 6) {
+        if (this.counter > 6) {
             this.counter = 6;
+        }
+        if (this.counter == 1 || this.counter == 2 || this.counter == 4 || this.counter == 6) {
+            CardCrawlGame.sound.play("constellation_" + counter);
         }
         refreshDescription();
     }
@@ -146,7 +151,7 @@ public class PapilioCharontis extends HuTaoRelic {
         if (counter >= 1) {
             ModHelper.addToBotAbstract(() -> {
                 AbstractDungeon.player.hand.group.stream().filter(c -> {
-                    return c.tags.contains(AbstractCard.CardTags.STARTER_STRIKE);
+                    return c.hasTag(AbstractCard.CardTags.STARTER_STRIKE);
                 }).findAny().ifPresent(c -> {
                     flash();
                     c.freeToPlayOnce = true;
@@ -244,7 +249,6 @@ public class PapilioCharontis extends HuTaoRelic {
             for (AbstractCard card : cards) {
                 if (getUpgradableCard(card) != null) {
                     spawners.add(new ButterflySpawner(card.hb));
-                    card.isGlowing = true;
                 }
             }
             if (!spawners.isEmpty()) {
@@ -256,58 +260,12 @@ public class PapilioCharontis extends HuTaoRelic {
         }
     }
 
-    public static class ButterflySpawner {
-        private Hitbox hitbox;
-        private float spawnTimer;
-        private float spawnIntervalMin = 0.3f;
-        private float spawnIntervalMax = 0.6f;
-        static Color[] colors = new Color[]{
-                Color.YELLOW.cpy(),
-                Color.GOLD.cpy(),
-                Color.GOLDENROD.cpy(),
-                Color.ORANGE.cpy(),
-                Color.FIREBRICK.cpy(), 
-                Color.RED.cpy(), 
-                Color.SCARLET.cpy(), 
-                Color.CORAL.cpy(), 
-                Color.SALMON.cpy(),
-                Color.PINK.cpy()
-        };
-
-        public ButterflySpawner(Hitbox hitbox) {
-            this.hitbox = hitbox;
-            this.spawnTimer = MathUtils.random(spawnIntervalMin, spawnIntervalMax);
-        }
-
-        public void update() {
-            float delta = com.badlogic.gdx.Gdx.graphics.getDeltaTime();
-
-            spawnTimer -= delta;
-            if (spawnTimer <= 0f) {
-                spawnButterfly();
-                spawnTimer = MathUtils.random(spawnIntervalMin, spawnIntervalMax);
-            }
-        }
-
-        private void spawnButterfly() {
-            float x, y;
-            if (MathUtils.randomBoolean()) {
-                x = hitbox.x + (MathUtils.randomBoolean() ? MathUtils.random(hitbox.width * 0f, hitbox.width * 0.2f) : MathUtils.random(hitbox.width * 0.8f, hitbox.width));
-                y = hitbox.y + MathUtils.random(hitbox.height);
-            } else {
-                x = hitbox.x + MathUtils.random(hitbox.width);
-                y = hitbox.y + (MathUtils.randomBoolean() ? MathUtils.random(hitbox.height * 0f, hitbox.height * 0.2f) : MathUtils.random(hitbox.height * 0.8f, hitbox.height));
-            }
-
-            float duration = MathUtils.random(1.5f, 2f);
-            float scale = MathUtils.random(0.4f, 0.8f);
-            Color color = colors[MathUtils.random(colors.length - 1)];
-
-            // Rotate outward: determine angle from center to point
-            float angle = MathUtils.random(-45, 45);
-
-            ButterflyEffect butterfly = new ButterflyEffect(x, y, duration, scale, color, angle);
-            AbstractDungeon.topLevelEffects.add(butterfly);
+    @Override
+    public void onChestOpen(boolean bossChest) {
+        super.onChestOpen(bossChest);
+        int r = MathUtils.random(1, 6);
+        if (r <= 3) {
+            CardCrawlGame.sound.play("chest_" + r);
         }
     }
 }
