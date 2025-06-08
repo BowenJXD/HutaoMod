@@ -15,8 +15,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import hutaomod.cards.HuTaoCard;
 import hutaomod.characters.HuTao;
 import hutaomod.misc.*;
+import hutaomod.utils.GAMManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -130,7 +132,13 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
 
     @Override
     public void receivePostInitialize() {
-
+        BaseMod.subscribe(GAMManager.getInstance());
+        /*DynamicTextBlocks.registerCustomCheck("hutaomod:handYY", card -> {
+            if (card instanceof HuTaoCard) {
+                return ((HuTaoCard)card).compareHandYY(); 
+            }
+            return 0;
+        });*/
     }
 
     @Override

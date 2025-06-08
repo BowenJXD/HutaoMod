@@ -98,7 +98,7 @@ public final class SubscriptionManager {
             numChangerSubscribers.get(type).add(sub);
         }
     }
-    
+
     public static void unsubscribe(IHuTaoSubscriber sub) {
         getInstance().unsubscribeHelper(sub);
     }
@@ -148,31 +148,31 @@ public final class SubscriptionManager {
 
         unsubscribeLaterHelper(PrePowerTriggerSubscriber.class);
     }
-    
+
     public float triggerPreCardDamage(CardDamageAction cardDamageAction, int dmg) {
         float result = dmg;
-        
+
         for (PreCardDamageSubscriber sub : preCardDamageSubscribers) {
             result = sub.preCardDamage(cardDamageAction, result);
         }
-        
+
         unsubscribeLaterHelper(PreCardDamageSubscriber.class);
-        
+
         return result;
     }
-    
+
     public int triggerCheckYinYang(HuTaoCard card, int yyTime, boolean onUse) {
         int result = yyTime;
-        
+
         for (CheckYinYangSubscriber sub : checkYinYangSubscribers) {
             result = sub.checkYinYang(card, result, onUse);
         }
-        
+
         unsubscribeLaterHelper(CheckYinYangSubscriber.class);
-        
+
         return result;
     }
-    
+
     public void triggerPostCardMove(CardGroup group, AbstractCard card, boolean in) {
         for (PostCardMoveSubscriber sub : postCardMoveSubscribers) {
             sub.postCardMove(group, card, in);
@@ -180,7 +180,7 @@ public final class SubscriptionManager {
 
         unsubscribeLaterHelper(PostCardMoveSubscriber.class);
     }
-    
+
     public int triggerPreCachedIntGet(CacheManager.Key key, int amount) {
         int result = amount;
 
@@ -236,10 +236,11 @@ public final class SubscriptionManager {
         boolean result = (
                 power.owner == AbstractDungeon.player
                         && AbstractDungeon.player.powers.contains(power))
-                || (
-                AbstractDungeon.getMonsters() != null
-                        && AbstractDungeon.getMonsters().monsters != null
-                        && AbstractDungeon.getMonsters().monsters.contains(power.owner)
+                || (AbstractDungeon.currMapNode != null
+                && AbstractDungeon.currMapNode.room != null
+                && AbstractDungeon.getMonsters() != null
+                && AbstractDungeon.getMonsters().monsters != null
+                && AbstractDungeon.getMonsters().monsters.contains(power.owner)
         );
         if (!result) {
             if (power instanceof IHuTaoSubscriber) getInstance().unsubscribeLater((IHuTaoSubscriber) power);

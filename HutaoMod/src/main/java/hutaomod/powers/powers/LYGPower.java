@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.PowerPower;
 import hutaomod.utils.CacheManager;
+import hutaomod.utils.GeneralUtil;
 
 public class LYGPower extends PowerPower {
     public static final String POWER_ID = HuTaoMod.makeID(LYGPower.class.getSimpleName());
@@ -13,6 +14,11 @@ public class LYGPower extends PowerPower {
     public LYGPower(int amount) {
         super(POWER_ID, amount);
         this.updateDescription();
+    }
+
+    @Override
+    public void updateDescription() {
+        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], amount, amount);
     }
 
     @Override
@@ -26,6 +32,6 @@ public class LYGPower extends PowerPower {
 
     @Override
     public int onHeal(int healAmount) {
-        return healAmount + CacheManager.getInt(CacheManager.Key.PLAYER_SI);
+        return healAmount + amount;
     }
 }

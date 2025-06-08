@@ -1,3 +1,4 @@
+/*
 package hutaomod.cards.rare;
 
 import basemod.BaseMod;
@@ -48,3 +49,4 @@ public class YHCS extends HuTaoCard implements OnPlayerDamagedSubscriber {
         return i;
     }
 }
+*/

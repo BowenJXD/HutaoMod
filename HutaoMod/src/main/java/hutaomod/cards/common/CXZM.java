@@ -16,14 +16,13 @@ public class CXZM extends HuTaoCard {
     
     public CXZM() {
         super(ID);
-        exhaust = true;
-        isInnate = true;
     }
 
     @Override
     public void upgrade() {
         super.upgrade();
         isMultiDamage = true;
+        target = CardTarget.ALL_ENEMY;
     }
 
     @Override

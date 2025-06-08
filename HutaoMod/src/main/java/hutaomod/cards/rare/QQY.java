@@ -20,9 +20,7 @@ public class QQY extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         if (si <= 0) return;
-        if (upgraded) {
-            addToBot(new GainBlockAction(p, p, si));
-        }
+        addToBot(new GainBlockAction(p, p, si * magicNumber));
         addToBot(new ApplyPowerAction(p, p, new SiPower(p, si)));
     }
 }

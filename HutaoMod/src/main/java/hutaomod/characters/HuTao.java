@@ -269,8 +269,9 @@ public class HuTao extends CustomPlayer {
 
     @Override
     public void damage(DamageInfo info) {
+        boolean moreThanHalf = currentHealth > maxHealth / 2;
         super.damage(info);
-        if (currentHealth < maxHealth / 2 && MathUtils.random(100) < 20) {
+        if (moreThanHalf && currentHealth <= maxHealth / 2 && MathUtils.random(100) < 20) {
             CardCrawlGame.sound.play("half");
         } else if (info.output >= 20 && MathUtils.random(40) < info.output) {
             CardCrawlGame.sound.play("hurt");

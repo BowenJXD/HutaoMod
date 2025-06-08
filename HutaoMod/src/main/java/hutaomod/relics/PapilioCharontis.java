@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.stances.DivinityStance;
 import hutaomod.actions.ClairvoirAction;
 import hutaomod.cards.HuTaoCard;
@@ -33,6 +34,7 @@ import hutaomod.cards.base.HutaoQ;
 import hutaomod.effects.ButterflyEffect;
 import hutaomod.effects.ButterflySpawner;
 import hutaomod.modcore.HuTaoMod;
+import hutaomod.powers.buffs.BreathPower;
 import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.subscribers.CheckYinYangSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
@@ -71,9 +73,6 @@ public class PapilioCharontis extends HuTaoRelic {
         if (this.counter > 6) {
             this.counter = 6;
         }
-        if (this.counter == 1 || this.counter == 2 || this.counter == 4 || this.counter == 6) {
-            CardCrawlGame.sound.play("constellation_" + counter);
-        }
         refreshDescription();
     }
 
@@ -81,6 +80,9 @@ public class PapilioCharontis extends HuTaoRelic {
     public void onRest() {
         super.onRest();
         setCounter(counter + 1);
+        if (this.counter == 1 || this.counter == 2 || this.counter == 4 || this.counter == 6) {
+            CardCrawlGame.sound.play("constellation_" + counter);
+        }
     }
 
     @Override
@@ -168,10 +170,11 @@ public class PapilioCharontis extends HuTaoRelic {
                 if (AbstractDungeon.actionManager.actions != null
                         && !AbstractDungeon.actionManager.actions.isEmpty()
                         && AbstractDungeon.actionManager.actions.get(0) instanceof EmptyDeckShuffleAction) {
+                    // addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BreathPower(AbstractDungeon.player, 1)));
                     addToTop(new ClairvoirAction(4));
                     return true;
                 }
-                return false;
+                return !SubscriptionManager.checkSubscriber(this);
             });
         }
         if (c6Available) {

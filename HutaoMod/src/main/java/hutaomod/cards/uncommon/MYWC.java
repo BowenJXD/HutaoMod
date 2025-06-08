@@ -35,14 +35,17 @@ public class MYWC extends HuTaoCard {
         addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY));
         int yinCount = CacheManager.getInt(CacheManager.Key.YIN_CARDS);
         int yangCount = CacheManager.getInt(CacheManager.Key.YANG_CARDS);
+        int bbCount = ModHelper.getPowerCount(m, BloodBlossomPower.POWER_ID);
+        int diff = 0;
         if (yinCount != yangCount) {
-            int bbCount = ModHelper.getPowerCount(m, BloodBlossomPower.POWER_ID);
-            int diff = Math.max(yinCount, yangCount) - bbCount;
-            if (diff > 0) {
-                addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, diff)));
-            } else if (diff < 0) {
-                addToBot(new ReducePowerAction(m, p, BloodBlossomPower.POWER_ID, -diff));
-            }
+            diff = Math.max(yinCount, yangCount) - bbCount;
+        } else if (upgraded) {
+            diff = p.hand.size() - bbCount;
+        }
+        if (diff > 0) {
+            addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, diff)));
+        } else if (diff < 0) {
+            addToBot(new ReducePowerAction(m, p, BloodBlossomPower.POWER_ID, -diff));
         }
     }
 
@@ -50,8 +53,12 @@ public class MYWC extends HuTaoCard {
     public void triggerOnGlowCheck() {
         if (compareHandYY() > 0) {
             glowColor = WHITE_BORDER_GLOW_COLOR;
-        } else {
+        } else if (compareHandYY() < 0){
             glowColor = BLACK_BORDER_GLOW_COLOR;
+        } else if (upgraded) {
+            glowColor = GOLD_BORDER_GLOW_COLOR;
+        } else {
+            glowColor = ORANGE_BORDER_GLOW_COLOR;
         }
     }
 }

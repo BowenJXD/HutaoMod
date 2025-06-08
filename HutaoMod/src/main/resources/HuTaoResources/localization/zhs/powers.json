@@ -8,20 +8,25 @@
   "HuTaoMod:BloodBlossom": {
     "NAME": "血梅香",
     "DESCRIPTIONS": [
-      "血梅香 [bbIcon] 施加或叠加后，受到 #b%d 点伤害。回合开始时，层数减半。",
       "血梅香 [bbIcon] 施加，叠加或衰减后，受到 #b%d 点伤害。回合开始时，层数减半。"
     ]
   },
   "HuTaoMod:Breath": {
     "NAME": "调息",
     "DESCRIPTIONS": [
-      "下 #b%d 张牌无视 [siIcon] 数触发 #y阴阳 。"
+      "下 #b%d 次打出有阴阳效果的牌时，无视 [siIcon] 数触发 #y阴阳 。"
     ]
   },
   "HuTaoMod:GYSY": {
     "NAME": "购一送一",
     "DESCRIPTIONS": [
-      "下 #b%d 张牌额外触发一次 #y阴阳 效果。"
+      "下 #b%d 次触发 #y阴阳 效果时，额外触发1次。"
+    ]
+  },
+  "HuTaoMod:KQZZ": {
+    "NAME": "客卿助阵",
+    "DESCRIPTIONS": [
+      "下回合开始时，对随机敌人造成保留的格挡数 #b%d 倍的伤害。"
     ]
   },
   "HuTaoMod:WST": {
@@ -51,20 +56,19 @@
   "HuTaoMod:LYG": {
     "NAME": "璃月港",
     "DESCRIPTIONS": [
-      "你消耗生命后，获得 #b%d 点 #y活力 和格挡。 NL 你回复生命值时，额外回复Y点。"
+      "你消耗生命后，获得 #b%d 点 #y活力 和格挡。 NL 你回复生命值时，额外回复 #b%d 点。"
     ]
   },
   "HuTaoMod:WWJS": {
     "NAME": "万文集舍",
     "DESCRIPTIONS": [
-      "你每消耗 #b1 张牌，摸 #b1 张牌。",
-      "你每消耗 #b1 张牌，摸 #b1 张牌。 NL 你每消耗 #b10 点生命，获得 [E] 。 NL 已经消耗了 #b%d 点生命。"
+      "你每消耗 #b5 点生命，回复 #b2 点生命并摸 #b1 张牌。 NL 已经消耗了 #b%d 点生命。"
     ]
   },
-  "HuTaoMod:HDJ": {
+  "HuTaoMod:HDJ": { 
     "NAME": "海灯节",
     "DESCRIPTIONS": [
-      "每回合开始时，手牌中所有「往生堂秘传枪法」获得 #y燃血 #b1 ，且费用 - #b%d 。"
+      "所有「往生堂秘传枪法」获得 #y燃血 #b1 ，且费用 - #b%d 。"
     ]
   },
   "HuTaoMod:BBL": {

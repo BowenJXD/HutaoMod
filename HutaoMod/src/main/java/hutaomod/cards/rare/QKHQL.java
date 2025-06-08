@@ -17,9 +17,8 @@ public class QKHQL extends HuTaoCard {
     
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        if (si/2 <= 0) return;
-        addToBot(new BounceAction(m, this, si/2, mon->{
-            addToTop(new CardDamageAction(mon, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        addToBot(new BounceAction(m, this, magicNumber, mon->{
+            addToTop(new CardDamageAction(mon, damage + si, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         }));
     }
 }

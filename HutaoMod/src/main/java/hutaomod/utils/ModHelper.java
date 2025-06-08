@@ -116,6 +116,10 @@ public class ModHelper {
         return findCards(predicate, CardGroup.CardGroupType.HAND, CardGroup.CardGroupType.DISCARD_PILE,
                 CardGroup.CardGroupType.DRAW_PILE, CardGroup.CardGroupType.EXHAUST_PILE);
     }
+    
+    public static List<FindResult> findCards(String cardID) {
+        return findCards(c -> Objects.equals(c.cardID, cardID));
+    }
 
     public static class FindResult {
         public AbstractCard card;

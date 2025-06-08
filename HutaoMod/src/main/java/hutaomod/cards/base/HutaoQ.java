@@ -60,8 +60,8 @@ public class HutaoQ extends HuTaoCard {
         int multiplier = 1;
         if (CacheManager.getBool(CacheManager.Key.HALF_HP) && specialUpgrade) multiplier *= 2;
         multiplier *= (int) Math.pow(2, yyTime);
-        addToBot(new HealAction(p, p, magicNumber * multiplier + si));
-        addToBot(new CardDamageAllAction(this, damage * multiplier + si, AbstractGameAction.AttackEffect.FIRE));
+        addToBot(new HealAction(p, p, (magicNumber + si) * multiplier));
+        addToBot(new CardDamageAllAction(this, (damage + si) * multiplier, AbstractGameAction.AttackEffect.FIRE));
         if (upgraded) {
             for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
                 addToBot(new ApplyPowerAction(mon, p, new BloodBlossomPower(mon, p, multiplier)));

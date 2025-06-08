@@ -1,3 +1,4 @@
+/*
 package hutaomod.cards.common;
 
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
@@ -57,3 +58,4 @@ public class QMZM extends HuTaoCard implements CheckYinYangSubscriber {
         return yyTime;
     }
 }
+*/

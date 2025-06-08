@@ -173,9 +173,8 @@ public abstract class HuTaoCard extends CustomCard {
                     addToBot(new ReducePowerAction(p, p, SiPower.POWER_ID, 1));
                 break;
             case YINYANG:
-                if (CacheManager.getBool(CacheManager.Key.DYING)) {
-                    if (p.hasPower(SiPower.POWER_ID))
-                        addToBot(new ReducePowerAction(p, p, SiPower.POWER_ID, 1));
+                if (p.hasPower(SiPower.POWER_ID)) {
+                    addToBot(new ReducePowerAction(p, p, SiPower.POWER_ID, 1));
                 } else {
                     addToBot(new ApplyPowerAction(p, p, new SiPower(p, 1)));
                 }

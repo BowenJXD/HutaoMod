@@ -19,6 +19,8 @@ public class HarmonyHexagramHat extends HuTaoRelic {
     @Override
     public void onPlayerEndTurn() {
         super.onPlayerEndTurn();
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EndTurnClairvoirPower(AbstractDungeon.player, CacheManager.getInt(CacheManager.Key.PLAYER_SI))));  
+        int si = CacheManager.getInt(CacheManager.Key.PLAYER_SI);
+        if (si > 0)
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EndTurnClairvoirPower(AbstractDungeon.player, si)));  
     }
 }

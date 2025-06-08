@@ -43,6 +43,12 @@
   },
   {
     "NAMES": [
+      "唯一"
+    ],
+    "DESCRIPTION": "在卡组中只会存在一张。"
+  },
+  {
+    "NAMES": [
       "调息"
     ],
     "DESCRIPTION": "下X张牌无视 [siIcon] 数触发阴阳。"

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.modcore.CustomEnum;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.BuffPower;
 import hutaomod.subscribers.CheckYinYangSubscriber;
@@ -30,15 +31,12 @@ public class GYSYPower extends BuffPower implements CheckYinYangSubscriber {
     }
 
     @Override
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        super.onUseCard(card, action);
-        remove(1);
-    }
-
-    @Override
     public int checkYinYang(HuTaoCard card, int yyTime, boolean onUse) {
         if (SubscriptionManager.checkSubscriber(this) && yyTime > 0) {
             yyTime++;
+            if (onUse && card.hasTag(CustomEnum.YIN_YANG)) {
+                remove(1);
+            }
         }
         return yyTime;
     }

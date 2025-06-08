@@ -19,14 +19,14 @@ public class XZZHPower extends PowerPower {
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
         if (CacheManager.getBool(CacheManager.Key.DYING)) damage += amount;
-        if (CacheManager.getBool(CacheManager.Key.HALF_HP)) damage += 1;
+        if (CacheManager.getBool(CacheManager.Key.HALF_HP) && upgraded) damage += 1;
         return super.atDamageGive(damage, type);
     }
 
     @Override
     public float modifyBlock(float blockAmount) {
         if (CacheManager.getBool(CacheManager.Key.DYING)) blockAmount += amount;
-        if (CacheManager.getBool(CacheManager.Key.HALF_HP)) blockAmount += 1;
+        if (CacheManager.getBool(CacheManager.Key.HALF_HP) && upgraded) blockAmount += 1;
         return super.modifyBlock(blockAmount);
     }
 }

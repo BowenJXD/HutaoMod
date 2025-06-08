@@ -1,3 +1,4 @@
+/*
 package hutaomod.cards.uncommon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -38,3 +39,4 @@ public class YNYY extends HuTaoCard {
         }
     }
 }
+*/

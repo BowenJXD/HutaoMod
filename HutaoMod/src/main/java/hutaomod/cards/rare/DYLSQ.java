@@ -35,7 +35,7 @@ public class DYLSQ extends HuTaoCard {
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new VFXAction(new ViolentAttackEffect(m.hb.cX, m.hb.cY, Color.RED.cpy())));
         addToBot(new BounceAction(m, this, magicNumber, mon -> {
-            addToTop(new CardDamageAction(mon, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+            addToTop(new CardDamageAction(mon, (upgraded ? damage : 0) + si, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         }));
         ModHelper.addToBotAbstract(() -> updateCost(costCache - cost));
     }

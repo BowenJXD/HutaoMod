@@ -1,14 +1,17 @@
 package hutaomod.utils;
 
 import basemod.BaseMod;
+import basemod.interfaces.PostBattleSubscriber;
 import basemod.interfaces.PostDungeonUpdateSubscriber;
 import basemod.interfaces.PostUpdateSubscriber;
+import basemod.interfaces.StartGameSubscriber;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,7 +23,7 @@ import java.util.function.Predicate;
 /**
  * util for {@link com.megacrit.cardcrawl.actions.GameActionManager}
  */
-public class GAMManager implements PostDungeonUpdateSubscriber {
+public class GAMManager implements PostDungeonUpdateSubscriber, PostBattleSubscriber {
     private static GAMManager instance = null;
 
     public HashMap<String, Predicate<AbstractGameAction>> parallelActions = new HashMap<>();
@@ -29,7 +32,6 @@ public class GAMManager implements PostDungeonUpdateSubscriber {
     public AbstractCard currentCard;
     
     private GAMManager() {
-        BaseMod.subscribe(this);
         update();
     }
     
@@ -83,5 +85,11 @@ public class GAMManager implements PostDungeonUpdateSubscriber {
             System.out.printf("================== turn %-2d card %-2d: %-20s, D: %-3d, B: %-3d, M: %-3d%n", GameActionManager.turn, cardIndex,
                     currentCard, currentCard.damage, currentCard.block, currentCard.magicNumber);
         }
+    }
+
+    @Override
+    public void receivePostBattle(AbstractRoom abstractRoom) {
+        parallelActions.clear();
+        currentCard = null;
     }
 }

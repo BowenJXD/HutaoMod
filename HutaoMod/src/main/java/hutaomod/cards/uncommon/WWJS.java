@@ -13,8 +13,14 @@ public class WWJS extends HuTaoCard {
         super(ID);
     }
 
+    @Override
+    public void upgrade() {
+        super.upgrade();
+        isInnate = true;
+    }
+
     @Override   
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new ApplyPowerAction(p, p, new WWJSPower(1, upgraded)));
+        addToBot(new ApplyPowerAction(p, p, new WWJSPower(magicNumber)));
     }
 }

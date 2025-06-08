@@ -32,8 +32,8 @@ public class TrailEffect extends AbstractGameEffect implements Pool.Poolable {
     }
 
     public void init(float x, float y, float scale, Color color, Pool<TrailEffect> pool) {
-        this.duration = 3F;
-        this.startingDuration = 3F;
+        this.duration = 1.5F;
+        this.startingDuration = 1.5F;
         this.x = x - 6.0F;
         this.y = y - 6.0F;
         this.color = color;

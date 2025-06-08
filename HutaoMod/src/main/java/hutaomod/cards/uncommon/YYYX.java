@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -16,6 +17,8 @@ import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.utils.CacheManager;
 import hutaomod.utils.ModHelper;
 
+import java.util.List;
+
 public class YYYX extends HuTaoCard {
     public static final String ID = YYYX.class.getSimpleName();
 
@@ -24,30 +27,11 @@ public class YYYX extends HuTaoCard {
     }
 
     @Override
-    public void upgrade() {
-        super.upgrade();
-        selfRetain = true;
-    }
-
-    @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        int yinCount = CacheManager.getInt(CacheManager.Key.YIN_CARDS);
-        int yangCount = CacheManager.getInt(CacheManager.Key.YANG_CARDS);
-        int handCount = p.hand.size();
-        if (yinCount == yangCount) {
-            addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, handCount/2)));
-            addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, handCount/2)));
-        }
-    }
-    
-    @Override
-    public void triggerOnGlowCheck() {
-        if (compareHandYY() == 0) {
-            glowColor = GOLD_BORDER_GLOW_COLOR;
-        } else if (compareHandYY() > 0) {
-            glowColor = WHITE_BORDER_GLOW_COLOR;
-        } else {
-            glowColor = BLACK_BORDER_GLOW_COLOR;
-        }
+        List<ModHelper.FindResult> results = ModHelper.findCards(c -> c.hasTag(CardTags.STARTER_STRIKE));
+        int strengthCount = results.stream().mapToInt(r -> r.group.type == CardGroup.CardGroupType.DRAW_PILE ? 1 : 0).sum();
+        int dexterityCount = results.stream().mapToInt(r -> r.group.type == CardGroup.CardGroupType.DISCARD_PILE ? 1 : 0).sum();
+        addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, strengthCount)));
+        addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, dexterityCount)));
     }
 }

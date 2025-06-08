@@ -27,6 +27,7 @@ public class SiPower extends DebuffPower {
         super(POWER_ID, owner, amount);
         updateDescription();
         spawner = new ButterflySpawner(owner.hb);
+        priority = 1;
     }
 
     @Override

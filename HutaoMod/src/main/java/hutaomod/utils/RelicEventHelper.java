@@ -98,16 +98,16 @@ public class RelicEventHelper {
             HuTaoMod.logger.error("RELIC_EVENT_HELPER: No cards to purge.");
             return;
         } else if (cards.length == 1) {
-            AbstractDungeon.effectList.add(new PurgeCardEffect(cards[0], (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
+            AbstractDungeon.topLevelEffectsQueue.add(new PurgeCardEffect(cards[0], (float) Settings.WIDTH / 2.0F, (float) Settings.HEIGHT / 2.0F));
         } else if (cards.length <= 5) {
             float x = 0;
             for (AbstractCard card : cards) {
-                AbstractDungeon.effectList.add(new PurgeCardEffect(card, (float) Settings.WIDTH / 6.0F + x, (float) Settings.HEIGHT / 2.0F));
+                AbstractDungeon.topLevelEffectsQueue.add(new PurgeCardEffect(card, (float) Settings.WIDTH / 6.0F + x, (float) Settings.HEIGHT / 2.0F));
                 x += (float) Settings.WIDTH / 6.0F;
             }
         } else {
             for (AbstractCard card : cards) {
-                AbstractDungeon.effectList.add(new PurgeCardEffect(card, Settings.WIDTH * MathUtils.random(0.2f, 0.8f), Settings.HEIGHT * MathUtils.random(0.2f, 0.8f)));
+                AbstractDungeon.topLevelEffectsQueue.add(new PurgeCardEffect(card, Settings.WIDTH * MathUtils.random(0.2f, 0.8f), Settings.HEIGHT * MathUtils.random(0.2f, 0.8f)));
             }
         }
         AbstractDungeon.player.masterDeck.group.removeAll(Arrays.asList(cards));

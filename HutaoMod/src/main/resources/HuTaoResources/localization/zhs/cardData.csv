@@ -1,52 +1,52 @@
 ID,牌名,稀有度,类型,目标,阴阳,费用,描述,伤害值,格挡值,特殊值,费用+,强化版描述,伤害值+,格挡值+,特殊值+
-HutaoA,往生秘传枪法,BASIC,ATTACK,ENEMY,阴,1,造成 !D! 点伤害。,6,,,,造成 !D! 点伤害，施加1层 hutaomod:血梅香 。,,,
-HutaoE,蝶引来生,BASIC,SKILL,SELF,阳,1,获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡。,,4,,,获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡，若阴阳，获得 {!Y!|0=Y|@=!Y!} 点 临时生命 。,,,
-HutaoQ,安神秘法,BASIC,ATTACK,ALL_ENEMY,阳,2, 消耗 。 stslib:墓地 。恢复 !M! + {!Y!|0=Y|@=!Y!} 点生命，群体：造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害； hutaomod:阴阳 ：基础效果翻倍。,8,,4,, 消耗 。 stslib:墓地 。恢复 !M! + {!Y!|0=Y|@=!Y!} 点生命，群体：造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害，施加1层 hutaomod:血梅香 ； hutaomod:阴阳 ：基础效果翻倍。,,,
+HutaoA,往生秘传枪法,BASIC,ATTACK,ENEMY,阴,1,造成 !D! 点伤害。,6,,,,造成 !D! 点伤害，施加1层 hutaomod:血梅香 。,7,,
+HutaoE,蝶引来生,BASIC,SKILL,SELF,阳,1,获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡。,,4,,,获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡， hutaomod:阴阳 ：获得 {!Y!|0=Y|@=!Y!} 点 临时生命 。,,5,
+HutaoQ,安神秘法,BASIC,ATTACK,ALL_ENEMY,阳,2, 消耗 。 stslib:墓地 。恢复 !M! + {!Y!|0=Y|@=!Y!} 点生命，群体：造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害； hutaomod:阴阳 ：基础效果翻倍。,8,,4,, 消耗 。 stslib:墓地 。恢复 !M! + {!Y!|0=Y|@=!Y!} 点生命，群体：造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害，施加1层 hutaomod:血梅香 ； hutaomod:阴阳 ：基础效果翻倍。,,,6
 HTZYGYLG,火骰子一共有六个,RARE,SKILL,SELF,阳,1, 消耗 。 hutaomod:燃血 {!Y!|0=Y|@=!Y!} ，获得 {!Y!|0=Y|@=!Y!} 点 [E] ，至多补充至 !M! 。,,,6,0,,,,
-QKHQL,枪开黄泉路,RARE,ATTACK,ENEMY,阳,4, hutaomod:弹射 {!Y!|0=Y|@=!Y!} /2次：造成 !D! 点伤害。,4,,,3,,5,,
-QQY,丘丘谣,RARE,SKILL,SELF,阴,1,获得 {!Y!|0=Y|@=!Y!} 层 hutaomod:死气 。,,,,1,获得 {!Y!|0=Y|@=!Y!} 点格挡，和 {!Y!|0=Y|@=!Y!} 层 hutaomod:死气 。,,,
-WST,往生堂,RARE,POWER,SELF,阴,2,每打出 !M! 张 [yinIcon] 牌，获得1层 hutaomod:死气 ，且随机 [yangIcon] 牌的费用此回合-1。,,,3,1,,,,
+QKHQL,枪开黄泉路,RARE,ATTACK,ENEMY,阳,3, hutaomod:弹射 !M! 次：造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害。,1,,3,,,,,4
+QQY,丘丘谣,RARE,SKILL,SELF,阴,1,获得 {!Y!|0=Y|@=!Y!} 点格挡 !M! 次，获得 {!Y!|0=Y|@=!Y!} 层 hutaomod:死气 。,,,1,,,,,2
+WST,往生堂,RARE,POWER,SELF,阴,2,每打出 !M! 张 [yinIcon] 牌，获得1层 hutaomod:死气 ，且随机 [yangIcon] 牌的费用此回合-1。,,,4,1,,,,
 XXPAHDYSR,小巷派暗黑打油诗人,UNCOMMON,SKILL,SELF,阳,2,获得 {!Y!|0=Y|@=!Y!} 点格挡，和 {!Y!|0=Y|@=!Y!} 点 hutaomod:多重护甲 。,,,,, 保留 。获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡，和 {!Y!|0=Y|@=!Y!} 点 hutaomod:多重护甲 。,,4,
-DYZS,蝶隐之时,UNCOMMON,SKILL,SELF,阳,1, 消耗 。 hutaomod:燃血 !M! ，移除所有 hutaomod:死气 ，获得 {!Y!|0=Y|@=!Y!} 张 *「往生秘传枪法」 ，并将手牌补充至上限。,,,3,, 消耗 。 hutaomod:燃血 !M! ，移除所有 hutaomod:死气 ，获得 {!Y!|0=Y|@=!Y!} 张 *「往生秘传枪法+」 ，并将手牌补充至上限。,,,
+DYZS,蝶隐之时,UNCOMMON,SKILL,SELF,阳,1, 消耗 。 hutaomod:燃血 !M! ，移除所有 hutaomod:死气 ，获得 {!Y!|0=Y|@=!Y!} 张 *「往生秘传枪法」 ，并将手牌补充至上限。,,,2,, 消耗 。 hutaomod:燃血 !M! ，移除所有 hutaomod:死气 ，获得 {!Y!|0=Y|@=!Y!} 张 *「往生秘传枪法+」 ，并将手牌补充至上限。,,,
 YMXC,一脉相传,RARE,SKILL,SELF,阴,1, 保留 。手牌中所有 *「往生堂秘传枪法」 此回合费用-1。,,,,, 保留 。升级手牌中所有 *「往生堂秘传枪法」 ，且令之此回合费用-1。,,,
-QYG,群玉阁,RARE,POWER,SELF,阴,3,每触发 hutaomod:阴阳 !M! 次，获得 [E] 并摸1张牌。,,,4,2,,,,
-ZRZS,忠人之事,COMMON,SKILL,SELF,阴,1,获得 !B! 点格挡。 hutaomod:阴阳 ：效果翻倍。,,5,,,,,7,
-SRZT,受人之托,COMMON,ATTACK,ENEMY,阳,1,造成 !D! 点伤害。 hutaomod:阴阳 ：效果翻倍。,6,,,,,9,,
-YQSN,元气少女,UNCOMMON,ATTACK,ENEMY,阳,-1, hutaomod:弹射 X次：造成 !D! 点伤害， hutaomod:阴阳 ：回馈X。,2,,,,,3,,
-YNYY,一念阴阳,UNCOMMON,ATTACK,ENEMY,?,1,若手牌 hutaomod:阴阳平衡 ，造成手牌数的伤害，并获得手牌数的格挡。,,,,,若手牌 hutaomod:阴阳平衡 ，造成 !D! +手牌数的伤害，并获得 !B! +手牌数的格挡。,1,1,
-DMEM,大咪二咪,COMMON,SKILL,SELF,阴,1, 消耗 。获得 !M! 点 敏捷 ， hutaomod:阴阳 ：再获得 !M! 点 hutaomod:多重护甲 。,,,2,, 消耗 。 固有 。获得 !M! 点 敏捷 ， hutaomod:阴阳 ：再获得 !M! 点 hutaomod:多重护甲 。,,,
-DEBBJ,第二碑半价,RARE,SKILL,SELF,阴,1,获得 !M! 层 hutaomod:购一送一 。,,,1,,获得 !M! 层 hutaomod:购一送一 ， hutaomod:阴阳 ：获得的层数+1。,,,
-SFZ,束缚咒,UNCOMMON,ATTACK,ENEMY,阴,1, 消耗 。造成 !D! 点伤害，施加 !M! 层 hutaomod:格挡返还 。,2,,2,, 固有 。 消耗 。造成 !D! 点伤害，施加 !M! 层 hutaomod:格挡返还 。,,,
+QYG,群玉阁,RARE,POWER,SELF,阴,3,每触发 hutaomod:阴阳 !M! 次，获得 [E] 并摸1张牌。,,,5,2,,,,
+ZRZS,忠人之事,COMMON,SKILL,SELF,阴,1,获得 !B! 点格挡。 hutaomod:阴阳 ：效果翻倍。,,6,,,,,8,
+SRZT,受人之托,COMMON,ATTACK,ENEMY,阳,1,造成 !D! 点伤害。 hutaomod:阴阳 ：效果翻倍。,7,,,,,10,,
+YQSN,元气少女,UNCOMMON,ATTACK,ENEMY,阳,-1,若手牌： NL hutaomod:阴盛阳虚 ，获得1层 虚弱 ，重复X次：获得 !B! 点格挡； NL hutaomod:阳盛阴虚 ，获得1层 易伤 ， hutaomod:弹射 X次：造成 !D! 点伤害； NL hutaomod:阴阳 ：回馈X。,4,3,,,,5,4,
+DMEM,大咪二咪,COMMON,POWER,SELF,?,1,获得 !M! 点 敏捷 ， hutaomod:阴阳 ：获得 !M! 点 hutaomod:多重护甲 。,,,2,, 固有 。获得 !M! 点 敏捷 ， hutaomod:阴阳 ：获得 !M! 点 hutaomod:多重护甲 。,,,
+DEBBJ,第二碑半价,RARE,SKILL,SELF,阳,1,获得 !M! 层 hutaomod:购一送一 。,,,1,,获得 !M! 层 hutaomod:购一送一 ， hutaomod:阴阳 ：获得的层数+1。,,,
+KQZZ,客卿助阵,UNCOMMON,SKILL,SELF,阳,1,获得 {!Y!|0=Y|@=!Y!} 点格挡，于此回合保留格挡， hutaomod:阴阳 ：下回合开始时，对随机敌人造成保留的格挡数的伤害。,,,,,获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡，于此回合保留格挡， hutaomod:阴阳 ：下回合开始时，对随机敌人造成保留的格挡数的伤害。,,4,
+SFZ,束缚咒,UNCOMMON,ATTACK,ENEMY,阴,1, 消耗 。造成 !D! 点伤害，施加 !M! 层 hutaomod:格挡返还 。,2,,2,, 固有 。 消耗 。造成 !D! 点伤害，施加 !M! 层 hutaomod:格挡返还 。,5,,
 CTKS,赤团开时,UNCOMMON,ATTACK,ENEMY,阳,1, stslib:墓地 。 消耗 。造成 {!Y!|0=Y|@=!Y!} 点伤害，将 hutaomod:血梅香 调整至 {!Y!|0=Y|@=!Y!} 。,,,,, stslib:墓地 。 消耗 。造成 {!Y!|0=Y|@=!Y!} 点伤害，施加 {!Y!|0=Y|@=!Y!} 层 hutaomod:血梅香 。,,,
-MZSH,曼珠沙华,UNCOMMON,ATTACK,ENEMY,阳,2,造成 !D! 点伤害，施加 !M! 层 hutaomod:血梅香 。 hutaomod:阴阳 ：施加的层数改为X（X为其 hutaomod:血梅香 数）。,6,,2,,,10,,
+MZSH,曼珠沙华,UNCOMMON,ATTACK,ENEMY,阳,2,造成 !D! 点伤害，施加 !M! 层 hutaomod:血梅香 。 hutaomod:阴阳 ：施加的层数改为X（X为其 hutaomod:血梅香 数）。,7,,2,,,10,,
 NCH,霓裳花,UNCOMMON,SKILL,ENEMY,阴,2,获得 !B! 点格挡，施加 !M! 层 hutaomod:血梅香 。 hutaomod:阴阳 ：获得目标 hutaomod:血梅香 数量的格挡。,,10,2,,,,14,3
-WMT,万民堂,RARE,POWER,SELF,阳,2, hutaomod:血梅香 衰减时，获得衰减量的格挡，摸1张牌。,,,5,1,,,,
+WMT,万民堂,RARE,POWER,SELF,阳,2, hutaomod:血梅香 衰减时，获得衰减量的格挡，摸1张牌。,,,,1,,,,
 LZZF,落葬之法,UNCOMMON,ATTACK,ALL_ENEMY,阴,1,群体：造成 !D! 点伤害，升级其 hutaomod:血梅香 ，令之衰减后也会触发1次伤害。,4,,,,群体：造成 !D! 点伤害，升级其 hutaomod:血梅香 ，令之衰减后也会触发1次伤害。 hutaomod:阴阳 ：施加 !M! 层 hutaomod:血梅香 。,,,1
-CXZM,初雪之梅,COMMON,ATTACK,ENEMY,阴,1, 固有 。 消耗 。造成 !D! 点伤害，施加 !M! 层 hutaomod:血梅香 。,3,,3,, 固有 。 消耗 。群体：造成 !D! 点伤害，施加 !M! 层 hutaomod:血梅香 。,4,,4
-QMZM,青梅竹马,COMMON,ATTACK,ENEMY,,1,你触发其他牌的 hutaomod:阴阳 效果时，获得弃牌堆的此牌。 NL 造成 !D! 点伤害。,8,,,, stslib:墓地 。你触发其他牌的 hutaomod:阴阳 效果时，获得弃牌堆的此牌。 NL 造成 !D! 点伤害。,9,,
+CXZM,初雪之梅,COMMON,ATTACK,ENEMY,阴,1,造成 !D! 点伤害，施加 !M! 层 hutaomod:血梅香 。,3,,3,,群体：造成 !D! 点伤害，施加 !M! 层 hutaomod:血梅香 。,4,,4
+QW,枪舞,COMMON,ATTACK,ENEMY,阴,1,造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害，获得 !M! 层 hutaomod:死 。,8,,1,,,12,,2
 WNZL,为你指路,UNCOMMON,SKILL,SELF,阴,1,通灵 !M! 张 [yangIcon] 牌，令下1张 [yangIcon] 牌消耗所有 hutaomod:死气 （触发阴阳），且计算Y值时，视为翻倍。,,,1,,,,,2
 TXXM,踏雪寻梅,COMMON,SKILL,ENEMY,阳,2,若目标有 hutaomod:血梅香 ，令目标 hutaomod:血梅香 立即衰减1次，然后获得 !B! +X点格挡（X为以此法衰减的层数）。,,16,,,,,24,
 YBTZZ,有本堂主在,COMMON,ATTACK,ENEMY,阴,1, hutaomod:燃血 1。造成 X 点伤害，令其临时失去X点 力量 （X为目标 hutaomod:血梅香 的数量）。,,,,, hutaomod:燃血 1。造成 !D! + X 点伤害，令其临时失去X点 力量 （X为目标 hutaomod:血梅香 的数量）。,1,,
-BBL,不卜庐,RARE,POWER,SELF,阴,1,你消耗生命后，获得 !M! 点 活力 和 !M! 点格挡。 NL 你回复生命值时，额外回复Y点。,,,2,,,,,3
-YYYX,阴阳有序,UNCOMMON,SKILL,SELF,阳,2,若手牌 hutaomod:阴阳平衡 ，获得X层 力量 ，和X层 敏捷 （X为手牌数的一半）。,,,,1, 保留 。若手牌 hutaomod:阴阳平衡 ，获得X层 力量 ，和X层 敏捷 （X为手牌数的一半）。,,,
-MYWC,命运无常,UNCOMMON,ATTACK,ENEMY,阴,1,造成 !D! 点伤害，若手牌： NL hutaomod:阴盛阳虚 ，将目标的 hutaomod:血梅香 调整至与手牌中 [yinIcon] 牌数相等； NL hutaomod:阳盛阴虚 ，将目标的 hutaomod:血梅香 调整至与手牌中 [yangIcon] 牌数相等。,2,,,, 保留 。造成 !D! 点伤害，若手牌： NL hutaomod:阴盛阳虚 ，将目标的 hutaomod:血梅香 调整至与手牌中 [yinIcon] 牌数相等； NL hutaomod:阳盛阴虚 ，将目标的 hutaomod:血梅香 调整至与手牌中 [yangIcon] 牌数相等。,6,,
+LYG,璃月港,RARE,POWER,SELF,阴,1,你消耗生命后，获得 !M! 点 活力 和 !M! 点格挡。 NL 你回复生命值时，额外回复 !M! 点。,,,2,,,,,3
+YYYX,阴阳有序,UNCOMMON,SKILL,SELF,阳,2,摸牌堆中每有一张 *「往生堂秘传枪法」 ，获得1点 力量 。 NL 弃牌堆中每有一张 *「往生堂秘传枪法」 ，获得1点 敏捷 。,,,,1,,,,
+MYWC,命运无常,UNCOMMON,ATTACK,ENEMY,阴,1,造成 !D! 点伤害，若手牌： NL hutaomod:阴盛阳虚 ，将目标的 hutaomod:血梅香 调整至与手牌中 [yinIcon] 牌数相等； NL hutaomod:阳盛阴虚 ，将目标的 hutaomod:血梅香 调整至与手牌中 [yangIcon] 牌数相等。,2,,,, 保留 。造成 !D! 点伤害，若手牌： NL hutaomod:阴盛阳虚 ，将目标的 hutaomod:血梅香 调整至与手牌中 [yinIcon] 牌数相等； NL hutaomod:阳盛阴虚 ，将目标的 hutaomod:血梅香 调整至与手牌中 [yangIcon] 牌数相等； NL hutaomod:阴阳平衡 ，将目标的 hutaomod:血梅香 调整至与手牌数相等。,,,
 SLBS,生老病死,UNCOMMON,SKILL,ENEMY,,1,将 hutaomod:死气 数调整至与目标 hutaomod:血梅香 数量相等，并获得等量格挡。,,,,0, 保留 。将 hutaomod:死气 数调整至与目标 hutaomod:血梅香 数量相等，并获得等量格挡。,,,
 TDWX,天地万象,RARE,SKILL,ENEMY,阳,3, stslib:墓地 。 消耗 。获得1张 *「尽在吾辈」 ，以下三个变量中每有两项相等，额外获得1张：1. {!Y!|0=Y|@=!Y!} ；2. 手牌中 [yangIcon] 牌数；3. 目标 hutaomod:血梅香 数。,,,,, stslib:墓地 。 消耗 。 保留 。获得1张 *「尽在吾辈+」 ，以下三个变量中每有两项相等，额外获得1张：1. {!Y!|0=Y|@=!Y!} ；2. 手牌中 [yangIcon] 牌数；3. 敌人 hutaomod:血梅香 总量。,,,
 JZWB,尽在吾辈,SPECIAL,ATTACK,ENEMY,阴,0,造成 !D! 点伤害，施加 !M! 层 hutaomod:血梅香 。弃牌堆中每有一张 *「尽在吾辈」 ，数值+1。,8,,2,,,12,,3
-WYWK,亡于亡刻,COMMON,ATTACK,ENEMY,阴,0, hutaomod:燃血 !M! ，造成 !D! 点伤害， hutaomod:阴阳 ：施加 !M! 层 易伤 。,5,,1,,,,,2
-SYSS,生于生时,COMMON,SKILL,SELF,阳,0, hutaomod:燃血 1，获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡。,,5,,,,,8,
-DRMJ,单人麻将,COMMON,SKILL,SELF,阴,1, 消耗 。 hutaomod:燃血 1，获得1层 hutaomod:购一送一 。,,,,, 消耗 。 hutaomod:燃血 1，获得1层 hutaomod:购一送一 ，摸1张牌。,,,
+WYWK,亡于亡刻,COMMON,ATTACK,ENEMY,阴,0, hutaomod:燃血 !M! ，造成 !D! 点伤害， hutaomod:阴阳 ：施加 !M! 层 易伤 。,6,,1,,,,,2
+SYSS,生于生时,COMMON,SKILL,SELF,阳,0, hutaomod:燃血 1，获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡。,,6,,,,,9,
+WSTDSDCB,往生堂定时大酬宾,COMMON,SKILL,SELF,阴,1, 消耗 。 hutaomod:燃血 1，获得1层 hutaomod:购一送一 。,,,,, 保留 。 消耗 。 hutaomod:燃血 1，获得1层 hutaomod:购一送一 ，摸1张牌。,,,
 BAHX,彼岸花香,COMMON,SKILL,ENEMY,阴,1, hutaomod:燃血 1，令目标的 hutaomod:血梅香 立即衰减一次，然后施加 !M! 层 hutaomod:血梅香 。,,,5,,,,,7
-DDYS,多多益善,UNCOMMON,SKILL,SELF,阴,2,获得 !B! 点格挡，将 !M! 张 *「往生堂秘传枪法」 加入摸牌堆。,,20,2,,,,27,
+DDYS,多多益善,UNCOMMON,SKILL,SELF,阴,2,获得 !B! 点格挡，将 !M! 张 *「往生堂秘传枪法」 加入摸牌堆。,,20,2,,,,28,
 CXHTF,春曦画桃符,RARE,SKILL,SELF,阳,0, 消耗 。 hutaomod:燃血 !M! ，获得 [E] [E] ， hutaomod:阴阳 ：摸 !M! 张牌 。,,,2,,,,,3
-WWJS,万文集舍,UNCOMMON,POWER,SELF,阴,0,你每消耗1张牌，摸 !M! 张牌。,,,1,1,你每消耗1张牌，摸 !M! 张牌。 NL 你每消耗10点生命，获得 [E] 。,,,
-SYAZ,深渊鏖战,UNCOMMON,ATTACK,ENEMY,阳,3, 保留 。 消耗 。你每触发一次 hutaomod:阴阳 ，手中的此牌伤害+ !M! 。 NL 造成 !D! 点伤害， hutaomod:阴阳 ：效果翻倍。,10,,1,,,15,,
+WWJS,万文集舍,UNCOMMON,POWER,SELF,阴,1,你每消耗5点生命，回复2点生命并摸1张牌。,,,0,, 固有 。你每消耗5点生命，回复2点生命并摸1张牌，打出时此牌时立即触发1次效果。,,,5
+SYAZ,深渊鏖战,UNCOMMON,ATTACK,ENEMY,阳,3, 保留 。你每触发一次 hutaomod:阴阳 ，手中的此牌下次打出时，伤害+ !M! 。 NL 造成 !D! 点伤害， hutaomod:阴阳 ：效果翻倍。,8,,1,,,12,,
 XJMX,雪霁梅香,RARE,ATTACK,ENEMY,阳,2, 消耗 。弃置所有牌，每弃置1张 [yangIcon] 牌，便对随机敌人施加该牌费用数量的 hutaomod:血梅香 。,,,,,弃置所有牌，每弃置1张 [yangIcon] 牌，便对随机敌人施加该牌费用数量的 hutaomod:血梅香 。,,,
-HDJ,海灯节,UNCOMMON,POWER,SELF,阴,2, hutaomod:燃血 1。每回合开始时，手牌中所有 *「往生堂秘传枪法」 获得 hutaomod:燃血 1，且费用 - 1。,,,,1,,,,
-LBHXWZD,离别和希望之蝶,RARE,ATTACK,ENEMY,阳,2, stslib:墓地 。造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害，你每消耗1次生命，此牌伤害+ !M! 。,10,,2,, stslib:墓地 。造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害，你每消耗1次生命，此牌伤害+ !M! ；你每消耗1张牌，此牌伤害+1。,,,
-SSBJ,生死边界,UNCOMMON,POWER,SELF,阴,2,受到致命伤害时，选择弃牌堆中 !M! 张牌消耗，防止之并回复 !M! 点生命，然后所需牌数和回复量翻倍。,,,4,,,,,3
+HDJ,海灯节,UNCOMMON,POWER,SELF,阴,1, hutaomod:燃血 1。所有 *「往生堂秘传枪法」 获得 hutaomod:燃血 1，且费用 - 1。,,,,0,,,,
+LBHXWZD,离别和希望之蝶,RARE,ATTACK,ENEMY,阳,2, stslib:墓地 。 消耗 。 虚无 。造成 !D! 点伤害，未被格挡的伤害将回复你的生命。 NL 你每消耗1次生命，此牌伤害+ !M! 。,4,,1,, stslib:墓地 。 消耗 。 虚无 。造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害，未被格挡的伤害将回复你的生命。 NL 你每消耗1次生命，此牌伤害+ !M! 。,,,
+BBL,不卜庐,UNCOMMON,POWER,SELF,阴,2,受到致命伤害时，选择弃牌堆中 !M! 张牌消耗，防止之并回复 !M! 点生命，然后所需牌数和回复量翻倍。,,,4,,,,,3
 RHZD,燃火之蝶,UNCOMMON,SKILL,NONE,阴,-2, 保留 。你受到致命伤害时，消耗手中的此牌并防止之，然后令所有敌人的 hutaomod:血梅香 翻 !M! 倍。,,,2,, 保留 。你受到致命伤害时，消耗手中的此牌并防止之，然后令所有敌人的 hutaomod:血梅香 翻 !M! 倍，并恢复 !M! 点生命。,,,
-YHCS,浴火重生,UNCOMMON,SKILL,NONE,阴,-2, stslib:墓地 。你受到致命伤害时，若此牌在卡组，则移除此牌，防止之，获得所有消耗的牌，恢复 !M! 倍获得量的生命。,,,2,,,,,3
+DRMJ,单人麻将,UNCOMMON,SKILL,SELF,阳,1,获得 !M! 层 hutaomod:调息 。,,,2,,获得 !M! 层 hutaomod:调息 ， hutaomod:阴阳 ：摸 !M! 张牌。,,,
 DDD,对对对,UNCOMMON,SKILL,SELF,阴,1, hutaomod:燃血 !M! ，防止你下次受到的生命损失。,,,3,, 保留 。 hutaomod:燃血 !M! ，防止你下次受到的生命损失。,,,
 TSSC,桃式说唱,COMMON,SKILL,SELF,阳,0,若上一张打出的牌为 *「往生堂秘传枪法」 ，则获得摸牌堆中一张 *「往生堂秘传枪法」 ，并令之此回合费用-1。,,,,,若上一张打出的牌为 *「往生堂秘传枪法」 ，则获得摸牌堆中一张 *「往生堂秘传枪法」 ，并令之此回合费用-1；否则将一张 *「往生堂秘传枪法」 加入手牌。,,,
 YB,拥抱,UNCOMMON,SKILL,SELF,阴,1, hutaomod:蝶引 ：获得 !M! 层 力量 。,,,1,0, stslib:墓地 。 hutaomod:蝶引 ：获得 !M! 层 力量 。,,,
@@ -55,25 +55,25 @@ AO,嗷！,COMMON,SKILL,SELF,?,0, hutaomod:燃血 1，若手牌： NL hutaomod:阴盛阳虚 ，
 SMHQHMSD,深秘火偈，护摩世谛,COMMON,ATTACK,NONE,阳,-2, stslib:墓地 。 hutaomod:蝶引 ：对随机敌人造成 !D! 点伤害。,6,,,0,,7,,
 GZTFXZZY,钩召调伏，息灾增益,COMMON,SKILL,NONE,阴,-2, stslib:墓地 。 hutaomod:蝶引 ：获得 !B! 点格挡。,,4,,0,,,5,
 TLSL,停灵守灵,UNCOMMON,SKILL,SELF,阴,1, 消耗 。通灵所有墓地牌，获得等量格挡。,,,,, 固有 。 消耗 。通灵所有墓地牌，获得等量格挡。,,,
-LMSDYTCZFJ,落梅随蝶影，他处再逢君,COMMON,SKILL,SELF,阴,1,通灵 !M! 。 hutaomod:阴阳 ：回合结束时，通灵 !M! 。,,,3,,,,,4
+LMSDYTCZFJ,落梅随蝶影，他处再逢君,COMMON,SKILL,SELF,阴,1,通灵 !M! 。 hutaomod:阴阳 ：回合结束时，通灵 !M! 。,,,3,,,,,5
 WSY,往生印,UNCOMMON,SKILL,SELF,阴,1, 消耗 。 hutaomod:燃血 1，通灵所有 *「往生堂秘传枪法」 ，然后获得手牌数的格挡。,,,,, hutaomod:燃血 1，通灵所有 *「往生堂秘传枪法」 ，然后获得手牌数的格挡。,,,
 BADW,彼岸蝶舞,UNCOMMON,SKILL,SELF,阳,1, hutaomod:蝶引 ：群体：施加 !M! 层 hutaomod:血梅香 。,,,2,,,,,3
 TD,桃都,UNCOMMON,POWER,SELF,阴,1,每回合开始时，通灵 !M! 。,,,3,,每回合开始时，通灵 !M! 。每回合结束时，葬送 !M! 。,,,
 GDQ,鬼打墙,UNCOMMON,SKILL,NONE,阴,1, hutaomod:蝶引 ：下回合多摸 !M! 张牌。,,,1,0, stslib:墓地 。 hutaomod:蝶引 ：下回合多摸 !M! 张牌。,,,
 GZHM,棺中酣眠,UNCOMMON,SKILL,SELF,阴,1, 固有 。随机打出摸牌堆中1张能力牌。,,,,, 固有 。选择打出摸牌堆中1张能力牌。,,,
 ZN,执念,UNCOMMON,ATTACK,ENEMY,阴,1,无限升级。 NL hutaomod:蝶引 ：获得 !B! 点格挡，对随机敌人造成 !D! 点伤害，然后升级此牌。,3,3,1,,,4,4,
-DYLSQ,蝶引来世桥,RARE,ATTACK,ENEMY,阳,5, hutaomod:弹射 !M! 次：造成 !D! 点伤害。 NL hutaomod:蝶引 ：此牌于下次打出前，费用-1。,6,,5,, stslib:墓地 。 hutaomod:弹射 !M! 次：造成 !D! 点伤害。 NL hutaomod:蝶引 ：此牌于下次打出前，费用-1。,8,,
+DYLSQ,蝶引来世桥,RARE,ATTACK,ENEMY,阳,5, hutaomod:弹射 !M! 次：造成 {!Y!|0=Y|@=!Y!} 点伤害。 NL hutaomod:蝶引 ：此牌于下次打出前，费用-1。,,,5,, stslib:墓地 。 hutaomod:弹射 !M! 次：造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害。 NL hutaomod:蝶引 ：此牌于下次打出前，费用-1。,2,,
 QKDZ,乾坤斗转,RARE,SKILL,SELF,?,2, 消耗 。 hutaomod:燃血 !M! ，替换摸牌堆和弃牌堆。,,,2,, 保留 。 消耗 。 hutaomod:燃血 !M! ，替换摸牌堆和弃牌堆。,,,
-DXZTZEL,独向昭潭制恶龙,COMMON,ATTACK,SELF,阳,2,你失去生命后，手中的此牌此回合费用-1。 NL 造成 !D! 点伤害。,8,,,, 保留 。你失去生命后，手中的此牌此回合费用-1。 NL 造成 !D! 点伤害。,12,,
+DXZTZEL,独向昭潭制恶龙,COMMON,ATTACK,ENEMY,阳,2,你失去生命后，手中的此牌此回合费用-1。 NL 造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害，将一张 *「往生堂秘传枪法」 加入摸牌堆。,5,,,, 保留 。你失去生命后，手中的此牌此回合费用-1。 NL 造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害，将一张 *「往生堂秘传枪法+」 加入摸牌堆。,8,,
 YBSZQSZ,一波送走全送走,RARE,ATTACK,ALL_ENEMY,阳,4,此牌进入摸牌堆时，将之置于底部。 NL hutaomod:燃血 !M! ，葬送摸牌堆，以此法弃置0费牌时，改为打出之。,,,4,3,,,,3
 WNSZ,为你送葬,UNCOMMON,SKILL,SELF,阳,0,葬送 {!Y!|0=Y|@=!Y!} ，并在以此法弃置的牌进入弃牌堆后，消耗之。,,,,,葬送 {!Y!|0=Y|@=!Y!} ，并在以此法弃置的牌进入弃牌堆后，消耗之，每消耗1张获得1点格挡。,,,
-TSXJ,桃色陷阱,COMMON,ATTACK,ENEMY,?,0,造成 !D! 点伤害，若手牌： NL hutaomod:阴盛阳虚 ，施加1层 虚弱 ； NL hutaomod:阳盛阴虚 ，施加1层 易伤 ； NL hutaomod:阴阳 ：改为执行所有项。,3,,1,,群体：造成 !D! 点伤害，若手牌： NL hutaomod:阴盛阳虚 ，施加1层 虚弱 ； NL hutaomod:阳盛阴虚 ，施加1层 易伤 ； NL hutaomod:阴阳 ：改为执行所有项。,,,
-SRWJ,生人勿近,UNCOMMON,SKILL,SELF,阴,1, hutaomod:燃血 1，获得 !M! 层 力量 ， hutaomod:阴阳 ：令随机一张有 hutaomod:阴阳 效果的牌此回合费用-1。,,,2,,,,,3
-QMSXZPHS,奇门术息灾平昏寿,UNCOMMON,SKILL,SELF,阳,2,获得 !B! 点格挡，葬送所有技能牌，每弃置1张额外获得 !M! 点。,,8,1,,,,,2
-HMFJSDYM,护摩法净世定幽冥,UNCOMMON,ATTACK,ENEMY,阴,2,造成 !D! 点伤害，葬送所有攻击牌，每弃置1张伤害 + !M! 。,10,,1,,,,,2
+TSXJ,桃色陷阱,COMMON,ATTACK,ALL_ENEMY,?,0,群体：造成 !D! 点伤害，若手牌： NL hutaomod:阴盛阳虚 ，施加1层 虚弱 ； NL hutaomod:阳盛阴虚 ，施加1层 易伤 。,2,,1,,群体：造成 !D! 点伤害，若手牌： NL hutaomod:阴盛阳虚 ，施加1层 虚弱 ； NL hutaomod:阳盛阴虚 ，施加1层 易伤 ； NL hutaomod:阴阳平衡 ，改为执行所有项。,3,,
+LRQYXSXY,力如泉涌，心似雄鹰,UNCOMMON,SKILL,SELF,?,1, hutaomod:燃血 1，获得 !M! 层 力量 ， hutaomod:阴阳 ：令随机一张有 hutaomod:阴阳 效果的牌此回合费用-1。,,,2,,,,,3
+QMSXZPHS,奇门术息灾平昏寿,UNCOMMON,SKILL,SELF,阳,2,获得 !B! 点格挡，葬送所有技能牌， hutaomod:阴阳 ：每弃置1张额外获得 !M! 点。,,9,1,,,,,2
+HMFJSDYM,护摩法净世定幽冥,UNCOMMON,ATTACK,ENEMY,阴,2,造成 !D! 点伤害，葬送所有攻击牌， hutaomod:阴阳 ：每弃置1张伤害 + !M! 。,13,,1,,,,,2
 HBC,喝杯茶,RARE,SKILL,SELF,阳,1, hutaomod:燃血 !M! ，将手牌补充至 {!Y!|0=Y|@=!Y!} 张。,,,2,, hutaomod:燃血 !M! ，摸 {!Y!|0=Y|@=!Y!} 张牌。,,,
 XZZH,血之灶火,UNCOMMON,POWER,SELF,阴,2,处于濒死状态时，造成的伤害和获得的格挡+ !M! 。,,,3,,处于濒死状态时，造成的伤害和获得的格挡+ !M! ，若半血则额外+1。,,,4
 ZJXLTS,帐记香菱头上,UNCOMMON,SKILL,NONE,阳,-2,在商店购物时，移除此牌，返还花费的钱。,,,,, stslib:墓地 。在商店购物时，移除此牌，返还花费的钱。,,,
-,,,,,,,,,,,,,,,
+SRWJ,生人勿近,COMMON,SKILL,SELF,阳,1, 保留 。 消耗 。你消耗生命后，手中此牌下次打出的格挡值和回复量+1。 NL 获得 !B! 点格挡，回复 !M! 点生命。,,3,0,, 保留 。 消耗 。你消耗生命后，手中此牌下次打出的格挡值和回复量+1。 NL 获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡，回复 !M! 点生命。,,,
 QIQI,七七,UNCOMMON,SKILL,NONE,阴,-2, stslib:墓地 。此牌在卡组时，战斗结束后必定掉落药水。,,,,,你受到致命伤害时，若此牌在卡组，则移除此牌，防止之，并回复 !M! 点生命。 NL stslib:墓地 。此牌在卡组时，战斗结束后必定掉落药水。,,,7
 ,,,,,,,,,,,,,,,

@@ -21,7 +21,11 @@ public class MZSH extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        int amt = yyTime <= 0 ? this.magicNumber : ModHelper.getPowerCount(m, BloodBlossomPower.POWER_ID);
+        int amt;
+        if (upgraded)
+            amt = magicNumber + ModHelper.getPowerCount(m, BloodBlossomPower.POWER_ID) * yyTime;
+        else
+            amt = yyTime <= 0 ? magicNumber : ModHelper.getPowerCount(m, BloodBlossomPower.POWER_ID);
         if (amt > 0)
             addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, amt)));
     }

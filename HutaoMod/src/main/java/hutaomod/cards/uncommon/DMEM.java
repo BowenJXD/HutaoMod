@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.modcore.CustomEnum;

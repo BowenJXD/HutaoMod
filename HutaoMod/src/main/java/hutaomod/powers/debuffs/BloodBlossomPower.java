@@ -38,15 +38,13 @@ public class BloodBlossomPower extends DebuffPower {
     @Override
     public void atStartOfTurn() {
         super.atStartOfTurn();
-        addToTop(new ReducePowerAction(owner, source, this, amount/2));
+        addToTop(new ReducePowerAction(owner, source, this, amount/ (upgraded ? 4 : 2)));
     }
 
     @Override
     public void reducePower(int reduceAmount) {
         super.reducePower(reduceAmount);
-        if (upgraded) {
-            addToTop(new TriggerPowerAction(this));
-        }
+        addToTop(new TriggerPowerAction(this));
     }
 
     @Override

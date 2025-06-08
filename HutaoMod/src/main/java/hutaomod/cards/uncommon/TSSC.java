@@ -7,11 +7,13 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.ReduceCostForTurnAction;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.ScrayAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.cards.base.HutaoA;
+import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.buffs.TSSCPower;
 import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.powers.debuffs.SiPower;
@@ -39,6 +41,14 @@ public class TSSC extends HuTaoCard {
             addToBot(new MakeTempCardInHandAction(new HutaoA()));
         }
     }
-    
-    //TODO: add glow check
+
+    @Override
+    public void triggerOnGlowCheck() {
+        super.triggerOnGlowCheck();
+        if (GAMManager.getInstance().currentCard instanceof HutaoA && AbstractDungeon.player.drawPile.findCardById(HuTaoMod.makeID(HutaoA.ID)) != null) {
+            glowColor = GOLD_BORDER_GLOW_COLOR;
+        } else {
+            glowColor = ORANGE_BORDER_GLOW_COLOR;
+        }
+    }
 }

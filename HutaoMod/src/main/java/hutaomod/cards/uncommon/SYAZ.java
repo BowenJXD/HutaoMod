@@ -20,12 +20,13 @@ import hutaomod.utils.ModHelper;
 
 public class SYAZ extends HuTaoCard implements CheckYinYangSubscriber {
     public static final String ID = SYAZ.class.getSimpleName();
+    int baseDamageCache;
     
     public SYAZ() {
         super(ID);
         selfRetain = true;
-        exhaust = true;
         tags.add(CustomEnum.YIN_YANG);
+        baseDamageCache = baseDamage;
     }
 
     @Override
@@ -49,6 +50,7 @@ public class SYAZ extends HuTaoCard implements CheckYinYangSubscriber {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new CardDamageAction(m, damage * (int) Math.pow(2, yyTime), this, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        baseDamage = baseDamageCache;
     }
 
     @Override

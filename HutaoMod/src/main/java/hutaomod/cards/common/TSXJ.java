@@ -23,13 +23,13 @@ public class TSXJ extends HuTaoCard {
     public TSXJ() {
         super(ID);
         tags.add(CustomEnum.YIN_YANG);
+        isMultiDamage = true;
+        target = CardTarget.ALL_ENEMY;
     }
 
     @Override
     public void upgrade() {
         super.upgrade();
-        isMultiDamage = true;
-        target = CardTarget.ALL_ENEMY;
     }
 
     @Override
@@ -41,12 +41,12 @@ public class TSXJ extends HuTaoCard {
             addToBot(new CardDamageAllAction(this, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
         int handYY = compareHandYY();
-        if (handYY > 0 || yyTime > 0) {
+        if (handYY > 0 || (upgraded && handYY == 0)) {
             for (AbstractMonster target : targets) {
                 addToBot(new ApplyPowerAction(target, p, new VulnerablePower(target, magicNumber, false)));
             }
         }
-        if (handYY < 0 || yyTime > 0) {
+        if (handYY < 0 || (upgraded && handYY == 0)) {
             for (AbstractMonster target : targets) {
                 addToBot(new ApplyPowerAction(target, p, new WeakPower(target, magicNumber, false)));
             }
@@ -55,12 +55,14 @@ public class TSXJ extends HuTaoCard {
 
     @Override
     public void triggerOnGlowCheck() {
-        if (yyTime > 0) {
-            glowColor = GOLD_BORDER_GLOW_COLOR;
-        } else if (compareHandYY() > 0) {
+        if (compareHandYY() > 0) {
             glowColor = WHITE_BORDER_GLOW_COLOR;
         } else if (compareHandYY() < 0){
             glowColor = BLACK_BORDER_GLOW_COLOR;
+        } else if (upgraded) {
+            glowColor = GOLD_BORDER_GLOW_COLOR;
+        } else {
+            glowColor = ORANGE_BORDER_GLOW_COLOR;
         }
     }
 }

@@ -78,11 +78,10 @@ public class GeneralUtil {
     }
 
     public static <T> List<T> getRandomElements(List<T> list, Random random, int count, Predicate<T> predicate) {
-        count = Math.min(count, list.size());
-
-        List<T> shuffledList = list.stream().filter(predicate).collect(Collectors.toList());
-        Collections.shuffle(shuffledList, random.random);  // Randomly shuffle the list
-        return shuffledList.subList(0, count);  // Return the first x elements
+        List<T> filteredList = list.stream().filter(predicate).collect(Collectors.toList());
+        Collections.shuffle(filteredList, random.random);  // Randomly shuffle the list
+        count = Math.min(count, filteredList.size());
+        return filteredList.subList(0, count);  // Return the first x elements
     }
     
     public static <T> List<T> unpackSaveData(String string, Function<? super String, ? extends T> mapper){

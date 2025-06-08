@@ -44,7 +44,7 @@ public class WSTPower extends PowerPower {
     public void onLimitReached() {
         super.onLimitReached();
         addToBot(new ApplyPowerAction(owner, owner, new SiPower(owner, 1)));
-        List<AbstractCard> cards = AbstractDungeon.player.hand.group.stream().filter(c -> c instanceof HuTaoCard && ((HuTaoCard)c).yy == HuTaoCard.YYState.YANG).collect(Collectors.toList());
+        List<AbstractCard> cards = AbstractDungeon.player.hand.group.stream().filter(c -> c instanceof HuTaoCard && ((HuTaoCard)c).yy == HuTaoCard.YYState.YANG && c.costForTurn > 0).collect(Collectors.toList());
         if (!cards.isEmpty()) {
             AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
             addToBot(new ReduceCostForTurnAction(card, 1));
