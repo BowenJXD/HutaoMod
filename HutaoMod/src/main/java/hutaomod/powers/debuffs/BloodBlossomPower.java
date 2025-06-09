@@ -3,6 +3,7 @@ package hutaomod.powers.debuffs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -38,7 +39,10 @@ public class BloodBlossomPower extends DebuffPower {
     @Override
     public void atStartOfTurn() {
         super.atStartOfTurn();
-        addToTop(new ReducePowerAction(owner, source, this, amount/ (upgraded ? 4 : 2)));
+        if (amount == 1)
+            addToTop(new RemoveSpecificPowerAction(owner, owner, this));
+        else 
+            addToTop(new ReducePowerAction(owner, source, this, amount/ (upgraded ? 4 : 2)));
     }
 
     @Override

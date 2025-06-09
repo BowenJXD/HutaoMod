@@ -2,12 +2,16 @@ package hutaomod.characters;
 
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.esotericsoftware.spine.AnimationState;
+import com.esotericsoftware.spine.BlendMode;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -19,21 +23,22 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Vampires;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
-import com.megacrit.cardcrawl.relics.Vajra;
-import com.megacrit.cardcrawl.rooms.RestRoom;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import hutaomod.cards.base.HutaoA;
 import hutaomod.cards.base.HutaoE;
 import hutaomod.cards.base.HutaoQ;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.relics.PapilioCharontis;
+import hutaomod.utils.CacheManager;
+import hutaomod.utils.ModHelper;
 import hutaomod.utils.PathDefine;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 
 public class HuTao extends CustomPlayer {
@@ -236,11 +241,17 @@ public class HuTao extends CustomPlayer {
         return HuTaoMod.HUTAO_RED;
     }
 
+    // 第三章面对心脏造成伤害时的特效
+    @Override
+    public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
+        return new AbstractGameAction.AttackEffect[]{AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL, AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL};
+    }
+
     @Override
     public void playDeathAnimation() {
         super.playDeathAnimation();
         int r = MathUtils.random(0, 2);
-        CardCrawlGame.sound.play("down_" + r);
+        ModHelper.playSound("down_" + r);
     }
     
     boolean kehuSaid = false;
@@ -253,17 +264,17 @@ public class HuTao extends CustomPlayer {
             LocalDateTime dateTime = LocalDateTime.now();
             int hour = dateTime.getHour();
             if (hour >= 7 && hour < 11) {
-                CardCrawlGame.sound.play("morning");
+                ModHelper.playSound("morning");
             } else if (hour >= 11 && hour < 14){
-                CardCrawlGame.sound.play("noon");
+                ModHelper.playSound("noon");
             } else if (hour >= 18 && hour < 22) {
-                CardCrawlGame.sound.play("evening");
+                ModHelper.playSound("evening");
             } else if (hour >= 22 || hour < 6){
-                CardCrawlGame.sound.play("night");
+                ModHelper.playSound("night");
             }
         } else if (!kehuSaid && AbstractDungeon.getMonsters().monsters.size() == 3 && MathUtils.random(100) < 10) {
             kehuSaid = true;
-            CardCrawlGame.sound.play("kehu");
+            ModHelper.playSound("kehu");
         }
     }
 
@@ -272,9 +283,9 @@ public class HuTao extends CustomPlayer {
         boolean moreThanHalf = currentHealth > maxHealth / 2;
         super.damage(info);
         if (moreThanHalf && currentHealth <= maxHealth / 2 && MathUtils.random(100) < 20) {
-            CardCrawlGame.sound.play("half");
+            ModHelper.playSound("half");
         } else if (info.output >= 20 && MathUtils.random(40) < info.output) {
-            CardCrawlGame.sound.play("hurt");
+            ModHelper.playSound("hurt");
         }
     }
     
@@ -285,8 +296,8 @@ public class HuTao extends CustomPlayer {
         super.updateInput();
         if (hb.clicked && canTalk
                 && AbstractDungeon.currMapNode != null 
-                && AbstractDungeon.currMapNode.room instanceof RestRoom) {
-            CardCrawlGame.sound.play("qqy");
+                && AbstractDungeon.currMapNode.room instanceof ShopRoom) {
+            ModHelper.playSound("qqy");
             canTalk = false;
             Timer.schedule(new Timer.Task() {
                 @Override
@@ -296,11 +307,28 @@ public class HuTao extends CustomPlayer {
             }, 20);
         }
     }
+    
+    public static final Texture YY_CIRCLE_WHITE = ImageMaster.loadImage(PathDefine.UI_PATH + "countCircle.png");
+    public static float COUNT_CIRCLE_SIZE = 128.0F * Settings.scale;
+    public static Color WHITE = Color.WHITE.cpy();
+    public static Color BLACK = Color.BLACK.cpy();
 
-    // 第三章面对心脏造成伤害时的特效
     @Override
-    public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
-        return new AbstractGameAction.AttackEffect[]{AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL, AbstractGameAction.AttackEffect.SLASH_HEAVY, AbstractGameAction.AttackEffect.FIRE, AbstractGameAction.AttackEffect.SLASH_DIAGONAL};
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if (AbstractDungeon.currMapNode != null 
+                && AbstractDungeon.currMapNode.room != null 
+                && AbstractDungeon.currMapNode.room.phase == AbstractRoom.RoomPhase.COMBAT 
+                && !AbstractDungeon.currMapNode.room.isBattleOver) {
+            int handYin = CacheManager.getInt(CacheManager.Key.YIN_CARDS);
+            int handYang = CacheManager.getInt(CacheManager.Key.YANG_CARDS);
+            sb.setColor(BLACK);
+            sb.draw(ImageMaster.DECK_COUNT_CIRCLE, hb.cX - hb.width * 2 / 3 - COUNT_CIRCLE_SIZE / 2, hb.cY - COUNT_CIRCLE_SIZE / 2, COUNT_CIRCLE_SIZE, COUNT_CIRCLE_SIZE);
+            sb.setColor(WHITE);
+            sb.draw(YY_CIRCLE_WHITE, hb.cX + hb.width * 2 / 3 - COUNT_CIRCLE_SIZE / 2, hb.cY - COUNT_CIRCLE_SIZE / 2, COUNT_CIRCLE_SIZE, COUNT_CIRCLE_SIZE);
+            FontHelper.renderFontCentered(sb, FontHelper.turnNumFont, String.valueOf(handYin), hb.cX - hb.width * 2 / 3, hb.cY, WHITE);
+            FontHelper.renderFontCentered(sb, FontHelper.turnNumFont, String.valueOf(handYang), hb.cX + hb.width * 2 / 3, hb.cY, BLACK);
+        }
     }
 
     // 以下为原版人物枚举、卡牌颜色枚举扩展的枚举，需要写，接下来要用

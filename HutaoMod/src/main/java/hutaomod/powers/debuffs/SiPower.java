@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -32,7 +33,7 @@ public class SiPower extends DebuffPower {
 
     @Override
     public void updateDescription() {
-        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], amount);
+        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], amount, amount);
     }
 
     @Override
@@ -50,6 +51,7 @@ public class SiPower extends DebuffPower {
             addToBot(new LoseHPAction(owner, owner, 99999));
         } else {
             addToBot(new LoseHPAction(owner, owner, amount));
+            addToBot(new GainBlockAction(owner, owner, amount));
         }
     }
 

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -314,5 +315,13 @@ public class ModHelper {
     
     public static boolean eventAscension() {
         return AbstractDungeon.ascensionLevel >= 15;
+    }
+    
+    public static void playSound(String key, int volumeMod) {
+        CardCrawlGame.sound.playV(key, volumeMod);
+    }
+    
+    public static void playSound(String key) {
+        playSound(key, 2);
     }
 }

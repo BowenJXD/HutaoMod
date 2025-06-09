@@ -1,3 +1,4 @@
+/*
 package hutaomod.cards.uncommon;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -21,3 +22,4 @@ public class HDJ extends HuTaoCard {
         addToBot(new ApplyPowerAction(p, p, new HDJPower(1)));
     }
 }
+*/

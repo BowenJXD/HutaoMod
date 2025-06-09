@@ -36,6 +36,7 @@ public class DXZTZEL extends HuTaoCard {
     @Override
     public void tookDamage() {
         super.tookDamage();
-        addToBot(new ReduceCostForTurnAction(this, 1));
+        if (inHand)
+            addToBot(new ReduceCostForTurnAction(this, 1));
     }
 }

@@ -1,42 +1,25 @@
 package hutaomod.relics;
 
-import basemod.abstracts.CustomMultiPageFtue;
-import basemod.abstracts.cardbuilder.actionbuilder.AmountActionBuilder;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
-import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
-import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
-import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsCenteredAction;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.cards.colorless.DeepBreath;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.stances.DivinityStance;
 import hutaomod.actions.ClairvoirAction;
-import hutaomod.cards.HuTaoCard;
-import hutaomod.cards.base.HutaoA;
 import hutaomod.cards.base.HutaoQ;
-import hutaomod.effects.ButterflyEffect;
+import hutaomod.cards.special.No;
+import hutaomod.cards.special.Yes;
 import hutaomod.effects.ButterflySpawner;
-import hutaomod.modcore.HuTaoMod;
-import hutaomod.powers.buffs.BreathPower;
-import hutaomod.powers.debuffs.BloodBlossomPower;
-import hutaomod.subscribers.CheckYinYangSubscriber;
+import hutaomod.external.RestartRunHelper;
 import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.GAMManager;
 import hutaomod.utils.ModHelper;
@@ -47,7 +30,7 @@ import java.util.stream.Collectors;
 
 public class PapilioCharontis extends HuTaoRelic {
     public static final String ID = PapilioCharontis.class.getSimpleName();
-    boolean c6Available = true;
+    boolean c6Available = false;
     boolean fullDesc = false;
 
     public PapilioCharontis() {
@@ -73,15 +56,21 @@ public class PapilioCharontis extends HuTaoRelic {
         if (this.counter > 6) {
             this.counter = 6;
         }
+        if (this.counter == 6) {
+            c6Available = true;
+        }
         refreshDescription();
     }
+    
+    boolean constellationSoundsPlayed = false;
 
     @Override
     public void onRest() {
         super.onRest();
         setCounter(counter + 1);
         if (this.counter == 1 || this.counter == 2 || this.counter == 4 || this.counter == 6) {
-            CardCrawlGame.sound.play("constellation_" + counter);
+            if (!constellationSoundsPlayed) ModHelper.playSound("constellation_" + counter);
+            if (counter == 6) constellationSoundsPlayed = true;
         }
     }
 
@@ -118,16 +107,6 @@ public class PapilioCharontis extends HuTaoRelic {
         }
         String desc = Arrays.stream(indexes).mapToObj(i -> DESCRIPTIONS[i]).collect(Collectors.joining(" NL "));
         return desc;
-    }
-
-    @Override
-    public void onEnterRestRoom() {
-        super.onEnterRestRoom();
-        if (counter >= 6) {
-            c6Available = true;
-            beginLongPulse();
-            refreshDescription();
-        }
     }
 
     @Override
@@ -177,42 +156,60 @@ public class PapilioCharontis extends HuTaoRelic {
                 return !SubscriptionManager.checkSubscriber(this);
             });
         }
-        if (c6Available) {
-            beginLongPulse();
+    }
+
+    @Override
+    public void onPlayCard(AbstractCard c, AbstractMonster m) {
+        super.onPlayCard(c, m);
+        if (Objects.equals(c.cardID, DeepBreath.ID)) {
+            addToTop(new WaitAction(0.01f));
         }
     }
-
-    @Override
-    public void onVictory() {
-        super.onVictory();
-        stopPulse();
-    }
-
+    
     @Override
     public int onLoseHpLast(int damageAmount) {
-        if (damageAmount > AbstractDungeon.player.currentHealth && c6Available) {
-            flash();
-            if (!AbstractDungeon.actionManager.turnHasEnded) {
-                addToTop(new ChangeStanceAction(DivinityStance.STANCE_ID));
+        if (damageAmount > AbstractDungeon.player.currentHealth) {
+            if (c6Available) {
+                flash();
+                if (!AbstractDungeon.actionManager.turnHasEnded) {
+                    addToTop(new ChangeStanceAction(DivinityStance.STANCE_ID));
+                } else {
+                    GAMManager.addParallelAction(relicId + 6, action -> {
+                        if (!AbstractDungeon.actionManager.turnHasEnded) {
+                            addToTop(new ChangeStanceAction(DivinityStance.STANCE_ID));
+                            return true;
+                        }
+                        return false;
+                    });
+                }
+                addToTop(new GainBlockAction(AbstractDungeon.player, 200));
+                c6Available = false;
+                setCounter(5);
+                return 0;
             } else {
-                GAMManager.addParallelAction(relicId + 6, action -> {
-                    if (!AbstractDungeon.actionManager.turnHasEnded) {
-                        addToTop(new ChangeStanceAction(DivinityStance.STANCE_ID));
-                        return true;
+                ArrayList<AbstractCard> group = new ArrayList<>();
+                AbstractCard yes = new Yes();
+                AbstractCard no = new No();
+                group.add(new Yes());
+                group.add(new No());
+                addToTop(new SelectCardsCenteredAction(group, 1, DESCRIPTIONS[14], cards -> {
+                    if (cards.stream().anyMatch(c -> Objects.equals(yes.cardID, c.cardID))) {
+                        ModHelper.addToBotAbstract(() -> {
+                            AbstractDungeon.player.currentHealth = 0;
+                            AbstractDungeon.player.isDying = true;
+                            AbstractDungeon.player.healthBarUpdatedEvent();
+                        });
+                    } else if (cards.stream().anyMatch(c -> Objects.equals(no.cardID, c.cardID))) {
+                        ModHelper.addEffectAbstract(() -> RestartRunHelper.queuedRoomRestart = true);
                     }
-                    return false;
-                });
+                }));
+                return 0;
             }
-            addToTop(new GainBlockAction(AbstractDungeon.player, 200));
-            c6Available = false;
-            stopPulse();
-            refreshDescription();
-            return 0;
         }
         return super.onLoseHpLast(damageAmount);
     }
 
-    AbstractCard getUpgradableCard(AbstractCard c) {
+    private AbstractCard getUpgradableCard(AbstractCard c) {
         return AbstractDungeon.player.masterDeck.group.stream().filter(card -> {
             return Objects.equals(card.cardID, c.cardID) && card.canUpgrade();
         }).findAny().orElse(null);
@@ -247,7 +244,7 @@ public class PapilioCharontis extends HuTaoRelic {
         }
     }
     
-    void updateSpawners(List<AbstractCard> cards) {
+    private void updateSpawners(List<AbstractCard> cards) {
         if (spawners.isEmpty()) {
             for (AbstractCard card : cards) {
                 if (getUpgradableCard(card) != null) {
@@ -256,6 +253,7 @@ public class PapilioCharontis extends HuTaoRelic {
             }
             if (!spawners.isEmpty()) {
                 beginLongPulse();
+                grayscale = false;
             }
         }
         for (ButterflySpawner spawner : spawners) {
@@ -268,7 +266,7 @@ public class PapilioCharontis extends HuTaoRelic {
         super.onChestOpen(bossChest);
         int r = MathUtils.random(1, 6);
         if (r <= 3) {
-            CardCrawlGame.sound.play("chest_" + r);
+            ModHelper.playSound("chest_" + r);
         }
     }
 }

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class WSTPower extends PowerPower {
     public static final String POWER_ID = HuTaoMod.makeID(WSTPower.class.getSimpleName());
     
-    public int amount2;
+    public int amount2 = 1;
     
     public WSTPower(int limit) {
         super(POWER_ID, 1);
