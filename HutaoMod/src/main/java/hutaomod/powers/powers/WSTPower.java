@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 public class WSTPower extends PowerPower {
     public static final String POWER_ID = HuTaoMod.makeID(WSTPower.class.getSimpleName());
     
+    public int amount2;
+    
     public WSTPower(int limit) {
         super(POWER_ID, 1);
         setLimit(limit);
@@ -26,7 +28,7 @@ public class WSTPower extends PowerPower {
 
     @Override
     public void updateDescription() {
-        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], limit, amount);
+        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], limit, amount2, amount2, amount);
     }
 
     @Override
@@ -43,11 +45,11 @@ public class WSTPower extends PowerPower {
     @Override
     public void onLimitReached() {
         super.onLimitReached();
-        addToBot(new ApplyPowerAction(owner, owner, new SiPower(owner, 1)));
+        addToBot(new ApplyPowerAction(owner, owner, new SiPower(owner, amount2)));
         List<AbstractCard> cards = AbstractDungeon.player.hand.group.stream().filter(c -> c instanceof HuTaoCard && ((HuTaoCard)c).yy == HuTaoCard.YYState.YANG && c.costForTurn > 0).collect(Collectors.toList());
         if (!cards.isEmpty()) {
             AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
-            addToBot(new ReduceCostForTurnAction(card, 1));
+            addToBot(new ReduceCostForTurnAction(card, amount2));
         }
         reducePower(amount);
     }

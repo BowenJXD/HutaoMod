@@ -14,7 +14,7 @@
   "HuTaoMod:Breath": {
     "NAME": "调息",
     "DESCRIPTIONS": [
-      "下 #b%d 次打出有阴阳效果的牌时，无视 [siIcon] 数触发 #y阴阳 。"
+      "下 #b%d 次打出有 #y阴阳 效果的牌时，无视 [siIcon] 数触发 #y阴阳 。"
     ]
   },
   "HuTaoMod:GYSY": {
@@ -32,13 +32,14 @@
   "HuTaoMod:WST": {
     "NAME": "往生堂",
     "DESCRIPTIONS": [
-      "每打出 #b%d 张 [yinIcon] 牌，获得1层 #y死气 ，且随机 [yangIcon] 牌的费用此回合- #b%d 。"
+      "每打出 #b%d 张 [yinIcon] 牌，获得 #b%d 层 [siIcon] ，且随机 [yangIcon] 牌的费用此回合- #b%d 。已经打出 #b%d 张。"
     ]
   },
   "HuTaoMod:QYG": {
     "NAME": "群玉阁",
     "DESCRIPTIONS": [
-      "每触发 #y阴阳 #b%d 次，摸 #b1 张牌并获得 [E] 。 NL 已触发 #b%d 次。"
+      "每触发 #y阴阳 #b%d 次，摸 #b%d 张牌并获得 [E] 。 NL 已触发 #b%d 次。",
+      "每触发 #y阴阳 #b%d 次，摸 #b%d 张牌并获得 #b%d [E] 。 NL 已触发 #b%d 次。"
     ]
   },
   "HuTaoMod:WMT": {
@@ -62,7 +63,7 @@
   "HuTaoMod:WWJS": {
     "NAME": "万文集舍",
     "DESCRIPTIONS": [
-      "你每消耗 #b5 点生命，回复 #b2 点生命并摸 #b1 张牌。 NL 已经消耗了 #b%d 点生命。"
+      "你每消耗 #b%d 点生命，回复 #b%d 点生命并获得 #b%d 层 #y力量 。 NL 已消耗 #b%d 点生命。"
     ]
   },
   "HuTaoMod:HDJ": { 

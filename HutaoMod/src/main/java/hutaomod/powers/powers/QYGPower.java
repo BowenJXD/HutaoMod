@@ -16,6 +16,8 @@ import hutaomod.utils.GeneralUtil;
 public class QYGPower extends PowerPower implements CheckYinYangSubscriber, NonStackablePower {
     public static final String POWER_ID = HuTaoMod.makeID(QYGPower.class.getSimpleName());
     
+    public int amount2 = 1;
+    
     public QYGPower(int limit) {
         super(POWER_ID, 0);
         this.limit = limit;
@@ -24,7 +26,10 @@ public class QYGPower extends PowerPower implements CheckYinYangSubscriber, NonS
 
     @Override
     public void updateDescription() {
-        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], limit, amount);
+        if (amount2 > 1)
+            description = GeneralUtil.tryFormat(DESCRIPTIONS[1], limit, amount2, amount2, amount);
+        else
+            description = GeneralUtil.tryFormat(DESCRIPTIONS[0], limit, amount2, amount);
     }
 
     @Override
@@ -42,8 +47,8 @@ public class QYGPower extends PowerPower implements CheckYinYangSubscriber, NonS
     @Override
     public void onLimitReached() {
         super.onLimitReached();
-        addToBot(new GainEnergyAction(1));
-        addToBot(new DrawCardAction(1));
+        addToBot(new GainEnergyAction(amount2));
+        addToBot(new DrawCardAction(amount2));
         reducePower(amount);
         updateDescription();
     }
