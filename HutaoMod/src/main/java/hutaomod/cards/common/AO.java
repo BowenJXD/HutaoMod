@@ -3,6 +3,7 @@ package hutaomod.cards.common;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.ClairvoirAction;
@@ -32,11 +33,11 @@ public class AO extends HuTaoCard {
     
     @Override
     public void triggerOnGlowCheck() {
-        if (compareHandYY() > 0) {
+        if (compareHandYY() > 0 && AbstractDungeon.player.discardPile.group.stream().anyMatch(HuTaoCard::isYin)) {
             glowColor = WHITE_BORDER_GLOW_COLOR;
-        } else if (compareHandYY() < 0){
+        } else if (compareHandYY() < 0 && AbstractDungeon.player.discardPile.group.stream().anyMatch(HuTaoCard::isYang)){
             glowColor = BLACK_BORDER_GLOW_COLOR;
-        } else if (upgraded) {
+        } else if (upgraded && AbstractDungeon.player.discardPile.group.stream().anyMatch(c -> (HuTaoCard.isYin(c) || HuTaoCard.isYang(c)))) {
             glowColor = GOLD_BORDER_GLOW_COLOR;
         } else {
             glowColor = ORANGE_BORDER_GLOW_COLOR;

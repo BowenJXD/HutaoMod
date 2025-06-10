@@ -1,3 +1,4 @@
+/*
 package hutaomod.cards.common;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -29,3 +30,4 @@ public class WYWK extends HuTaoCard {
             addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber * yyTime, false)));
     }
 }
+*/

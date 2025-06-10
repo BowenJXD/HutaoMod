@@ -19,8 +19,8 @@ public class CXHTF extends HuTaoCard {
 
     @Override   
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new BloodBurnAction(magicNumber));
-        int energyGain = magicNumber;
+        addToBot(new BloodBurnAction(2));
+        int energyGain = 2;
         addToBot(new GainEnergyAction(energyGain));
         int draw = magicNumber * yyTime; 
         addToBot(new DrawCardAction(draw));
