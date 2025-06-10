@@ -1,23 +1,17 @@
 package hutaomod.cards.uncommon;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import hutaomod.cards.HuTaoCard;
-import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.powers.debuffs.SiPower;
 
-public class ZHS extends HuTaoCard {
-    public static final String ID = ZHS.class.getSimpleName();
+public class GYC extends HuTaoCard {
+    public static final String ID = GYC.class.getSimpleName();
 
-    public ZHS() {
+    public GYC() {
         super(ID);
         isInnate = true;
         exhaust = true;

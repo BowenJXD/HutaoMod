@@ -1,3 +1,4 @@
+/*
 package hutaomod.cards.common;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -27,3 +28,4 @@ public class SYSS extends HuTaoCard {
         addToBot(new GainBlockAction(p, p, block + si));
     }
 }
+*/

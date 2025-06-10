@@ -39,6 +39,6 @@ public class TDPower extends PowerPower {
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         super.atEndOfTurn(isPlayer);
-        addToBot(new ScrayAction(amount));
+        if (upgraded) addToBot(new ScrayAction(amount));
     }
 }

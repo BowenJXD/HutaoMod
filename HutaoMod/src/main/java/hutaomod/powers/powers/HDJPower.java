@@ -1,9 +1,6 @@
 package hutaomod.powers.powers;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.ReduceCostAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -47,9 +44,12 @@ public class HDJPower extends PowerPower implements PostCardMoveSubscriber {
     @Override
     public void postCardMove(CardGroup group, AbstractCard card, boolean in) {
         if (SubscriptionManager.checkSubscriber(this) 
-                && card instanceof HutaoA && card.cost > 0) {
-            HutaoA hutaoA = (HutaoA) card;
-            hutaoA.changeToBloodCost(amount);
+                && card instanceof HutaoA) {
+            if (card.cost > 0) {
+                HutaoA hutaoA = (HutaoA) card;
+                hutaoA.changeToBloodCost(amount);
+            }
+            addToBot(new DrawCardAction(1));
         }
     }
 }

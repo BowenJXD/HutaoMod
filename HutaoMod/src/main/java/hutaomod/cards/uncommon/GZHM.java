@@ -20,6 +20,7 @@ public class GZHM extends HuTaoCard {
 
     public GZHM() {
         super(ID);
+        exhaust = true;
     }
 
     @Override
