@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
+import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import hutaomod.actions.BounceAction;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
@@ -33,7 +34,7 @@ public class DYLSQ extends HuTaoCard {
 
     @Override   
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new VFXAction(new ViolentAttackEffect(m.hb.cX, m.hb.cY, Color.RED.cpy())));
+        addToBot(new VFXAction(new WhirlwindEffect(Color.RED, false)));
         addToBot(new BounceAction(m, this, magicNumber, mon -> {
             addToTop(new CardDamageAction(mon, (upgraded ? damage : 0) + si, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         }));

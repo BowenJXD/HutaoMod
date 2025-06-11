@@ -63,7 +63,18 @@ public class HuTao extends CustomPlayer {
             PathDefine.UI_PATH + "orb/layer5d.png",
     };
     // 每个图层的旋转速度
-    private static final float[] LAYER_SPEED = new float[]{-40.0F, -32.0F, 20.0F, -20.0F, 0.0F, -10.0F, -8.0F, 5.0F, -5.0F, 0.0F};
+    private static final float[] LAYER_SPEED = new float[]{
+            0.0F,   // Layer5
+            -32.0F, // Layer4
+            20.0F,  // Layer3
+            -20.0F, // Layer2
+            0.0F,   // Layer1
+            0.0F,   // Layer5d
+            -8.0F,  // Layer4d
+            5.0F,   // Layer3d
+            -5.0F,  // Layer2d
+            0.0F    // Layer1d
+    };
     // 人物的本地化文本，如卡牌的本地化文本一样，如何书写见下
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(HuTaoMod.makeID(HuTao.class.getSimpleName()));
 

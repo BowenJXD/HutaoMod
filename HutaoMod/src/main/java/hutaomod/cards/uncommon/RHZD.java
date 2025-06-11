@@ -5,6 +5,7 @@ import basemod.interfaces.OnPlayerDamagedSubscriber;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.AdrenalineEffect;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.powers.debuffs.BloodBlossomPower;
@@ -45,6 +47,8 @@ public class RHZD extends HuTaoCard implements OnPlayerDamagedSubscriber {
     @Override
     public int receiveOnPlayerDamaged(int i, DamageInfo damageInfo) {
         if (SubscriptionManager.checkSubscriber(this) && i >= AbstractDungeon.player.currentHealth + AbstractDungeon.player.currentBlock && inHand) {
+            addToBot(new VFXAction(new AdrenalineEffect()));
+            
             addToBot(new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand));
             for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
                 int bbCount = ModHelper.getPowerCount(m, BloodBlossomPower.POWER_ID);

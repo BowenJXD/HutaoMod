@@ -29,6 +29,12 @@
       "下回合开始时，对随机敌人造成保留的格挡数 #b%d 倍的伤害。"
     ]
   },
+  "HuTaoMod:WNZL": {
+    "NAME": "为你指路",
+    "DESCRIPTIONS": [
+      "下 #b%d 张 [yangIcon] 牌消耗所有 [siIcon] （触发 #y阴阳 ），且计算 Y 值时，视为翻倍。"
+    ]
+  },
   "HuTaoMod:WST": {
     "NAME": "往生堂",
     "DESCRIPTIONS": [
@@ -46,12 +52,6 @@
     "NAME": "万民堂",
     "DESCRIPTIONS": [
       " [bbIcon] 衰减时，获得 #b%d 倍衰减量的格挡，摸 #b%d 张牌。"
-    ]
-  },
-  "HuTaoMod:WNZL": {
-    "NAME": "为你指路",
-    "DESCRIPTIONS": [
-      "下 #b%d 张 [yangIcon] 牌消耗所有 [siIcon] （触发 #y阴阳 ），且计算 Y 值时，视为翻倍。"
     ]
   },
   "HuTaoMod:LYG": {

@@ -16,8 +16,6 @@ import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.screens.DungeonTransitionScreen;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import java.lang.reflect.Field;
-import quickRestart.QuickRestart;
-import quickRestart.patches.FixAscenscionUnlockOnGameoverWinPatch;
 
 public class RestartRunHelper implements PostRenderSubscriber {
     public static boolean queuedRestart;
@@ -41,9 +39,9 @@ public class RestartRunHelper implements PostRenderSubscriber {
     public static void restartRun() {
         stopLingeringSounds();
         AbstractDungeon.getCurrRoom().clearEvent();
-        if (FixAscenscionUnlockOnGameoverWinPatch.updateAscProgress && AbstractDungeon.screen == CurrentScreen.DEATH) {
+        /*if (FixAscenscionUnlockOnGameoverWinPatch.updateAscProgress && AbstractDungeon.screen == CurrentScreen.DEATH) {
             ReflectionHacks.privateMethod(DeathScreen.class, "updateAscensionProgress", new Class[0]).invoke(AbstractDungeon.deathScreen, new Object[0]);
-        }
+        }*/
 
         if (!queuedRestart) {
             AbstractDungeon.closeCurrentScreen();
@@ -60,7 +58,6 @@ public class RestartRunHelper implements PostRenderSubscriber {
         CardHelper.clear();
         TipTracker.refresh();
         System.gc();
-        QuickRestart.runLogger.info("Dungeon has been reset.");
         if (evilMode) {
             setDownfallMode();
         }
@@ -70,7 +67,6 @@ public class RestartRunHelper implements PostRenderSubscriber {
         }
 
         if (!Settings.seedSet) {
-            QuickRestart.runLogger.info("Seed wasn't set, rerandomizing seed.");
             Long sTime = System.nanoTime();
             Random rng = new Random(sTime);
             Settings.seedSourceTimestamp = sTime;
@@ -79,16 +75,13 @@ public class RestartRunHelper implements PostRenderSubscriber {
         }
 
         AbstractDungeon.generateSeeds();
-        QuickRestart.runLogger.info("Seeds have been reset.");
         CardCrawlGame.mode = GameMode.CHAR_SELECT;
-        QuickRestart.runLogger.info("Run has been reset.");
         queuedRestart = false;
         evilMode = false;
     }
 
     public static void scoreAndRestart() {
         AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
-        QuickRestart.runLogger.info("Run has been scored.");
         restartRun();
         queuedScoreRestart = false;
     }
@@ -100,7 +93,6 @@ public class RestartRunHelper implements PostRenderSubscriber {
         AbstractDungeon.reset();
         CardCrawlGame.loadingSave = true;
         CardCrawlGame.mode = GameMode.CHAR_SELECT;
-        QuickRestart.runLogger.info("Room has been reset.");
         queuedRoomRestart = false;
     }
 

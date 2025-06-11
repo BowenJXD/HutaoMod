@@ -1,5 +1,8 @@
 package hutaomod.cards.base;
 
+import basemod.ReflectionHacks;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -15,11 +18,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.CardDamageAllAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.characters.HuTao;
 import hutaomod.effects.PortraitDisplayEffect;
+import hutaomod.effects.ShadowEffect;
 import hutaomod.modcore.CustomEnum;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.debuffs.BloodBlossomPower;
@@ -56,12 +61,18 @@ public class HutaoQ extends HuTaoCard {
         int index = MathUtils.random(0, cardStrings.EXTENDED_DESCRIPTION.length-1);
         addToBot(new SFXAction("ult_" + index+1));
         addToBot(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[index], 2.0F, 3.0F));
+        addToBot(new VFXAction(new BorderFlashEffect(Color.RED)));
         
         int multiplier = 1;
         if (CacheManager.getBool(CacheManager.Key.HALF_HP) && specialUpgrade) multiplier *= 2;
         multiplier *= (int) Math.pow(2, yyTime);
         addToBot(new HealAction(p, p, (magicNumber + si) * multiplier));
-        addToBot(new CardDamageAllAction(this, (damage + si) * multiplier, AbstractGameAction.AttackEffect.FIRE));
+        addToBot(new CardDamageAllAction(this, (damage + si) * multiplier, AbstractGameAction.AttackEffect.FIRE).setCallback(ci -> {
+            Texture img = ReflectionHacks.getPrivate(ci.target, Texture.class, "img");
+            if (img != null) {
+                addToTop(new VFXAction(new ShadowEffect(img, ci.target.hb.cX, ci.target.hb.cY, 10f, 1f, Color.RED)));
+            }
+        }));
         if (upgraded) {
             for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
                 addToBot(new ApplyPowerAction(mon, p, new BloodBlossomPower(mon, p, multiplier)));

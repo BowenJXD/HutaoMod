@@ -4,6 +4,7 @@ import basemod.BaseMod;
 import basemod.interfaces.OnPlayerDamagedSubscriber;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.vfx.combat.AdrenalineEffect;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.ModHelper;
@@ -52,6 +54,7 @@ public class QIQI extends HuTaoCard implements OnPlayerDamagedSubscriber {
     @Override
     public int receiveOnPlayerDamaged(int i, DamageInfo damageInfo) {
         if (SubscriptionManager.checkSubscriber(this) && i >= AbstractDungeon.player.currentHealth) {
+            addToBot(new VFXAction(new AdrenalineEffect()));
             AbstractDungeon.player.masterDeck.group.stream().filter(c -> Objects.equals(c.uuid, uuid)).findFirst().ifPresent(RelicEventHelper::purgeCards);
             ModHelper.findCards(c -> Objects.equals(c.uuid, uuid)).stream().findFirst().ifPresent(r -> r.group.removeCard(r.card));
             addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
