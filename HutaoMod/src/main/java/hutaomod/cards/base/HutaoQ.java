@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -31,6 +32,8 @@ import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.relics.PapilioCharontis;
 import hutaomod.utils.CacheManager;
 import hutaomod.utils.ModHelper;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HutaoQ extends HuTaoCard {
     public static final String ID = HutaoQ.class.getSimpleName();
@@ -59,7 +62,7 @@ public class HutaoQ extends HuTaoCard {
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new VFXAction(p, new PortraitDisplayEffect("HuTao"), 0F, true));
         int index = MathUtils.random(0, cardStrings.EXTENDED_DESCRIPTION.length-1);
-        addToBot(new SFXAction("ult_" + index+1));
+        ModHelper.playSound("ult_" + (index+1));
         addToBot(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[index], 2.0F, 3.0F));
         addToBot(new VFXAction(new BorderFlashEffect(Color.RED)));
         
@@ -67,10 +70,18 @@ public class HutaoQ extends HuTaoCard {
         if (CacheManager.getBool(CacheManager.Key.HALF_HP) && specialUpgrade) multiplier *= 2;
         multiplier *= (int) Math.pow(2, yyTime);
         addToBot(new HealAction(p, p, (magicNumber + si) * multiplier));
+        AtomicBoolean triggered = new AtomicBoolean(false);
         addToBot(new CardDamageAllAction(this, (damage + si) * multiplier, AbstractGameAction.AttackEffect.FIRE).setCallback(ci -> {
-            Texture img = ReflectionHacks.getPrivate(ci.target, Texture.class, "img");
-            if (img != null) {
-                addToTop(new VFXAction(new ShadowEffect(img, ci.target.hb.cX, ci.target.hb.cY, 10f, 1f, Color.RED)));
+            if (!triggered.get()) {
+                triggered.set(true);
+                for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
+                    if (ModHelper.check(mon)) {
+                        Texture img = ReflectionHacks.getPrivate(mon, AbstractMonster.class, "img");
+                        if (img != null) {
+                            AbstractDungeon.effectList.add(new ShadowEffect(img, mon.hb.cX - mon.hb.width / 4, mon.hb.cY - mon.hb.height / 4, 40f, 1f, Color.RED));
+                        }
+                    }
+                }
             }
         }));
         if (upgraded) {

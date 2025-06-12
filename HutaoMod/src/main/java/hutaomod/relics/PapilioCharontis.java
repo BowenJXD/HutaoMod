@@ -9,11 +9,14 @@ import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.DeepBreath;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.stances.DivinityStance;
+import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import hutaomod.actions.ClairvoirAction;
 import hutaomod.cards.base.HutaoQ;
 import hutaomod.cards.special.No;
@@ -195,9 +198,10 @@ public class PapilioCharontis extends HuTaoRelic {
                 addToTop(new SelectCardsCenteredAction(group, 1, DESCRIPTIONS[14], cards -> {
                     if (cards.stream().anyMatch(c -> Objects.equals(yes.cardID, c.cardID))) {
                         ModHelper.addToBotAbstract(() -> {
-                            AbstractDungeon.player.currentHealth = 0;
-                            AbstractDungeon.player.isDying = true;
-                            AbstractDungeon.player.healthBarUpdatedEvent();
+                            AbstractPlayer p = AbstractDungeon.player;
+                            p.isDead = true;
+                            AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
+                            p.currentHealth = 0;
                         });
                     } else if (cards.stream().anyMatch(c -> Objects.equals(no.cardID, c.cardID))) {
                         ModHelper.addEffectAbstract(() -> RestartRunHelper.queuedRoomRestart = true);

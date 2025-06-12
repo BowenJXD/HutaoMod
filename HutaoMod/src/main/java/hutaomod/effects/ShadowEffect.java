@@ -30,12 +30,25 @@ public class ShadowEffect extends AbstractGameEffect {
     }
 
     @Override
+    public void update() {
+        this.duration -= Gdx.graphics.getDeltaTime();
+        if (this.duration < this.startingDuration / 2.0F) {
+            this.color.a = Interpolation.fade.apply(this.duration / (this.startingDuration / 2.0F));
+        }
+
+        if (this.duration < 0.0F) {
+            this.isDone = true;
+            this.color.a = 0.0F;
+        }
+    }
+
+    @Override
     public void render(SpriteBatch sb) {
         sb.setColor(color);
         shadowSprite.setColor(color); // Ensure sprite uses the shadow color
         shadowSprite.setPosition(
-                sX + Interpolation.pow3Out.apply(startingDuration, 0, duration) * speed * Settings.scale,
-                sY + Interpolation.linear.apply(startingDuration, 0, duration) * speed * Settings.scale
+                sX + Interpolation.pow3In.apply(1, 0, duration / startingDuration) * speed * Settings.scale,
+                sY + Interpolation.linear.apply(1, 0, duration / startingDuration) * speed * Settings.scale
         );
         shadowSprite.draw(sb);
     }
