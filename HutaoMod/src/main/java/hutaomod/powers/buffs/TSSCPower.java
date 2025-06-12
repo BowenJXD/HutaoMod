@@ -1,3 +1,4 @@
+/*
 package hutaomod.powers.buffs;
 
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.RefundFields;
@@ -32,3 +33,4 @@ public class TSSCPower extends BuffPower {
         addToBot(new RemoveSpecificPowerAction(owner, owner, this));
     }
 }
+*/

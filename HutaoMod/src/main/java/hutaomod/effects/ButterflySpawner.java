@@ -56,6 +56,6 @@ public class ButterflySpawner {
         float angle = MathUtils.random(-45, 45);
 
         ButterflyEffect butterfly = new ButterflyEffect(x, y, duration, scale, color, angle);
-        AbstractDungeon.topLevelEffects.add(butterfly);
+        AbstractDungeon.effectList.add(butterfly);
     }
 }

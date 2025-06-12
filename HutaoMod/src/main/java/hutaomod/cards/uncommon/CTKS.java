@@ -17,7 +17,6 @@ public class CTKS extends HuTaoCard {
 
     public CTKS() {
         super(ID);
-        exhaust = true;
         GraveField.grave.set(this, true);
     }
 

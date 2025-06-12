@@ -56,7 +56,7 @@ public class CacheManager {
             integerSuppliers.forEach((k, v) -> {
                 try {
                     int result = v.get();
-                    result = SubscriptionManager.getInstance().triggerPreCachedIntGet(key, result);
+                    result = SubscriptionManager.getInstance().triggerPreCachedIntGet(k, result);
                     integerCaches.put(k, result);                
                 } catch (Exception e) {
                     HuTaoMod.logger.error("CachedCondition: Error while getting integer key: {}", k);

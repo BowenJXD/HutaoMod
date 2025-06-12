@@ -14,7 +14,6 @@ import hutaomod.actions.ScrayAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.cards.base.HutaoA;
 import hutaomod.modcore.HuTaoMod;
-import hutaomod.powers.buffs.TSSCPower;
 import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.powers.debuffs.SiPower;
 import hutaomod.utils.GAMManager;

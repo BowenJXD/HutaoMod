@@ -185,7 +185,7 @@ public abstract class HuTaoCard extends CustomCard {
     
     public int checkYinYang(boolean onUse) {
         int result = 0;
-        int y = CacheManager.getInt(CacheManager.Key.PLAYER_SI);
+        int y = ModHelper.getPowerCount(AbstractDungeon.player, SiPower.POWER_ID);
         boolean dying = CacheManager.getBool(CacheManager.Key.DYING);
         if (yy == YYState.YIN && dying != SiPower.isDying(y+1)) result = 1;
         else if (yy == YYState.YANG && dying != SiPower.isDying(y-1)) result = 1;

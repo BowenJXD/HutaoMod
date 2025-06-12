@@ -20,7 +20,8 @@ public class GYC extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new ApplyPowerAction(p, p, new SiPower(p, magicNumber)));
-        addToBot(new HealAction(p, p, magicNumber * (upgraded ? 2 : 1)));
-        addToBot(new DrawCardAction(1));
+        addToBot(new HealAction(p, p, magicNumber));
+        if (upgraded)
+            addToBot(new DrawCardAction(1));
     }
 }

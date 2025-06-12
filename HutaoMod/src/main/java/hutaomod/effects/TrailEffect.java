@@ -27,15 +27,14 @@ public class TrailEffect extends AbstractGameEffect implements Pool.Poolable {
         if (img == null) {
             img = ImageMaster.vfxAtlas.findRegion("combat/blurDot2");
         }
-
-        this.renderBehind = false;
     }
 
-    public void init(float x, float y, float scale, Color color, Pool<TrailEffect> pool) {
+    public void init(float x, float y, float scale, boolean renderBehind, Color color, Pool<TrailEffect> pool) {
         this.duration = 1.5F;
         this.startingDuration = 1.5F;
         this.x = x - 6.0F;
         this.y = y - 6.0F;
+        this.renderBehind = renderBehind;
         this.color = color;
         this.scale = 0.01F;
         this.SCALE_MULTI = Settings.scale * scale; // 22

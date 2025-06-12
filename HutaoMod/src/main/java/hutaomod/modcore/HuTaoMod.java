@@ -3,11 +3,13 @@ package hutaomod.modcore;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.abstracts.CustomRelic;
+import basemod.abstracts.CustomUnlockBundle;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.DynamicTextBlocks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
@@ -16,17 +18,22 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.cards.common.SRWJ;
+import hutaomod.cards.rare.LBHXWZD;
+import hutaomod.cards.rare.TDWX;
+import hutaomod.cards.uncommon.*;
 import hutaomod.characters.HuTao;
 import hutaomod.external.RestartRunHelper;
 import hutaomod.misc.*;
 import hutaomod.utils.GAMManager;
+import hutaomod.utils.PathDefine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.nio.charset.StandardCharsets;
 
 @SpireInitializer
-public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber, EditKeywordsSubscriber, AddAudioSubscriber, PostInitializeSubscriber, StartGameSubscriber {
+public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber, EditKeywordsSubscriber, AddAudioSubscriber, SetUnlocksSubscriber, PostInitializeSubscriber, StartGameSubscriber {
     public static String MOD_NAME = "HuTaoMod";
 
     public static final Color HUTAO_RED = new Color(-13361921);
@@ -75,7 +82,7 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
         BaseMod.addDynamicVariable(new SiVariable());
         new AutoAdd(MOD_NAME)
                 .packageFilter("hutaomod.cards")
-                .setDefaultSeen(true)
+                .setDefaultSeen(false)
                 .cards();
     }
 
@@ -128,19 +135,6 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
         // BaseMod.loadCustomStringsFile(EventStrings.class, "HuTaoResources/localization/" + lang + "/events.json");
         // BaseMod.loadCustomStringsFile(MonsterStrings.class, "HuTaoResources/localization/" + lang + "/monsters.json");
         BaseMod.loadCustomStringsFile(UIStrings.class, "HuTaoResources/localization/" + lang + "/ui.json");
-
-    }
-
-    @Override
-    public void receivePostInitialize() {
-        BaseMod.subscribe(GAMManager.getInstance());
-        BaseMod.subscribe(RestartRunHelper.getInstance());
-        /*DynamicTextBlocks.registerCustomCheck("hutaomod:handYY", card -> {
-            if (card instanceof HuTaoCard) {
-                return ((HuTaoCard)card).compareHandYY(); 
-            }
-            return 0;
-        });*/
     }
 
     @Override
@@ -184,8 +178,34 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
     }
 
     @Override
+    public void receiveSetUnlocks() {
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(WWJS.ID), makeID(LBHXWZD.ID), makeID(WSY.ID)), HuTao.PlayerColorEnum.HUTAO, 1);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(SRWJ.ID), makeID(ZJXLTS.ID), makeID(QIQI.ID)), HuTao.PlayerColorEnum.HUTAO, 2);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(MYWC.ID), makeID(SLBS.ID), makeID(TDWX.ID)), HuTao.PlayerColorEnum.HUTAO, 3);
+    }
+
+    @Override
     public void receiveStartGame() {
 
+    }
+
+    @Override
+    public void receivePostInitialize() {
+        BaseMod.subscribe(GAMManager.getInstance());
+        BaseMod.subscribe(RestartRunHelper.getInstance());
+        BaseMod.registerModBadge(
+                new Texture(PathDefine.UI_PATH + "badge.png"),
+                MOD_NAME,
+                "喏Aaron",
+                "A mod themed after Genshin character Hu Tao.",
+                new HuTaoModConfig()
+        );
+        /*DynamicTextBlocks.registerCustomCheck("hutaomod:handYY", card -> {
+            if (card instanceof HuTaoCard) {
+                return ((HuTaoCard)card).compareHandYY(); 
+            }
+            return 0;
+        });*/
     }
 
     public void updateLanguage() {

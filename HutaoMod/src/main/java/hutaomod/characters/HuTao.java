@@ -1,5 +1,6 @@
 package hutaomod.characters;
 
+import basemod.abstracts.CustomMultiPageFtue;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,6 +27,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
@@ -33,6 +35,7 @@ import hutaomod.cards.base.HutaoA;
 import hutaomod.cards.base.HutaoE;
 import hutaomod.cards.base.HutaoQ;
 import hutaomod.modcore.HuTaoMod;
+import hutaomod.modcore.HuTaoModConfig;
 import hutaomod.relics.PapilioCharontis;
 import hutaomod.utils.CacheManager;
 import hutaomod.utils.ModHelper;
@@ -77,10 +80,16 @@ public class HuTao extends CustomPlayer {
     };
     // 人物的本地化文本，如卡牌的本地化文本一样，如何书写见下
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(HuTaoMod.makeID(HuTao.class.getSimpleName()));
+    
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(HuTaoMod.makeID("Tutorial"));
+
+    static Texture[] ftues;
+
+    static String[] tutTexts = uiStrings.TEXT;
 
     public HuTao(String name) {
         super(name, PlayerColorEnum.HUTAO, ORB_TEXTURES,"HuTaoResources/img/UI/orb/vfx.png", LAYER_SPEED, null, null);
-
+        
         String charImg = null;
         try {
             //this.loadAnimation("HuTaoResources/img/spine/hutao_skin.atlas", "HuTaoResources/img/spine/hutao_skin.json", 0.6F);
@@ -89,7 +98,7 @@ public class HuTao extends CustomPlayer {
             e.setTimeScale(0.5F);
         } catch (Exception e) {
             System.out.println("HuTao skin load failed");
-            System.out.println(e);
+            System.out.println(e.getMessage());
             charImg = "HuTaoResources/img/char/character.png";
         }
 
@@ -108,12 +117,25 @@ public class HuTao extends CustomPlayer {
                 new EnergyManager(3) // 初始每回合的能量
         );
 
-
         // 如果你的人物没有动画，那么这些不需要写
         // this.loadAnimation("HuTaoResources/img/char/character.atlas", "HuTaoResources/img/char/character.json", 1.8F);
         // AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         // e.setTime(e.getEndTime() * MathUtils.random());
         // e.setTimeScale(1.2F);
+
+        try {
+            ftues =  new Texture[]{
+                    ImageMaster.loadImage(PathDefine.UI_PATH + "tutorial/1.png"),
+                    ImageMaster.loadImage(PathDefine.UI_PATH + "tutorial/2.png"),
+                    ImageMaster.loadImage(PathDefine.UI_PATH + "tutorial/3.png"),
+                    ImageMaster.loadImage(PathDefine.UI_PATH + "tutorial/4.png"),
+                    ImageMaster.loadImage(PathDefine.UI_PATH + "tutorial/5.png"),
+                    ImageMaster.loadImage(PathDefine.UI_PATH + "tutorial/6.png")
+            };
+        } catch (Exception e) {
+            System.out.println("HuTao ftue load failed");
+            System.out.println(e.getMessage());
+        }
     }
 
     // 初始卡组的ID，可直接写或引用变量
@@ -271,6 +293,13 @@ public class HuTao extends CustomPlayer {
     public void preBattlePrep() {
         super.preBattlePrep();
         if (AbstractDungeon.floorNum <= 2) {
+            if (HuTaoModConfig.doShowTutorial) {
+                ModHelper.addEffectAbstract(() -> {
+                    AbstractDungeon.ftue = new CustomMultiPageFtue(ftues, tutTexts);
+                });
+                HuTaoModConfig.doShowTutorial = false;
+            }
+            
             // 获取当前时间
             LocalDateTime dateTime = LocalDateTime.now();
             int hour = dateTime.getHour();
@@ -287,6 +316,12 @@ public class HuTao extends CustomPlayer {
             kehuSaid = true;
             ModHelper.playSound("kehu");
         }
+    }
+
+    @Override
+    public void onVictory() {
+        super.onVictory();
+        kehuSaid = false;
     }
 
     @Override
@@ -330,6 +365,7 @@ public class HuTao extends CustomPlayer {
         if (AbstractDungeon.currMapNode != null 
                 && AbstractDungeon.currMapNode.room != null 
                 && AbstractDungeon.currMapNode.room.phase == AbstractRoom.RoomPhase.COMBAT 
+                && ModHelper.check(this)
                 && !AbstractDungeon.currMapNode.room.isBattleOver) {
             int handYin = CacheManager.getInt(CacheManager.Key.YIN_CARDS);
             int handYang = CacheManager.getInt(CacheManager.Key.YANG_CARDS);

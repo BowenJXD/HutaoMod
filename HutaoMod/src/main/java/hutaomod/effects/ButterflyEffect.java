@@ -42,7 +42,7 @@ public class ButterflyEffect extends AbstractGameEffect {
         this.color = color.cpy();
         this.color.a = 0.5f;
         this.rotation = rotation;
-        this.renderBehind = false;
+        this.renderBehind = MathUtils.randomBoolean();
         this.x = this.startX = x;
         this.y = this.startY = y;
         this.speed = 20;
@@ -81,8 +81,8 @@ public class ButterflyEffect extends AbstractGameEffect {
         particleTimer += delta;
         if (particleTimer >= PARTICLE_INTERVAL) {
             TrailEffect effect = trailEffectPool.obtain();
-            effect.init(x, y, 1, color.cpy(), trailEffectPool);
-            AbstractDungeon.topLevelEffectsQueue.add(effect);
+            effect.init(x, y, 1, renderBehind, color.cpy(), trailEffectPool);
+            AbstractDungeon.effectsQueue.add(effect);
             particleTimer -= PARTICLE_INTERVAL;
         }
     }

@@ -9,15 +9,18 @@ import hutaomod.cards.HuTaoCard;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.PowerPower;
 import hutaomod.powers.debuffs.SiPower;
+import hutaomod.subscribers.PreCachedIntGetSubscriber;
+import hutaomod.subscribers.SubscriptionManager;
+import hutaomod.utils.CacheManager;
 import hutaomod.utils.GeneralUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WSTPower extends PowerPower {
+public class WSTPower extends PowerPower implements PreCachedIntGetSubscriber {
     public static final String POWER_ID = HuTaoMod.makeID(WSTPower.class.getSimpleName());
     
-    public int amount2 = 1;
+    public int amount2 = 2;
     
     public WSTPower(int limit) {
         super(POWER_ID, 1);
@@ -28,7 +31,19 @@ public class WSTPower extends PowerPower {
 
     @Override
     public void updateDescription() {
-        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], limit, amount2 * 2, amount2, amount);
+        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], amount2, limit, amount);
+    }
+
+    @Override
+    public void onInitialApplication() {
+        super.onInitialApplication();
+        SubscriptionManager.subscribe(this);
+    }
+
+    @Override
+    public void onRemove() {
+        super.onRemove();
+        SubscriptionManager.unsubscribe(this);
     }
 
     @Override
@@ -38,6 +53,7 @@ public class WSTPower extends PowerPower {
             HuTaoCard huTaoCard = (HuTaoCard) card;
             if (huTaoCard.yy == HuTaoCard.YYState.YIN) {
                 stackPower(1);
+                updateDescription();
             }
         }
     }
@@ -45,12 +61,20 @@ public class WSTPower extends PowerPower {
     @Override
     public void onLimitReached() {
         super.onLimitReached();
-        addToBot(new ApplyPowerAction(owner, owner, new SiPower(owner, amount2 * 2)));
         List<AbstractCard> cards = AbstractDungeon.player.hand.group.stream().filter(c -> c instanceof HuTaoCard && ((HuTaoCard)c).yy == HuTaoCard.YYState.YANG && c.costForTurn > 0).collect(Collectors.toList());
         if (!cards.isEmpty()) {
             AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
-            addToBot(new ReduceCostForTurnAction(card, amount2));
+            addToBot(new ReduceCostForTurnAction(card, 1));
         }
         reducePower(amount);
+        updateDescription();
+    }
+
+    @Override
+    public int preCachedIntGet(CacheManager.Key key, int amount) {
+        if (SubscriptionManager.checkSubscriber(this) && key == CacheManager.Key.PLAYER_SI) {
+            return amount + amount2;
+        }
+        return amount;
     }
 }

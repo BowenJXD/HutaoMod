@@ -3,13 +3,13 @@
     "NAMES": [
       "阴牌","阴"
     ],
-    "DESCRIPTION": "牌的一种，打出后获得1层 #y死气 [SiIcon] 。"
+    "DESCRIPTION": "打出阴牌后，获得1层 [SiIcon] 。 NL #yY 为 [SiIcon] 层数。"
   },
   {
     "NAMES": [
       "阳牌","阳"
     ],
-    "DESCRIPTION": "牌的一种，通常会有Y变量，为当前 #y死气 [SiIcon] 数。打出后消耗1层 [SiIcon] 。"
+    "DESCRIPTION": "打出阳牌后，消耗1层 [SiIcon] 。 NL #yY 为 [SiIcon] 层数。"
   },
   {
     "NAMES": [
@@ -51,13 +51,13 @@
     "NAMES": [
       "调息"
     ],
-    "DESCRIPTION": "下X张牌无视 [siIcon] 数触发阴阳。"
+    "DESCRIPTION": "下X次打出有 #y阴阳 效果的牌时，无视 [siIcon] 数触发 #y阴阳 。"
   },
   {
     "NAMES": [
       "购一送一"
     ],
-    "DESCRIPTION": "下X张牌额外触发1次 #y阴阳 效果。"
+    "DESCRIPTION": "下X次触发 #y阴阳 时，额外触发1次。"
   },
   {
     "NAMES": [
