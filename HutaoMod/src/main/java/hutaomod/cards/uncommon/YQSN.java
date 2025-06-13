@@ -27,12 +27,13 @@ public class YQSN extends HuTaoCard {
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         int x = energyOnUse + (p.hasRelic(ChemicalX.ID) ? 2 : 0);
         int handYY = compareHandYY();
-        if (handYY > 0) {
+        if (handYY > 0 || (upgraded && handYY == 0)) {
             addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, 1, false)));
             addToBot(new BounceAction(m, this, x, mon -> {
                 addToTop(new CardDamageAction(mon, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
             }));
-        } else if (handYY < 0) {
+        }
+        if (handYY < 0 || (upgraded && handYY == 0)) {
             addToBot(new ApplyPowerAction(p, p, new WeakPower(p, 1, false)));
             for (int i = 0; i < x; i++) {
                 addToBot(new GainBlockAction(p, p, block));
@@ -45,11 +46,14 @@ public class YQSN extends HuTaoCard {
     @Override
     public void triggerOnGlowCheck() {
         super.triggerOnGlowCheck();
+        int yyTime = checkYinYang(false);
         int handYY = compareHandYY();
         if (handYY > 0) {
             glowColor = WHITE_BORDER_GLOW_COLOR;
         } else if (handYY < 0) {
             glowColor = BLACK_BORDER_GLOW_COLOR;
+        } else if (upgraded && yyTime > 0) {
+            glowColor = GOLD_BORDER_GLOW_COLOR;
         } else {
             glowColor = ORANGE_BORDER_GLOW_COLOR;
         }

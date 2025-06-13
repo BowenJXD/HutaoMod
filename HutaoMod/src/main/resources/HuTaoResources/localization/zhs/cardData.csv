@@ -12,7 +12,7 @@ YMXC,一脉相传,RARE,SKILL,SELF,阴,0, 保留 。手牌中所有 *「往生堂秘传枪法」 此回合
 QYG,群玉阁,RARE,POWER,SELF,阴,3,每触发 hutaomod:阴阳 !M! 次，获得 [E] 并摸1张牌。,,,4,2,,,,
 ZRZS,忠人之事,COMMON,SKILL,SELF,阴,1,获得 !B! 点格挡。 hutaomod:阴阳 ：效果翻倍。,,6,,,,,8,
 SRZT,受人之托,COMMON,ATTACK,ENEMY,阳,1,造成 !D! 点伤害。 hutaomod:阴阳 ：效果翻倍。,7,,,,,10,,
-YQSN,元气少女,UNCOMMON,ATTACK,ENEMY,阳,-1,若手牌： NL hutaomod:阴盛阳虚 ，获得1层 虚弱 ，重复X次：获得 !B! 点格挡； NL hutaomod:阳盛阴虚 ，获得1层 易伤 ， hutaomod:弹射 X次：造成 !D! 点伤害； NL hutaomod:阴阳 ：回馈X。,4,3,,,,5,4,
+YQSN,元气少女,UNCOMMON,ATTACK,ENEMY,阳,-1,若手牌： NL hutaomod:阴盛阳虚 ，获得1层 虚弱 ，重复X次：获得 !B! 点格挡； NL hutaomod:阳盛阴虚 ，获得1层 易伤 ， hutaomod:弹射 X次：造成 !D! 点伤害； NL hutaomod:阴阳 ：回馈X。,5,4,,,,5,4,
 DMEM,大咪二咪,COMMON,POWER,SELF,?,1,获得 !M! 点 敏捷 ， hutaomod:阴阳 ：获得 !M! 点 hutaomod:多重护甲 。,,,2,, 固有 。获得 !M! 点 敏捷 ， hutaomod:阴阳 ：获得 !M! 点 hutaomod:多重护甲 。,,,
 DEBBJ,第二碑半价,RARE,SKILL,SELF,阳,1,获得 !M! 层 hutaomod:购一送一 。,,,1,,获得 !M! 层 hutaomod:购一送一 ， hutaomod:阴阳 ：获得的层数+1。,,,
 KQZZ,客卿助阵,UNCOMMON,SKILL,SELF,阳,1,获得 {!Y!|0=Y|@=!Y!} 点格挡，于此回合保留格挡， hutaomod:阴阳 ：下回合开始时，对随机敌人造成保留的格挡数的伤害。,,,,,获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡，于此回合保留格挡， hutaomod:阴阳 ：下回合开始时，对随机敌人造成保留的格挡数的伤害。,,4,
