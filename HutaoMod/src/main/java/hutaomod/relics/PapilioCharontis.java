@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.DeathScreen;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.DivinityStance;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import hutaomod.actions.ClairvoirAction;
@@ -34,8 +35,8 @@ import java.util.stream.Collectors;
 
 public class PapilioCharontis extends HuTaoRelic {
     public static final String ID = PapilioCharontis.class.getSimpleName();
-    boolean c6Available = false;
     boolean fullDesc = false;
+    boolean invincible = false;
 
     public PapilioCharontis() {
         super(ID, RelicTier.STARTER);
@@ -60,9 +61,6 @@ public class PapilioCharontis extends HuTaoRelic {
         if (this.counter > 6) {
             this.counter = 6;
         }
-        if (this.counter == 6) {
-            c6Available = true;
-        }
         refreshDescription();
     }
     
@@ -85,29 +83,14 @@ public class PapilioCharontis extends HuTaoRelic {
         }
         int[] indexes;
         switch (counter) {
-            case 0:
-                indexes = new int[]{0, 1, 3, 5, 7, 9, 11};
-                break;
-            case 1:
-                indexes = new int[]{0, 2, 3, 5, 7, 9, 11};
-                break;
-            case 2:
-                indexes = new int[]{0, 2, 4, 5, 7, 9, 11};
-                break;
-            case 3:
-                indexes = new int[]{0, 2, 4, 6, 7, 9, 11};
-                break;
-            case 4:
-                indexes = new int[]{0, 2, 4, 6, 8, 9, 11};
-                break;
-            case 5:
-                indexes = new int[]{0, 2, 4, 6, 8, 10, 11};
-                break;
-            case 6:
-                indexes = new int[]{0, 2, 4, 6, 8, 10, c6Available ? 12 : 13};
-                break;
-            default:
-                indexes = new int[]{0};
+            case 0: indexes = new int[]{0, 1, 3, 5, 7, 9, 11}; break;
+            case 1: indexes = new int[]{0, 2, 3, 5, 7, 9, 11}; break;
+            case 2: indexes = new int[]{0, 2, 4, 5, 7, 9, 11}; break;
+            case 3: indexes = new int[]{0, 2, 4, 6, 7, 9, 11}; break;
+            case 4: indexes = new int[]{0, 2, 4, 6, 8, 9, 11}; break;
+            case 5: indexes = new int[]{0, 2, 4, 6, 8, 10, 11}; break;
+            case 6: indexes = new int[]{0, 2, 4, 6, 8, 10, 12}; break;
+            default: indexes = new int[]{0};
         }
         String desc = Arrays.stream(indexes).mapToObj(i -> DESCRIPTIONS[i]).collect(Collectors.joining(" NL "));
         return desc;
@@ -169,15 +152,19 @@ public class PapilioCharontis extends HuTaoRelic {
             addToTop(new WaitAction(0.01f));
         }
     }
-    
+
     @Override
     public int onLoseHpLast(int damageAmount) {
-        if (damageAmount > AbstractDungeon.player.currentHealth) {
-            if (c6Available) {
+        if (invincible) {
+            return 0;
+        }
+        if (damageAmount >= AbstractDungeon.player.currentHealth) {
+            if (counter >= 6) {
                 flash();
                 if (!AbstractDungeon.actionManager.turnHasEnded) {
                     addToTop(new ChangeStanceAction(DivinityStance.STANCE_ID));
                 } else {
+                    invincible = true;
                     GAMManager.addParallelAction(relicId + 6, action -> {
                         if (!AbstractDungeon.actionManager.turnHasEnded) {
                             addToTop(new ChangeStanceAction(DivinityStance.STANCE_ID));
@@ -187,9 +174,7 @@ public class PapilioCharontis extends HuTaoRelic {
                     });
                 }
                 addToTop(new GainBlockAction(AbstractDungeon.player, 200));
-                c6Available = false;
                 setCounter(5);
-                return 0;
             } else {
                 ArrayList<AbstractCard> group = new ArrayList<>();
                 AbstractCard yes = new Yes();
@@ -198,7 +183,8 @@ public class PapilioCharontis extends HuTaoRelic {
                 group.add(new No());
                 addToTop(new SelectCardsCenteredAction(group, 1, DESCRIPTIONS[14], cards -> {
                     if (cards.stream().anyMatch(c -> Objects.equals(yes.cardID, c.cardID))) {
-                        ModHelper.addToBotAbstract(() -> {
+                        AbstractDungeon.actionManager.clearPostCombatActions();
+                        ModHelper.addToTopAbstract(() -> {
                             AbstractPlayer p = AbstractDungeon.player;
                             p.isDead = true;
                             AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
@@ -208,10 +194,18 @@ public class PapilioCharontis extends HuTaoRelic {
                         ModHelper.addEffectAbstract(() -> RestartRunHelper.queuedRoomRestart = true);
                     }
                 }));
-                return 0;
             }
+            return 0;
         }
         return super.onLoseHpLast(damageAmount);
+    }
+
+    @Override
+    public void onChangeStance(AbstractStance prevStance, AbstractStance newStance) {
+        super.onChangeStance(prevStance, newStance);
+        if (Objects.equals(prevStance.ID, DivinityStance.STANCE_ID) && !Objects.equals(newStance.ID, DivinityStance.STANCE_ID)) {
+            invincible = false;
+        }
     }
 
     private AbstractCard getUpgradableCard(AbstractCard c) {
@@ -253,7 +247,7 @@ public class PapilioCharontis extends HuTaoRelic {
         if (spawners.isEmpty()) {
             for (AbstractCard card : cards) {
                 if (getUpgradableCard(card) != null) {
-                    spawners.add(new ButterflySpawner(card.hb));
+                    spawners.add(new ButterflySpawner(card.hb, true));
                 }
             }
             if (!spawners.isEmpty()) {

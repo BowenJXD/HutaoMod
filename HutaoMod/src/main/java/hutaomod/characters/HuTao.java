@@ -37,6 +37,7 @@ import hutaomod.cards.base.HutaoQ;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.modcore.HuTaoModConfig;
 import hutaomod.relics.PapilioCharontis;
+import hutaomod.relics.RattanToyHuTao;
 import hutaomod.utils.CacheManager;
 import hutaomod.utils.ModHelper;
 import hutaomod.utils.PathDefine;
@@ -159,6 +160,7 @@ public class HuTao extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
         retVal.add(HuTaoMod.makeID(PapilioCharontis.ID));
+        retVal.add(HuTaoMod.makeID(RattanToyHuTao.ID));
         return retVal;
     }
 

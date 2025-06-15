@@ -28,9 +28,7 @@ public class DXZTZEL extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        AbstractCard card = new HutaoA();
-        if (upgraded) card.upgrade();
-        addToBot(new MakeTempCardInDrawPileAction(card, 1, true, true));
+        addToBot(new MakeTempCardInDrawPileAction(new HutaoA(upgraded), 1, true, true));
     }
 
     @Override

@@ -1,3 +1,4 @@
+/*
 package hutaomod.cards.uncommon;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -5,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import hutaomod.cards.HuTaoCard;
-import hutaomod.powers.powers.WWJSPower;
+import hutaomod.powers.powers.ZSNGPower;
 
 public class WWJS extends HuTaoCard {
     public static final String ID = WWJS.class.getSimpleName();
@@ -22,12 +23,13 @@ public class WWJS extends HuTaoCard {
 
     @Override   
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        AbstractPower power = p.getPower(WWJSPower.POWER_ID);
-        if (power instanceof WWJSPower) {
-            ((WWJSPower)power).amount2 += 2; 
+        AbstractPower power = p.getPower(ZSNGPower.POWER_ID);
+        if (power instanceof ZSNGPower) {
+            ((ZSNGPower)power).amount2 += 2; 
             power.updateDescription();
         } else {
-            addToBot(new ApplyPowerAction(p, p, new WWJSPower(magicNumber)));
+            addToBot(new ApplyPowerAction(p, p, new ZSNGPower(magicNumber)));
         }
     }
 }
+*/

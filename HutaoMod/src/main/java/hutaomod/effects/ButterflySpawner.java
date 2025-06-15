@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 
 public class ButterflySpawner {
+    private boolean topLevel = false;
     private Hitbox hitbox;
     private float spawnTimer;
     private float spawnIntervalMin = 0.3f;
@@ -23,8 +24,9 @@ public class ButterflySpawner {
             Color.PINK.cpy()
     };
 
-    public ButterflySpawner(Hitbox hitbox) {
+    public ButterflySpawner(Hitbox hitbox, boolean topLevel) {
         this.hitbox = hitbox;
+        this.topLevel = topLevel;
         this.spawnTimer = MathUtils.random(spawnIntervalMin, spawnIntervalMax);
     }
 
@@ -55,7 +57,10 @@ public class ButterflySpawner {
         // Rotate outward: determine angle from center to point
         float angle = MathUtils.random(-45, 45);
 
-        ButterflyEffect butterfly = new ButterflyEffect(x, y, duration, scale, color, angle);
-        AbstractDungeon.effectList.add(butterfly);
+        ButterflyEffect butterfly = new ButterflyEffect(x, y, duration, scale, color, angle, topLevel ? false : MathUtils.randomBoolean());
+        if (topLevel)
+            AbstractDungeon.topLevelEffects.add(butterfly);
+        else 
+            AbstractDungeon.effectList.add(butterfly);
     }
 }

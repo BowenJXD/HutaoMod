@@ -2,7 +2,7 @@
   "HuTaoMod:Si": {
     "NAME": "死气",
     "DESCRIPTIONS": [
-      "死气层数包含「1」时，视为处于 #r濒死 状态。 NL 回合开始时，若处于 #r濒死 ，则受到致命伤害，否则受到 #b%d 点伤害并获得 #b%d 点格挡，然后衰减 #b1 层。"
+      "死气 [siIcon] 层数包含「1」时，视为处于 #r濒死 状态。 NL 回合开始时，若处于 #r濒死 ，则受到致命伤害，否则受到 #b%d 点伤害并获得 #b%d 点格挡，然后衰减 #b1 层。"
     ]
   },
   "HuTaoMod:BloodBlossom": {
@@ -54,8 +54,8 @@
       " [bbIcon] 衰减时，获得 #b%d 倍衰减量的格挡，摸 #b%d 张牌。"
     ]
   },
-  "HuTaoMod:LYG": {
-    "NAME": "璃月港",
+  "HuTaoMod:ZSNG": {
+    "NAME": "装神弄鬼",
     "DESCRIPTIONS": [
       "你消耗生命后，获得 #b%d 点 #y活力 和格挡。 NL 你回复生命值时，额外回复 #b%d 点。"
     ]
@@ -69,7 +69,7 @@
   "HuTaoMod:HDJ": { 
     "NAME": "海灯节",
     "DESCRIPTIONS": [
-      "所有「往生堂秘传枪法」获得 #y燃血 #b1 ，且费用 - #b%d 。"
+      "获得 #y「往生堂秘传枪法」 时，摸 #b%d 张牌，令之获得燃血1，且费用- #b%d 。"
     ]
   },
   "HuTaoMod:BBL": {

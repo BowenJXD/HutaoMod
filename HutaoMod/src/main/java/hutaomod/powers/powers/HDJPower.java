@@ -15,6 +15,7 @@ import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.PowerPower;
 import hutaomod.subscribers.PostCardMoveSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
+import hutaomod.utils.GeneralUtil;
 import hutaomod.utils.ModHelper;
 
 public class HDJPower extends PowerPower implements PostCardMoveSubscriber {
@@ -26,13 +27,14 @@ public class HDJPower extends PowerPower implements PostCardMoveSubscriber {
     }
 
     @Override
+    public void updateDescription() {
+        description = GeneralUtil.tryFormat(DESCRIPTIONS[0], amount, amount);
+    }
+
+    @Override
     public void onInitialApplication() {
         super.onInitialApplication();
         SubscriptionManager.subscribe(this);
-        for (ModHelper.FindResult result : ModHelper.findCards(c -> c instanceof HutaoA)) {
-            HutaoA hutaoA = (HutaoA) result.card;
-            hutaoA.changeToBloodCost(amount);
-        }
     }
 
     @Override
@@ -44,11 +46,9 @@ public class HDJPower extends PowerPower implements PostCardMoveSubscriber {
     @Override
     public void postCardMove(CardGroup group, AbstractCard card, boolean in) {
         if (SubscriptionManager.checkSubscriber(this) 
-                && card instanceof HutaoA) {
-            if (card.cost > 0) {
-                HutaoA hutaoA = (HutaoA) card;
-                hutaoA.changeToBloodCost(amount);
-            }
+                && card instanceof HutaoA 
+                && group.type == CardGroup.CardGroupType.HAND 
+                && in) {
             addToBot(new DrawCardAction(1));
         }
     }

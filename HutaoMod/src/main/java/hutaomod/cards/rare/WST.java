@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.powers.powers.WSTPower;
-import hutaomod.powers.powers.WWJSPower;
 
 public class WST extends HuTaoCard {
     public static final String ID = WST.class.getSimpleName();

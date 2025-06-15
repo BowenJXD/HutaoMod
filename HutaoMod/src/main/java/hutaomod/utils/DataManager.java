@@ -142,8 +142,6 @@ public class DataManager {
             Map<String, String> replacements = new HashMap<>();
             replacements.put("阴牌", " [yinIcon] 牌");
             replacements.put("阳牌", " [yangIcon] 牌");
-            replacements.put("【血梅香】", " [bbIcon] ");
-            replacements.put("【死气】", " [siIcon] ");
             replacements.put(" D ", " !D! ");
             replacements.put(" B ", " !B! ");
             replacements.put(" M ", " !M! ");
@@ -168,14 +166,19 @@ public class DataManager {
             replacements.put("虚无。", " 虚无 。");
             replacements.put("固有。", " 固有 。");
             replacements.put("保留。", " 保留 。");
-            replacements.put("墓地。", " stslib:墓地 。");
+            replacements.put("墓地", " stslib:墓地 ");
+            replacements.put("回馈", " stslib:回馈 ");
             replacements.put("蝶引：", " hutaomod:蝶引 ：");
+            replacements.put("葬送", " hutaomod:葬送 ");
+            replacements.put("通灵", " hutaomod:通灵 ");
 
             // 读取文件并替换文本
             replaceTextInFile(CARD_CSV_ZHS, replacements);
 
             replacements.clear();
             replacements.put("  ", " ");
+            replacements.put(" hutaomod:血梅香 ", " [bbIcon] ");
+            replacements.put(" hutaomod:死气 ", " [siIcon] ");
 
             replaceTextInFile(CARD_CSV_ZHS, replacements);
         }

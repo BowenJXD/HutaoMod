@@ -107,7 +107,6 @@ public abstract class HuTaoRelic extends CustomRelic {
         this.initializeTips();
     }
     
-    
     public void updateDescription(String newDescription){
         description = newDescription;
         tips.clear();

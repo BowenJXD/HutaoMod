@@ -1,3 +1,4 @@
+/*
 package hutaomod.cards.common;
 
 import basemod.BaseMod;
@@ -69,3 +70,4 @@ public class SRWJ extends HuTaoCard implements OnPlayerDamagedSubscriber, SpawnM
         return i;
     }
 }
+*/

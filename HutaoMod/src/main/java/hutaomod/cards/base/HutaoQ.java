@@ -66,9 +66,7 @@ public class HutaoQ extends HuTaoCard {
         addToBot(new TalkAction(true, cardStrings.EXTENDED_DESCRIPTION[index], 2.0F, 3.0F));
         addToBot(new VFXAction(new BorderFlashEffect(Color.RED)));
         
-        int multiplier = 1;
-        if (CacheManager.getBool(CacheManager.Key.HALF_HP) && specialUpgrade) multiplier *= 2;
-        multiplier *= (int) Math.pow(2, yyTime);
+        int multiplier = (int) Math.pow(2, yyTime);
         addToBot(new HealAction(p, p, (magicNumber + si) * multiplier));
         AtomicBoolean triggered = new AtomicBoolean(false);
         addToBot(new CardDamageAllAction(this, (damage + si) * multiplier, AbstractGameAction.AttackEffect.FIRE).setCallback(ci -> {
@@ -88,6 +86,24 @@ public class HutaoQ extends HuTaoCard {
             for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
                 addToBot(new ApplyPowerAction(mon, p, new BloodBlossomPower(mon, p, multiplier)));
             }
+        }
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+        if (CacheManager.getBool(CacheManager.Key.HALF_HP)) {
+            damage *= 2;
+            isDamageModified = true;
+        }
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        if (CacheManager.getBool(CacheManager.Key.HALF_HP) && specialUpgrade) {
+            magicNumber = baseMagicNumber * 2;
+            isMagicNumberModified = true;
         }
     }
 

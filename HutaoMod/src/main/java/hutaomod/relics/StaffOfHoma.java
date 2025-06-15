@@ -35,6 +35,7 @@ public class StaffOfHoma extends HuTaoRelic {
     public void atTurnStart() {
         super.atTurnStart();
         if (CacheManager.getBool(CacheManager.Key.HALF_HP)) {
+            flash();
             addToBot(new GainEnergyAction(1));
         }
     }

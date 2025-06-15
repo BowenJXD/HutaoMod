@@ -21,16 +21,16 @@ public class PlumBranch extends HuTaoRelic implements CheckYinYangSubscriber {
     @Override
     public void atTurnStart() {
         super.atTurnStart();
-        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-        }
     }
 
     @Override
     public int checkYinYang(HuTaoCard card, int yyTime, boolean onUse) {
         if (SubscriptionManager.checkSubscriber(this) && onUse && card.hasTag(CustomEnum.YIN_YANG)) {
             AbstractMonster m = ModHelper.betterGetRandomMonster();
-            if (m != null)
+            if (m != null) {
+                flash();
                 addToBot(new ApplyPowerAction(m, AbstractDungeon.player, new BloodBlossomPower(m, AbstractDungeon.player, yyTime)));
+            }
         }
         return yyTime;
     }

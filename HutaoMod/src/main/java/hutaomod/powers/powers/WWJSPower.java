@@ -1,14 +1,10 @@
+/*
 package hutaomod.powers.powers;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.PowerPower;
@@ -48,3 +44,4 @@ public class WWJSPower extends PowerPower implements NonStackablePower {
         updateDescription();
     }
 }
+*/

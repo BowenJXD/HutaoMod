@@ -35,14 +35,14 @@ public class ButterflyEffect extends AbstractGameEffect {
         }
     };
 
-    public ButterflyEffect(float x, float y, float duration, float scale, Color color, float rotation) {
+    public ButterflyEffect(float x, float y, float duration, float scale, Color color, float rotation, boolean renderBehind) {
         this.startingDuration = duration;
         this.duration = duration;
         this.scale = scale;
         this.color = color.cpy();
         this.color.a = 0.5f;
         this.rotation = rotation;
-        this.renderBehind = MathUtils.randomBoolean();
+        this.renderBehind = renderBehind;
         this.x = this.startX = x;
         this.y = this.startY = y;
         this.speed = 20;

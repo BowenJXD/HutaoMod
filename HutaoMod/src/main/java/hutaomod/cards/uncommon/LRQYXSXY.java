@@ -25,14 +25,14 @@ public class LRQYXSXY extends HuTaoCard {
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new BloodBurnAction(1));
+        addToBot(new BloodBurnAction(magicNumber));
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, magicNumber)));
         if (yyTime > 0) {
             List<AbstractCard> cards = GeneralUtil.getRandomElements(p.hand.group, AbstractDungeon.cardRandomRng, yyTime, c -> {
                 return c.hasTag(CustomEnum.YIN_YANG) && c.costForTurn > 0 && c != this;
             });
             for (AbstractCard card : cards) {
-                addToBot(new ReduceCostForTurnAction(card, 1));
+                addToBot(new ReduceCostForTurnAction(card, upgraded ? magicNumber : 1));
             }
         }
     }

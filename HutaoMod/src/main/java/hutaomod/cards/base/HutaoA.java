@@ -29,6 +29,11 @@ public class HutaoA extends HuTaoCard {
         tags.add(CardTags.STARTER_STRIKE);
     }
     
+    public HutaoA(boolean upgraded) {
+        this();
+        if (upgraded) upgrade();
+    }
+    
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         if (bloodCost) addToBot(new BloodBurnAction(1));

@@ -23,6 +23,6 @@ public class DDYS extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new GainBlockAction(p, p, block));
-        addToBot(new MakeTempCardInDrawPileAction(new HutaoA(), magicNumber, true, true));
+        addToBot(new MakeTempCardInDrawPileAction(new HutaoA(upgraded), magicNumber, true, true));
     }
 }

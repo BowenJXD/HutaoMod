@@ -17,8 +17,8 @@ public class HTZYGYLG extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new BloodBurnAction(si));
-        int diff = 6 - energyOnUse;
-        int amt = Math.min(si + magicNumber, diff);
+        int diff = magicNumber - energyOnUse;
+        int amt = Math.min(si, diff);
         if (amt > 0) addToBot(new GainEnergyAction(amt));
     }
 }

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.combat.AdrenalineEffect;
@@ -30,6 +31,7 @@ public class QIQI extends HuTaoCard implements OnPlayerDamagedSubscriber {
     
     public QIQI() {
         super(ID);
+        exhaust = true;
         GraveField.grave.set(this, true);
         BaseMod.subscribe(this);
     }
@@ -49,6 +51,7 @@ public class QIQI extends HuTaoCard implements OnPlayerDamagedSubscriber {
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
+        addToBot(new ObtainPotionAction(PotionHelper.getRandomPotion()));
     }
 
     @Override

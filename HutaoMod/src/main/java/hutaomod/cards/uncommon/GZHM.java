@@ -20,6 +20,7 @@ public class GZHM extends HuTaoCard {
 
     public GZHM() {
         super(ID);
+        isInnate = true;
         exhaust = true;
     }
 
@@ -36,6 +37,7 @@ public class GZHM extends HuTaoCard {
         } else {
             AbstractCard card = GeneralUtil.getRandomElement(AbstractDungeon.player.drawPile.group, AbstractDungeon.cardRandomRng, c -> c.type == CardType.POWER);
             if (card != null) {
+                AbstractDungeon.player.drawPile.removeCard(card);
                 addToBot(new NewQueueCardAction(card, true));
             }
         }

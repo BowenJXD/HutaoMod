@@ -37,7 +37,7 @@ public class TSSC extends HuTaoCard {
                         addToBot(new ReduceCostForTurnAction(r.card, 1));
                     });
         } else if (upgraded) {
-            addToBot(new MakeTempCardInHandAction(new HutaoA()));
+            addToBot(new MakeTempCardInHandAction(new HutaoA(true)));
         }
     }
 

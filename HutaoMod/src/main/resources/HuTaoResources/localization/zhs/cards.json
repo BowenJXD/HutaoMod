@@ -13,10 +13,10 @@
   },
   "HuTaoMod:Yes": {
     "NAME": "接受",
-    "DESCRIPTION": "放弃挣扎，接受命定的死亡。"
+    "DESCRIPTION": "放弃挣扎，接受 NL *命定的死亡 。"
   },
   "HuTaoMod:No": {
     "NAME": "拒绝",
-    "DESCRIPTION": "通过规则之外的力量，找寻救赎的可能（重新开始战斗）。"
+    "DESCRIPTION": "通过规则之外的力量，找寻救赎的可能 NL *（重新开始战斗） 。"
   }
 }

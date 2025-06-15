@@ -1,19 +1,12 @@
-/*
 package hutaomod.cards.common;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import hutaomod.actions.BloodBurnAction;
-import hutaomod.actions.CardDamageAction;
-import hutaomod.actions.ScrayAction;
 import hutaomod.cards.HuTaoCard;
-import hutaomod.modcore.CustomEnum;
-import hutaomod.utils.ModHelper;
+import hutaomod.cards.base.HutaoA;
 
 public class SYSS extends HuTaoCard {
     public static final String ID = SYSS.class.getSimpleName();
@@ -24,8 +17,8 @@ public class SYSS extends HuTaoCard {
     
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new BloodBurnAction(1));
-        addToBot(new GainBlockAction(p, p, block + si));
+        addToBot(new BloodBurnAction(2));
+        addToBot(new GainEnergyAction(magicNumber));
+        addToBot(new MakeTempCardInDrawPileAction(new HutaoA(upgraded), 1, true, true));
     }
 }
-*/

@@ -27,7 +27,7 @@ public class SiPower extends DebuffPower {
     public SiPower(AbstractCreature owner, int amount) {
         super(POWER_ID, owner, amount);
         updateDescription();
-        spawner = new ButterflySpawner(owner.hb);
+        spawner = new ButterflySpawner(owner.hb, false);
         priority = 1;
     }
 

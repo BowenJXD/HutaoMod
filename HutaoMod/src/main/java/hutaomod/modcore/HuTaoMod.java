@@ -4,9 +4,7 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.abstracts.CustomRelic;
 import basemod.abstracts.CustomUnlockBundle;
-import basemod.helpers.RelicType;
 import basemod.interfaces.*;
-import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.DynamicTextBlocks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,12 +12,9 @@ import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import hutaomod.cards.HuTaoCard;
-import hutaomod.cards.common.SRWJ;
 import hutaomod.cards.rare.LBHXWZD;
+import hutaomod.cards.rare.ZSNG;
 import hutaomod.cards.rare.TDWX;
 import hutaomod.cards.uncommon.*;
 import hutaomod.characters.HuTao;
@@ -36,7 +31,7 @@ import java.nio.charset.StandardCharsets;
 public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber, EditKeywordsSubscriber, AddAudioSubscriber, SetUnlocksSubscriber, PostInitializeSubscriber, StartGameSubscriber {
     public static String MOD_NAME = "HuTaoMod";
 
-    public static final Color HUTAO_RED = new Color(-13361921);
+    public static final Color HUTAO_RED = Color.CORAL.cpy();
 
     // 人物选择界面按钮的图片
     private static final String MY_CHARACTER_BUTTON = "HuTaoResources/img/char/Character_Button.png";
@@ -179,9 +174,9 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
 
     @Override
     public void receiveSetUnlocks() {
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(WWJS.ID), makeID(LBHXWZD.ID), makeID(WSY.ID)), HuTao.PlayerColorEnum.HUTAO, 1);
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(SRWJ.ID), makeID(ZJXLTS.ID), makeID(QIQI.ID)), HuTao.PlayerColorEnum.HUTAO, 2);
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(MYWC.ID), makeID(SLBS.ID), makeID(TDWX.ID)), HuTao.PlayerColorEnum.HUTAO, 3);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(ZSNG.ID), makeID(LBHXWZD.ID), makeID(WSY.ID)), HuTao.PlayerColorEnum.HUTAO, 0);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(YYYX.ID), makeID(ZJXLTS.ID), makeID(QIQI.ID)), HuTao.PlayerColorEnum.HUTAO, 1);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(MYWC.ID), makeID(SLBS.ID), makeID(TDWX.ID)), HuTao.PlayerColorEnum.HUTAO, 2);
     }
 
     @Override

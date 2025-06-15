@@ -5,13 +5,12 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.PowerPower;
-import hutaomod.utils.CacheManager;
 import hutaomod.utils.GeneralUtil;
 
-public class LYGPower extends PowerPower {
-    public static final String POWER_ID = HuTaoMod.makeID(LYGPower.class.getSimpleName());
+public class ZSNGPower extends PowerPower {
+    public static final String POWER_ID = HuTaoMod.makeID(ZSNGPower.class.getSimpleName());
     
-    public LYGPower(int amount) {
+    public ZSNGPower(int amount) {
         super(POWER_ID, amount);
         this.updateDescription();
     }
