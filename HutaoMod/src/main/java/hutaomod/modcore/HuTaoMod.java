@@ -14,8 +14,8 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.*;
 import hutaomod.cards.rare.LBHXWZD;
-import hutaomod.cards.rare.ZSNG;
 import hutaomod.cards.rare.TDWX;
+import hutaomod.cards.rare.ZSNG;
 import hutaomod.cards.uncommon.*;
 import hutaomod.characters.HuTao;
 import hutaomod.external.RestartRunHelper;
@@ -31,7 +31,7 @@ import java.nio.charset.StandardCharsets;
 public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscriber, EditCharactersSubscriber, EditRelicsSubscriber, EditKeywordsSubscriber, AddAudioSubscriber, SetUnlocksSubscriber, PostInitializeSubscriber, StartGameSubscriber {
     public static String MOD_NAME = "HuTaoMod";
 
-    public static final Color HUTAO_RED = Color.CORAL.cpy();
+    public static final Color HUTAO_CORAL = Color.CORAL.cpy();
 
     // 人物选择界面按钮的图片
     private static final String MY_CHARACTER_BUTTON = "HuTaoResources/img/char/Character_Button.png";
@@ -62,7 +62,7 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
 
     public HuTaoMod() {
         BaseMod.subscribe(this);
-        BaseMod.addColor(HuTao.PlayerColorEnum.HUTAO_RED, HUTAO_RED, BG_ATTACK_512, BG_SKILL_512, BG_POWER_512, ENERGY_ORB, BG_ATTACK_1024, BG_SKILL_1024, BG_POWER_1024, BIG_ORB, SMALL_ORB);
+        BaseMod.addColor(HuTao.PlayerColorEnum.HUTAO_RED, HUTAO_CORAL, BG_ATTACK_512, BG_SKILL_512, BG_POWER_512, ENERGY_ORB, BG_ATTACK_1024, BG_SKILL_1024, BG_POWER_1024, BIG_ORB, SMALL_ORB);
         updateLanguage();
     }
 

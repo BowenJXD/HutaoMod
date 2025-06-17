@@ -3,13 +3,13 @@
     "NAMES": [
       "阴牌","阴"
     ],
-    "DESCRIPTION": "打出阴牌后，获得1层 [SiIcon] 。 NL #yY 为 [SiIcon] 层数。"
+    "DESCRIPTION": "打出阴牌后，获得1层 [siIcon] 。 NL #yY 为 [siIcon] 层数。"
   },
   {
     "NAMES": [
       "阳牌","阳"
     ],
-    "DESCRIPTION": "打出阳牌后，消耗1层 [SiIcon] 。 NL #yY 为 [SiIcon] 层数。"
+    "DESCRIPTION": "打出阳牌后，消耗1层 [siIcon] 。 NL #yY 为 [siIcon] 层数。"
   },
   {
     "NAMES": [
@@ -21,25 +21,25 @@
     "NAMES": [
       "阴阳牌"
     ],
-    "DESCRIPTION": "牌的一种，打出后，若 [SiIcon] 为0，获得1层，否则消耗1层。"
+    "DESCRIPTION": "牌的一种，打出后，若 [siIcon] 为0，获得1层，否则消耗1层。"
   },
   {
     "NAMES": [
       "阴盛阳虚"
     ],
-    "DESCRIPTION": "其中 [YinIcon] 牌数大于 [YangIcon] 牌数，包括此牌。"
+    "DESCRIPTION": "其中 [yinIcon] 牌数大于 [yangIcon] 牌数，包括此牌。"
   },
   {
     "NAMES": [
       "阳盛阴虚"
     ],
-    "DESCRIPTION": "其中 [YangIcon] 牌数大于 [YinIcon] 牌数，包括此牌。"
+    "DESCRIPTION": "其中 [yangIcon] 牌数大于 [yinIcon] 牌数，包括此牌。"
   },
   {
     "NAMES": [
       "阴阳平衡"
     ],
-    "DESCRIPTION": "其中 [YinIcon] 牌数等于 [YangIcon] 牌数，包括此牌。"
+    "DESCRIPTION": "其中 [yinIcon] 牌数等于 [yangIcon] 牌数，包括此牌。"
   },
   {
     "NAMES": [
@@ -64,7 +64,7 @@
       "死气",
       "濒死"
     ],
-    "DESCRIPTION": " [SiIcon] 死气的层数包含“1”时，视为 #r濒死 状态。回合开始时，若处于 #r濒死 ，则死亡，否则受到Y点伤害，并衰减1层。"
+    "DESCRIPTION": " [siIcon] 死气的层数包含“1”时，视为 #r濒死 状态。回合开始时，若处于 #r濒死 ，则死亡，否则受到Y点伤害，并衰减1层。"
   },
   {
     "NAMES": [
@@ -102,6 +102,18 @@
       "蝶引"
     ],
     "DESCRIPTION": "进入或离开弃牌堆时触发的效果。"
+  },
+  {
+    "NAMES": [
+      "通用蝶引效果"
+    ],
+    "DESCRIPTION": "#r攻击牌： 造成 #y3 点固定伤害。 NL #g技能牌： 获得 #y2 点格挡。 NL #b其他牌： 获得摸牌堆 #y1 张牌。"
+  },
+  {
+    "NAMES": [
+      "秘传牌", "秘传"
+    ],
+    "DESCRIPTION": "卡组里只能有一张秘传牌。 NL 拥有秘传牌后，将不会遇到其他秘传牌。 NL 战斗开始时，获得秘传牌。"
   },
   {
     "NAMES": [

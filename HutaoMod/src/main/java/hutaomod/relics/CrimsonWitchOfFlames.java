@@ -15,27 +15,15 @@ public class CrimsonWitchOfFlames extends HuTaoRelic {
     public static final String ID = CrimsonWitchOfFlames.class.getSimpleName();
     
     public CrimsonWitchOfFlames() {
-        super(ID, RelicTier.UNCOMMON);
+        super(ID, RelicTier.RARE);
     }
 
     @Override
-    public void atBattleStart() {
-        super.atBattleStart();
-        GAMManager.addParallelAction(ID, action -> {
-            if (action instanceof ClairvoirAction) {
-                AbstractMonster monster = ModHelper.betterGetRandomMonster();
-                if (monster != null) {
-                    flash();
-                    addToBot(new ApplyPowerAction(monster, AbstractDungeon.player, new BloodBlossomPower(monster, AbstractDungeon.player, 1)));
-                }
-            }
-            return !SubscriptionManager.checkSubscriber(this);
-        });
-    }
-
-    @Override
-    public void onVictory() {
-        super.onVictory();
-        GAMManager.removeParallelAction(ID);
+    public void atTurnStart() {
+        super.atTurnStart();
+        flash();
+        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+            addToBot(new ApplyPowerAction(monster, AbstractDungeon.player, new BloodBlossomPower(monster, AbstractDungeon.player, 1)));
+        }
     }
 }

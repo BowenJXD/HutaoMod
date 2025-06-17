@@ -9,10 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.esotericsoftware.spine.AnimationState;
-import com.esotericsoftware.spine.BlendMode;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -201,7 +199,7 @@ public class HuTao extends CustomPlayer {
     // 卡牌轨迹颜色
     @Override
     public Color getCardTrailColor() {
-        return HuTaoMod.HUTAO_RED;
+        return HuTaoMod.HUTAO_CORAL;
     }
 
     // 高进阶带来的生命值损失
@@ -261,7 +259,7 @@ public class HuTao extends CustomPlayer {
     // 打心脏的颜色，不是很明显
     @Override
     public Color getSlashAttackColor() {
-        return HuTaoMod.HUTAO_RED;
+        return HuTaoMod.HUTAO_CORAL;
     }
 
     // 吸血鬼事件文本，主要是他（索引为0）和她（索引为1）的区别（机器人另外）
@@ -273,7 +271,7 @@ public class HuTao extends CustomPlayer {
     // 卡牌选择界面选择该牌的颜色
     @Override
     public Color getCardRenderColor() {
-        return HuTaoMod.HUTAO_RED;
+        return HuTaoMod.HUTAO_CORAL;
     }
 
     // 第三章面对心脏造成伤害时的特效

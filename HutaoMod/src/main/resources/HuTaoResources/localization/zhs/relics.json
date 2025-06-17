@@ -38,14 +38,14 @@
     "NAME": "乾坤泰卦帽",
     "FLAVOR": "帽子的材质偏硬，正面饰有往生堂的徽记。",
     "DESCRIPTIONS": [
-      "回合结束时， #yhutaomod:通灵 Y。"
+      "在每回合开始时获得 [E] ，并将一张 #y「往生堂秘传枪法」 加入摸牌堆。"
     ]
   },
   "HuTaoMod:PlumBranch": {
     "NAME": "梅枝",
     "FLAVOR": "忽然一夜梅香起，散作乾坤万里春。",
     "DESCRIPTIONS": [
-      "触发牌的 #yhutaomod:阴阳 效果时，对随机敌人施加1层 [bbIcon] 。"
+      "受到 #r致命伤害 时，若不为攻击伤害，则防止之，并获得 [E] 。"
     ]
   },
   "HuTaoMod:GhostlyMarch": {
@@ -59,7 +59,7 @@
     "NAME": "追忆之注连",
     "FLAVOR": "精美的水引御守，据说能够封存实现愿望的力量。",
     "DESCRIPTIONS": [
-      "消耗生命后，回合结束时 #yhutaomod:通灵 1。"
+      "通过摸牌获得初始打击牌时，摸1张牌。"
     ]
   },
   "HuTaoMod:GildedDreams": {
@@ -73,7 +73,7 @@
     "NAME": "炽烈的炎之魔女",
     "FLAVOR": "曾经梦想烧尽世间魔物的魔女触碰过的花朵。无名的火舌温暖地舔舐触碰它的人。",
     "DESCRIPTIONS": [
-      "#yhutaomod:通灵 后，对随机敌人施加1层 [bbIcon] 。"
+      "回合开始时，对所有敌人施加1层 [bbIcon] 。"
     ]
   },
   "HuTaoMod:MarechausseeHunter": {
@@ -87,7 +87,7 @@
     "NAME": "万民堂水煮鱼",
     "FLAVOR": "吃了香菱做的水煮鱼，腰也不酸了，腿也不疼了！",
     "DESCRIPTIONS": [
-      "你于休息处 #g休息 不会消耗行动。"
+      "你于休息处可以额外行动一次。"
     ]
   },
   "HuTaoMod:StaffOfTheScarletSands": {

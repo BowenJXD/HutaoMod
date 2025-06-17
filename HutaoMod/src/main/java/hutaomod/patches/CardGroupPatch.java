@@ -1,5 +1,7 @@
 package hutaomod.patches;
 
+import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
@@ -8,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.modifiers.HuTaoCardModifier;
 import hutaomod.subscribers.SubscriptionManager;
 
 import java.util.ArrayList;
@@ -21,7 +24,7 @@ public class CardGroupPatch {
     public static class AddPatch {
         public static void Postfix(CardGroup __inst, AbstractCard c) {
             SubscriptionManager.getInstance().triggerPostCardMove(__inst, c, true);
-            checkDieying(__inst, c, true);
+            triggerMove(__inst, c, true);
         }
     }
     
@@ -30,7 +33,7 @@ public class CardGroupPatch {
     public static class RemovePatch {
         public static void Postfix(CardGroup __inst, AbstractCard c) {
             SubscriptionManager.getInstance().triggerPostCardMove(__inst, c, false);
-            checkDieying(__inst, c, false);
+            triggerMove(__inst, c, false);
         }
     }
     
@@ -45,7 +48,7 @@ public class CardGroupPatch {
         public static void Postfix(CardGroup __inst) {
             if (cardCache != null) {
                 SubscriptionManager.getInstance().triggerPostCardMove(__inst, cardCache, false);
-                checkDieying(__inst, cardCache, false);
+                triggerMove(__inst, cardCache, false);
                 cardCache = null;
             }
         }
@@ -62,7 +65,7 @@ public class CardGroupPatch {
         public static void Postfix(CardGroup __inst, String targetID) {
             if (cardCache != null) {
                 SubscriptionManager.getInstance().triggerPostCardMove(__inst, cardCache, false);
-                checkDieying(__inst, cardCache, false);
+                triggerMove(__inst, cardCache, false);
                 cardCache = null;
             }
         }
@@ -85,17 +88,22 @@ public class CardGroupPatch {
                 CardGroup group = AbstractDungeon.player.discardPile;
                 for (AbstractCard card : groupCache) {
                     SubscriptionManager.getInstance().triggerPostCardMove(group, card, false);
-                    checkDieying(group, card, false);
+                    triggerMove(group, card, false);
                 }
                 groupCache = null;
             }
         }
     }
     
-    public static void checkDieying(CardGroup __inst, AbstractCard card, boolean in) {
+    public static void triggerMove(CardGroup __inst, AbstractCard card, boolean in) {
         if (card instanceof HuTaoCard) {
             HuTaoCard huTaoCard = (HuTaoCard) card;
             huTaoCard.onMove(__inst, in);
+        }
+        for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+            if (mod instanceof HuTaoCardModifier) {
+                ((HuTaoCardModifier) mod).onMove(card, __inst, in);
+            }
         }
     }
 }

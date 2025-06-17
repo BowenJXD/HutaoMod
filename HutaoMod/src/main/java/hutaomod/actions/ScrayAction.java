@@ -1,6 +1,5 @@
 package hutaomod.actions;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
@@ -22,6 +21,9 @@ import java.util.function.Predicate;
  */
 public class ScrayAction extends AbstractGameAction {
     Predicate<AbstractCard> filter;
+    /**
+     * Called after discarding cards.
+     */
     Consumer<List<AbstractCard>> callback;
     public static final UIStrings uiStrings;
     public static final String[] TEXT;

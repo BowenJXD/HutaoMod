@@ -8,14 +8,16 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.ModHelper;
 
 public class PlayCardAction extends AbstractGameAction {
     private AbstractCard card;
     
     AbstractCreature target;
-    
+
+    /**
+     * If false, the card would need energy as cost.
+     */
     boolean autoPlay;
 
     public PlayCardAction(AbstractCard card, AbstractCreature target, boolean autoPlay) {
@@ -42,7 +44,7 @@ public class PlayCardAction extends AbstractGameAction {
                 return;
             }
             
-            ModHelper.findCards((c) -> c.uuid.equals(card.uuid)).forEach((r) -> r.group.removeCard(r.card));
+            ModHelper.findCards((c) -> c == card).forEach((r) -> r.group.removeCard(r.card));
             AbstractDungeon.getCurrRoom().souls.remove(card); // ?
             AbstractDungeon.player.limbo.group.add(card);
             card.current_y = -200.0F * Settings.scale;

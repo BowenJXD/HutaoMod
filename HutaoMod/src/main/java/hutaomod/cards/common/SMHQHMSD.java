@@ -5,15 +5,15 @@ import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import hutaomod.actions.BloodBurnAction;
+import com.megacrit.cardcrawl.vfx.combat.HemokinesisEffect;
 import hutaomod.actions.CardDamageAction;
-import hutaomod.actions.ClairvoirAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.utils.ModHelper;
 
@@ -40,5 +40,6 @@ public class SMHQHMSD extends HuTaoCard {
         addToTop(new VFXAction(new ShowCardBrieflyEffect(makeStatEquivalentCopy(),
                 Settings.WIDTH * MathUtils.random(0.2f, 0.8f),
                 Settings.HEIGHT * MathUtils.random(0.3f, 0.7f))));
+        addToTop(new VFXAction(new HemokinesisEffect(CardGroup.DISCARD_PILE_X, CardGroup.DISCARD_PILE_Y, m.hb.cX, m.hb.cY)));
     }
 }

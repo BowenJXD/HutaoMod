@@ -1,22 +1,14 @@
 package hutaomod.powers.debuffs;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
-import com.megacrit.cardcrawl.vfx.stance.WrathParticleEffect;
 import hutaomod.effects.ButterflySpawner;
-import hutaomod.effects.CustomAuraEffect;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.DebuffPower;
-import hutaomod.relics.PapilioCharontis;
 import hutaomod.utils.GeneralUtil;
 
 public class SiPower extends DebuffPower {
@@ -48,7 +40,7 @@ public class SiPower extends DebuffPower {
         super.onSpecificTrigger();
         addToBot(new VFXAction(new OfferingEffect()));
         if (isDying(amount)) {
-            addToBot(new LoseHPAction(owner, owner, 99999));
+            addToBot(new LoseHPAction(owner, owner, owner.currentHealth + TempHPField.tempHp.get(owner)));
         } else {
             addToBot(new LoseHPAction(owner, owner, amount));
             addToBot(new GainBlockAction(owner, owner, amount));

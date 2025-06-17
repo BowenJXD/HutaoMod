@@ -1,14 +1,16 @@
 package hutaomod.powers.powers;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.ReduceCostForTurnAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.PowerPower;
-import hutaomod.powers.debuffs.SiPower;
 import hutaomod.subscribers.PreCachedIntGetSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.CacheManager;
@@ -37,13 +39,18 @@ public class WSTPower extends PowerPower implements PreCachedIntGetSubscriber {
     @Override
     public void onInitialApplication() {
         super.onInitialApplication();
-        SubscriptionManager.subscribe(this);
+        SubscriptionManager.subscribe(this, true);
     }
 
     @Override
     public void onRemove() {
         super.onRemove();
         SubscriptionManager.unsubscribe(this);
+    }
+
+    public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
+        super.renderAmount(sb, x, y, c);
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount2), x, y + 15.0F * Settings.scale, this.fontScale, c);
     }
 
     @Override

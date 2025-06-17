@@ -18,5 +18,197 @@
   "HuTaoMod:No": {
     "NAME": "拒绝",
     "DESCRIPTION": "通过规则之外的力量，找寻救赎的可能 NL *（重新开始战斗） 。"
+  },
+  "HuTaoMod:DieyingModifier": {
+    "EXTENDED_DESCRIPTION": [
+      " NL hutaomod:蝶引 ：对随机敌人造成%d点伤害。",
+      " NL hutaomod:蝶引 ：获得%d点格挡。",
+      " NL hutaomod:蝶引 ：随机获得摸牌堆1张牌。"
+    ]
+  },
+  "HuTaoMod:DYBBModifier": {
+    "EXTENDED_DESCRIPTION": [
+      " NL hutaomod:蝶引 ：对随机敌人施加%d层 [bbIcon] 。"
+    ]
+  },
+  "HuTaoMod:WST": {
+    "FLAVOR": "art: 暗猫的祝福 NL bv: BV1of4y1N77G"
+  },
+  "HuTaoMod:HDJ": {
+    "FLAVOR": "art: 本子狸 NL pid: 127710630"
+  },
+  "HuTaoMod:XZZH": {
+    "FLAVOR": "art: 酒ォ NL pid: 119706061"
+  },
+  "HuTaoMod:ZSNG": {
+    "FLAVOR": "art: 酒ォ NL pid: 118751889"
+  },
+  "HuTaoMod:RC": {
+    "FLAVOR": "art: 小星想叭叭 NL bv: BV1PQwHevEkX"
+  },
+  "HuTaoMod:XXPAHDYSR": {
+    "FLAVOR": "art: 水染moon NL pid: 88070866"
+  },
+  "HuTaoMod:DYZS": {
+    "FLAVOR": "art: 弐色 NL pid: 94263631"
+  },
+  "HuTaoMod:YMXC": {
+    "FLAVOR": "art: void NL pid: 94251198"
+  },
+  "HuTaoMod:ZRZS": {
+    "FLAVOR": "art: NOKO NL pid: 88441640"
+  },
+  "HuTaoMod:WNZL": {
+    "FLAVOR": "art: ほまけ NL pid: 94318712"
+  },
+  "HuTaoMod:YYYX": {
+    "FLAVOR": "art: -Ansa- NL bv: BV1qb4y1o7jK"
+  },
+  "HuTaoMod:MYWC": {
+    "FLAVOR": "art: -Ansa- NL bv: BV1qb4y1o7jK"
+  },
+  "HuTaoMod:SLBS": {
+    "FLAVOR": "art: -Ansa- NL bv: BV1qb4y1o7jK"
+  },
+  "HuTaoMod:TDWX": {
+    "FLAVOR": "art: -Ansa- NL bv: BV1qb4y1o7jK"
+  },
+  "HuTaoMod:SYSK": {
+    "FLAVOR": "art: void NL pid: 94588419"
+  },
+  "HuTaoMod:DRMJ": {
+    "FLAVOR": "art: 艾尔十六 NL bv: BV1g5411K7HA"
+  },
+  "HuTaoMod:BAHX": {
+    "FLAVOR": "art: 漣 NL pid: 112358779"
+  },
+  "HuTaoMod:RHZD": {
+    "FLAVOR": "art: 棲夏 NL pid: 106100690"
+  },
+  "HuTaoMod:YHCS": {
+    "FLAVOR": "art: lupinu5 NL pid: 104780292"
+  },
+  "HuTaoMod:TDJCMP": {
+    "FLAVOR": "art: newflame NL pid: 92767699"
+  },
+  "HuTaoMod:TLSL": {
+    "FLAVOR": "art: 菜菜Daylily NL pid: 123014956"
+  },
+  "HuTaoMod:BADW": {
+    "FLAVOR": "art: 棲夏 NL pid: 105955915"
+  },
+  "HuTaoMod:GDQ": {
+    "FLAVOR": "art: SushiSpin NL pid: 117038427"
+  },
+  "HuTaoMod:GZHM": {
+    "FLAVOR": "art: void NL pid: 99737800"
+  },
+  "HuTaoMod:HBC": {
+    "FLAVOR": "art: Luby Lili NL pid: 128535030"
+  },
+  "HuTaoMod:WNSZ": {
+    "FLAVOR": "art: A.alice NL pid: 94024485"
+  },
+  "HuTaoMod:QIQI": {
+    "FLAVOR": "art: 使刀 NL pid: 94254591"
+  },
+  "HuTaoMod:LMSDYTCZFJ": {
+    "FLAVOR": "art: 棲夏 NL pid: 103885826"
+  },
+  "HuTaoMod:SRWJ": {
+    "FLAVOR": "art: SushiSpin NL pid: 117038427"
+  },
+  "HuTaoMod:ZJXLTS": {
+    "FLAVOR": "art: 鱼鹅BABA NL pid: 126825416"
+  },
+  "HuTaoMod:NCH": {
+    "FLAVOR": "art: Syouko_皎子菌 NL pid: 112261021"
+  },
+  "HuTaoMod:SYSS": {
+    "FLAVOR": "art: とーか NL pid: 127222869"
+  },
+  "HuTaoMod:KQZZ": {
+    "FLAVOR": "art: SushiKun NL pid: 97165783"
+  },
+  "HuTaoMod:WSTDSDCB": {
+    "FLAVOR": "art: りいちゅ NL pid: 100629138"
+  },
+  "HuTaoMod:LRQYXSXY": {
+    "FLAVOR": "art: 小星想叭叭 NL bv: BV1PQwHevEkX"
+  },
+  "HuTaoMod:QKDZ": {
+    "FLAVOR": "art: 小星想叭叭 NL bv: BV1PQwHevEkX"
+  },
+  "HuTaoMod:GYC": {
+    "FLAVOR": "art: 谏言 NL pid: 114575452"
+  },
+  "HuTaoMod:QKHQL": {
+    "FLAVOR": "art: ひづきみや NL pid: 91247194"
+  },
+  "HuTaoMod:SFZ": {
+    "FLAVOR": "art: Nyansan NL pid: 94201457"
+  },
+  "HuTaoMod:SRZT": {
+    "FLAVOR": "art: AL光 NL pid: 104735459"
+  },
+  "HuTaoMod:YQSN": {
+    "FLAVOR": "art: Hyacinthsora NL pid: 125484979"
+  },
+  "HuTaoMod:YNYY": {
+    "FLAVOR": "art: void NL pid: 109834735"
+  },
+  "HuTaoMod:CTKS": {
+    "FLAVOR": "art: 受兔AVAtra NL pid: 93778687"
+  },
+  "HuTaoMod:MZSH": {
+    "FLAVOR": "art: 祭-matsuri- NL pid: 126820185"
+  },
+  "HuTaoMod:ZCZX": {
+    "FLAVOR": "art: 冷蝉 NL pid: 105169263"
+  },
+  "HuTaoMod:DYLSQ": {
+    "FLAVOR": "art: 失败主义谋士 NL pid: 129158082"
+  },
+  "HuTaoMod:WYWS": {
+    "FLAVOR": "art: void NL pid: 94251198"
+  },
+  "HuTaoMod:SYAZ": {
+    "FLAVOR": "art: 棲夏 NL pid: 107555775"
+  },
+  "HuTaoMod:JRZS": {
+    "FLAVOR": "art: 麦粒太太 NL bv: BV1o3411g7BP"
+  },
+  "HuTaoMod:XJMX": {
+    "FLAVOR": "art: 月れき NL pid: 93955182"
+  },
+  "HuTaoMod:LBHXWZD": {
+    "FLAVOR": "art: void NL pid: 94743252"
+  },
+  "HuTaoMod:ZN": {
+    "FLAVOR": "art: Oxxio NL pid: 130166748"
+  },
+  "HuTaoMod:LZZF": {
+    "FLAVOR": "art: なぎゆすら NL pid: 127105565"
+  },
+  "HuTaoMod:YBSZQSZ": {
+    "FLAVOR": "art: 辰石 NL pid: 115554837"
+  },
+  "HuTaoMod:TSXJ": {
+    "FLAVOR": "art: 狗脸脸dogface NL pid: 97189441"
+  },
+  "HuTaoMod:TXXM": {
+    "FLAVOR": "art: MORI森 NL pid: 124107483"
+  },
+  "HuTaoMod:CXZM": {
+    "FLAVOR": "art: 小沐嘤 NL pid: 105217817"
+  },
+  "HuTaoMod:WYWK": {
+    "FLAVOR": "art: とーか NL pid: 127162165"
+  },
+  "HuTaoMod:QW": {
+    "FLAVOR": "art: 軒先 NL pid: 120384945"
+  },
+  "HuTaoMod:DXZTZEL": {
+    "FLAVOR": "art: 小星想叭叭 NL bv: BV1PQwHevEkX"
   }
 }

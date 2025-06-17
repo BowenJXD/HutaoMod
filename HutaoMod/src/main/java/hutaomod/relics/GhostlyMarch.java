@@ -19,7 +19,7 @@ public class GhostlyMarch extends HuTaoRelic {
         if (damageAmount >= AbstractDungeon.player.currentHealth && !usedUp) {
             flash();
             addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, 5));
-            setCounter(-2);
+            destroy();
             return 0;
         }
         return super.onLoseHpLast(damageAmount);

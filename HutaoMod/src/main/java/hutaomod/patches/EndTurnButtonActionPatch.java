@@ -3,9 +3,7 @@ package hutaomod.patches;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -37,10 +35,12 @@ public class EndTurnButtonActionPatch {
     }
 
     @SpirePatch(clz = EndTurnButton.class, method = "disable", paramtypez = boolean.class)
-    public static class NewQueueCardActionUpdatePatch {
+    public static class EndTurnButtonDisablePatch {
         public static SpireReturn<Void> Prefix(EndTurnButton __inst, boolean isEnemyTurn) {
             try {
-                if (checkMention() && isEnemyTurn && AbstractDungeon.getMonsters().monsters.stream().noneMatch(m -> m.hasPower(TimeWarpPower.POWER_ID))) {
+                if (checkMention() 
+                        && isEnemyTurn 
+                        && AbstractDungeon.getMonsters().monsters.stream().noneMatch(m -> m.hasPower(TimeWarpPower.POWER_ID) && m.getPower(TimeWarpPower.POWER_ID).amount == 0)) {
                     return SpireReturn.Return();
                 }
             } catch (Exception e) {}

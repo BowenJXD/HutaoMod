@@ -2,7 +2,6 @@ package hutaomod.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.megacrit.cardcrawl.core.Settings;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -166,6 +165,7 @@ public class DataManager {
             replacements.put("虚无。", " 虚无 。");
             replacements.put("固有。", " 固有 。");
             replacements.put("保留。", " 保留 。");
+            replacements.put("秘传。", " hutaomod:秘传 。 NL ");
             replacements.put("墓地", " stslib:墓地 ");
             replacements.put("回馈", " stslib:回馈 ");
             replacements.put("蝶引：", " hutaomod:蝶引 ：");
@@ -179,6 +179,7 @@ public class DataManager {
             replacements.put("  ", " ");
             replacements.put(" hutaomod:血梅香 ", " [bbIcon] ");
             replacements.put(" hutaomod:死气 ", " [siIcon] ");
+            replacements.put("通用 hutaomod:蝶引 效果", " hutaomod:通用蝶引效果 ");
 
             replaceTextInFile(CARD_CSV_ZHS, replacements);
         }

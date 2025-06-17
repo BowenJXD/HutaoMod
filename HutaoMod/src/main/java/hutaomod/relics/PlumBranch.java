@@ -1,17 +1,9 @@
 package hutaomod.relics;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import hutaomod.cards.HuTaoCard;
-import hutaomod.modcore.CustomEnum;
-import hutaomod.powers.debuffs.BloodBlossomPower;
-import hutaomod.subscribers.CheckYinYangSubscriber;
-import hutaomod.subscribers.SubscriptionManager;
-import hutaomod.utils.CacheManager;
-import hutaomod.utils.ModHelper;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 
-public class PlumBranch extends HuTaoRelic implements CheckYinYangSubscriber {
+public class PlumBranch extends HuTaoRelic {
     public static final String ID = PlumBranch.class.getSimpleName();
     
     public PlumBranch() {
@@ -19,19 +11,12 @@ public class PlumBranch extends HuTaoRelic implements CheckYinYangSubscriber {
     }
 
     @Override
-    public void atTurnStart() {
-        super.atTurnStart();
-    }
-
-    @Override
-    public int checkYinYang(HuTaoCard card, int yyTime, boolean onUse) {
-        if (SubscriptionManager.checkSubscriber(this) && onUse && card.hasTag(CustomEnum.YIN_YANG)) {
-            AbstractMonster m = ModHelper.betterGetRandomMonster();
-            if (m != null) {
-                flash();
-                addToBot(new ApplyPowerAction(m, AbstractDungeon.player, new BloodBlossomPower(m, AbstractDungeon.player, yyTime)));
-            }
+    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
+        if (info.type != DamageInfo.DamageType.NORMAL) {
+            flash();
+            addToBot(new GainEnergyAction(1));
+            return 0;
         }
-        return yyTime;
+        return super.onAttackedToChangeDamage(info, damageAmount);
     }
 }

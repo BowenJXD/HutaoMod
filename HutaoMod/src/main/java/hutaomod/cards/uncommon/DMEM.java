@@ -1,3 +1,4 @@
+/*
 package hutaomod.cards.uncommon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -36,3 +37,4 @@ public class DMEM extends HuTaoCard {
             addToBot(new ApplyPowerAction(p, p, new PlatedArmorPower(p, magicNumber * yyTime)));
     }
 }
+*/

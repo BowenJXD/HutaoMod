@@ -1,3 +1,4 @@
+/*
 package hutaomod.cards.common;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -31,3 +32,4 @@ public class WSTDSDCB extends HuTaoCard {
         }
     }
 }
+*/

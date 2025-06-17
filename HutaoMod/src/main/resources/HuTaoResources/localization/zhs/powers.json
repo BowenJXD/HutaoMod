@@ -97,5 +97,59 @@
     "DESCRIPTIONS": [
       "回合结束时，通灵 #b%d 。"
     ]
+  },
+  "HuTaoMod:GHSYXL": {
+    "NAME": "归火圣夜巡礼",
+    "DESCRIPTIONS": [
+      "回合结束时， #y通灵 Y。"
+    ]
+  },
+  "HuTaoMod:WJZH": {
+    "NAME": "万家灶火",
+    "DESCRIPTIONS": [
+      "触发牌的 #y阴阳 效果时，对随机敌人施加1层 [bbIcon] 。"
+    ]
+  },
+  "HuTaoMod:JRAZ": {
+    "NAME": "旧日鏖战",
+    "DESCRIPTIONS": [
+      "消耗生命后， #y葬送 等量牌。"
+    ]
+  },
+  "HuTaoMod:KZZRSMZS": {
+    "NAME": "抗争之日·碎梦之时",
+    "DESCRIPTIONS": [
+      "#r燃血 效果改为对全体目标（包括自身）施加等量 [bbIcon] 。你通过牌获得格挡后，令自身 [bbIcon] 衰减一次。"
+    ]
+  },
+  "HuTaoMod:JSTY": {
+    "NAME": "旧时庭园",
+    "DESCRIPTIONS": [
+      "打出牌进入 #r濒死状态 时，令之获得 #y通用蝶引效果 。"
+    ]
+  },
+  "HuTaoMod:PYMQ": {
+    "NAME": "磐岩盟契",
+    "DESCRIPTIONS": [
+      "少于Y层的 [bbIcon] 不会衰减。"
+    ]
+  },
+  "HuTaoMod:SMXG": {
+    "NAME": "赦免宣告",
+    "DESCRIPTIONS": [
+      "#y「往生堂秘传枪法」 改为 #y阴阳牌 ，且于打出时，若 #y阴阳 ，伤害翻倍。"
+    ]
+  },
+  "HuTaoMod:CDZS": {
+    "NAME": "裁定之时",
+    "DESCRIPTIONS": [
+      "#r燃血 后，计算下一张牌的Y值时，视为增加等量。"
+    ]
+  },
+  "HuTaoMod:ZYDXF": {
+    "NAME": "自由的新风",
+    "DESCRIPTIONS": [
+      "#y「往生堂秘传枪法」 获得「 #y蝶引 ：对随机敌人施加1层 [bbIcon] 」的效果。"
+    ]
   }
 }

@@ -1,7 +1,9 @@
 package hutaomod.relics;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import hutaomod.powers.buffs.EndTurnClairvoirPower;
@@ -15,11 +17,11 @@ public class ShimenawasReminiscence extends HuTaoRelic {
     }
 
     @Override
-    public int onAttacked(DamageInfo info, int damageAmount) {
-        if (info.type == DamageInfo.DamageType.HP_LOSS) {
+    public void onCardDraw(AbstractCard drawnCard) {
+        super.onCardDraw(drawnCard);
+        if (drawnCard.hasTag(AbstractCard.CardTags.STARTER_STRIKE)) {
             flash();
-            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new EndTurnClairvoirPower(AbstractDungeon.player, 1)));
+            addToBot(new DrawCardAction(1));
         }
-        return super.onAttacked(info, damageAmount);
     }
 }

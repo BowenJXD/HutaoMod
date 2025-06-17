@@ -14,7 +14,6 @@ import hutaomod.powers.HuTaoPower;
 import hutaomod.utils.CacheManager;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -29,9 +28,6 @@ public final class SubscriptionManager {
     List<CheckYinYangSubscriber> checkYinYangSubscribers = new ArrayList<>();
     List<PostCardMoveSubscriber> postCardMoveSubscribers = new ArrayList<>();
     List<PreCachedIntGetSubscriber> preCachedIntGetSubscribers = new ArrayList<>();
-
-    HashMap<RunnableType, List<IRunnableSubscriber>> runnableSubscribers = new HashMap<>();
-    HashMap<NumChangerType, List<INumChangerSubscriber>> numChangerSubscribers = new HashMap<>();
 
     SubscriptionManager() {
     }
@@ -72,31 +68,6 @@ public final class SubscriptionManager {
             if (addToFront) preCachedIntGetSubscribers.add(0, (PreCachedIntGetSubscriber) sub);
             else preCachedIntGetSubscribers.add((PreCachedIntGetSubscriber) sub);
         }
-
-        if (sub instanceof IRunnableSubscriber) {
-            subscribeRunnableHelper((IRunnableSubscriber) sub, ((IRunnableSubscriber) sub).getSubType());
-        }
-        if (sub instanceof INumChangerSubscriber) {
-            subscribeNumHelper((INumChangerSubscriber) sub, ((INumChangerSubscriber) sub).getSubType());
-        }
-    }
-
-    void subscribeRunnableHelper(IRunnableSubscriber sub, RunnableType type) {
-        if (!runnableSubscribers.containsKey(type)) {
-            runnableSubscribers.put(type, new ArrayList<>());
-        }
-        if (!runnableSubscribers.get(type).contains(sub)) {
-            runnableSubscribers.get(type).add(sub);
-        }
-    }
-
-    void subscribeNumHelper(INumChangerSubscriber sub, NumChangerType type) {
-        if (!numChangerSubscribers.containsKey(type)) {
-            numChangerSubscribers.put(type, new ArrayList<>());
-        }
-        if (!numChangerSubscribers.get(type).contains(sub)) {
-            numChangerSubscribers.get(type).add(sub);
-        }
     }
 
     public static void unsubscribe(IHuTaoSubscriber sub) {
@@ -109,23 +80,6 @@ public final class SubscriptionManager {
         if (sub instanceof CheckYinYangSubscriber) checkYinYangSubscribers.remove(sub);
         if (sub instanceof PostCardMoveSubscriber) postCardMoveSubscribers.remove(sub);
         if (sub instanceof PreCachedIntGetSubscriber) preCachedIntGetSubscribers.remove(sub);
-
-        if (sub instanceof IRunnableSubscriber) {
-            unsubscribeRunnableHelper((IRunnableSubscriber) sub, ((IRunnableSubscriber) sub).getSubType());
-        }
-        if (sub instanceof INumChangerSubscriber) {
-            unsubscribeNumHelper((INumChangerSubscriber) sub, ((INumChangerSubscriber) sub).getSubType());
-        }
-    }
-
-    void unsubscribeRunnableHelper(IRunnableSubscriber sub, RunnableType type) {
-        if (!runnableSubscribers.containsKey(type)) return;
-        runnableSubscribers.get(type).remove(sub);
-    }
-
-    void unsubscribeNumHelper(INumChangerSubscriber sub, NumChangerType type) {
-        if (!numChangerSubscribers.containsKey(type)) return;
-        numChangerSubscribers.get(type).remove(sub);
     }
 
     public void unsubscribeLater(IHuTaoSubscriber sub) {
@@ -193,30 +147,6 @@ public final class SubscriptionManager {
         return result;
     }
 
-    public void triggerRunnable(RunnableType type) {
-        if (!runnableSubscribers.containsKey(type)) return;
-
-        for (IRunnableSubscriber sub : runnableSubscribers.get(type)) {
-            sub.run();
-        }
-
-        unsubscribeLaterHelper(IRunnableSubscriber.class);
-    }
-
-    public float triggerNumChanger(NumChangerType type, float baseNum) {
-        float result = baseNum;
-
-        if (!numChangerSubscribers.containsKey(type)) return result;
-
-        for (INumChangerSubscriber sub : numChangerSubscribers.get(type)) {
-            result = sub.changeNum(result);
-        }
-
-        unsubscribeLaterHelper(INumChangerSubscriber.class);
-
-        return result;
-    }
-
     public static boolean checkSubscriber(HuTaoCard card) {
         boolean result = AbstractDungeon.player.hand.contains(card)
                 || AbstractDungeon.player.drawPile.contains(card)
@@ -267,11 +197,5 @@ public final class SubscriptionManager {
             if (relic instanceof ISubscriber) BaseMod.unsubscribeLater((ISubscriber) relic);
         }
         return result;
-    }
-
-    public static enum RunnableType {
-    }
-
-    public static enum NumChangerType {
     }
 }

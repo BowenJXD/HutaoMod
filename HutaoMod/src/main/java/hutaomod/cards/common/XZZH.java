@@ -1,3 +1,4 @@
+/*
 package hutaomod.cards.common;
 
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -23,3 +24,4 @@ public class XZZH extends HuTaoCard {
         addToBot(new ApplyPowerAction(p, p, new XZZHPower(magicNumber, upgraded)));
     }
 }
+*/

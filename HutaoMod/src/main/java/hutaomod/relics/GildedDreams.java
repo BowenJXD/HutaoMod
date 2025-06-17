@@ -10,7 +10,7 @@ public class GildedDreams extends HuTaoRelic {
     public static final String ID = GildedDreams.class.getSimpleName();
     
     public GildedDreams() {
-        super(ID, RelicTier.UNCOMMON);
+        super(ID, RelicTier.RARE);
     }
 
     @Override

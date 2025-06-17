@@ -12,7 +12,7 @@ public class MarechausseeHunter extends HuTaoRelic {
     public static final String ID = MarechausseeHunter.class.getSimpleName();
     
     public MarechausseeHunter() {
-        super(ID, RelicTier.UNCOMMON);
+        super(ID, RelicTier.RARE);
     }
 
     /*@Override

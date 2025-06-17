@@ -33,9 +33,11 @@ public class XJMX extends HuTaoCard {
         addToBot(new VFXAction(new HemokinesisEffect(p.hb.cX, p.hb.cY, m.hb.cX, m.hb.cY)));
         addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.SLASH_HEAVY));
         for (AbstractCard c : p.hand.group) {
-            addToBot(new DiscardSpecificCardAction(c));
-            if (c.costForTurn > 0) {
-                addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, c.costForTurn)));
+            if (c != this) {
+                addToBot(new DiscardSpecificCardAction(c));
+                if (c.costForTurn > 0) {
+                    addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, c.costForTurn)));
+                }
             }
         }
     }
