@@ -71,6 +71,7 @@ public class WSTPower extends PowerPower implements PreCachedIntGetSubscriber {
         List<AbstractCard> cards = AbstractDungeon.player.hand.group.stream().filter(c -> c instanceof HuTaoCard && ((HuTaoCard)c).yy == HuTaoCard.YYState.YANG && c.costForTurn > 0).collect(Collectors.toList());
         if (!cards.isEmpty()) {
             AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
+            card.flash();
             addToBot(new ReduceCostForTurnAction(card, 1));
         }
         reducePower(amount);

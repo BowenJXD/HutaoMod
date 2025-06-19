@@ -1,17 +1,17 @@
 package hutaomod.cards.uncommon;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import basemod.helpers.CardModifierManager;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BufferPower;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import hutaomod.actions.BloodBurnAction;
 import hutaomod.cards.HuTaoCard;
-import hutaomod.powers.debuffs.BloodBlossomPower;
+import hutaomod.modifiers.DieyingModifier;
+import hutaomod.utils.GeneralUtil;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class BADW extends HuTaoCard {
     public static final String ID = BADW.class.getSimpleName();
@@ -21,17 +21,32 @@ public class BADW extends HuTaoCard {
     }
 
     @Override
+    public void upgrade() {
+        super.upgrade();
+        GraveField.grave.set(this, true);
+    }
+
+    @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
+        if (upgraded) {
+            for (AbstractCard card : p.hand.group) {
+                if (card != this) {
+                    CardModifierManager.addModifier(card, new DieyingModifier());
+                }
+            }
+        }
     }
 
     @Override
     public void onDieying(boolean in) {
         super.onDieying(in);
-        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            addToBot(new ApplyPowerAction(monster, AbstractDungeon.player, new BloodBlossomPower(monster, AbstractDungeon.player, magicNumber)));
+        List<AbstractCard> cards = AbstractDungeon.player.hand.group.stream().filter(c -> !CardModifierManager.hasModifier(c, DieyingModifier.ID)).collect(Collectors.toList());
+        if (!cards.isEmpty()) {
+            AbstractCard card = GeneralUtil.getRandomElement(cards, AbstractDungeon.cardRandomRng);
+            if (card != null) {
+                CardModifierManager.addModifier(card, new DieyingModifier());
+                card.flash();
+            }
         }
-        addToTop(new VFXAction(new ShowCardBrieflyEffect(makeStatEquivalentCopy(),
-                Settings.WIDTH * MathUtils.random(0.2f, 0.8f),
-                Settings.HEIGHT * MathUtils.random(0.3f, 0.7f))));
     }
 }

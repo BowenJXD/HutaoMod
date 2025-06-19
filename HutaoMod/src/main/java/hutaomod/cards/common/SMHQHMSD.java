@@ -33,6 +33,7 @@ public class SMHQHMSD extends HuTaoCard {
     public void onDieying(boolean in) {
         super.onDieying(in);
         AbstractMonster m = ModHelper.betterGetRandomMonster();
+        if (m == null) return;
         addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         if (upgraded) {
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new VigorPower(AbstractDungeon.player, 1)));

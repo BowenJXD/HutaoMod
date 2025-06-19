@@ -1,27 +1,18 @@
 package hutaomod.cards.uncommon;
 
-import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.UpgradeSpecificCardAction;
-import com.megacrit.cardcrawl.actions.utility.ShowCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BufferPower;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.FireBurstParticleEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
-import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.utils.CardDataCol;
@@ -64,16 +55,15 @@ public class ZN extends HuTaoCard {
         AbstractPlayer p = AbstractDungeon.player;
         addToBot(new GainBlockAction(p, p, block));
         AbstractMonster m = (ModHelper.check(monsterCache)) ? monsterCache : ModHelper.betterGetRandomMonster();
+        monsterCache = null;
+        if (m == null) return;
         ModHelper.addEffectAbstract(() -> {
             for(int i = 0; i < 25; ++i) {
                 AbstractDungeon.effectsQueue.add(new FireBurstParticleEffect(m.hb.cX, m.hb.cY));
                 AbstractDungeon.effectsQueue.add(new LightFlareParticleEffect(m.hb.cX, m.hb.cY, Color.ORANGE));
             }
         });
-        monsterCache = null;
-        if (m != null) {
-            addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-        }
+        addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         addToBot(new UpgradeSpecificCardAction(this));
         addToTop(new VFXAction(new ShowCardBrieflyEffect(makeStatEquivalentCopy(),
                 Settings.WIDTH * MathUtils.random(0.2f, 0.8f),

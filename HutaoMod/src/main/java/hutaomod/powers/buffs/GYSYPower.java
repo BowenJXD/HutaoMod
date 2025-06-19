@@ -1,7 +1,5 @@
 package hutaomod.powers.buffs;
 
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.modcore.CustomEnum;
@@ -35,6 +33,7 @@ public class GYSYPower extends BuffPower implements CheckYinYangSubscriber {
         if (SubscriptionManager.checkSubscriber(this) && yyTime > 0) {
             yyTime++;
             if (onUse && card.hasTag(CustomEnum.YIN_YANG)) {
+                flash();
                 remove(1);
             }
         }

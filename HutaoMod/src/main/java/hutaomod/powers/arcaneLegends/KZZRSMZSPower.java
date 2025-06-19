@@ -12,16 +12,17 @@ import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.GAMManager;
 
 public class KZZRSMZSPower extends PowerPower {
-    public static final String ID = HuTaoMod.makeID(KZZRSMZSPower.class.getSimpleName());
+    public static final String POWER_ID = HuTaoMod.makeID(KZZRSMZSPower.class.getSimpleName());
     
     public KZZRSMZSPower() {
-        super(ID);
+        super(POWER_ID);
+        updateDescription();
     }
 
     @Override
     public void onInitialApplication() {
         super.onInitialApplication();
-        GAMManager.addParallelAction(ID, action -> {
+        GAMManager.addParallelAction(POWER_ID, action -> {
             if (action instanceof BloodBurnAction) {
                 GAMManager.stopCurrentAction();
                 for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
@@ -31,6 +32,12 @@ public class KZZRSMZSPower extends PowerPower {
             }
             return !SubscriptionManager.checkSubscriber(this);
         });
+    }
+
+    @Override
+    public void onRemove() {
+        super.onRemove();
+        GAMManager.removeParallelAction(POWER_ID);
     }
 
     @Override

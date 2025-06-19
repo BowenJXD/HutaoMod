@@ -245,8 +245,12 @@ public abstract class SignatureHelperInternal {
 	}
 
 	public static boolean shouldUseSignature(AbstractCard card) {
-		if (!(hasSignature(card) && isUnlocked(card.cardID) && isEnabled(card.cardID)))
+		if (!(hasSignature(card) && isUnlocked(card.cardID) && isEnabled(card.cardID))) {
+			if (hasSignature(card) && card instanceof AbstractSignatureCard) {
+				return ((AbstractSignatureCard) card).alwaysUseSignature();
+			}
 			return false;
+		}
 
 		if (card instanceof AbstractSignatureCard)
 			return ((AbstractSignatureCard) card).shouldUseSignature();

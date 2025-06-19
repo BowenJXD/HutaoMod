@@ -7,10 +7,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.actions.CardDamageAllAction;
-import hutaomod.actions.ClairvoirAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.modcore.CustomEnum;
 

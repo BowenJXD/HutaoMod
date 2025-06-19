@@ -1,20 +1,15 @@
 package hutaomod.cards.rare;
 
 import basemod.BaseMod;
-import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
-import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.utility.ConditionalDrawAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.cards.base.HutaoA;
-import hutaomod.modcore.CustomEnum;
 import hutaomod.powers.debuffs.SiPower;
-import hutaomod.utils.ModHelper;
 
 public class DYZS extends HuTaoCard {
     public static final String ID = DYZS.class.getSimpleName();

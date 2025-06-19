@@ -1,15 +1,11 @@
 package hutaomod.cards.common;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.cards.HuTaoCard;
-import hutaomod.powers.buffs.BreathPower;
 import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.utils.ModHelper;
 

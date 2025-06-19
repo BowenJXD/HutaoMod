@@ -13,10 +13,11 @@ import hutaomod.subscribers.PostCardMoveSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
 
 public class SMXGPower extends PowerPower implements CheckYinYangSubscriber, PostCardMoveSubscriber {
-    public static final String ID = HuTaoMod.makeID(SMXGPower.class.getSimpleName());
+    public static final String POWER_ID = HuTaoMod.makeID(SMXGPower.class.getSimpleName());
     
     public SMXGPower() {
-        super(ID);
+        super(POWER_ID);
+        updateDescription();
     }
 
     @Override
@@ -45,7 +46,7 @@ public class SMXGPower extends PowerPower implements CheckYinYangSubscriber, Pos
     
     void processCard(HutaoA card) {
         card.yy = HuTaoCard.YYState.YINYANG;
-        if (card.hasTag(CustomEnum.YIN_YANG))
+        if (!card.hasTag(CustomEnum.YIN_YANG))
             card.tags.add(CustomEnum.YIN_YANG);
     }
 

@@ -1,26 +1,17 @@
 package hutaomod.cards.rare;
 
-import basemod.BaseMod;
-import basemod.interfaces.OnPlayerDamagedSubscriber;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.unique.VampireDamageAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ReaperEffect;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.powers.debuffs.BloodBlossomPower;
-import hutaomod.subscribers.PostCardMoveSubscriber;
-import hutaomod.subscribers.SubscriptionManager;
 
 public class LBHXWZD extends HuTaoCard {
     public static final String ID = LBHXWZD.class.getSimpleName();

@@ -1,7 +1,7 @@
 package hutaomod.cards.rare;
 
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
-import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
+import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.ScrayAction;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.modifiers.HuTaoCardModifier;
 import hutaomod.utils.ModHelper;
 
 public class YBSZQSZ extends HuTaoCard {
@@ -16,7 +17,6 @@ public class YBSZQSZ extends HuTaoCard {
 
     public YBSZQSZ() {
         super(ID);
-        GraveField.grave.set(this, true);
     }
 
     @Override
@@ -35,8 +35,13 @@ public class YBSZQSZ extends HuTaoCard {
         addToBot(new BloodBurnAction(magicNumber));
         addToBot(new ScrayAction(c -> true).callback(cards -> {
             for (AbstractCard card : cards) {
-                if (card.costForTurn == 0) {
-                    addToTop(new NewQueueCardAction(card, true));
+                if (card instanceof HuTaoCard) {
+                    ((HuTaoCard) card).onDieying(false);
+                }
+                for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+                    if (mod instanceof HuTaoCardModifier) {
+                        ((HuTaoCardModifier) mod).onDieying(card, false);
+                    }
                 }
             }
         }));

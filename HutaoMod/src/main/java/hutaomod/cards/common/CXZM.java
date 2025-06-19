@@ -1,10 +1,14 @@
 package hutaomod.cards.common;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.actions.CardDamageAllAction;
 import hutaomod.cards.HuTaoCard;
@@ -37,5 +41,16 @@ public class CXZM extends HuTaoCard {
                 addToBot(new ApplyPowerAction(mon, p, new BloodBlossomPower(mon, p, magicNumber)));
             }
         }
+    }
+
+    @Override
+    public void onDieying(boolean in) {
+        super.onDieying(in);
+        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+            addToBot(new ApplyPowerAction(monster, AbstractDungeon.player, new BloodBlossomPower(monster, AbstractDungeon.player, 1)));
+        }
+        addToTop(new VFXAction(new ShowCardBrieflyEffect(makeStatEquivalentCopy(),
+                Settings.WIDTH * MathUtils.random(0.2f, 0.8f),
+                Settings.HEIGHT * MathUtils.random(0.3f, 0.7f))));
     }
 }

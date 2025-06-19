@@ -1,6 +1,5 @@
 package hutaomod.cards.uncommon;
 
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReduceCostForTurnAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -32,6 +31,7 @@ public class LRQYXSXY extends HuTaoCard {
                 return c.hasTag(CustomEnum.YIN_YANG) && c.costForTurn > 0 && c != this;
             });
             for (AbstractCard card : cards) {
+                card.flash();
                 addToBot(new ReduceCostForTurnAction(card, upgraded ? magicNumber : 1));
             }
         }

@@ -2,6 +2,7 @@ package hutaomod.cards.base;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.BloodBurnAction;
@@ -45,9 +46,28 @@ public class HutaoA extends HuTaoCard {
     }
     
     public void changeToBloodCost(int bloodCost) {
+        flash();
         modifyCostForCombat(-bloodCost);
         rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
         initializeDescription();
         this.bloodCost = true;
+    }
+
+    @Override
+    public AbstractCard makeStatEquivalentCopy() {
+        AbstractCard card = super.makeStatEquivalentCopy();
+        if (bloodCost) {
+            ((HutaoA) card).changeToBloodCost(1);
+        }
+        return card;
+    }
+
+    @Override
+    public AbstractCard makeSameInstanceOf() {
+        AbstractCard card = super.makeSameInstanceOf();
+        if (bloodCost) {
+            ((HutaoA) card).changeToBloodCost(1);
+        }
+        return card;
     }
 }

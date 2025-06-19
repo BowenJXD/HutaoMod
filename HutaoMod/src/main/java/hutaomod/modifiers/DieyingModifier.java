@@ -3,12 +3,15 @@ package hutaomod.modifiers;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.HemokinesisParticle;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.actions.RandomCardFromDrawPileToHandAction;
 import hutaomod.modcore.HuTaoMod;
@@ -57,7 +60,8 @@ public class DieyingModifier extends HuTaoCardModifier {
         switch (card.type) {
             case ATTACK:
                 AbstractMonster m = ModHelper.betterGetRandomMonster();
-                if (ModHelper.check(m)) {
+                if (m != null) {
+                    addToBot(new VFXAction(new HemokinesisParticle(CardGroup.DISCARD_PILE_X, CardGroup.DISCARD_PILE_Y, m.hb.cX, m.hb.cY, AbstractDungeon.player.flipHorizontal)));
                     addToBot(new CardDamageAction(m, damage, card, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
                 break;

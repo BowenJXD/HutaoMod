@@ -46,7 +46,10 @@ public class WNZLPower extends BuffPower implements CheckYinYangSubscriber, PreC
     public int checkYinYang(HuTaoCard card, int yyTime, boolean onUse) {
         if (SubscriptionManager.checkSubscriber(this) && yyTime == 0 && HuTaoCard.isYang(card)) {
             yyTime++;
-            if (onUse) remove(1);
+            if (onUse) {
+                flash();
+                remove(1);
+            }
         }
         return yyTime;
     }

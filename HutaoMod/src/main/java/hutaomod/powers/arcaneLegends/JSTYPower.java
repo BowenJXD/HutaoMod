@@ -10,12 +10,13 @@ import hutaomod.powers.PowerPower;
 import hutaomod.utils.CacheManager;
 
 public class JSTYPower extends PowerPower {
-    public static final String ID = HuTaoMod.makeID(JSTYPower.class.getSimpleName());
+    public static final String POWER_ID = HuTaoMod.makeID(JSTYPower.class.getSimpleName());
     
     boolean dyingCache = false;
     
     public JSTYPower() {
-        super(ID);
+        super(POWER_ID);
+        updateDescription();
     }
 
     @Override

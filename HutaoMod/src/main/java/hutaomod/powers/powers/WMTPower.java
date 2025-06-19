@@ -3,15 +3,10 @@ package hutaomod.powers.powers;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import hutaomod.cards.HuTaoCard;
 import hutaomod.modcore.HuTaoMod;
-import hutaomod.powers.HuTaoPower;
 import hutaomod.powers.PowerPower;
 import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.subscribers.SubscriptionManager;
@@ -45,6 +40,7 @@ public class WMTPower extends PowerPower {
                     AbstractPower powerInstance = ReflectionHacks.getPrivate(reducePowerAction, ReducePowerAction.class, "powerInstance");
                     String powerID = ReflectionHacks.getPrivate(reducePowerAction, ReducePowerAction.class, "powerID");
                     if (Objects.equals(powerID, BloodBlossomPower.POWER_ID) || Objects.equals(powerInstance.ID, BloodBlossomPower.POWER_ID)) {
+                        flash();
                         addToBot(new GainBlockAction(owner, action.amount * amount));
                         addToBot(new DrawCardAction(amount));
                     }

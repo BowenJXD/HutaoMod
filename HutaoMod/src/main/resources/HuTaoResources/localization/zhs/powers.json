@@ -8,7 +8,7 @@
   "HuTaoMod:BloodBlossom": {
     "NAME": "血梅香",
     "DESCRIPTIONS": [
-      "血梅香 [bbIcon] 施加，叠加或衰减后，受到 #b%d 点伤害。回合开始时，层数减半。"
+      "血梅香 [bbIcon] 施加，叠加或衰减后，受到 #b%d 点伤害。回合开始时，衰减一半。"
     ]
   },
   "HuTaoMod:Breath": {
@@ -143,7 +143,7 @@
   "HuTaoMod:CDZS": {
     "NAME": "裁定之时",
     "DESCRIPTIONS": [
-      "#r燃血 后，计算下一张牌的Y值时，视为增加等量。"
+      "#r燃血 后，计算下一张牌的Y值时，视为增加 #b%d 点。"
     ]
   },
   "HuTaoMod:ZYDXF": {

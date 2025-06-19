@@ -12,10 +12,11 @@ import hutaomod.subscribers.PostCardMoveSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
 
 public class ZYDXFPower extends PowerPower implements PostCardMoveSubscriber {
-    public static final String ID = HuTaoMod.makeID(ZYDXFPower.class.getSimpleName());
+    public static final String POWER_ID = HuTaoMod.makeID(ZYDXFPower.class.getSimpleName());
     
     public ZYDXFPower() {
-        super(ID);
+        super(POWER_ID);
+        updateDescription();
     }
 
     @Override

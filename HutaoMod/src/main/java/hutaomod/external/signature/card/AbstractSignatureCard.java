@@ -111,6 +111,10 @@ public abstract class AbstractSignatureCard extends CustomCard {
 	public boolean signaturePredicate() {
 		return true;
 	}
+	
+	public boolean alwaysUseSignature() {
+		return false;
+	}
 
 	@Override
 	public Texture getOrbSmallTexture() {

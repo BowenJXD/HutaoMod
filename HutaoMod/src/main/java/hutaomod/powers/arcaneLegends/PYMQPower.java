@@ -13,30 +13,39 @@ import hutaomod.utils.GAMManager;
 import java.util.Objects;
 
 public class PYMQPower extends PowerPower {
-    public static final String ID = HuTaoMod.makeID(PYMQPower.class.getSimpleName());
+    public static final String POWER_ID = HuTaoMod.makeID(PYMQPower.class.getSimpleName());
 
     public PYMQPower() {
-        super(ID);
+        super(POWER_ID);
+        updateDescription();
     }
 
     @Override
     public void onInitialApplication() {
         super.onInitialApplication();
-        GAMManager.addParallelAction(ID, action -> {
-            ReducePowerAction reducePowerAction = (ReducePowerAction) action;
-            try {
-                AbstractPower powerInstance = ReflectionHacks.getPrivate(reducePowerAction, ReducePowerAction.class, "powerInstance");
-                String powerID = ReflectionHacks.getPrivate(reducePowerAction, ReducePowerAction.class, "powerID");
-                if (Objects.equals(powerID, BloodBlossomPower.POWER_ID) || Objects.equals(powerInstance.ID, BloodBlossomPower.POWER_ID)) {
-                    AbstractPower power = action.target.getPower(BloodBlossomPower.POWER_ID);
-                    if (power != null && power.amount < CacheManager.getInt(CacheManager.Key.PLAYER_SI)) {
-                        GAMManager.stopCurrentAction();
+        GAMManager.addParallelAction(POWER_ID, action -> {
+            if (action instanceof ReducePowerAction) {
+                try {
+                    ReducePowerAction reducePowerAction = (ReducePowerAction) action;
+                    AbstractPower powerInstance = ReflectionHacks.getPrivate(reducePowerAction, ReducePowerAction.class, "powerInstance");
+                    String powerID = ReflectionHacks.getPrivate(reducePowerAction, ReducePowerAction.class, "powerID");
+                    if (Objects.equals(powerID, BloodBlossomPower.POWER_ID) || Objects.equals(powerInstance.ID, BloodBlossomPower.POWER_ID)) {
+                        AbstractPower power = action.target.getPower(BloodBlossomPower.POWER_ID);
+                        if (power != null && power.amount < CacheManager.getInt(CacheManager.Key.PLAYER_SI)) {
+                            GAMManager.stopCurrentAction();
+                        }
                     }
+                } catch (Exception e) {
+                    HuTaoMod.logger.error("Failed to get power instance from ReducePowerAction", e);
                 }
-            } catch (Exception e) {
-                HuTaoMod.logger.error("Failed to get power instance from ReducePowerAction", e);
             }
             return !SubscriptionManager.checkSubscriber(this);
         });
+    }
+
+    @Override
+    public void onRemove() {
+        super.onRemove();
+        GAMManager.removeParallelAction(POWER_ID);
     }
 }

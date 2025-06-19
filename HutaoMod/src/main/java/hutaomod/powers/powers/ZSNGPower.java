@@ -1,6 +1,7 @@
 package hutaomod.powers.powers;
 
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import hutaomod.modcore.HuTaoMod;
@@ -23,6 +24,7 @@ public class ZSNGPower extends PowerPower {
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.type == DamageInfo.DamageType.HP_LOSS && info.owner == owner) {
+            flash();
             addToBot(new ApplyPowerAction(owner, owner, new VigorPower(owner, amount)));
             addToBot(new GainBlockAction(owner, owner, amount));
         }

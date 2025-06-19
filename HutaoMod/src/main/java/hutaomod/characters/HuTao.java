@@ -79,7 +79,7 @@ public class HuTao extends CustomPlayer {
     };
     // 人物的本地化文本，如卡牌的本地化文本一样，如何书写见下
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(HuTaoMod.makeID(HuTao.class.getSimpleName()));
-    
+
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(HuTaoMod.makeID("Tutorial"));
 
     static Texture[] ftues;
@@ -87,8 +87,8 @@ public class HuTao extends CustomPlayer {
     static String[] tutTexts = uiStrings.TEXT;
 
     public HuTao(String name) {
-        super(name, PlayerColorEnum.HUTAO, ORB_TEXTURES,"HuTaoResources/img/UI/orb/vfx.png", LAYER_SPEED, null, null);
-        
+        super(name, PlayerColorEnum.HUTAO, ORB_TEXTURES, "HuTaoResources/img/UI/orb/vfx.png", LAYER_SPEED, null, null);
+
         String charImg = null;
         try {
             //this.loadAnimation("HuTaoResources/img/spine/hutao_skin.atlas", "HuTaoResources/img/spine/hutao_skin.json", 0.6F);
@@ -104,7 +104,7 @@ public class HuTao extends CustomPlayer {
         // 人物对话气泡的大小，如果游戏中尺寸不对在这里修改（libgdx的坐标轴左下为原点）
         this.dialogX = (this.drawX + 0.0F * Settings.scale);
         this.dialogY = (this.drawY + 150.0F * Settings.scale);
-        
+
         // 初始化你的人物，如果你的人物只有一张图，那么第一个参数填写你人物图片的路径。
         this.initializeClass(
                 charImg, // 人物图片
@@ -123,7 +123,7 @@ public class HuTao extends CustomPlayer {
         // e.setTimeScale(1.2F);
 
         try {
-            ftues =  new Texture[]{
+            ftues = new Texture[]{
                     ImageMaster.loadImage(PathDefine.UI_PATH + "tutorial/1.png"),
                     ImageMaster.loadImage(PathDefine.UI_PATH + "tutorial/2.png"),
                     ImageMaster.loadImage(PathDefine.UI_PATH + "tutorial/3.png"),
@@ -150,7 +150,7 @@ public class HuTao extends CustomPlayer {
         retVal.add(HuTaoMod.makeID(HutaoE.ID));
         retVal.add(HuTaoMod.makeID(HutaoE.ID));
         retVal.add(HuTaoMod.makeID(HutaoQ.ID));
-        
+
         return retVal;
     }
 
@@ -286,35 +286,42 @@ public class HuTao extends CustomPlayer {
         int r = MathUtils.random(0, 2);
         ModHelper.playSound("down_" + r);
     }
-    
+
     boolean kehuSaid = false;
 
     @Override
     public void preBattlePrep() {
         super.preBattlePrep();
+        greetings();
+        tutorialCheck();
+    }
+
+    void greetings() {
         if (AbstractDungeon.floorNum <= 2) {
-            if (HuTaoModConfig.doShowTutorial) {
-                ModHelper.addEffectAbstract(() -> {
-                    AbstractDungeon.ftue = new CustomMultiPageFtue(ftues, tutTexts);
-                });
-                HuTaoModConfig.doShowTutorial = false;
-            }
-            
             // 获取当前时间
             LocalDateTime dateTime = LocalDateTime.now();
             int hour = dateTime.getHour();
             if (hour >= 7 && hour < 11) {
                 ModHelper.playSound("morning");
-            } else if (hour >= 11 && hour < 14){
+            } else if (hour >= 11 && hour < 14) {
                 ModHelper.playSound("noon");
             } else if (hour >= 18 && hour < 22) {
                 ModHelper.playSound("evening");
-            } else if (hour >= 22 || hour < 6){
+            } else if (hour >= 22 || hour < 6) {
                 ModHelper.playSound("night");
             }
         } else if (!kehuSaid && AbstractDungeon.getMonsters().monsters.size() == 3 && MathUtils.random(100) < 10) {
             kehuSaid = true;
             ModHelper.playSound("kehu");
+        }
+    }
+    
+    void tutorialCheck() {
+        if (AbstractDungeon.floorNum <= 2 && HuTaoModConfig.doShowTutorial) {
+            ModHelper.addEffectAbstract(() -> {
+                AbstractDungeon.ftue = new CustomMultiPageFtue(ftues, tutTexts);
+            });
+            HuTaoModConfig.doShowTutorial = false;
         }
     }
 
@@ -334,14 +341,14 @@ public class HuTao extends CustomPlayer {
             ModHelper.playSound("hurt");
         }
     }
-    
+
     boolean canTalk = true;
 
     @Override
     public void updateInput() {
         super.updateInput();
         if (hb.clicked && canTalk
-                && AbstractDungeon.currMapNode != null 
+                && AbstractDungeon.currMapNode != null
                 && AbstractDungeon.currMapNode.room instanceof ShopRoom) {
             ModHelper.playSound("qqy");
             canTalk = false;
@@ -353,7 +360,7 @@ public class HuTao extends CustomPlayer {
             }, 20);
         }
     }
-    
+
     public static final Texture YY_CIRCLE_WHITE = ImageMaster.loadImage(PathDefine.UI_PATH + "countCircle.png");
     public static float COUNT_CIRCLE_SIZE = 128.0F * Settings.scale;
     public static Color WHITE = Color.WHITE.cpy();
@@ -362,9 +369,9 @@ public class HuTao extends CustomPlayer {
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        if (AbstractDungeon.currMapNode != null 
-                && AbstractDungeon.currMapNode.room != null 
-                && AbstractDungeon.currMapNode.room.phase == AbstractRoom.RoomPhase.COMBAT 
+        if (AbstractDungeon.currMapNode != null
+                && AbstractDungeon.currMapNode.room != null
+                && AbstractDungeon.currMapNode.room.phase == AbstractRoom.RoomPhase.COMBAT
                 && ModHelper.check(this)
                 && !AbstractDungeon.currMapNode.room.isBattleOver) {
             int handYin = CacheManager.getInt(CacheManager.Key.YIN_CARDS);

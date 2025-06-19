@@ -23,7 +23,7 @@ public class QKDZ extends HuTaoCard {
     @Override
     public void upgrade() {
         super.upgrade();
-        selfRetain = true;
+        isInnate = true;
     }
 
     @Override   

@@ -4,9 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.CardDamageAction;
-import hutaomod.actions.ClairvoirAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.powers.debuffs.SiPower;
 

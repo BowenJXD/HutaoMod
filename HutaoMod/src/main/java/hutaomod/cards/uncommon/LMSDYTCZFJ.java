@@ -2,6 +2,7 @@ package hutaomod.cards.uncommon;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.actions.ClairvoirAction;
 import hutaomod.cards.HuTaoCard;
@@ -21,6 +22,16 @@ public class LMSDYTCZFJ extends HuTaoCard {
         addToBot(new ClairvoirAction(magicNumber));
         if (yyTime > 0) {
             addToBot(new ApplyPowerAction(p, p, new EndTurnClairvoirPower(p, magicNumber * yyTime)));
+        }
+    }
+
+    @Override
+    public void triggerOnGlowCheck() {
+        yyTime = checkYinYang(false);
+        if (hasTag(CustomEnum.YIN_YANG) && yyTime > 0 && !AbstractDungeon.player.discardPile.isEmpty()) {
+            glowColor = GOLD_BORDER_GLOW_COLOR;
+        } else {
+            glowColor = ORANGE_BORDER_GLOW_COLOR;
         }
     }
 }

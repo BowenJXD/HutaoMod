@@ -27,6 +27,7 @@ public class BBLPower extends PowerPower {
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (damageAmount >= owner.currentHealth && AbstractDungeon.player.discardPile.size() >= amount) {
+            flash();
             addToTop(new HealAction(owner, owner, amount));
             addToTop(new MoveCardsAction(AbstractDungeon.player.exhaustPile, AbstractDungeon.player.discardPile, amount));
             addToTop(new ApplyPowerAction(owner, owner, this));

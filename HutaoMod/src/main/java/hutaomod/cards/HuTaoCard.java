@@ -78,7 +78,7 @@ public abstract class HuTaoCard extends AbstractSignatureCard implements SpawnMo
 
         CommonKeywordIconsField.useIcons.set(this, true);
         assetUrl = "HuTaoMod/" + id + "_s_p.png";
-        FlavorText.AbstractCardFlavorFields.boxColor.set(this, HuTaoMod.HUTAO_CORAL);
+        FlavorText.AbstractCardFlavorFields.boxColor.set(this, HuTaoMod.HUTAO_CORAL.cpy());
         FlavorText.AbstractCardFlavorFields.textColor.set(this, Color.WHITE.cpy());
     }
 

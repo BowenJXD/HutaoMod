@@ -3,11 +3,8 @@ package hutaomod.powers.powers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.tempCards.Miracle;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import hutaomod.cards.HuTaoCard;
@@ -56,6 +53,7 @@ public class QYGPower extends PowerPower implements CheckYinYangSubscriber, NonS
     @Override
     public void onLimitReached() {
         super.onLimitReached();
+        flash();
         addToBot(new GainEnergyAction(amount2));
         addToBot(new DrawCardAction(amount2));
         reducePower(amount);

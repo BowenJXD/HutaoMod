@@ -4,17 +4,13 @@ import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import hutaomod.actions.BloodBurnAction;
 import hutaomod.cards.HuTaoCard;
-import hutaomod.powers.debuffs.BloodBlossomPower;
-import hutaomod.utils.ModHelper;
 
 public class YB extends HuTaoCard {
     public static final String ID = YB.class.getSimpleName();

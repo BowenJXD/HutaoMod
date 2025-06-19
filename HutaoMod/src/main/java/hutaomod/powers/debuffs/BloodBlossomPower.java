@@ -58,6 +58,7 @@ public class BloodBlossomPower extends DebuffPower {
     @Override
     public void onSpecificTrigger() {
         super.onSpecificTrigger();
+        flash();
         if (amount > 0 && ModHelper.check(source)) {
             addToTop(new DamageAction(owner, new DamageInfo(source, amount, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.FIRE));
         }

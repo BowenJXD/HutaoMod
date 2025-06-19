@@ -7,10 +7,11 @@ import hutaomod.utils.CacheManager;
 import hutaomod.utils.ModHelper;
 
 public class GHSYXLPower extends PowerPower {
-    public static final String ID = HuTaoMod.makeID(GHSYXLPower.class.getSimpleName());
+    public static final String POWER_ID = HuTaoMod.makeID(GHSYXLPower.class.getSimpleName());
     
     public GHSYXLPower() {
-        super(ID);
+        super(POWER_ID);
+        updateDescription();
     }
 
     @Override

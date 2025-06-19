@@ -128,7 +128,7 @@ public class ModHelper {
     }
 
     public static AbstractMonster betterGetRandomMonster() {
-        return getRandomMonster(m -> !(m.isDying || m.isEscaping || m.halfDead || m.currentHealth <= 0), true);
+        return getRandomMonster(ModHelper::check, true);
     }
     
     public static boolean check(AbstractCreature m) {

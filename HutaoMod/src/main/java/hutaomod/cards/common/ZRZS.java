@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.cards.HuTaoCard;
-import hutaomod.characters.HuTao;
 import hutaomod.modcore.CustomEnum;
 
 public class ZRZS extends HuTaoCard {

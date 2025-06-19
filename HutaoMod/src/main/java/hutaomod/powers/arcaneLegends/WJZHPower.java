@@ -13,10 +13,11 @@ import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.ModHelper;
 
 public class WJZHPower extends PowerPower implements CheckYinYangSubscriber {
-    public static final String ID = HuTaoMod.makeID(WJZHPower.class.getSimpleName());
+    public static final String POWER_ID = HuTaoMod.makeID(WJZHPower.class.getSimpleName());
     
     public WJZHPower() {
-        super(ID);
+        super(POWER_ID);
+        updateDescription();
     }
 
     @Override

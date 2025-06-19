@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import hutaomod.actions.BounceAction;
 import hutaomod.actions.CardDamageAction;

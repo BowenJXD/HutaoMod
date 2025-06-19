@@ -6,10 +6,11 @@ import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.PowerPower;
 
 public class JRAZPower extends PowerPower {
-    public static final String ID = HuTaoMod.makeID(JRAZPower.class.getSimpleName());
+    public static final String POWER_ID = HuTaoMod.makeID(JRAZPower.class.getSimpleName());
     
     public JRAZPower() {
-        super(ID);
+        super(POWER_ID);
+        updateDescription();
     }
 
     @Override
