@@ -10,6 +10,7 @@ import hutaomod.modifiers.DYBBModifier;
 import hutaomod.powers.PowerPower;
 import hutaomod.subscribers.PostCardMoveSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
+import hutaomod.utils.ModHelper;
 
 public class ZYDXFPower extends PowerPower implements PostCardMoveSubscriber {
     public static final String POWER_ID = HuTaoMod.makeID(ZYDXFPower.class.getSimpleName());
@@ -23,8 +24,8 @@ public class ZYDXFPower extends PowerPower implements PostCardMoveSubscriber {
     public void onInitialApplication() {
         super.onInitialApplication();
         SubscriptionManager.subscribe(this);
-        AbstractDungeon.player.hand.group.stream().filter(c -> c instanceof HutaoA).forEach(
-                c -> processCard((HutaoA) c)
+        ModHelper.findCards(c -> c instanceof HutaoA).forEach(
+                r -> processCard((HutaoA) r.card)
         );
     }
 
@@ -37,7 +38,7 @@ public class ZYDXFPower extends PowerPower implements PostCardMoveSubscriber {
     @Override
     public void postCardMove(CardGroup group, AbstractCard card, boolean in) {
         if (SubscriptionManager.checkSubscriber(this)
-                && group.type == CardGroup.CardGroupType.HAND && in
+                && in
                 && card instanceof HutaoA) {
             processCard((HutaoA) card);
         }

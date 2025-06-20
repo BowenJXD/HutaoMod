@@ -10,15 +10,16 @@ import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.characters.HuTao;
 import hutaomod.powers.debuffs.BloodBlossomPower;
+import savestate.CardState;
+import undobutton.util.MakeUndoable;
 
 public class HutaoA extends HuTaoCard {
     public static final String ID = HutaoA.class.getSimpleName();
-    boolean bloodCost = false;
     
     public static final AbstractGameAction.AttackEffect[] EFFECTS = {
             AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,
             AbstractGameAction.AttackEffect.SLASH_HEAVY,
-            AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
+            AbstractGameAction.AttackEffect.SLASH_DIAGONAL, 
             AbstractGameAction.AttackEffect.SLASH_VERTICAL,
             AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,
     };
@@ -37,37 +38,10 @@ public class HutaoA extends HuTaoCard {
     
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        if (bloodCost) addToBot(new BloodBurnAction(1));
         addToBot(new CardDamageAction(m,this, EFFECTS[effectIndex]));
         effectIndex = (effectIndex + 1) % EFFECTS.length;
         if (upgraded) {
             addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, 1)));
         }
-    }
-    
-    public void changeToBloodCost(int bloodCost) {
-        flash();
-        modifyCostForCombat(-bloodCost);
-        rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
-        initializeDescription();
-        this.bloodCost = true;
-    }
-
-    @Override
-    public AbstractCard makeStatEquivalentCopy() {
-        AbstractCard card = super.makeStatEquivalentCopy();
-        if (bloodCost) {
-            ((HutaoA) card).changeToBloodCost(1);
-        }
-        return card;
-    }
-
-    @Override
-    public AbstractCard makeSameInstanceOf() {
-        AbstractCard card = super.makeSameInstanceOf();
-        if (bloodCost) {
-            ((HutaoA) card).changeToBloodCost(1);
-        }
-        return card;
     }
 }

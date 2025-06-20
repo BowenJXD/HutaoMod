@@ -12,7 +12,7 @@ import hutaomod.actions.ScrayAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.powers.debuffs.BloodBlossomPower;
 
-public class WNSZ extends HuTaoCard {
+public class    WNSZ extends HuTaoCard {
     public static final String ID = WNSZ.class.getSimpleName();
 
     public WNSZ() {

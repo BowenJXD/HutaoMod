@@ -91,10 +91,10 @@ public class HuTao extends CustomPlayer {
 
         String charImg = null;
         try {
-            //this.loadAnimation("HuTaoResources/img/spine/hutao_skin.atlas", "HuTaoResources/img/spine/hutao_skin.json", 0.6F);
+            // this.loadAnimation("HuTaoResources/img/spine/hutao_skin.atlas", "HuTaoResources/img/spine/hutao_skin.json", 3F);
             AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
             e.setTime(e.getEndTime() * MathUtils.random());
-            e.setTimeScale(0.5F);
+            e.setTimeScale(1F);
         } catch (Exception e) {
             System.out.println("HuTao skin load failed");
             System.out.println(e.getMessage());
@@ -111,8 +111,8 @@ public class HuTao extends CustomPlayer {
                 MY_CHARACTER_SHOULDER_2, MY_CHARACTER_SHOULDER_1,
                 CORPSE_IMAGE, // 人物死亡图像
                 this.getLoadout(),
-                0.0F, 0.0F,
-                200.0F, 220.0F, // 人物碰撞箱大小，越大的人物模型这个越大
+                0.0F, -100.0F,
+                300.0F, 300.0F, // 人物碰撞箱大小，越大的人物模型这个越大
                 new EnergyManager(3) // 初始每回合的能量
         );
 

@@ -1,7 +1,7 @@
 ID,ÅÆÃû,Ï¡ÓÐ¶È,ÀàÐÍ,Ä¿±ê,ÒõÑô,·ÑÓÃ,ÃèÊö,ÉËº¦Öµ,¸ñµ²Öµ,ÌØÊâÖµ,·ÑÓÃ+,Ç¿»¯°æÃèÊö,ÉËº¦Öµ+,¸ñµ²Öµ+,ÌØÊâÖµ+
 HutaoA,ÍùÉúÃØ´«Ç¹·¨,BASIC,ATTACK,ENEMY,Òõ,1,Ôì³É !D! µãÉËº¦¡£,6,,,,Ôì³É !D! µãÉËº¦£¬Ê©¼Ó1²ã [bbIcon] ¡£,,,
-HutaoE,µûÒýÀ´Éú,BASIC,SKILL,SELF,Ñô,1,»ñµÃ !B! + {!Y!|0=Y|@=!Y!} µã¸ñµ²¡£,,4,,,»ñµÃ !B! + {!Y!|0=Y|@=!Y!} µã¸ñµ²£¬ hutaomod:ÒõÑô £º»ñµÃ {!Y!|0=Y|@=!Y!} µã ÁÙÊ±ÉúÃü ¡£,,5,
-HutaoQ,°²ÉñÃØ·¨,BASIC,ATTACK,ALL_ENEMY,Ñô,2, ÏûºÄ ¡£ stslib:Ä¹µØ ¡£»Ö¸´ !M! + {!Y!|0=Y|@=!Y!} µãÉúÃü£¬ÈºÌå£ºÔì³É !D! + {!Y!|0=Y|@=!Y!} µãÉËº¦£» hutaomod:ÒõÑô £ºÐ§¹û·­±¶¡£,8,,4,, ÏûºÄ ¡£ stslib:Ä¹µØ ¡£»Ö¸´ !M! + {!Y!|0=Y|@=!Y!} µãÉúÃü£¬ÈºÌå£ºÔì³É !D! + {!Y!|0=Y|@=!Y!} µãÉËº¦£¬Ê©¼Ó1²ã [bbIcon] £» hutaomod:ÒõÑô £ºÐ§¹û·­±¶¡£,10,,6
+HutaoE,µûÒýÀ´Éú,BASIC,SKILL,SELF,Ñô,1,»ñµÃ !B! + {!Y!|0=Y|@=!Y!} µã¸ñµ²¡£,,4,,,»ñµÃ !B! + {!Y!|0=Y|@=!Y!} µã¸ñµ²£¬ hutaomod:ÒõÑô £º»ñµÃ {!Y!|0=Y|@=!Y!} µã ÁÙÊ±ÉúÃü ¡£,,,
+HutaoQ,°²ÉñÃØ·¨,BASIC,ATTACK,ALL_ENEMY,Ñô,2, ÏûºÄ ¡£ stslib:Ä¹µØ ¡£»Ö¸´ !M! + {!Y!|0=Y|@=!Y!} µãÉúÃü£¬ÈºÌå£ºÔì³É !D! + {!Y!|0=Y|@=!Y!} µãÉËº¦£» hutaomod:ÒõÑô £ºÐ§¹û·­±¶¡£,8,,4,, ÏûºÄ ¡£ stslib:Ä¹µØ ¡£»Ö¸´ !M! + {!Y!|0=Y|@=!Y!} µãÉúÃü£¬ÈºÌå£ºÔì³É !D! + {!Y!|0=Y|@=!Y!} µãÉËº¦£¬Ê©¼Ó1²ã [bbIcon] £» hutaomod:ÒõÑô £ºÐ§¹û·­±¶¡£,,,6
 HTZYGYLG,»ð÷»×ÓÒ»¹²ÓÐÁù¸ö,RARE,SKILL,SELF,Ñô,1, ÏûºÄ ¡£ hutaomod:È¼Ñª {!Y!|0=Y|@=!Y!} £¬»ñµÃ {!Y!|0=Y|@=!Y!} µã [E] £¬ÖÁ¶à²¹³äÖÁ !M! ¡£,,,6,0,,,,
 QKHQL,Ç¹¿ª»ÆÈªÂ·,RARE,ATTACK,ENEMY,Ñô,3, hutaomod:µ¯Éä !M! ´Î£ºÔì³É !D! + {!Y!|0=Y|@=!Y!} µãÉËº¦¡£,3,,3,,,4,,4
 QQY,ÇðÇðÒ¥,UNCOMMON,SKILL,SELF,Òõ,1, ÏûºÄ ¡£ stslib:Ä¹µØ ¡£»ñµÃ {!Y!|0=Y|@=!Y!} µã¸ñµ² !M! ´Î£¬»ñµÃ {!Y!|0=Y|@=!Y!} ²ã [siIcon] ¡£,,,1,,,,,2
@@ -15,12 +15,12 @@ SRZT,ÊÜÈËÖ®ÍÐ,COMMON,ATTACK,ENEMY,Ñô,1,Ôì³É !D! µãÉËº¦¡£ hutaomod:ÒõÑô £º stslib
 DEBBJ,µÚ¶þ±®°ë¼Û,COMMON,SKILL,SELF,Ñô,1,»ñµÃ !M! ²ã hutaomod:¹ºÒ»ËÍÒ» ¡£,,,1,,»ñµÃ !M! ²ã hutaomod:¹ºÒ»ËÍÒ» £¬ hutaomod:ÒõÑô £º¶îÍâ»ñµÃ1²ã¡£,,,
 KQZZ,¿ÍÇäÖúÕó,UNCOMMON,SKILL,SELF,Ñô,1,»ñµÃ {!Y!|0=Y|@=!Y!} µã¸ñµ²£¬ÓÚ´Ë»ØºÏ±£Áô¸ñµ²£¬ hutaomod:ÒõÑô £ºÏÂ»ØºÏ¿ªÊ¼Ê±£¬¶ÔËæ»úµÐÈËÔì³É±£ÁôµÄ¸ñµ²ÊýµÄÉËº¦¡£,,,,,»ñµÃ !B! + {!Y!|0=Y|@=!Y!} µã¸ñµ²£¬ÓÚ´Ë»ØºÏ±£Áô¸ñµ²£¬ hutaomod:ÒõÑô £ºÏÂ»ØºÏ¿ªÊ¼Ê±£¬¶ÔËæ»úµÐÈËÔì³É±£ÁôµÄ¸ñµ²ÊýµÄÉËº¦¡£,,4,
 SFZ,Êø¸¿Öä,UNCOMMON,ATTACK,ENEMY,Òõ,1, ÏûºÄ ¡£Ôì³É !D! µãÉËº¦£¬Ê©¼Ó !M! ²ã hutaomod:¸ñµ²·µ»¹ ¡£,2,,2,, ¹ÌÓÐ ¡£ ÏûºÄ ¡£Ôì³É !D! µãÉËº¦£¬Ê©¼Ó !M! ²ã hutaomod:¸ñµ²·µ»¹ ¡£,5,,
-CTKS,³àÍÅ¿ªÊ±,UNCOMMON,ATTACK,ENEMY,Ñô,1, stslib:Ä¹µØ ¡£Ôì³É {!Y!|0=Y|@=!Y!} µãÉËº¦£¬½« [bbIcon] µ÷ÕûÖÁ {!Y!|0=Y|@=!Y!} ¡£,,,,, stslib:Ä¹µØ ¡£Ôì³É {!Y!|0=Y|@=!Y!} µãÉËº¦£¬Ê©¼Ó {!Y!|0=Y|@=!Y!} ²ã [bbIcon] ¡£,,,
+CTKS,³àÍÅ¿ªÊ±,UNCOMMON,ATTACK,ENEMY,Ñô,1, stslib:Ä¹µØ ¡£Ôì³É {!Y!|0=Y|@=!Y!} µãÉËº¦£¬½« [bbIcon] µ÷ÕûÖÁ {!Y!|0=Y|@=!Y!} ¡£ NL hutaomod:µûÒý £ºÊ©¼Ó1²ã [bbIcon] ¡£,,,,, stslib:Ä¹µØ ¡£Ôì³É {!Y!|0=Y|@=!Y!} µãÉËº¦£¬Ê©¼Ó {!Y!|0=Y|@=!Y!} ²ã [bbIcon] ¡£ NL hutaomod:µûÒý £ºÊ©¼Ó1²ã [bbIcon] ¡£,,,
 MZSH,ÂüÖéÉ³»ª,UNCOMMON,ATTACK,ENEMY,Ñô,2,Ôì³É !D! µãÉËº¦£¬Ê©¼Ó !M! ²ã [bbIcon] ¡£ hutaomod:ÒõÑô £ºÊ©¼ÓµÄ²ãÊý¸ÄÎªV£¨VÎªÆä [bbIcon] Êý£©¡£,8,,2,,Ôì³É !D! µãÉËº¦£¬Ê©¼Ó !M! ²ã [bbIcon] ¡£ hutaomod:ÒõÑô £º¶îÍâÊ©¼ÓV²ã£¨VÎªÆä [bbIcon] Êý£©¡£,10,,
 NCH,ÄÞÉÑ»¨,UNCOMMON,SKILL,ENEMY,Òõ,2,»ñµÃ !B! µã¸ñµ²£¬Ê©¼Ó !M! ²ã [bbIcon] ¡£ hutaomod:ÒõÑô £º»ñµÃÄ¿±ê [bbIcon] ÊýÁ¿µÄ¸ñµ²¡£,,10,2,,,,14,3
 WMT,ÍòÃñÌÃ,RARE,POWER,SELF,Ñô,2, [bbIcon] Ë¥¼õÊ±£¬»ñµÃË¥¼õÁ¿µÄ¸ñµ²£¬Ãþ1ÕÅÅÆ¡£,,,,1,,,,
 LZZF,ÂäÔáÖ®·¨,UNCOMMON,ATTACK,ALL_ENEMY,Òõ,1,ÈºÌå£ºÔì³É !D! µãÉËº¦£¬Éý¼¶Æä [bbIcon] £¬ÁîÖ®Ë¥¼õµÄ²ãÊý¼õ°ë¡£,7,,,,ÈºÌå£ºÔì³É !D! µãÉËº¦£¬Éý¼¶Æä [bbIcon] £¬ÁîÖ®Ë¥¼õµÄ²ãÊý¼õ°ë¡£ hutaomod:ÒõÑô £ºÊ©¼Ó !M! ²ã [bbIcon] ¡£,,,1
-CXZM,³õÑ©Ö®Ã·,COMMON,ATTACK,ENEMY,Òõ,1,Ôì³É !D! µãÉËº¦£¬Ê©¼Ó !M! ²ã [bbIcon] ¡£ NL hutaomod:µûÒý £ºÈºÌå£ºÊ©¼Ó1²ã [bbIcon] ¡£,3,,3,,ÈºÌå£ºÔì³É !D! µãÉËº¦£¬Ê©¼Ó !M! ²ã [bbIcon] ¡£ NL hutaomod:µûÒý £ºÈºÌå£ºÊ©¼Ó1²ã [bbIcon] ¡£,4,,4
+CXZM,³õÑ©Ö®Ã·,COMMON,ATTACK,ENEMY,Òõ,1,Ôì³É !D! µãÉËº¦£¬Ê©¼Ó !M! ²ã [bbIcon] ¡£,4,,4,,ÈºÌå£ºÔì³É !D! µãÉËº¦£¬Ê©¼Ó !M! ²ã [bbIcon] ¡£,5,,5
 QW,Ç¹Îè,COMMON,ATTACK,ENEMY,Òõ,1,Ôì³É !D! + {!Y!|0=Y|@=!Y!} µãÉËº¦£¬»ñµÃ !M! ²ã [siIcon] ¡£,10,,1,,,14,,2
 WNZL,ÎªÄãÖ¸Â·,UNCOMMON,SKILL,SELF,Òõ,1, hutaomod:Í¨Áé !M! ÕÅ [yangIcon] ÅÆ£¬ÁîÏÂ1ÕÅ [yangIcon] ÅÆÏûºÄËùÓÐ [siIcon] £¨´¥·¢ÒõÑô£©£¬ÇÒ¼ÆËãYÖµÊ±£¬ÊÓÎª·­±¶¡£,,,1,,,,,2
 TXXM,Ì¤Ñ©Ñ°Ã·,COMMON,SKILL,ENEMY,Ñô,2,ÈôÄ¿±êÓÐ [bbIcon] £¬ÁîÄ¿±ê [bbIcon] Á¢¼´Ë¥¼õ1´Î£¬È»ºó»ñµÃ !B! +Vµã¸ñµ²£¨VÎªÒÔ´Ë·¨Ë¥¼õµÄ²ãÊý£©¡£,,17,,,,,25,
@@ -38,7 +38,7 @@ DDYS,¶à¶àÒæÉÆ,UNCOMMON,SKILL,SELF,Òõ,2,»ñµÃ !B! µã¸ñµ²£¬½« !M! ÕÅ *¡¸ÍùÉúÌÃÃØ´«Ç
 CXHTF,´ºêØ»­ÌÒ·û,RARE,SKILL,SELF,Ñô,0, ÏûºÄ ¡£ hutaomod:È¼Ñª 2£¬»ñµÃ [E] [E] £¬ hutaomod:ÒõÑô £ºÃþ !M! ÕÅÅÆ ¡£,,,2,,,,,4
 SYAZ,ÉîÔ¨÷éÕ½,UNCOMMON,ATTACK,ENEMY,Ñô,3, ±£Áô ¡£ÄãÃ¿´¥·¢Ò»´Î hutaomod:ÒõÑô £¬ÊÖÖÐµÄ´ËÅÆÏÂ´Î´ò³öÊ±£¬ÉËº¦+ !M! ¡£ NL Ôì³É !D! µãÉËº¦£¬ hutaomod:ÒõÑô £ºÐ§¹û·­±¶¡£,9,,1,,,13,,
 XJMX,Ñ©ö«Ã·Ïã,RARE,ATTACK,ENEMY,Ñô,2, ÏûºÄ ¡£Ôì³É !D! µãÉËº¦£¬ÆúÖÃËùÓÐÅÆ£¬Ã¿ÆúÖÃ1ÕÅ£¬±ã¶ÔËæ»úµÐÈËÊ©¼Ó¸ÃÅÆ·ÑÓÃÊýÁ¿µÄ [bbIcon] ¡£,1,,,,Ôì³É !D! µãÉËº¦£¬ÆúÖÃËùÓÐÅÆ£¬Ã¿ÆúÖÃ1ÕÅ£¬±ã¶ÔËæ»úµÐÈËÊ©¼Ó¸ÃÅÆ·ÑÓÃÊýÁ¿µÄ [bbIcon] ¡£,,,
-GYC,¹íÑ¹´²,UNCOMMON,SKILL,SELF,Òõ,0, ¹ÌÓÐ ¡£ÏûºÄ£¬»ñµÃ !M! ²ã [siIcon] £¬»Ø¸´ !M! µãÉúÃü¡£,,,4,, ¹ÌÓÐ ¡£ÏûºÄ£¬»ñµÃ !M! ²ã [siIcon] £¬»Ø¸´ !M! µãÉúÃü£¬Ãþ1ÕÅÅÆ¡£,,,
+GYC,¹íÑ¹´²,UNCOMMON,SKILL,SELF,Òõ,0, ¹ÌÓÐ ¡£ ÏûºÄ ¡£»ñµÃ !M! ²ã [siIcon] £¬»Ø¸´ !M! µãÉúÃü¡£,,,4,, ¹ÌÓÐ ¡£ ÏûºÄ ¡£»ñµÃ !M! ²ã [siIcon] £¬»Ø¸´ !M! µãÉúÃü£¬Ãþ1ÕÅÅÆ¡£,,,
 LBHXWZD,Àë±ðºÍÏ£ÍûÖ®µû,RARE,ATTACK,ENEMY,Ñô,2, stslib:Ä¹µØ ¡£ ÏûºÄ ¡£ ÐéÎÞ ¡£Ôì³É {!Y!|0=Y|@=!Y!} µãÉËº¦£¬Ê©¼Ó !M! ²ã [bbIcon] £¬»Ø¸´ !M! µãÉúÃü¡£ NL ´ËÅÆµÄ»ù´¡ÊýÖµÎªÄã´Ë´ÎÕ½¶·ÄÚÀÛ¼ÆÏûºÄµÄÉúÃüÖµÊý¡£,0,,0,, stslib:Ä¹µØ ¡£ ÏûºÄ ¡£ ÐéÎÞ ¡£Ôì³É !D! + {!Y!|0=Y|@=!Y!} µãÉËº¦£¬Ê©¼Ó !M! ²ã [bbIcon] £¬»Ø¸´ !M! µãÉúÃü¡£ NL ´ËÅÆµÄ»ù´¡ÊýÖµÎªÄã´Ë´ÎÕ½¶·ÄÚÀÛ¼ÆÏûºÄµÄÉúÃüÖµÊý¡£,,,
 BBL,²»²·Â®,UNCOMMON,POWER,SELF,Òõ,2,ÊÜµ½ÖÂÃüÉËº¦Ê±£¬Ñ¡ÔñÆúÅÆ¶ÑÖÐ !M! ÕÅÅÆÏûºÄ£¬·ÀÖ¹Ö®²¢»Ø¸´ !M! µãÉúÃü£¬È»ºóËùÐèÅÆÊýºÍ»Ø¸´Á¿·­±¶¡£,,,4,,,,,3
 RHZD,È¼»ðÖ®µû,UNCOMMON,SKILL,NONE,Òõ,-2, ±£Áô ¡£ÄãÊÜµ½ÖÂÃüÉËº¦Ê±£¬ÏûºÄÊÖÖÐµÄ´ËÅÆ²¢·ÀÖ¹Ö®£¬È»ºóÁîËùÓÐµÐÈËµÄ [bbIcon] ·­ !M! ±¶¡£,,,2,, ±£Áô ¡£ÄãÊÜµ½ÖÂÃüÉËº¦Ê±£¬ÏûºÄÊÖÖÐµÄ´ËÅÆ²¢·ÀÖ¹Ö®£¬È»ºóÁîËùÓÐµÐÈËµÄ [bbIcon] ·­ !M! ±¶£¬²¢»Ö¸´ !M! µãÉúÃü¡£,,,
@@ -48,8 +48,8 @@ TSSC,ÌÒÊ½Ëµ³ª,COMMON,SKILL,SELF,Ñô,0,ÈôÉÏÒ»ÕÅ´ò³öµÄÅÆÎª *¡¸ÍùÉúÌÃÃØ´«Ç¹·¨¡¹ £¬Ôò
 YB,Óµ±§,UNCOMMON,SKILL,SELF,Òõ,-2, hutaomod:µûÒý £º»ñµÃ !M! ²ã Á¦Á¿ ¡£,,,1,1, stslib:Ä¹µØ ¡£ hutaomod:µûÒý £º»ñµÃ !M! ²ã Á¦Á¿ ¡£,,,
 TDJCMP,Í¨¶Á¾í²ØÃûÆª,COMMON,SKILL,SELF,Ñô,1, hutaomod:ÔáËÍ 4£¬Ãþ !M! ÕÅÅÆ¡£,,,2,, hutaomod:ÔáËÍ 4£¬Ãþ !M! ÕÅÅÆ¡£ hutaomod:ÒõÑô £ºÊýÖµ+1¡£,,,
 AO,à»£¡,COMMON,SKILL,SELF,?,0, hutaomod:È¼Ñª 1£¬ÈôÊÖÅÆ£º NL hutaomod:ÒõÊ¢ÑôÐé £¬ hutaomod:Í¨Áé 1ÕÅ [yangIcon] ÅÆ£» NL hutaomod:ÑôÊ¢ÒõÐé £¬ hutaomod:Í¨Áé 1ÕÅ [yinIcon] ÅÆ¡£,,,,, hutaomod:È¼Ñª 1£¬ÈôÊÖÅÆ£º NL hutaomod:ÒõÊ¢ÑôÐé £¬ hutaomod:Í¨Áé 1ÕÅ [yangIcon] ÅÆ£» NL hutaomod:ÑôÊ¢ÒõÐé £¬ hutaomod:Í¨Áé 1ÕÅ [yinIcon] ÅÆ£» NL hutaomod:ÒõÑôÆ½ºâ £¬ÏûºÄ´ËÅÆ²¢´¥·¢ËùÓÐÐ§¹û¡£,,,
-SMHQHMSD,ÉîÃØ»ðÙÊ£¬»¤Ä¦ÊÀÚÐ,COMMON,ATTACK,ENEMY,Ñô,-2, stslib:Ä¹µØ ¡£ hutaomod:µûÒý £ºÔì³É !D! µãÉËº¦¡£,7,,,0, stslib:Ä¹µØ ¡£ hutaomod:µûÒý £ºÔì³É !D! µãÉËº¦£¬»ñµÃ1²ã »îÁ¦ ¡£,9,,
-GZTFXZZY,¹³ÕÙµ÷·ü£¬Ï¢ÔÖÔöÒæ,COMMON,SKILL,NONE,Òõ,-2, stslib:Ä¹µØ ¡£ hutaomod:µûÒý £º»ñµÃ !B! µã¸ñµ²¡£,,6,,0, stslib:Ä¹µØ ¡£ hutaomod:µûÒý £º»ñµÃ !B! µã¸ñµ²ºÍ1²ã hutaomod:¶àÖØ»¤¼× ¡£,,7,
+SMHQHMSD,ÉîÃØ»ðÙÊ£¬»¤Ä¦ÊÀÚÐ,COMMON,ATTACK,ENEMY,Ñô,-2, stslib:Ä¹µØ ¡£ hutaomod:µûÒý £ºÔì³É !D! µãÉËº¦¡£,6,,,0, stslib:Ä¹µØ ¡£ hutaomod:µûÒý £ºÔì³É !D! µãÉËº¦£¬»ñµÃ1²ã »îÁ¦ ¡£,7,,
+GZTFXZZY,¹³ÕÙµ÷·ü£¬Ï¢ÔÖÔöÒæ,COMMON,SKILL,NONE,Òõ,-2, stslib:Ä¹µØ ¡£ hutaomod:µûÒý £º»ñµÃ !B! µã¸ñµ²¡£,,5,,0, stslib:Ä¹µØ ¡£ hutaomod:µûÒý £º»ñµÃ !B! µã¸ñµ²ºÍ1²ã hutaomod:¶àÖØ»¤¼× ¡£,,,
 TLSL,Í£ÁéÊØÁé,UNCOMMON,SKILL,SELF,Òõ,1, ¹ÌÓÐ ¡£ ÏûºÄ ¡£ hutaomod:Í¨Áé ËùÓÐ stslib:Ä¹µØ ÅÆ£¬»ñµÃ [E] ¡£,,,,0,,,,
 LMSDYTCZFJ,ÂäÃ·ËæµûÓ°£¬Ëû´¦ÔÙ·ê¾ý,COMMON,SKILL,SELF,Òõ,1, hutaomod:Í¨Áé !M! ¡£ hutaomod:ÒõÑô £º»ØºÏ½áÊøÊ±£¬ hutaomod:Í¨Áé !M! ¡£,,,3,,,,,5
 WSY,ÍùÉúÓ¡,UNCOMMON,SKILL,SELF,Òõ,1, ÏûºÄ ¡£ hutaomod:È¼Ñª 1£¬ hutaomod:Í¨Áé ËùÓÐ *¡¸ÍùÉúÌÃÃØ´«Ç¹·¨¡¹ £¬ÁîÕâÐ©ÅÆ·ÑÓÃ-1£¬µ«»ñµÃ hutaomod:È¼Ñª 1¡£,,,,, hutaomod:È¼Ñª 1£¬ hutaomod:Í¨Áé ËùÓÐ *¡¸ÍùÉúÌÃÃØ´«Ç¹·¨¡¹ £¬ÁîÕâÐ©ÅÆ·ÑÓÃ-1£¬µ«»ñµÃ hutaomod:È¼Ñª 1¡£,,,
@@ -57,9 +57,9 @@ BADW,±Ë°¶µûÎè,UNCOMMON,SKILL,SELF,Ñô,1, hutaomod:µûÒý £ºÁîËæ»úÊÖÅÆ»ñµÃÍ¨ÓÃµûÒýÐ§
 TD,ÌÒ¶¼,UNCOMMON,POWER,SELF,Òõ,1,Ã¿»ØºÏ¿ªÊ¼Ê±£¬ hutaomod:Í¨Áé !M! ¡£,,,3,,Ã¿»ØºÏ¿ªÊ¼Ê±£¬ hutaomod:Í¨Áé !M! ¡£Ã¿»ØºÏ½áÊøÊ±£¬ hutaomod:ÔáËÍ !M! ¡£,,,
 GDQ,¹í´òÇ½,UNCOMMON,SKILL,NONE,Òõ,1, hutaomod:µûÒý £ºÏÂ»ØºÏ¶àÃþ !M! ÕÅÅÆ¡£,,,1,0, stslib:Ä¹µØ ¡£ hutaomod:µûÒý £ºÏÂ»ØºÏ¶àÃþ !M! ÕÅÅÆ¡£,,,
 GZHM,¹×ÖÐº¨Ãß,UNCOMMON,SKILL,SELF,Òõ,0, ¹ÌÓÐ ¡£ ÏûºÄ ¡£Ëæ»ú´ò³öÃþÅÆ¶ÑÖÐ1ÕÅÄÜÁ¦ÅÆ¡£,,,,, ¹ÌÓÐ ¡£ ÏûºÄ ¡£Ñ¡Ôñ´ò³öÃþÅÆ¶ÑÖÐ1ÕÅÄÜÁ¦ÅÆ¡£,,,
-ZN,Ö´Äî,RARE,ATTACK,ENEMY,Òõ,1,ÎÞÏÞÉý¼¶¡£ NL hutaomod:µûÒý £º»ñµÃ !B! µã¸ñµ²£¬¶ÔËæ»úµÐÈËÔì³É !D! µãÉËº¦£¬È»ºóÉý¼¶´ËÅÆ¡£,2,2,1,,,3,3,
+ZN,Ö´Äî,RARE,ATTACK,ENEMY,Òõ,1,ÎÞÏÞÉý¼¶¡£ NL hutaomod:µûÒý £º»ñµÃ !B! µã¸ñµ²£¬Ôì³É !D! µãÉËº¦£¬È»ºóÉý¼¶´ËÅÆ¡£,2,2,1,,,3,3,
 DYLSQ,µûÒýÀ´ÊÀÇÅ,RARE,ATTACK,ENEMY,Ñô,5, hutaomod:µ¯Éä !M! ´Î£ºÔì³É {!Y!|0=Y|@=!Y!} µãÉËº¦¡£ NL hutaomod:µûÒý £º´ËÅÆÓÚÏÂ´Î´ò³öÇ°£¬·ÑÓÃ-1¡£,,,5,, stslib:Ä¹µØ ¡£ hutaomod:µ¯Éä !M! ´Î£ºÔì³É !D! + {!Y!|0=Y|@=!Y!} µãÉËº¦¡£ NL hutaomod:µûÒý £º´ËÅÆÓÚÏÂ´Î´ò³öÇ°£¬·ÑÓÃ-1¡£,2,,
-QKDZ,Ç¬À¤¶·×ª,RARE,SKILL,SELF,?,1, ÏûºÄ ¡£ hutaomod:È¼Ñª !M! £¬Ìæ»»ÃþÅÆ¶ÑºÍÆúÅÆ¶Ñ£¬Ãþ !M! ÕÅÅÆ¡£,,,2,, ¹ÌÓÐ ¡£ ±£Áô ¡£ ÏûºÄ ¡£ hutaomod:È¼Ñª !M! £¬Ìæ»»ÃþÅÆ¶ÑºÍÆúÅÆ¶Ñ£¬Ãþ !M! ÕÅÅÆ¡£,,,
+QKDZ,Ç¬À¤¶·×ª,RARE,SKILL,SELF,?,1, ÏûºÄ ¡£ hutaomod:È¼Ñª !M! £¬Ìæ»»ÃþÅÆ¶ÑºÍÆúÅÆ¶Ñ£¬Ãþ !M! ÕÅÅÆ¡£,,,1,, ¹ÌÓÐ ¡£ ÏûºÄ ¡£ hutaomod:È¼Ñª !M! £¬Ìæ»»ÃþÅÆ¶ÑºÍÆúÅÆ¶Ñ£¬Ãþ !M! ÕÅÅÆ¡£,,,
 DXZTZEL,¶ÀÏòÕÑÌ¶ÖÆ¶ñÁú,COMMON,ATTACK,ENEMY,Ñô,2,ÄãÊ§È¥ÉúÃüºó£¬ÊÖÖÐµÄ´ËÅÆ´Ë»ØºÏ·ÑÓÃ-1¡£ NL Ôì³É !D! + {!Y!|0=Y|@=!Y!} µãÉËº¦£¬½«Ò»ÕÅ *¡¸ÍùÉúÌÃÃØ´«Ç¹·¨¡¹ ¼ÓÈëÃþÅÆ¶Ñ¡£,6,,,, ±£Áô ¡£ÄãÊ§È¥ÉúÃüºó£¬ÊÖÖÐµÄ´ËÅÆ´Ë»ØºÏ·ÑÓÃ-1¡£ NL Ôì³É !D! + {!Y!|0=Y|@=!Y!} µãÉËº¦£¬½«Ò»ÕÅ *¡¸ÍùÉúÌÃÃØ´«Ç¹·¨+¡¹ ¼ÓÈëÃþÅÆ¶Ñ¡£,9,,
 YBSZQSZ,Ò»²¨ËÍ×ßÈ«ËÍ×ß,RARE,SKILL,SELF,Ñô,3,´ËÅÆ½øÈëÃþÅÆ¶ÑÊ±£¬½«Ö®ÖÃÓÚµ×²¿¡£ NL hutaomod:È¼Ñª !M! £¬ hutaomod:ÔáËÍ ÃþÅÆ¶Ñ£¬ÒÔ´Ë·¨ÆúÖÃµÄÅÆ¶îÍâ´¥·¢1´ÎµûÒýÐ§¹û¡£,,,3,2,,,,2
 WNSZ,ÎªÄãËÍÔá,UNCOMMON,SKILL,SELF,Ñô,0, hutaomod:ÔáËÍ {!Y!|0=Y|@=!Y!} £¬²¢ÔÚÒÔ´Ë·¨ÆúÖÃµÄÅÆ½øÈëÆúÅÆ¶Ñºó£¬ÏûºÄÖ®¡£,,,,, hutaomod:ÔáËÍ {!Y!|0=Y|@=!Y!} £¬²¢ÔÚÒÔ´Ë·¨ÆúÖÃµÄÅÆ½øÈëÆúÅÆ¶Ñºó£¬ÏûºÄÖ®£¬Ã¿ÏûºÄ1ÕÅ»ñµÃ1µã¸ñµ²¡£,,,
@@ -77,14 +77,15 @@ HSF,»¤Éí·û,UNCOMMON,SKILL,NONE,Ñô,-2, ±£Áô ¡£´ËÅÆÔÚÊÖÖÐÊ±£¬ÄãÊÜµ½µÄÉËº¦ºÍÉúÃüÏûº
 ZJXLTS,ÕÊ¼ÇÏãÁâÍ·ÉÏ,COMMON,SKILL,ENEMY,?,1, ÏûºÄ ¡£Ãâ·Ñ´ò³öÒ»ÕÅÊÖÅÆ²¢ÏûºÄÖ®¡£,,,,,ÔÚÉÌµê¹ºÎïÊ±£¬ÒÆ³ý´ËÅÆ£¬·µ»¹»¨·ÑµÄÇ®¡£ NL ÏûºÄ ¡£Ãâ·Ñ´ò³öÒ»ÕÅÊÖÅÆ²¢ÏûºÄÖ®¡£,,,
 QIQI,ÆßÆß,UNCOMMON,SKILL,NONE,Òõ,0, stslib:Ä¹µØ ¡£ ÏûºÄ ¡£´ò³öºó£¬»ñµÃ1¸öËæ»úÒ©Ë®¡£,,,,,ÄãÊÜµ½ÖÂÃüÉËº¦Ê±£¬ÒÆ³ý´ËÅÆ£¬·ÀÖ¹Ö®£¬²¢»Ø¸´ !M! µãÉúÃü¡£ NL stslib:Ä¹µØ ¡£ ÏûºÄ ¡£´ò³öºó£¬»ñµÃ1¸öËæ»úÒ©Ë®¡£,,,7
 ,,,,,,,,,,,,,,,
-YWHY,ÓäÎè»¶ÓÎ,COMMON,SKILL,SELF,,1, hutaomod:ÃØ´« ¡£ NL ÏûºÄ ¡£»ñµÃ [E] [E] £¬Ãþ !M! ÕÅÅÆ¡£,,,2,0,,,,
-GHSYXL,¹é»ðÊ¥Ò¹Ñ²Àñ,RARE,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL »ØºÏ½áÊøÊ±£¬ hutaomod:Í¨Áé {!Y!|0=Y|@=!Y!} ¡£,,,,0,,,,
-WJZH,Íò¼ÒÔî»ð,RARE,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL ´¥·¢ÅÆµÄ hutaomod:ÒõÑô Ð§¹ûÊ±£¬¶ÔËæ»úµÐÈËÊ©¼Ó1²ã [bbIcon] ¡£,,,,0,,,,
-JRAZ,¾ÉÈÕ÷éÕ½,RARE,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL ÏûºÄÉúÃüºó£¬ hutaomod:ÔáËÍ µÈÁ¿ÅÆ¡£,,,,0,,,,
-KZZRSMZS,¿¹ÕùÖ®ÈÕ¡¤ËéÃÎÖ®Ê±,RARE,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL hutaomod:È¼Ñª Ð§¹û¸ÄÎª¶ÔÈ«ÌåÄ¿±ê£¨°üÀ¨×ÔÉí£©Ê©¼ÓµÈÁ¿ [bbIcon] ¡£ÄãÍ¨¹ýÅÆ»ñµÃ¸ñµ²ºó£¬Áî×ÔÉí [bbIcon] Ë¥¼õÒ»´Î¡£,,,,0,,,,
-JSTY,¾ÉÊ±Í¥Ô°,RARE,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL ´ò³öÅÆ½øÈë±ôËÀ×´Ì¬Ê±£¬ÁîÖ®»ñµÃÍ¨ÓÃµûÒýÐ§¹û¡£,,,,0,,,,
-PYMQ,ÅÍÑÒÃËÆõ,RARE,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL ÉÙÓÚY²ãµÄ [bbIcon] ²»»áË¥¼õ¡£,,,,0,,,,
-SMXG,ÉâÃâÐû¸æ,RARE,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL *¡¸ÍùÉúÌÃÃØ´«Ç¹·¨¡¹ ¸ÄÎª [yyIcon] ÅÆ£¬ÇÒÓÚ´ò³öÊ±£¬Èô hutaomod:ÒõÑô £¬ÉËº¦·­±¶¡£,,,,0,,,,
-CDZS,²Ã¶¨Ö®Ê±,RARE,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL hutaomod:È¼Ñª ºó£¬¼ÆËãÏÂÒ»ÕÅÅÆµÄYÖµÊ±£¬ÊÓÎªÔö¼ÓµÈÁ¿¡£,,,,0,,,,
-ZYDXF,×ÔÓÉµÄÐÂ·ç,RARE,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL *¡¸ÍùÉúÌÃÃØ´«Ç¹·¨¡¹ »ñµÃ *¡¸ hutaomod:µûÒý £ºÊ©¼Ó1²ã [bbIcon] ¡¹ µÄÐ§¹û¡£,,,,0,,,,
+,,,,,,,,,,,,,,,
+YWHY,ÓäÎè»¶ÓÎ,SPECIAL,SKILL,SELF,,1, hutaomod:ÃØ´« ¡£ NL ÏûºÄ ¡£»ñµÃ [E] [E] £¬Ãþ !M! ÕÅÅÆ¡£,,,2,0,,,,
+GHSYXL,¹é»ðÊ¥Ò¹Ñ²Àñ,SPECIAL,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL »ØºÏ½áÊøÊ±£¬ hutaomod:Í¨Áé {!Y!|0=Y|@=!Y!} ¡£,,,,0,,,,
+WJZH,Íò¼ÒÔî»ð,SPECIAL,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL ´¥·¢ÅÆµÄ hutaomod:ÒõÑô Ð§¹ûÊ±£¬¶ÔËæ»úµÐÈËÊ©¼Ó1²ã [bbIcon] ¡£,,,,0,,,,
+JRAZ,¾ÉÈÕ÷éÕ½,SPECIAL,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL ÏûºÄÉúÃüºó£¬ hutaomod:ÔáËÍ µÈÁ¿ÅÆ¡£,,,,0,,,,
+KZZRSMZS,¿¹ÕùÖ®ÈÕ¡¤ËéÃÎÖ®Ê±,SPECIAL,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL hutaomod:È¼Ñª Ð§¹û¸ÄÎª¶ÔÈ«ÌåÄ¿±ê£¨°üÀ¨×ÔÉí£©Ê©¼ÓµÈÁ¿ [bbIcon] ¡£ÄãÍ¨¹ýÅÆ»ñµÃ¸ñµ²ºó£¬Áî×ÔÉí [bbIcon] Ë¥¼õÒ»´Î¡£,,,,0,,,,
+JSTY,¾ÉÊ±Í¥Ô°,SPECIAL,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL ´ò³öÅÆ½øÈë±ôËÀ×´Ì¬Ê±£¬ÁîÖ®»ñµÃÍ¨ÓÃµûÒýÐ§¹û¡£,,,,0,,,,
+PYMQ,ÅÍÑÒÃËÆõ,SPECIAL,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL ÉÙÓÚY²ãµÄ [bbIcon] ²»»áË¥¼õ¡£,,,,0,,,,
+SMXG,ÉâÃâÐû¸æ,SPECIAL,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL *¡¸ÍùÉúÌÃÃØ´«Ç¹·¨¡¹ ¸ÄÎª [yyIcon] ÅÆ£¬ÇÒÓÚ´ò³öÊ±£¬Èô hutaomod:ÒõÑô £¬ÉËº¦·­±¶¡£,,,,0,,,,
+CDZS,²Ã¶¨Ö®Ê±,SPECIAL,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL hutaomod:È¼Ñª ºó£¬¼ÆËãÏÂÒ»ÕÅÅÆµÄYÖµÊ±£¬ÊÓÎªÔö¼ÓµÈÁ¿¡£,,,,0,,,,
+ZYDXF,×ÔÓÉµÄÐÂ·ç,SPECIAL,POWER,SELF,,1, hutaomod:ÃØ´« ¡£ NL *¡¸ÍùÉúÌÃÃØ´«Ç¹·¨¡¹ »ñµÃ *¡¸ hutaomod:µûÒý £ºÊ©¼Ó1²ã [bbIcon] ¡¹ µÄÐ§¹û¡£,,,,0,,,,
 ,,,,,,,,,,,,,,,

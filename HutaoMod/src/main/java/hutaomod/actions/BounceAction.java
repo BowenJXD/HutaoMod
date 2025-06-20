@@ -13,9 +13,6 @@ import hutaomod.utils.ModHelper;
 
 import java.util.function.Consumer;
 
-/**
- * TODO: check if bouncing on one vulnerable enemy affects other enemies
- */
 public class BounceAction extends AbstractGameAction {
     private AbstractCard card;
     private Consumer<AbstractMonster> callback;
@@ -35,7 +32,7 @@ public class BounceAction extends AbstractGameAction {
             this.card.calculateCardDamage((AbstractMonster) target);
             callback.accept((AbstractMonster) target);
             if (this.amount > 1) {
-                addToBot(new BounceAction(ModHelper.betterGetRandomMonster(), this.card, this.amount - 1, this.callback));
+                addToTop(new BounceAction(ModHelper.betterGetRandomMonster(), this.card, this.amount - 1, this.callback));
             }
         }
     }

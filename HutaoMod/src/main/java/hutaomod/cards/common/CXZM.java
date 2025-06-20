@@ -42,15 +42,4 @@ public class CXZM extends HuTaoCard {
             }
         }
     }
-
-    @Override
-    public void onDieying(boolean in) {
-        super.onDieying(in);
-        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            addToBot(new ApplyPowerAction(monster, AbstractDungeon.player, new BloodBlossomPower(monster, AbstractDungeon.player, 1)));
-        }
-        addToTop(new VFXAction(new ShowCardBrieflyEffect(makeStatEquivalentCopy(),
-                Settings.WIDTH * MathUtils.random(0.2f, 0.8f),
-                Settings.HEIGHT * MathUtils.random(0.3f, 0.7f))));
-    }
 }

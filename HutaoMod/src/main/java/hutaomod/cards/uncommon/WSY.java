@@ -1,5 +1,6 @@
 package hutaomod.cards.uncommon;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -10,6 +11,7 @@ import hutaomod.actions.BloodBurnAction;
 import hutaomod.actions.ClairvoirAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.cards.base.HutaoA;
+import hutaomod.modifiers.BloodCostModifier;
 
 public class WSY extends HuTaoCard {
     public static final String ID = WSY.class.getSimpleName();
@@ -28,9 +30,9 @@ public class WSY extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         addToBot(new BloodBurnAction(1));
-        addToBot(new ClairvoirAction(c -> c instanceof HutaoA).callback(list -> {
+        addToBot(new ClairvoirAction(c -> c.hasTag(CardTags.STARTER_STRIKE)).callback(list -> {
             for (AbstractCard card : list) {
-                ((HutaoA)card).changeToBloodCost(1);
+                CardModifierManager.addModifier(card, new BloodCostModifier());
             }
         }));
     }

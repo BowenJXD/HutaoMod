@@ -1,9 +1,4 @@
 {
-  "HuTaoMod:HutaoA": {
-    "EXTENDED_DESCRIPTION": [
-      "燃血1，造成 D 点伤害。"
-    ]
-  },
   "HuTaoMod:HutaoQ": {
     "EXTENDED_DESCRIPTION": [
       "吃饱喝饱，一路走好！",
@@ -29,6 +24,11 @@
   "HuTaoMod:DYBBModifier": {
     "EXTENDED_DESCRIPTION": [
       " NL hutaomod:蝶引 ：对随机敌人施加%d层 [bbIcon] 。"
+    ]
+  },
+  "HuTaoMod:BloodCostModifier": {
+    "EXTENDED_DESCRIPTION": [
+      "hutaomod:燃血 %d，"
     ]
   },
   "HuTaoMod:WST": {

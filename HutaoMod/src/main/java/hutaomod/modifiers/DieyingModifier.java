@@ -24,8 +24,8 @@ public class DieyingModifier extends HuTaoCardModifier {
     private final static CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     private final static String[] DESCRIPTIONS = cardStrings.EXTENDED_DESCRIPTION;
     
-    int damage = 3;
-    int block = 2;
+    public static final int DAMAGE = 3;
+    public static final int BLOCK = 2;
 
     @Override
     public boolean shouldApply(AbstractCard card) {
@@ -42,10 +42,10 @@ public class DieyingModifier extends HuTaoCardModifier {
         String newDesc = "";
         switch (card.type) {
             case ATTACK:
-                newDesc = GeneralUtil.tryFormat(DESCRIPTIONS[0], damage);
+                newDesc = GeneralUtil.tryFormat(DESCRIPTIONS[0], DAMAGE);
                 break;
             case SKILL:
-                newDesc = GeneralUtil.tryFormat(DESCRIPTIONS[1], block);
+                newDesc = GeneralUtil.tryFormat(DESCRIPTIONS[1], BLOCK);
                 break;
             default:
                 newDesc = DESCRIPTIONS[2];
@@ -62,11 +62,11 @@ public class DieyingModifier extends HuTaoCardModifier {
                 AbstractMonster m = ModHelper.betterGetRandomMonster();
                 if (m != null) {
                     addToBot(new VFXAction(new HemokinesisParticle(CardGroup.DISCARD_PILE_X, CardGroup.DISCARD_PILE_Y, m.hb.cX, m.hb.cY, AbstractDungeon.player.flipHorizontal)));
-                    addToBot(new CardDamageAction(m, damage, card, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    addToBot(new CardDamageAction(m, DAMAGE, card, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
                 break;
             case SKILL:
-                addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
+                addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, BLOCK));
                 break;
             default:
                 addToBot(new RandomCardFromDrawPileToHandAction());
