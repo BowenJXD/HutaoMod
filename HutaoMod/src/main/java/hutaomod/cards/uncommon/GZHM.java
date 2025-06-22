@@ -31,14 +31,15 @@ public class GZHM extends HuTaoCard {
                     c -> c.type == CardType.POWER,
                     list -> {
                         for (AbstractCard c : list) {
-                            addToBot(new NewQueueCardAction(c, true));
+                            AbstractDungeon.player.drawPile.removeCard(c);
+                            addToBot(new NewQueueCardAction(c, true, true, true));
                         }
                     }));
         } else {
             AbstractCard card = GeneralUtil.getRandomElement(AbstractDungeon.player.drawPile.group, AbstractDungeon.cardRandomRng, c -> c.type == CardType.POWER);
             if (card != null) {
                 AbstractDungeon.player.drawPile.removeCard(card);
-                addToBot(new NewQueueCardAction(card, true));
+                addToBot(new NewQueueCardAction(card, true, true, true));
             }
         }
     }

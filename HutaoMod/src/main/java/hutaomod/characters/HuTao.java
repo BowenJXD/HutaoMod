@@ -90,11 +90,13 @@ public class HuTao extends CustomPlayer {
         super(name, PlayerColorEnum.HUTAO, ORB_TEXTURES, "HuTaoResources/img/UI/orb/vfx.png", LAYER_SPEED, null, null);
 
         String charImg = null;
+        float hbx = 0, hby = 0, hbw = 200, hbh = 220;
         try {
             // this.loadAnimation("HuTaoResources/img/spine/hutao_skin.atlas", "HuTaoResources/img/spine/hutao_skin.json", 3F);
             AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
             e.setTime(e.getEndTime() * MathUtils.random());
             e.setTimeScale(1F);
+            hbx = 0; hby = -100; hbw = 300; hbh = 300;
         } catch (Exception e) {
             System.out.println("HuTao skin load failed");
             System.out.println(e.getMessage());
@@ -111,8 +113,8 @@ public class HuTao extends CustomPlayer {
                 MY_CHARACTER_SHOULDER_2, MY_CHARACTER_SHOULDER_1,
                 CORPSE_IMAGE, // 人物死亡图像
                 this.getLoadout(),
-                0.0F, -100.0F,
-                300.0F, 300.0F, // 人物碰撞箱大小，越大的人物模型这个越大
+                hbx, hby,
+                hbw, hbh, // 人物碰撞箱大小，越大的人物模型这个越大
                 new EnergyManager(3) // 初始每回合的能量
         );
 

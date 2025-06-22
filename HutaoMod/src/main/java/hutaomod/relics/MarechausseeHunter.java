@@ -13,6 +13,7 @@ public class MarechausseeHunter extends HuTaoRelic {
     
     public MarechausseeHunter() {
         super(ID, RelicTier.RARE);
+        isHuTaoOnly = false;
     }
 
     /*@Override

@@ -30,7 +30,7 @@ public class KZZRSMZSPower extends PowerPower {
                 }
                 addToTop(new ApplyPowerAction(action.target, action.source, new BloodBlossomPower(action.target, action.source, action.amount)));
             }
-            return !SubscriptionManager.checkSubscriber(this);
+            return false;
         });
     }
 

@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.HemokinesisParticle;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.actions.RandomCardFromDrawPileToHandAction;
+import hutaomod.actions.ScrayAction;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.utils.GeneralUtil;
 import hutaomod.utils.ModHelper;
@@ -69,7 +70,7 @@ public class DieyingModifier extends HuTaoCardModifier {
                 addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, BLOCK));
                 break;
             default:
-                addToBot(new RandomCardFromDrawPileToHandAction());
+                addToBot(new ScrayAction(1, c -> true));
                 break;
         }
     }

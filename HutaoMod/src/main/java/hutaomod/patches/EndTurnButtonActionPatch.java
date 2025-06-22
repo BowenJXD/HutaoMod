@@ -12,7 +12,9 @@ import com.megacrit.cardcrawl.powers.TimeWarpPower;
 import com.megacrit.cardcrawl.ui.FtueTip;
 import com.megacrit.cardcrawl.ui.buttons.EndTurnButton;
 import hutaomod.modcore.HuTaoMod;
+import hutaomod.relics.PlumBranch;
 import hutaomod.utils.CacheManager;
+import hutaomod.utils.ModHelper;
 
 import java.util.Objects;
 
@@ -38,9 +40,10 @@ public class EndTurnButtonActionPatch {
     public static class EndTurnButtonDisablePatch {
         public static SpireReturn<Void> Prefix(EndTurnButton __inst, boolean isEnemyTurn) {
             try {
-                if (checkMention() 
-                        && isEnemyTurn 
-                        && AbstractDungeon.getMonsters().monsters.stream().noneMatch(m -> m.hasPower(TimeWarpPower.POWER_ID) && m.getPower(TimeWarpPower.POWER_ID).amount == 0)) {
+                if (isEnemyTurn 
+                        && !ModHelper.hasRelic(PlumBranch.ID)
+                        && AbstractDungeon.getMonsters().monsters.stream().noneMatch(m -> m.hasPower(TimeWarpPower.POWER_ID) && m.getPower(TimeWarpPower.POWER_ID).amount == 0)
+                        && checkMention() ) {
                     return SpireReturn.Return();
                 }
             } catch (Exception e) {}
@@ -48,7 +51,7 @@ public class EndTurnButtonActionPatch {
         }
     }
 
-    static boolean checkMention() {
+    static boolean checkMention() {   
         boolean result = false;
         String mentionKey = String.valueOf(AbstractDungeon.getCurrRoom().hashCode()) + GameActionManager.turn;
         if (CacheManager.getBool(CacheManager.Key.DYING)) {

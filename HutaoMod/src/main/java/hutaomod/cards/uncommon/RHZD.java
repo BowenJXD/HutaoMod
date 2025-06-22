@@ -46,7 +46,7 @@ public class RHZD extends HuTaoCard implements OnPlayerDamagedSubscriber {
 
     @Override
     public int receiveOnPlayerDamaged(int i, DamageInfo damageInfo) {
-        if (SubscriptionManager.checkSubscriber(this) && i >= AbstractDungeon.player.currentHealth + AbstractDungeon.player.currentBlock && inHand) {
+        if (SubscriptionManager.checkSubscriber(this) && i >= AbstractDungeon.player.currentHealth + AbstractDungeon.player.currentBlock && AbstractDungeon.player.hand.contains(this)) {
             addToBot(new VFXAction(new AdrenalineEffect()));
             
             addToBot(new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand));

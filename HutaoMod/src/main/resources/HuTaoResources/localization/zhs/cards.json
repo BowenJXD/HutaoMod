@@ -16,14 +16,14 @@
   },
   "HuTaoMod:DieyingModifier": {
     "EXTENDED_DESCRIPTION": [
-      " NL hutaomod:蝶引 ：对随机敌人造成%d点伤害。",
+      " NL hutaomod:蝶引 ：造成%d点伤害。",
       " NL hutaomod:蝶引 ：获得%d点格挡。",
       " NL hutaomod:蝶引 ：随机获得摸牌堆1张牌。"
     ]
   },
   "HuTaoMod:DYBBModifier": {
     "EXTENDED_DESCRIPTION": [
-      " NL hutaomod:蝶引 ：对随机敌人施加%d层 [bbIcon] 。"
+      " NL hutaomod:蝶引 ：施加%d层 [bbIcon] 。"
     ]
   },
   "HuTaoMod:BloodCostModifier": {
@@ -188,7 +188,13 @@
     "FLAVOR": "art: Oxxio NL pid: 130166748"
   },
   "HuTaoMod:LZZF": {
+    "FLAVOR": "art: 葉古モミジ NL pid: 127028951"
+  },
+  "HuTaoMod:YHF": {
     "FLAVOR": "art: なぎゆすら NL pid: 127105565"
+  },
+  "HuTaoMod:TQ": {
+    "FLAVOR": "art: Indol NL pid: 127221555"
   },
   "HuTaoMod:YBSZQSZ": {
     "FLAVOR": "art: 辰石 NL pid: 115554837"

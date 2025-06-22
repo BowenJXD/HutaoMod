@@ -86,7 +86,7 @@ public class HutaoQ extends HuTaoCard {
     @Override
     public void calculateCardDamage(AbstractMonster mo) {
         super.calculateCardDamage(mo);
-        if (CacheManager.getBool(CacheManager.Key.HALF_HP)) {
+        if (CacheManager.getBool(CacheManager.Key.HALF_HP) && specialUpgrade) {
             damage *= 2;
             isDamageModified = true;
         }

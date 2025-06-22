@@ -15,6 +15,7 @@ import hutaomod.utils.PathDefine;
 import java.util.Objects;
 
 public abstract class HuTaoRelic extends CustomRelic {
+    public boolean isHuTaoOnly = true;
     
     public HuTaoRelic(String id, String resourcePath, RelicTier tier) {
         super(Objects.equals(resourcePath, PathDefine.RELIC_PATH) ? HuTaoMod.makeID(id) : id,

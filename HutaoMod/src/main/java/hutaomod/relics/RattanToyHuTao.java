@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.powers.debuffs.SiPower;
+import hutaomod.utils.CacheManager;
 import hutaomod.utils.GeneralUtil;
 
 public class RattanToyHuTao extends HuTaoRelic implements ClickableRelic {
@@ -25,7 +26,10 @@ public class RattanToyHuTao extends HuTaoRelic implements ClickableRelic {
 
     @Override
     public void onRightClick() {
-        if (isObtained && AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+        if (isObtained 
+                && AbstractDungeon.currMapNode != null 
+                && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT
+                && CacheManager.getBool(CacheManager.Key.DYING)) {
             flash();
             addToBot(new BloodBurnAction(counter));
             addToBot(new ReducePowerAction(AbstractDungeon.player, AbstractDungeon.player, SiPower.POWER_ID, 1));

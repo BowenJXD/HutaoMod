@@ -12,6 +12,7 @@ public class GhostlyMarch extends HuTaoRelic {
     
     public GhostlyMarch() {
         super(ID, RelicTier.COMMON);
+        isHuTaoOnly = false;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package hutaomod.utils;
 
+import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PostBattleSubscriber;
 import basemod.interfaces.PostDungeonUpdateSubscriber;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -17,7 +18,7 @@ import java.util.function.Predicate;
 /**
  * util for {@link com.megacrit.cardcrawl.actions.GameActionManager}
  */
-public class GAMManager implements PostDungeonUpdateSubscriber, PostBattleSubscriber {
+public class GAMManager implements PostDungeonUpdateSubscriber, PostBattleSubscriber, OnStartBattleSubscriber {
     private static GAMManager instance = null;
 
     public HashMap<String, Predicate<AbstractGameAction>> parallelActions = new HashMap<>();
@@ -85,6 +86,12 @@ public class GAMManager implements PostDungeonUpdateSubscriber, PostBattleSubscr
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
+        parallelActions.clear();
+        currentCard = null;
+    }
+
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         parallelActions.clear();
         currentCard = null;
     }

@@ -48,7 +48,7 @@ public class WMTPower extends PowerPower {
                     HuTaoMod.logger.error("Failed to get power instance from ReducePowerAction", e);
                 }
             }
-            return !SubscriptionManager.checkSubscriber(this);
+            return false;
         });
     }
 

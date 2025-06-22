@@ -4,6 +4,7 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.abstracts.CustomRelic;
 import basemod.abstracts.CustomUnlockBundle;
+import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -11,8 +12,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import hutaomod.cards.rare.LBHXWZD;
 import hutaomod.cards.rare.TDWX;
 import hutaomod.cards.rare.ZSNG;
@@ -20,6 +23,7 @@ import hutaomod.cards.uncommon.*;
 import hutaomod.characters.HuTao;
 import hutaomod.external.RestartRunHelper;
 import hutaomod.misc.*;
+import hutaomod.relics.*;
 import hutaomod.utils.GAMManager;
 import hutaomod.utils.PathDefine;
 import org.apache.logging.log4j.LogManager;
@@ -115,7 +119,11 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
         new AutoAdd(MOD_NAME)
                 .packageFilter("hutaomod.relics")
                 .any(CustomRelic.class, (info, relic) -> {
-                    BaseMod.addRelicToCustomPool(relic, HuTao.PlayerColorEnum.HUTAO_RED);
+                    if (relic instanceof HuTaoRelic && ((HuTaoRelic)relic).isHuTaoOnly) {
+                        BaseMod.addRelicToCustomPool(relic, HuTao.PlayerColorEnum.HUTAO_RED);
+                    } else {
+                        BaseMod.addRelic(relic, RelicType.SHARED);
+                    }
                 });
     }
 
@@ -175,8 +183,12 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
     @Override
     public void receiveSetUnlocks() {
         BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(ZSNG.ID), makeID(LBHXWZD.ID), makeID(WSY.ID)), HuTao.PlayerColorEnum.HUTAO, 0);
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(YYYX.ID), makeID(ZJXLTS.ID), makeID(QIQI.ID)), HuTao.PlayerColorEnum.HUTAO, 1);
-        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(MYWC.ID), makeID(SLBS.ID), makeID(TDWX.ID)), HuTao.PlayerColorEnum.HUTAO, 2);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.RELIC,
+                makeID(BoiledFish.ID), makeID(CrimsonWitchOfFlames.ID), makeID(GildedDreams.ID)), HuTao.PlayerColorEnum.HUTAO, 1);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(YYYX.ID), makeID(ZJXLTS.ID), makeID(QIQI.ID)), HuTao.PlayerColorEnum.HUTAO, 2);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(makeID(MYWC.ID), makeID(SLBS.ID), makeID(TDWX.ID)), HuTao.PlayerColorEnum.HUTAO, 3);
+        BaseMod.addUnlockBundle(new CustomUnlockBundle(AbstractUnlock.UnlockType.RELIC, 
+                makeID(ShimenawasReminiscence.ID), makeID(MarechausseeHunter.ID), makeID(GhostlyMarch.ID)), HuTao.PlayerColorEnum.HUTAO, 4);
     }
 
     @Override

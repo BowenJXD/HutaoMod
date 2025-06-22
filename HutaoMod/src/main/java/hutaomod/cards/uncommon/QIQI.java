@@ -27,26 +27,11 @@ import java.util.Objects;
 public class QIQI extends HuTaoCard implements OnPlayerDamagedSubscriber {
     public static final String ID = QIQI.class.getSimpleName();
     
-    int blizzardPotionModCache = 0;
-    
     public QIQI() {
         super(ID);
         exhaust = true;
         GraveField.grave.set(this, true);
         BaseMod.subscribe(this);
-    }
-
-    @Override
-    public void onMove(CardGroup group, boolean in) {
-        super.onMove(group, in);
-        if (group.type == CardGroup.CardGroupType.MASTER_DECK) {
-            if (in) {
-                AbstractRoom.blizzardPotionMod += 1000;
-                blizzardPotionModCache = AbstractRoom.blizzardPotionMod;
-            } else {
-                AbstractRoom.blizzardPotionMod = blizzardPotionModCache;
-            }
-        }
     }
 
     @Override
@@ -56,7 +41,9 @@ public class QIQI extends HuTaoCard implements OnPlayerDamagedSubscriber {
 
     @Override
     public int receiveOnPlayerDamaged(int i, DamageInfo damageInfo) {
-        if (SubscriptionManager.checkSubscriber(this) && i >= AbstractDungeon.player.currentHealth) {
+        if (SubscriptionManager.checkSubscriber(this) 
+                && i >= AbstractDungeon.player.currentHealth 
+                && upgraded) {
             addToBot(new VFXAction(new AdrenalineEffect()));
             AbstractDungeon.player.masterDeck.group.stream().filter(c -> Objects.equals(c.uuid, uuid)).findFirst().ifPresent(RelicEventHelper::purgeCards);
             ModHelper.findCards(c -> Objects.equals(c.uuid, uuid)).stream().findFirst().ifPresent(r -> r.group.removeCard(r.card));

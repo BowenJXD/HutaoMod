@@ -8,7 +8,7 @@
   "HuTaoMod:BloodBlossom": {
     "NAME": "血梅香",
     "DESCRIPTIONS": [
-      "血梅香 [bbIcon] 施加，叠加或衰减后，受到 #b%d 点伤害。回合开始时，衰减一半。"
+      "血梅香 [bbIcon] 层数变化后，受到 #b%d 点伤害。回合开始时，衰减一半。"
     ]
   },
   "HuTaoMod:Breath": {
@@ -44,8 +44,8 @@
   "HuTaoMod:QYG": {
     "NAME": "群玉阁",
     "DESCRIPTIONS": [
-      "每触发 #y阴阳 #b%d 次，摸 #b%d 张牌并获得 [E] 。 NL 已触发 #b%d 次。",
-      "每触发 #y阴阳 #b%d 次，摸 #b%d 张牌并获得 #b%d [E] 。 NL 已触发 #b%d 次。"
+      "每 #y阴阳 #b%d 次，摸 #b%d 张牌并获得 [E] 。 NL 已触发 #b%d 次。",
+      "每 #y阴阳 #b%d 次，摸 #b%d 张牌并获得 #b%d [E] 。 NL 已触发 #b%d 次。"
     ]
   },
   "HuTaoMod:WMT": {

@@ -21,8 +21,6 @@ import java.util.List;
 public class TDWX extends HuTaoCard {
     public static final String ID = TDWX.class.getSimpleName();
     
-    
-
     public TDWX() {
         super(ID);
         exhaust = true;

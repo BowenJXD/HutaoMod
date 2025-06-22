@@ -19,8 +19,8 @@ public class CrimsonWitchOfFlames extends HuTaoRelic {
     }
 
     @Override
-    public void atTurnStart() {
-        super.atTurnStart();
+    public void onPlayerEndTurn() {
+        super.onPlayerEndTurn();
         flash();
         for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
             addToBot(new ApplyPowerAction(monster, AbstractDungeon.player, new BloodBlossomPower(monster, AbstractDungeon.player, 1)));

@@ -23,7 +23,7 @@ public class TDJCMP extends HuTaoCard {
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new ScrayAction(magicNumber * 2 + (upgraded ? yyTime : 0)));
+        addToBot(new ScrayAction(magicNumber + 1 + (upgraded ? yyTime : 0)));
         addToBot(new DrawCardAction(magicNumber + (upgraded ? yyTime : 0)));
     }
 }

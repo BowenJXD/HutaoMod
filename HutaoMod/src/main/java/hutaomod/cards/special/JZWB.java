@@ -21,6 +21,8 @@ import hutaomod.cards.rare.TDWX;
 import hutaomod.characters.HuTao;
 import hutaomod.effects.PortraitDisplayEffect;
 import hutaomod.powers.debuffs.BloodBlossomPower;
+import hutaomod.utils.CardDataCol;
+import hutaomod.utils.DataManager;
 import hutaomod.utils.ModHelper;
 import hutaomod.utils.PathDefine;
 
@@ -28,18 +30,15 @@ import java.util.Objects;
 
 public class JZWB extends HuTaoCard {
     public static final String ID = JZWB.class.getSimpleName();
-    int damageCache = 0;
     TDWX.Wubei wubei = null;
 
     public JZWB() {
         super(ID);
-        damageCache = baseDamage;
     }
     
     public JZWB(TDWX.Wubei wubei) {
         super(ID, PathDefine.CARD_PATH + ID + '_' + wubei + ".png", HuTao.PlayerColorEnum.HUTAO_RED);
         this.wubei = wubei;
-        damageCache = baseDamage;
     }
 
     @Override
@@ -53,6 +52,7 @@ public class JZWB extends HuTaoCard {
     @Override
     public void calculateCardDamage(AbstractMonster mo) {
         int cardCount = ModHelper.findCardsInGroup(c -> Objects.equals(c.cardID, cardID), AbstractDungeon.player.discardPile).size();
+        int damageCache = DataManager.getInstance().getCardDataInt(ID, upgraded ? CardDataCol.UpgradeDamage : CardDataCol.Damage);
         baseDamage = damageCache + cardCount;
         magicNumber = baseMagicNumber + cardCount;
         super.calculateCardDamage(mo);

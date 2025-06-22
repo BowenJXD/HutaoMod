@@ -38,8 +38,6 @@ public abstract class HuTaoCard extends AbstractSignatureCard implements SpawnMo
     public int yyTime = 0;
     public YYState yy;
 
-    public boolean inHand = false;
-
     public CardStrings cardStrings;
 
     protected static final Color WHITE_BORDER_GLOW_COLOR;
@@ -132,10 +130,8 @@ public abstract class HuTaoCard extends AbstractSignatureCard implements SpawnMo
     public void onMove(CardGroup group, boolean in) {
         if (group.type == CardGroup.CardGroupType.HAND) {
             if (in) {
-                inHand = true;
                 onEnterHand();
             } else {
-                inHand = false;
                 onLeaveHand();
             }
         }

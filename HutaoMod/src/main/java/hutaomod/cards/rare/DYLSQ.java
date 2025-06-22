@@ -14,15 +14,15 @@ import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import hutaomod.actions.BounceAction;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.utils.CardDataCol;
+import hutaomod.utils.DataManager;
 import hutaomod.utils.ModHelper;
 
 public class DYLSQ extends HuTaoCard {
     public static final String ID = DYLSQ.class.getSimpleName();
-    int costCache;
 
     public DYLSQ() {
         super(ID);
-        costCache = cost;
     }
 
     @Override
@@ -37,6 +37,7 @@ public class DYLSQ extends HuTaoCard {
         addToBot(new BounceAction(m, this, magicNumber, mon -> {
             addToTop(new CardDamageAction(mon, (upgraded ? damage : 0) + si, this, AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         }));
+        int costCache = DataManager.getInstance().getCardDataInt(ID, upgraded ? CardDataCol.UpgradeCost : CardDataCol.Cost);
         ModHelper.addToBotAbstract(() -> updateCost(costCache - cost));
     }
 

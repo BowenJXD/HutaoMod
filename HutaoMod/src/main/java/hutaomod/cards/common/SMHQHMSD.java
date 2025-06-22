@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -20,6 +21,8 @@ import hutaomod.utils.ModHelper;
 public class SMHQHMSD extends HuTaoCard {
     public static final String ID = SMHQHMSD.class.getSimpleName();
     
+    AbstractMonster monsterCache;
+    
     public SMHQHMSD() {
         super(ID);
         GraveField.grave.set(this, true);
@@ -27,12 +30,13 @@ public class SMHQHMSD extends HuTaoCard {
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
+        monsterCache = m;
     }
 
     @Override
     public void onDieying(boolean in) {
         super.onDieying(in);
-        AbstractMonster m = ModHelper.betterGetRandomMonster();
+        AbstractMonster m = monsterCache != null ? monsterCache : ModHelper.betterGetRandomMonster();
         if (m == null) return;
         addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         if (upgraded) {

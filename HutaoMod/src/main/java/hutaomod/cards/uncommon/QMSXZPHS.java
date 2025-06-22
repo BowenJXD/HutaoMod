@@ -20,8 +20,9 @@ public class QMSXZPHS extends HuTaoCard {
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
+        addToBot(new GainBlockAction(p, p, block));
         addToBot(new ScrayAction(c -> c.type == CardType.SKILL).callback(cards -> {
-            addToTop(new GainBlockAction(p, p, block + cards.size() * magicNumber * yyTime));
+            addToTop(new GainBlockAction(p, p, cards.size() * magicNumber * yyTime));
         }));
     }
 }

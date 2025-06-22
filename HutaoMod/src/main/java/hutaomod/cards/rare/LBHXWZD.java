@@ -15,8 +15,6 @@ import hutaomod.powers.debuffs.BloodBlossomPower;
 
 public class LBHXWZD extends HuTaoCard {
     public static final String ID = LBHXWZD.class.getSimpleName();
-
-    boolean subscribed;
     
     public LBHXWZD() {
         super(ID);

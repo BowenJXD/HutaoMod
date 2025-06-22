@@ -24,7 +24,7 @@
     "NAME": "藤人",
     "FLAVOR": "蓝砚为胡桃特制的藤人，内含奇门术法，能通过大阵为胡桃分摊死气。",
     "DESCRIPTIONS": [
-      "战斗时 #y右键 此遗物触发： NL #rhutaomod:燃血 %d，移除1层 [siIcon] ，然后下次触发此效果的 #r燃血 数+1。"
+      "战斗时，若处于 #r濒死状态， #y右键 此遗物触发： NL #rhutaomod:燃血 %d，移除1层 [siIcon] ，然后下次触发此效果的 #r燃血 数+1。"
     ]
   },
   "HuTaoMod:StaffOfHoma": {
@@ -45,7 +45,7 @@
     "NAME": "梅枝",
     "FLAVOR": "忽然一夜梅香起，散作乾坤万里春。",
     "DESCRIPTIONS": [
-      "受到 #r致命伤害 时，若不为攻击伤害，则防止之，并获得 [E] 。"
+      "战斗内受到 #r致命伤害 时，若不为攻击伤害，则防止之，并获得摸牌堆1张牌。"
     ]
   },
   "HuTaoMod:GhostlyMarch": {
@@ -73,7 +73,7 @@
     "NAME": "炽烈的炎之魔女",
     "FLAVOR": "曾经梦想烧尽世间魔物的魔女触碰过的花朵。无名的火舌温暖地舔舐触碰它的人。",
     "DESCRIPTIONS": [
-      "回合开始时，对所有敌人施加1层 [bbIcon] 。"
+      "回合结束时，对所有敌人施加1层 [bbIcon] 。"
     ]
   },
   "HuTaoMod:MarechausseeHunter": {

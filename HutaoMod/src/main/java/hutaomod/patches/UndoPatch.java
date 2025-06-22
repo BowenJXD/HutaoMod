@@ -15,6 +15,8 @@ import hutaomod.modcore.HuTaoMod;
 import hutaomod.modifiers.BloodCostModifier;
 import hutaomod.modifiers.DYBBModifier;
 import hutaomod.modifiers.DieyingModifier;
+import hutaomod.powers.powers.QYGPower;
+import hutaomod.powers.powers.WSTPower;
 import hutaomod.subscribers.IHuTaoSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
 import savestate.AbstractCardModifierState;
@@ -52,6 +54,40 @@ public class UndoPatch {
                 return SpireReturn.Return(StateFactories.powerByIdMap.get(id).factory.apply(power));
             }
         }
+
+        public static AbstractPower getPower(AbstractPower powerToApply, int amount, AbstractCreature creature) {
+            Class<? extends AbstractPower> powerClassToApply = powerToApply.getClass();
+            try {
+                Constructor<?>[] con = powerClassToApply.getDeclaredConstructors();
+                int paramCt = con[0].getParameterCount();
+                Class[] params = con[0].getParameterTypes();
+                Object[] paramz = new Object[paramCt];
+
+                for (int i = 0; i < paramCt; ++i) {
+                    Class param = params[i];
+                    if (AbstractCreature.class.isAssignableFrom(param)) {
+                        paramz[i] = creature;
+                    } else if (Integer.TYPE.isAssignableFrom(param)) {
+                        paramz[i] = amount;
+                    } else if (Boolean.TYPE.isAssignableFrom(param)) {
+                        paramz[i] = true;
+                    }
+                }
+
+                powerToApply = (AbstractPower) con[0].newInstance(paramz);
+                if (powerToApply instanceof IHuTaoSubscriber) {
+                    SubscriptionManager.subscribe((IHuTaoSubscriber) powerToApply);
+                }
+                if (powerToApply instanceof ISubscriber) {
+                    BaseMod.subscribe((ISubscriber) powerToApply);
+                }
+
+                return powerToApply;
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException("Failed to create power: " + powerClassToApply.getName(), e);
+            }
+        }
     }
     
     @SpirePatch(
@@ -76,6 +112,8 @@ public class UndoPatch {
                     BloodCostModifierState::new,
                     BloodCostModifierState::new
             ));
+            StateFactories.powerByIdMap.put(QYGPower.POWER_ID, new PowerState.PowerFactories(QYGPowerState::new));
+            StateFactories.powerByIdMap.put(WSTPower.POWER_ID, new PowerState.PowerFactories(WSTPowerState::new));
         }
         
         public static class DieyingModifierState extends AbstractCardModifierState {
@@ -134,39 +172,93 @@ public class UndoPatch {
                 return new DYBBModifier();
             }
         }
-    }
+        
+        public static class QYGPowerState extends PowerState {
+            int limit;
+            int amount2;
 
-    public static AbstractPower getPower(AbstractPower powerToApply, int amount, AbstractCreature creature) {
-        Class<? extends AbstractPower> powerClassToApply = powerToApply.getClass();
-        try {
-            Constructor<?>[] con = powerClassToApply.getDeclaredConstructors();
-            int paramCt = con[0].getParameterCount();
-            Class[] params = con[0].getParameterTypes();
-            Object[] paramz = new Object[paramCt];
-
-            for (int i = 0; i < paramCt; ++i) {
-                Class param = params[i];
-                if (AbstractCreature.class.isAssignableFrom(param)) {
-                    paramz[i] = creature;
-                } else if (Integer.TYPE.isAssignableFrom(param)) {
-                    paramz[i] = amount;
-                } else if (Boolean.TYPE.isAssignableFrom(param)) {
-                    paramz[i] = true;
+            public QYGPowerState(AbstractPower power) {
+                super(power);
+                if (power instanceof QYGPower) {
+                    QYGPower qygPower = (QYGPower) power;
+                    this.limit = qygPower.limit;
+                    this.amount2 = qygPower.amount2;
                 }
             }
 
-            powerToApply = (AbstractPower) con[0].newInstance(paramz);
-            if (powerToApply instanceof IHuTaoSubscriber) {
-                SubscriptionManager.subscribe((IHuTaoSubscriber) powerToApply);
-            }
-            if (powerToApply instanceof ISubscriber) {
-                BaseMod.subscribe((ISubscriber) powerToApply);
+            public QYGPowerState(String jsonString) {
+                super(jsonString);
+                this.powerJson = (new JsonParser()).parse(jsonString).getAsJsonObject();
+                this.limit = powerJson.get("limit").getAsInt();
+                this.amount2 = powerJson.get("amount2").getAsInt();
             }
 
-            return powerToApply;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to create power: " + powerClassToApply.getName(), e);
+            public QYGPowerState(JsonObject powerJson) {
+                super(powerJson);
+                this.limit = powerJson.get("limit").getAsInt();
+                this.amount2 = powerJson.get("amount2").getAsInt();
+            }
+
+            @Override
+            public AbstractPower loadPower(AbstractCreature targetAndSource) {
+                QYGPower power = new QYGPower(limit);
+                power.amount = amount;
+                power.amount2 = amount2;
+                SubscriptionManager.subscribe(power);
+                return power;
+            }
+        }
+        
+        public static class WSTPowerState extends PowerState {
+            int limit;
+            int amount2;
+
+            public WSTPowerState(AbstractPower power) {
+                super(power);
+                if (power instanceof WSTPower) {
+                    WSTPower qygPower = (WSTPower) power;
+                    this.limit = qygPower.limit;
+                    this.amount2 = qygPower.amount2;
+                }
+            }
+
+            public WSTPowerState(String jsonString) {
+                super(jsonString);
+                this.powerJson = (new JsonParser()).parse(jsonString).getAsJsonObject();
+                this.limit = powerJson.get("limit").getAsInt();
+                this.amount2 = powerJson.get("amount2").getAsInt();
+            }
+
+            public WSTPowerState(JsonObject powerJson) {
+                super(powerJson);
+                this.limit = powerJson.get("limit").getAsInt();
+                this.amount2 = powerJson.get("amount2").getAsInt();
+            }
+
+            @Override
+            public AbstractPower loadPower(AbstractCreature targetAndSource) {
+                WSTPower power = new WSTPower(limit);
+                power.amount = amount;
+                power.amount2 = amount2;
+                SubscriptionManager.subscribe(power);
+                return power;
+            }
         }
     }
+    
+    /*@SpirePatch(
+            clz = CardState.class,
+            method = SpirePatch.CONSTRUCTOR,
+            requiredModId = "undothespire"
+    )
+    public static class cardStatePatch {
+        public static void Postfix(CardState __instance, AbstractCard card) {
+            if (card instanceof HutaoA) {
+                HutaoA hutaoCard = (HutaoA) card;
+                if (hutaoCard.yyTime > 0) {
+                    __instance.yyTime = hutaoCard.yyTime;
+                }
+            }
+        }
+    }*/
 }

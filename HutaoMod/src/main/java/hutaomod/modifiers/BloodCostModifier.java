@@ -31,7 +31,7 @@ public class BloodCostModifier extends HuTaoCardModifier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        String newDesc = GeneralUtil.tryFormat(DESCRIPTIONS[0], card.cost);
+        String newDesc = GeneralUtil.tryFormat(DESCRIPTIONS[0], costCache);
         return newDesc + rawDescription;
     }
 

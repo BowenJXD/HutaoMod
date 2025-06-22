@@ -17,7 +17,7 @@ public class WYWK extends HuTaoCard {
     
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new BloodBurnAction(2));
+        addToBot(new BloodBurnAction(magicNumber));
         addToBot(new DrawCardAction(magicNumber));
         addToBot(new MakeTempCardInDrawPileAction(new HutaoA(upgraded), 1, true, true));
     }

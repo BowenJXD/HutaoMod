@@ -171,7 +171,6 @@ public class DataManager {
             replacements.put("蝶引：", " hutaomod:蝶引 ：");
             replacements.put("葬送", " hutaomod:葬送 ");
             replacements.put("通灵", " hutaomod:通灵 ");
-
             // 读取文件并替换文本
             replaceTextInFile(CARD_CSV_ZHS, replacements);
 
@@ -179,7 +178,6 @@ public class DataManager {
             replacements.put("  ", " ");
             replacements.put(" hutaomod:血梅香 ", " [bbIcon] ");
             replacements.put(" hutaomod:死气 ", " [siIcon] ");
-            replacements.put("通用 hutaomod:蝶引 效果", " hutaomod:通用蝶引效果 ");
 
             replaceTextInFile(CARD_CSV_ZHS, replacements);
         }

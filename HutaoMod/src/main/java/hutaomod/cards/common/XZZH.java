@@ -1,8 +1,11 @@
-/*
 package hutaomod.cards.common;
 
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DiscardAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.cards.tempCards.Miracle;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
@@ -16,12 +19,14 @@ public class XZZH extends HuTaoCard {
     
     public XZZH() {
         super(ID);
+        cardsToPreview = new Miracle();
     }
     
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new VFXAction(new FlameBarrierEffect(p.hb.cX, p.hb.cY)));
-        addToBot(new ApplyPowerAction(p, p, new XZZHPower(magicNumber, upgraded)));
+        addToBot(new BloodBurnAction(magicNumber));
+        addToBot(new DiscardAction(p, p, magicNumber, false));
+        if (upgraded) addToBot(new GainBlockAction(p, p, block));
+        addToBot(new MakeTempCardInHandAction(new Miracle()));
     }
 }
-*/

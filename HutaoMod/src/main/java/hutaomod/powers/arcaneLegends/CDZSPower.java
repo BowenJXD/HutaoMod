@@ -28,7 +28,7 @@ public class CDZSPower extends PowerPower implements PreCachedIntGetSubscriber {
             if (action instanceof BloodBurnAction) {
                 addToBot(new ApplyPowerAction(owner, owner, new CDZSPower(), action.amount, true));
             }
-            return !SubscriptionManager.checkSubscriber(this);
+            return false;
         });
     }
 

@@ -14,6 +14,7 @@ public class ShimenawasReminiscence extends HuTaoRelic {
     
     public ShimenawasReminiscence() {
         super(ID, RelicTier.RARE);
+        isHuTaoOnly = false;
     }
 
     @Override

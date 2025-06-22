@@ -21,7 +21,7 @@ public class TXXM extends HuTaoCard {
         int reduceAmount = bbCount/2;
         if (reduceAmount > 0) {
             addToBot(new ReducePowerAction(m, p, BloodBlossomPower.POWER_ID, reduceAmount));
+            addToBot(new GainBlockAction(p, p, block + reduceAmount));
         }
-        addToBot(new GainBlockAction(p, p, block + reduceAmount));
     }
 }

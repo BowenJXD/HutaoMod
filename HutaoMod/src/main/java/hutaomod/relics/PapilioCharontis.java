@@ -4,16 +4,20 @@ import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsCenteredAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.DeepBreath;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.stances.AbstractStance;
@@ -25,6 +29,7 @@ import hutaomod.cards.special.No;
 import hutaomod.cards.special.Yes;
 import hutaomod.effects.ButterflySpawner;
 import hutaomod.external.RestartRunHelper;
+import hutaomod.modcore.HuTaoMod;
 import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.GAMManager;
 import hutaomod.utils.ModHelper;
@@ -140,9 +145,10 @@ public class PapilioCharontis extends HuTaoRelic {
                     addToTop(new ClairvoirAction(4));
                     return true;
                 }
-                return !SubscriptionManager.checkSubscriber(this);
+                return false;
             });
         }
+        yesed = false;
     }
 
     @Override
@@ -152,13 +158,23 @@ public class PapilioCharontis extends HuTaoRelic {
             addToTop(new WaitAction(0.01f));
         }
     }
+    
+    boolean yesed = false;
 
     @Override
     public int onLoseHpLast(int damageAmount) {
         if (invincible) {
             return 0;
         }
-        if (damageAmount >= AbstractDungeon.player.currentHealth) {
+        AbstractRelic lizardTail = AbstractDungeon.player.getRelic("Lizard Tail");
+        AbstractRelic ghostlyMarch = AbstractDungeon.player.getRelic(HuTaoMod.makeID(GhostlyMarch.ID));
+        if (lizardTail != null && !lizardTail.usedUp) {
+            return damageAmount;
+        }
+        if (ghostlyMarch != null && !ghostlyMarch.usedUp) {
+            return damageAmount;
+        }
+        if (damageAmount >= AbstractDungeon.player.currentHealth && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
             if (counter >= 6) {
                 flash();
                 if (!AbstractDungeon.actionManager.turnHasEnded) {
@@ -173,9 +189,9 @@ public class PapilioCharontis extends HuTaoRelic {
                         return false;
                     });
                 }
-                addToTop(new GainBlockAction(AbstractDungeon.player, 200));
                 setCounter(5);
-            } else {
+                return 0;
+            } else if (!yesed) {
                 ArrayList<AbstractCard> group = new ArrayList<>();
                 AbstractCard yes = new Yes();
                 AbstractCard no = new No();
@@ -183,19 +199,14 @@ public class PapilioCharontis extends HuTaoRelic {
                 group.add(new No());
                 addToTop(new SelectCardsCenteredAction(group, 1, DESCRIPTIONS[14], cards -> {
                     if (cards.stream().anyMatch(c -> Objects.equals(yes.cardID, c.cardID))) {
-                        AbstractDungeon.actionManager.clearPostCombatActions();
-                        ModHelper.addToTopAbstract(() -> {
-                            AbstractPlayer p = AbstractDungeon.player;
-                            p.isDead = true;
-                            AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
-                            p.currentHealth = 0;
-                        });
+                        yesed = true;
+                        addToTop(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, damageAmount)));
                     } else if (cards.stream().anyMatch(c -> Objects.equals(no.cardID, c.cardID))) {
                         ModHelper.addEffectAbstract(() -> RestartRunHelper.queuedRoomRestart = true);
                     }
                 }));
+                return 0;
             }
-            return 0;
         }
         return super.onLoseHpLast(damageAmount);
     }
