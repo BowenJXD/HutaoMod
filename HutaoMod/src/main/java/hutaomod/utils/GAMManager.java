@@ -22,6 +22,7 @@ public class GAMManager implements PostDungeonUpdateSubscriber, PostBattleSubscr
     private static GAMManager instance = null;
 
     public HashMap<String, Predicate<AbstractGameAction>> parallelActions = new HashMap<>();
+    public HashMap<String, Predicate<AbstractGameAction>> actionsCache = new HashMap<>();
     public AbstractGameAction currentAction;
     
     public AbstractCard currentCard;
@@ -39,6 +40,7 @@ public class GAMManager implements PostDungeonUpdateSubscriber, PostBattleSubscr
     
     public static void addParallelAction(String id, Predicate<AbstractGameAction> action) {
         getInstance().parallelActions.put(id, action);
+        getInstance().actionsCache.put(id, action);
     }
     
     public static void removeParallelAction(String id) {
@@ -55,7 +57,7 @@ public class GAMManager implements PostDungeonUpdateSubscriber, PostBattleSubscr
         if (currentAction != AbstractDungeon.actionManager.currentAction) {
             currentAction = AbstractDungeon.actionManager.currentAction;
             if (currentAction != null) {
-                System.out.printf("%naction: %-50s | source: %-30s | target: %-30s | amount: %-4d",
+                System.out.printf("action: %-50s | source: %-30s | target: %-30s | amount: %-4d%n",
                         currentAction.getClass().getSimpleName().isEmpty() ? currentAction : currentAction.getClass().getSimpleName() + '@' + currentAction.hashCode(),
                         currentAction.source != null ? currentAction.source.getClass().getSimpleName() + '@' + currentAction.source.hashCode() : "null",
                         currentAction.target != null ? currentAction.target.getClass().getSimpleName() + '@' + currentAction.target.hashCode() : "null",
@@ -64,7 +66,7 @@ public class GAMManager implements PostDungeonUpdateSubscriber, PostBattleSubscr
                 while (iterator.hasNext()) {
                     Map.Entry<String, Predicate<AbstractGameAction>> entry = iterator.next();
                     if (entry.getValue().test(currentAction)) {
-                        System.out.printf("%nParallel action %s removed by %s", entry.getKey(), currentAction);
+                        System.out.printf("Parallel action %s removed by %s%n", entry.getKey(), currentAction);
                         iterator.remove();
                     }
                 }
@@ -74,7 +76,7 @@ public class GAMManager implements PostDungeonUpdateSubscriber, PostBattleSubscr
         if (!cards.isEmpty() && cards.get(cards.size() - 1) != currentCard) {
             currentCard = cards.get(cards.size() - 1);
             int cardIndex = cards.size();
-            System.out.printf("%n================== turn %-2d card %-2d: %-20s, D: %-3d, B: %-3d, M: %-3d", GameActionManager.turn, cardIndex,
+            System.out.printf("================== turn %-2d card %-2d: %-20s, D: %-3d, B: %-3d, M: %-3d%n", GameActionManager.turn, cardIndex,
                     currentCard, currentCard.damage, currentCard.block, currentCard.magicNumber);
         }
     }

@@ -7,24 +7,32 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import hutaomod.cards.base.HutaoA;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.modifiers.BloodCostModifier;
 import hutaomod.modifiers.DYBBModifier;
 import hutaomod.modifiers.DieyingModifier;
+import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.powers.powers.QYGPower;
 import hutaomod.powers.powers.WSTPower;
 import hutaomod.subscribers.IHuTaoSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
+import hutaomod.utils.GAMManager;
 import savestate.AbstractCardModifierState;
 import savestate.CardState;
 import savestate.StateFactories;
 import savestate.powers.PowerState;
+import undobutton.util.MakeUndoable;
 
 import java.lang.reflect.Constructor;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class UndoPatch {
     @SpirePatch(
@@ -81,10 +89,12 @@ public class UndoPatch {
                 if (powerToApply instanceof ISubscriber) {
                     BaseMod.subscribe((ISubscriber) powerToApply);
                 }
+                if (powerToApply instanceof BloodBlossomPower) {//
+                    ((BloodBlossomPower)powerToApply).source = AbstractDungeon.player;
+                }
 
                 return powerToApply;
             } catch (Exception e) {
-                e.printStackTrace();
                 throw new RuntimeException("Failed to create power: " + powerClassToApply.getName(), e);
             }
         }
@@ -188,7 +198,6 @@ public class UndoPatch {
 
             public QYGPowerState(String jsonString) {
                 super(jsonString);
-                this.powerJson = (new JsonParser()).parse(jsonString).getAsJsonObject();
                 this.limit = powerJson.get("limit").getAsInt();
                 this.amount2 = powerJson.get("amount2").getAsInt();
             }
@@ -224,7 +233,6 @@ public class UndoPatch {
 
             public WSTPowerState(String jsonString) {
                 super(jsonString);
-                this.powerJson = (new JsonParser()).parse(jsonString).getAsJsonObject();
                 this.limit = powerJson.get("limit").getAsInt();
                 this.amount2 = powerJson.get("amount2").getAsInt();
             }
@@ -242,6 +250,29 @@ public class UndoPatch {
                 power.amount2 = amount2;
                 SubscriptionManager.subscribe(power);
                 return power;
+            }
+        }
+        
+        @MakeUndoable(statetype = String[].class)
+        public static class GAMActionsState {
+            public static void load(String[] keys) {
+                if (keys == null || keys.length == 0) return;
+                List<String> keyList = Arrays.asList(keys);
+                GAMManager gamManager = GAMManager.getInstance();
+                gamManager.actionsCache.forEach((key, action) -> {
+                    if (keyList.contains(key)) {
+                        if (!gamManager.parallelActions.containsKey(key)) {
+                            gamManager.parallelActions.put(key, action);
+                        }
+                    } else {
+                        gamManager.parallelActions.remove(key);
+                    }
+                });
+            }
+            
+            public static String[] save() {
+                GAMManager gamManager = GAMManager.getInstance();
+                return gamManager.parallelActions.keySet().toArray(new String[0]);
             }
         }
     }

@@ -13,6 +13,11 @@ import hutaomod.external.signature.utils.internal.ConfigHelper;
 import hutaomod.external.signature.utils.internal.MiscHelper;
 import hutaomod.external.signature.utils.internal.SignatureHelperInternal;
 
+/**
+ * @author antileaf <br>
+ * <a href="https://github.com/antileaf/SignatureLib">github</a> <br>
+ * <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3433319964">Steam Workshop</a>
+ */
 @SpireInitializer
 public class SignatureLibCore implements EditStringsSubscriber, PostInitializeSubscriber {
 	public SignatureLibCore() {

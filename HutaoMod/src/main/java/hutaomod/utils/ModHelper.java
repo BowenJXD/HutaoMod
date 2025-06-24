@@ -135,6 +135,12 @@ public class ModHelper {
         return !(m == null || m.isDying || m.isEscaping || m.halfDead || m.currentHealth <= 0);
     }
 
+    /**
+     * Modified based on {@link MonsterGroup#getRandomMonster(AbstractMonster, boolean, Random)}
+     * @param predicate
+     * @param aliveOnly
+     * @return
+     */
     public static AbstractMonster getRandomMonster(Predicate<AbstractMonster> predicate, boolean aliveOnly) {
         MonsterGroup group = AbstractDungeon.getCurrRoom().monsters;
         Random rng = AbstractDungeon.cardRandomRng;

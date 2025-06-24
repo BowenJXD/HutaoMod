@@ -40,7 +40,7 @@ public class SiPower extends DebuffPower {
         super.onSpecificTrigger();
         addToBot(new VFXAction(new OfferingEffect()));
         if (isDying(amount)) {
-            addToBot(new LoseHPAction(owner, owner, owner.currentHealth + TempHPField.tempHp.get(owner)));
+            addToBot(new LoseHPAction(owner, owner, 99999));
         } else {
             addToBot(new LoseHPAction(owner, owner, amount));
             addToBot(new GainBlockAction(owner, owner, amount));

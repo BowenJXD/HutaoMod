@@ -1,9 +1,11 @@
 package hutaomod.powers.arcaneLegends;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import hutaomod.actions.BloodBurnAction;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.powers.PowerPower;
@@ -44,7 +46,10 @@ public class KZZRSMZSPower extends PowerPower {
     public void onPlayCard(AbstractCard card, AbstractMonster m) {
         super.onPlayCard(card, m);
         if (card.baseBlock > 0) {
-            BloodBlossomPower.fadePower(owner);
+            AbstractPower power = owner.getPower(BloodBlossomPower.POWER_ID);
+            if (power != null) {
+                addToTop(new ReducePowerAction(owner, owner, power, power.amount));
+            }
         }
     }
 }

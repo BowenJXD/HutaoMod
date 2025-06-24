@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+/**
+ * {@link MoveCardsAction} with option to execute screenlessly.
+ */
 public class BetterMoveCardsAction extends AbstractGameAction {
     private static final UIStrings uiStrings;
     public static final String[] TEXT;

@@ -207,12 +207,6 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
                 "A mod themed after Genshin character Hu Tao.",
                 new HuTaoModConfig()
         );
-        /*DynamicTextBlocks.registerCustomCheck("hutaomod:handYY", card -> {
-            if (card instanceof HuTaoCard) {
-                return ((HuTaoCard)card).compareHandYY(); 
-            }
-            return 0;
-        });*/
     }
 
     public void updateLanguage() {
