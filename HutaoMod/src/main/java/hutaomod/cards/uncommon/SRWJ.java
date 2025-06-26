@@ -20,7 +20,7 @@ public class SRWJ extends HuTaoCard {
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new BloodBurnAction(1));
+        addToBot(new BloodBurnAction(magicNumber));
         addToBot(new ExhaustAction(1, true));
         addToBot(new CardDamageAction(m, damage + (upgraded ? si : 0), this, AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         if (yyTime > 0)

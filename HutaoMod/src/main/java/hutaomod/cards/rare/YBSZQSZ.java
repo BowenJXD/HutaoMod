@@ -26,7 +26,7 @@ public class YBSZQSZ extends HuTaoCard {
     @Override
     public void onMove(CardGroup group, boolean in) {
         super.onMove(group, in);
-        if (group.type == CardGroup.CardGroupType.DRAW_PILE && in) {
+        if (group.type == CardGroup.CardGroupType.DRAW_PILE && in && upgraded) {
             if (inBottleLightning && !bottleTriggered) {
                 bottleTriggered = true;
             }

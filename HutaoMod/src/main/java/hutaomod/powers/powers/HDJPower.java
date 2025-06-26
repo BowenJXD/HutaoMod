@@ -10,7 +10,7 @@ import hutaomod.subscribers.PostCardMoveSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.GeneralUtil;
 
-public class HDJPower extends PowerPower implements PostCardMoveSubscriber {
+public class          HDJPower extends PowerPower implements PostCardMoveSubscriber {
     public static final String POWER_ID = HuTaoMod.makeID(HDJPower.class.getSimpleName());
     
     public HDJPower(int amount) {

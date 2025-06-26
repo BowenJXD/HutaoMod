@@ -31,8 +31,9 @@ public class PYMQPower extends PowerPower {
                     String powerID = ReflectionHacks.getPrivate(reducePowerAction, ReducePowerAction.class, "powerID");
                     if (Objects.equals(powerID, BloodBlossomPower.POWER_ID) || Objects.equals(powerInstance.ID, BloodBlossomPower.POWER_ID)) {
                         AbstractPower power = action.target.getPower(BloodBlossomPower.POWER_ID);
-                        if (power != null && power.amount < CacheManager.getInt(CacheManager.Key.PLAYER_SI)) {
-                            GAMManager.stopCurrentAction();
+                        int si = CacheManager.getInt(CacheManager.Key.PLAYER_SI);
+                        if (power != null && power.amount - action.amount < si) {
+                            action.amount = Math.max(0, power.amount - si);
                         }
                     }
                 } catch (Exception e) {

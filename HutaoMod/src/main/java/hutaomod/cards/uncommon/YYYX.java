@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import hutaomod.actions.CardDamageAction;
 import hutaomod.actions.ClairvoirAction;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.modcore.CustomEnum;
 import hutaomod.powers.debuffs.BloodBlossomPower;
 import hutaomod.utils.CacheManager;
 import hutaomod.utils.ModHelper;
@@ -24,14 +25,23 @@ public class YYYX extends HuTaoCard {
 
     public YYYX() {
         super(ID);
+        exhaust = true;
+        tags.add(CustomEnum.YIN_YANG);
+    }
+
+    @Override
+    public void upgrade() {
+        super.upgrade();
+        exhaust = false;
     }
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
+        if (yyTime <= 0) return;
         List<ModHelper.FindResult> results = ModHelper.findCards(c -> c.hasTag(CardTags.STARTER_STRIKE));
         int strengthCount = results.stream().mapToInt(r -> r.group.type == CardGroup.CardGroupType.DRAW_PILE ? 1 : 0).sum();
         int dexterityCount = results.stream().mapToInt(r -> r.group.type == CardGroup.CardGroupType.DISCARD_PILE ? 1 : 0).sum();
-        addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, strengthCount)));
-        addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, dexterityCount)));
+        addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, strengthCount * yyTime)));
+        addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, dexterityCount * yyTime)));
     }
 }

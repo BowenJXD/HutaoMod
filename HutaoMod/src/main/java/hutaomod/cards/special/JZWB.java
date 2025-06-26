@@ -7,6 +7,7 @@ import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.BetterDrawPileToHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -47,6 +48,7 @@ public class JZWB extends HuTaoCard {
         addToBot(new VFXAction(new ClashEffect(m.hb.cX, m.hb.cY)));
         addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.NONE));
         addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, magicNumber)));
+        addToBot(new BetterDrawPileToHandAction(1));
     }
 
     @Override

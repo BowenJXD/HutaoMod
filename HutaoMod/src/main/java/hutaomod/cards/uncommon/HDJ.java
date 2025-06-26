@@ -16,8 +16,14 @@ public class HDJ extends HuTaoCard {
     }
 
     @Override
+    public void upgrade() {
+        super.upgrade();
+        isInnate = true;
+    }
+
+    @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new BloodBurnAction(1));
+        addToBot(new BloodBurnAction(magicNumber));
         addToBot(new ApplyPowerAction(p, p, new HDJPower(1)));
     }
 }

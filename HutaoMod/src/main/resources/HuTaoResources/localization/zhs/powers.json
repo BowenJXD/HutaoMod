@@ -119,7 +119,7 @@
   "HuTaoMod:KZZRSMZS": {
     "NAME": "抗争之日·碎梦之时",
     "DESCRIPTIONS": [
-      "#r燃血 效果改为对全体目标（包括自身）施加等量 [bbIcon] 。你通过牌获得格挡后，令自身 [bbIcon] 衰减一次。"
+      "#r燃血 效果改为对全体目标（包括自身）施加等量 [bbIcon] 。你通过牌获得格挡后，令自身 [bbIcon] 衰减所有层。"
     ]
   },
   "HuTaoMod:JSTY": {
@@ -131,7 +131,7 @@
   "HuTaoMod:PYMQ": {
     "NAME": "磐岩盟契",
     "DESCRIPTIONS": [
-      "少于Y层的 [bbIcon] 不会衰减。"
+      " [bbIcon] 不会衰减至Y层以下。"
     ]
   },
   "HuTaoMod:SMXG": {

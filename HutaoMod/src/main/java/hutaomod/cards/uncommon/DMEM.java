@@ -25,11 +25,9 @@ public class DMEM extends HuTaoCard implements OnPlayerDamagedSubscriber {
     @Override
     public int receiveOnPlayerDamaged(int i, DamageInfo damageInfo) {
         if (SubscriptionManager.checkSubscriber(this) && AbstractDungeon.player.hand.contains(this)) {
-            if (damageInfo.type != DamageInfo.DamageType.HP_LOSS && upgraded) {
+            if (damageInfo.type == DamageInfo.DamageType.HP_LOSS || upgraded)
                 i--;
-            }
-            return Math.max(--i, 0);
         }
-        return i;
+        return Math.max(--i, 0);
     }
 }
