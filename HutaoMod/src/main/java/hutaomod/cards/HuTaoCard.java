@@ -18,6 +18,7 @@ import hutaomod.characters.HuTao;
 import hutaomod.external.signature.card.AbstractSignatureCard;
 import hutaomod.modcore.CustomEnum;
 import hutaomod.modcore.HuTaoMod;
+import hutaomod.modcore.YYState;
 import hutaomod.powers.debuffs.SiPower;
 import hutaomod.subscribers.SubscriptionManager;
 import hutaomod.utils.*;
@@ -243,13 +244,6 @@ public abstract class HuTaoCard extends AbstractSignatureCard implements SpawnMo
             return ((HuTaoCard) card).yy == YYState.YANG;
         }
         return false;
-    }
-
-    public enum YYState {
-        NONE,
-        YIN,
-        YANG,
-        YINYANG,
     }
 
     static {

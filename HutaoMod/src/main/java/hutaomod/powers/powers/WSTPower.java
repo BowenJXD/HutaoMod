@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.modcore.HuTaoMod;
+import hutaomod.modcore.YYState;
 import hutaomod.powers.PowerPower;
 import hutaomod.subscribers.PreCachedIntGetSubscriber;
 import hutaomod.subscribers.SubscriptionManager;
@@ -58,7 +59,7 @@ public class WSTPower extends PowerPower implements PreCachedIntGetSubscriber {
         super.onPlayCard(card, m);
         if (card instanceof HuTaoCard) {
             HuTaoCard huTaoCard = (HuTaoCard) card;
-            if (huTaoCard.yy == HuTaoCard.YYState.YIN) {
+            if (huTaoCard.yy == YYState.YIN) {
                 stackPower(1);
                 updateDescription();
             }
@@ -68,7 +69,7 @@ public class WSTPower extends PowerPower implements PreCachedIntGetSubscriber {
     @Override
     public void onLimitReached() {
         super.onLimitReached();
-        List<AbstractCard> cards = AbstractDungeon.player.hand.group.stream().filter(c -> c instanceof HuTaoCard && ((HuTaoCard)c).yy == HuTaoCard.YYState.YANG && c.costForTurn > 0).collect(Collectors.toList());
+        List<AbstractCard> cards = AbstractDungeon.player.hand.group.stream().filter(c -> c instanceof HuTaoCard && ((HuTaoCard)c).yy == YYState.YANG && c.costForTurn > 0).collect(Collectors.toList());
         if (!cards.isEmpty()) {
             AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
             card.flash();

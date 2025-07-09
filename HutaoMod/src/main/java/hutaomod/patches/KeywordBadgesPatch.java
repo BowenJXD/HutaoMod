@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import hutaomod.cards.HuTaoCard;
+import hutaomod.modcore.YYState;
 import hutaomod.utils.PathDefine;
 import javassist.CtBehavior;
 
@@ -33,11 +34,11 @@ public class KeywordBadgesPatch {
         public static void Prefix(AbstractCard c, ArrayList<String> kws) {
             if (!(c instanceof HuTaoCard)) return;
             HuTaoCard card = (HuTaoCard) c;
-            if (card.yy == HuTaoCard.YYState.YINYANG) {
+            if (card.yy == YYState.YINYANG) {
                 kws.add(yinYangName);
-            } else if (card.yy == HuTaoCard.YYState.YIN) {
+            } else if (card.yy == YYState.YIN) {
                 kws.add(yinName);
-            } else if (card.yy == HuTaoCard.YYState.YANG) {
+            } else if (card.yy == YYState.YANG) {
                 kws.add(yangName);
             }
         }
@@ -50,11 +51,11 @@ public class KeywordBadgesPatch {
             if (!(card instanceof HuTaoCard)) return;
             HuTaoCard c = (HuTaoCard) card;
             Texture texture = null;
-            if (c.yy == HuTaoCard.YYState.YINYANG) {
+            if (c.yy == YYState.YINYANG) {
                 texture = yinYangTexture;
-            } else if (c.yy == HuTaoCard.YYState.YIN) {
+            } else if (c.yy == YYState.YIN) {
                 texture = yinTexture;
-            } else if (c.yy == HuTaoCard.YYState.YANG) {
+            } else if (c.yy == YYState.YANG) {
                 texture = yangTexture;
             }
             if (texture != null) {
@@ -69,11 +70,11 @@ public class KeywordBadgesPatch {
         public static void Insert(SpriteBatch sb, String word, float x, float y, AbstractCard ___card, @ByRef Texture[] badge) {
             if (!(___card instanceof HuTaoCard)) return;
             HuTaoCard c = (HuTaoCard) ___card;
-            if (c.yy == HuTaoCard.YYState.YINYANG && Objects.equals(word, yinYangName)) {
+            if (c.yy == YYState.YINYANG && Objects.equals(word, yinYangName)) {
                 badge[0] = yinYangTexture;
-            } else if (c.yy == HuTaoCard.YYState.YIN && Objects.equals(word, yinName)) {
+            } else if (c.yy == YYState.YIN && Objects.equals(word, yinName)) {
                 badge[0] = yinTexture;
-            } else if (c.yy == HuTaoCard.YYState.YANG && Objects.equals(word, yangName)) {
+            } else if (c.yy == YYState.YANG && Objects.equals(word, yangName)) {
                 badge[0] = yangTexture;
             }
         }
@@ -94,11 +95,11 @@ public class KeywordBadgesPatch {
             if (!(___card instanceof HuTaoCard)) return;
             HuTaoCard c = (HuTaoCard) ___card;
             Texture texture = null;
-            if (c.yy == HuTaoCard.YYState.YINYANG) {
+            if (c.yy == YYState.YINYANG) {
                 texture = yinYangTexture;
-            } else if (c.yy == HuTaoCard.YYState.YIN) {
+            } else if (c.yy == YYState.YIN) {
                 texture = yinTexture;
-            } else if (c.yy == HuTaoCard.YYState.YANG) {
+            } else if (c.yy == YYState.YANG) {
                 texture = yangTexture;
             }
             if (texture != null) {

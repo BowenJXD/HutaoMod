@@ -10,8 +10,6 @@ import hutaomod.actions.CardDamageAction;
 import hutaomod.cards.HuTaoCard;
 import hutaomod.characters.HuTao;
 import hutaomod.powers.debuffs.BloodBlossomPower;
-import savestate.CardState;
-import undobutton.util.MakeUndoable;
 
 public class HutaoA extends HuTaoCard {
     public static final String ID = HutaoA.class.getSimpleName();

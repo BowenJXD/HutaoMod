@@ -7,6 +7,7 @@ import hutaomod.cards.HuTaoCard;
 import hutaomod.cards.base.HutaoA;
 import hutaomod.modcore.CustomEnum;
 import hutaomod.modcore.HuTaoMod;
+import hutaomod.modcore.YYState;
 import hutaomod.powers.PowerPower;
 import hutaomod.subscribers.CheckYinYangSubscriber;
 import hutaomod.subscribers.PostCardMoveSubscriber;
@@ -45,7 +46,7 @@ public class SMXGPower extends PowerPower implements CheckYinYangSubscriber, Pos
     }
     
     void processCard(HutaoA card) {
-        card.yy = HuTaoCard.YYState.YINYANG;
+        card.yy = YYState.YINYANG;
         if (!card.hasTag(CustomEnum.YIN_YANG))
             card.tags.add(CustomEnum.YIN_YANG);
     }
