@@ -34,7 +34,7 @@ public class WJZHPower extends PowerPower implements CheckYinYangSubscriber {
 
     @Override
     public int checkYinYang(HuTaoCard card, int yyTime, boolean onUse) {
-        if (SubscriptionManager.checkSubscriber(this) && onUse && card.hasTag(CustomEnum.YIN_YANG)) {
+        if (SubscriptionManager.checkSubscriber(this) && onUse && card.hasTag(CustomEnum.YIN_YANG) && yyTime > 0) {
             AbstractMonster m = ModHelper.betterGetRandomMonster();
             if (m != null) {
                 flash();

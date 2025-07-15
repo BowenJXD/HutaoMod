@@ -36,7 +36,10 @@ public class TQ extends HuTaoCard {
                     tmp.calculateCardDamage(m);
 
                     tmp.purgeOnUse = true;
-                    addToTop(new PlayCardAction(tmp, m, false));
+                    if (tmp.canUse(AbstractDungeon.player, m))
+                        addToTop(new PlayCardAction(tmp, m, false));
+                    else
+                        AbstractDungeon.player.limbo.removeCard(tmp);
                 }
             });
         }

@@ -1,5 +1,6 @@
 package hutaomod.cards.uncommon;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -15,6 +16,8 @@ public class XXPAHDYSR extends HuTaoCard {
 
     public XXPAHDYSR() {
         super(ID);
+        exhaust = true;
+        GraveField.grave.set(this, true);
     }
 
     @Override
@@ -26,7 +29,7 @@ public class XXPAHDYSR extends HuTaoCard {
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
         if (si > 0) {
-            addToBot(new GainBlockAction(p, p, si + (upgraded ? block : 0)));
+            if (upgraded) addToBot(new GainBlockAction(p, p, si + block));
             addToBot(new ApplyPowerAction(p, p, new PlatedArmorPower(p, si)));
         }
     }

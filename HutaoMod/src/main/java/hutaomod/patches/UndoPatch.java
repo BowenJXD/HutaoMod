@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import hutaomod.cards.base.HutaoA;
+import hutaomod.cards.uncommon.SYAZ;
 import hutaomod.modcore.HuTaoMod;
 import hutaomod.modifiers.BloodCostModifier;
 import hutaomod.modifiers.DYBBModifier;
@@ -29,6 +30,7 @@ import savestate.StateFactories;
 import savestate.powers.PowerState;
 import undobutton.util.MakeUndoable;
 
+import javax.smartcardio.Card;
 import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -124,6 +126,22 @@ public class UndoPatch {
             ));
             StateFactories.powerByIdMap.put(QYGPower.POWER_ID, new PowerState.PowerFactories(QYGPowerState::new));
             StateFactories.powerByIdMap.put(WSTPower.POWER_ID, new PowerState.PowerFactories(WSTPowerState::new));
+            CardState.CardFactories SYAZFactory = new CardState.CardFactories(card -> {
+                return new CardState(card) {
+                    @Override
+                    public AbstractCard loadCard() {
+                        AbstractCard card1 = super.loadCard();
+                        if (card instanceof SYAZ && card1 instanceof SYAZ) {
+                            ((SYAZ)card1).refreshSubscription();
+                        }
+                        return card1;
+                    }
+                };
+            });
+            StateFactories.cardFactories.add(SYAZFactory);
+            StateFactories.cardFactoriesByCardId.put(HuTaoMod.makeID(SYAZ.ID), SYAZFactory);
+            StateFactories.cardFactoriesByType.put(SYAZ.class, SYAZFactory);
+            StateFactories.cardFactoriesByTypeName.put(SYAZ.ID, SYAZFactory);
         }
         
         public static class DieyingModifierState extends AbstractCardModifierState {
@@ -179,7 +197,7 @@ public class UndoPatch {
 
             @Override
             public AbstractCardModifier loadModifier() {
-                return new DYBBModifier();
+                return new BloodCostModifier();
             }
         }
         

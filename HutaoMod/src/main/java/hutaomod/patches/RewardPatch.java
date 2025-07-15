@@ -18,7 +18,9 @@ public class RewardPatch {
     @SpirePatch(clz = CombatRewardScreen.class, method = "setupItemReward")
     public static class SetupItemRewardPatch {
         public static void Postfix(CombatRewardScreen __inst) {
-            if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss && AbstractDungeon.player.masterDeck.group.stream().noneMatch(c -> c.hasTag(CustomEnum.ARCANE_LEGEND))) {
+            if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss
+                    && AbstractDungeon.player.chosenClass == HuTao.PlayerColorEnum.HUTAO        
+                    && AbstractDungeon.player.masterDeck.group.stream().noneMatch(c -> c.hasTag(CustomEnum.ARCANE_LEGEND))) {
                 RewardItem ri = new RewardItem();
                 List<AbstractCard> cards = CardLibrary.getCardList(HuTao.PlayerLibraryEnum.HUTAO_RED).stream().filter(c -> c.hasTag(CustomEnum.ARCANE_LEGEND)).collect(Collectors.toList());
                 

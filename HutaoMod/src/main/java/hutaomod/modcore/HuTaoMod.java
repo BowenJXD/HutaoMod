@@ -61,6 +61,8 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
     private static final String ENERGY_ORB = "HuTaoResources/img/char/cost_orb.png";
 
     public static final Logger logger = LogManager.getLogger(MOD_NAME);
+    
+    public static HuTaoModConfig config;
 
     String lang = "zhs";
 
@@ -200,12 +202,15 @@ public final class HuTaoMod implements EditCardsSubscriber, EditStringsSubscribe
     public void receivePostInitialize() {
         BaseMod.subscribe(GAMManager.getInstance());
         BaseMod.subscribe(RestartRunHelper.getInstance());
+        if (config == null) {
+            config = new HuTaoModConfig();
+        }
         BaseMod.registerModBadge(
                 new Texture(PathDefine.UI_PATH + "badge.png"),
                 MOD_NAME,
                 "喏Aaron",
                 "A mod themed after Genshin character Hu Tao.",
-                new HuTaoModConfig()
+                config
         );
     }
 

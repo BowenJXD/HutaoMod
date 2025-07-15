@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
+import com.megacrit.cardcrawl.actions.unique.RestoreRetainedCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -23,6 +24,8 @@ public class CardGroupPatch {
     @SpirePatch(clz = CardGroup.class, method = "addToRandomSpot")
     public static class AddPatch {
         public static void Postfix(CardGroup __inst, AbstractCard c) {
+            if (AbstractDungeon.actionManager.currentAction instanceof RestoreRetainedCardsAction) 
+                return;
             SubscriptionManager.getInstance().triggerPostCardMove(__inst, c, true);
             triggerMove(__inst, c, true);
         }

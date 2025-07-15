@@ -23,7 +23,7 @@ public class CDZSPower extends PowerPower implements PreCachedIntGetSubscriber {
     @Override
     public void onInitialApplication() {
         super.onInitialApplication();
-        SubscriptionManager.subscribe(this, true);
+        SubscriptionManager.subscribe(this, true);  
         GAMManager.addParallelAction(POWER_ID, action -> {
             if (action instanceof BloodBurnAction) {
                 addToBot(new ApplyPowerAction(owner, owner, new CDZSPower(), action.amount, true));

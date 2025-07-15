@@ -44,7 +44,9 @@ public class JZWB extends HuTaoCard {
 
     @Override
     public void onUse(AbstractPlayer p, AbstractMonster m, int yyTime) {
-        addToBot(new VFXAction(p, new PortraitDisplayEffect(wubei.toString()), 0F, true));
+        if (wubei != null) {
+            addToBot(new VFXAction(p, new PortraitDisplayEffect(wubei.toString()), 0F, true));
+        }
         addToBot(new VFXAction(new ClashEffect(m.hb.cX, m.hb.cY)));
         addToBot(new CardDamageAction(m, this, AbstractGameAction.AttackEffect.NONE));
         addToBot(new ApplyPowerAction(m, p, new BloodBlossomPower(m, p, magicNumber)));

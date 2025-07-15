@@ -23,14 +23,27 @@ import hutaomod.utils.CardDataCol;
 import hutaomod.utils.DataManager;
 import hutaomod.utils.ModHelper;
 
-public class SYAZ extends HuTaoCard implements CheckYinYangSubscriber {
+public class SYAZ extends HuTaoCard {
     public static final String ID = SYAZ.class.getSimpleName();
+    
+    public CheckYinYangSubscriber subscriber;
     
     public SYAZ() {
         super(ID);
         selfRetain = true;
         tags.add(CustomEnum.YIN_YANG);
-        SubscriptionManager.subscribe(this);
+    }
+
+    @Override
+    public void onEnterHand() {
+        super.onEnterHand();
+        refreshSubscription();
+    }
+
+    @Override
+    public void onLeaveHand() {
+        super.onLeaveHand();
+        SubscriptionManager.unsubscribe(subscriber);
     }
 
     @Override
@@ -40,14 +53,20 @@ public class SYAZ extends HuTaoCard implements CheckYinYangSubscriber {
         addToBot(new CardDamageAction(m, damage * (int) Math.pow(2, yyTime), this, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
         baseDamage = baseDamageCache;
     }
-
-    @Override
-    public int checkYinYang(HuTaoCard card, int yyTime, boolean onUse) {
-        if (SubscriptionManager.checkSubscriber(this) 
-                && AbstractDungeon.player.hand.contains(this) 
-                && onUse && yyTime > 0) {
-            baseDamage++;
-        }
-        return yyTime;
+    
+    public void refreshSubscription() {
+        subscriber = new CheckYinYangSubscriber() {
+            @Override
+            public int checkYinYang(HuTaoCard card, int yyTime, boolean onUse) {
+                if (SubscriptionManager.checkSubscriber(SYAZ.this)
+                        && AbstractDungeon.player.hand.contains(SYAZ.this)
+                        && onUse && yyTime > 0) {
+                    baseDamage += yyTime;
+                }
+                return yyTime;
+            }
+        };
+        SubscriptionManager.unsubscribe(subscriber);
+        SubscriptionManager.subscribe(subscriber);
     }
 }

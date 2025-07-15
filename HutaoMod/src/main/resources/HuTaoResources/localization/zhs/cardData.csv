@@ -6,11 +6,11 @@ HTZYGYLG,火骰子一共有六个,RARE,SKILL,SELF,阳,1, 消耗 。 hutaomod:燃血 {!Y!|0=Y|@
 QKHQL,枪开黄泉路,RARE,ATTACK,ENEMY,阳,3, hutaomod:弹射 !M! 次：造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害。,3,,3,,,4,,4
 QQY,丘丘谣,UNCOMMON,SKILL,SELF,阴,1, 消耗 。 stslib:墓地 。获得 {!Y!|0=Y|@=!Y!} 层 [siIcon] 。,,,,, 消耗 。 stslib:墓地 。回复 {!Y!|0=Y|@=!Y!} 点生命，获得 {!Y!|0=Y|@=!Y!} 层 [siIcon] 。,,,
 WST,往生堂,RARE,POWER,SELF,阴,2,计算牌的Y值时，视为+2。 NL 每打出 !M! 张 [yinIcon] 牌，随机 [yangIcon] 牌的费用此回合-1。,,,4,1,,,,
-XXPAHDYSR,小巷派暗黑打油诗人,UNCOMMON,SKILL,SELF,阳,2,获得 {!Y!|0=Y|@=!Y!} 点格挡，和 {!Y!|0=Y|@=!Y!} 点 hutaomod:多重护甲 。,,,,, 保留 。获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡，和 {!Y!|0=Y|@=!Y!} 点 hutaomod:多重护甲 。,,4,
+XXPAHDYSR,小巷派暗黑打油诗人,UNCOMMON,SKILL,SELF,阳,1, stslib:墓地 。 消耗 。获得 {!Y!|0=Y|@=!Y!} 点 hutaomod:多重护甲 。,,,,, stslib:墓地 。 消耗 。 保留 。获得 {!Y!|0=Y|@=!Y!} 点格挡，和 {!Y!|0=Y|@=!Y!} 点 hutaomod:多重护甲 。,,,
 DYZS,蝶隐之时,UNCOMMON,SKILL,SELF,阳,1, 消耗 。 hutaomod:燃血 !M! ，移除所有 [siIcon] ，获得 {!Y!|0=Y|@=!Y!} 张 *「往生秘传枪法」 ，并将手牌补充至上限。,,,2,, 消耗 。 hutaomod:燃血 !M! ，移除所有 [siIcon] ，获得 {!Y!|0=Y|@=!Y!} 张 *「往生秘传枪法+」 ，并将手牌补充至上限。,,,
-YMXC,一脉相传,RARE,SKILL,SELF,阴,2, 保留 。手牌中所有 *「往生堂秘传枪法」 费用-1，但获得 hutaomod:燃血 1。,,,,, 保留 。升级手牌中所有 *「往生堂秘传枪法」 ，令之费用-1，但获得 hutaomod:燃血 1。,,,
+YMXC,一脉相传,RARE,SKILL,SELF,阴,1, 保留 。手牌中所有 *「往生堂秘传枪法」 费用-1，但获得 hutaomod:燃血 1。,,,,, 保留 。升级手牌中所有 *「往生堂秘传枪法」 ，令之费用-1，但获得 hutaomod:燃血 1。,,,
 QYG,群玉阁,RARE,POWER,SELF,阳,3,每 hutaomod:阴阳 !M! 次，获得 [E] 并摸1张牌。,,,5,2,,,,
-ZRZS,忠人之事,COMMON,SKILL,SELF,阴,1,获得 !B! 点格挡。 hutaomod:阴阳 ： stslib:回馈 1。,,6,,,获得 !B! 点格挡。 hutaomod:阴阳 ： stslib:回馈 1，摸1张牌。,,,
+ZRZS,忠人之事,COMMON,SKILL,SELF,阴,1,获得 !B! 点格挡。 hutaomod:阴阳 ： stslib:回馈 1。   ,,6,,,获得 !B! 点格挡。 hutaomod:阴阳 ： stslib:回馈 1，摸1张牌。,,,
 SRZT,受人之托,COMMON,ATTACK,ENEMY,阳,1,造成 !D! 点伤害。 hutaomod:阴阳 ： stslib:回馈 1。,7,,,,造成 !D! 点伤害。 hutaomod:阴阳 ： stslib:回馈 1，摸1张牌。,,,
 DEBBJ,第二碑半价,COMMON,SKILL,SELF,阳,1,获得 !M! 层 hutaomod:购一送一 。,,,1,,获得 !M! 层 hutaomod:购一送一 ， hutaomod:阴阳 ：额外获得1层。,,,
 KQZZ,客卿助阵,UNCOMMON,SKILL,SELF,阳,1,获得 {!Y!|0=Y|@=!Y!} 点格挡，于此回合保留格挡， hutaomod:阴阳 ：下回合开始时，对随机敌人造成保留的格挡数的伤害。,,,,,获得 !B! + {!Y!|0=Y|@=!Y!} 点格挡，于此回合保留格挡， hutaomod:阴阳 ：下回合开始时，对随机敌人造成保留的格挡数的伤害。,,4,
@@ -18,7 +18,7 @@ SFZ,束缚咒,UNCOMMON,ATTACK,ENEMY,阴,1, 消耗 。造成 !D! 点伤害，施加 !M! 层 hutao
 CTKS,赤团开时,UNCOMMON,ATTACK,ENEMY,阳,1, stslib:墓地 。造成 {!Y!|0=Y|@=!Y!} 点伤害，将 [bbIcon] 调整至 {!Y!|0=Y|@=!Y!} 。,,,,, stslib:墓地 。造成 {!Y!|0=Y|@=!Y!} 点伤害，施加 {!Y!|0=Y|@=!Y!} 层 [bbIcon] 。,,,
 MZSH,曼珠沙华,UNCOMMON,ATTACK,ENEMY,阳,2,造成 !D! 点伤害，施加 !M! 层 [bbIcon] 。 hutaomod:阴阳 ：施加的层数改为V（V为其 [bbIcon] 数）。,8,,2,,造成 !D! 点伤害，施加 !M! 层 [bbIcon] 。 hutaomod:阴阳 ：额外施加V层（V为其 [bbIcon] 数）。,10,,
 NCH,霓裳花,UNCOMMON,SKILL,ENEMY,阴,2,获得 !B! 点格挡，施加 !M! 层 [bbIcon] 。 hutaomod:阴阳 ：获得目标 [bbIcon] 数量的格挡。,,10,2,,,,14,3
-WMT,万民堂,RARE,POWER,SELF,阳,2, [bbIcon] 衰减时，获得衰减量的格挡，摸1张牌。,,,,1,,,,
+WMT,万民堂,UNCOMMON,POWER,SELF,阳,2, [bbIcon] 衰减时，获得衰减量的格挡，摸1张牌。,,,,1,,,,
 LZZF,落葬之法,UNCOMMON,ATTACK,ALL_ENEMY,阴,1,群体：造成 !D! 点伤害，升级其 [bbIcon] ，令之衰减的层数减半。,7,,,,群体：造成 !D! 点伤害，升级其 [bbIcon] ，令之衰减的层数减半。 hutaomod:阴阳 ：施加 !M! 层 [bbIcon] 。,,,2
 CXZM,初雪之梅,COMMON,ATTACK,ENEMY,阴,1,造成 !D! 点伤害，施加 !M! 层 [bbIcon] 。,4,,4,,群体：造成 !D! 点伤害，施加 !M! 层 [bbIcon] 。,4,,4
 QW,枪舞,COMMON,ATTACK,ENEMY,阴,1,造成 !D! + {!Y!|0=Y|@=!Y!} 点伤害，获得 !M! 层 [siIcon] 。,10,,1,,,14,,2
@@ -26,13 +26,13 @@ WNZL,为你指路,UNCOMMON,SKILL,SELF,阴,1, hutaomod:通灵 !M! 张 [yangIcon] 牌，令下
 TXXM,踏雪寻梅,COMMON,SKILL,ENEMY,阳,2,若目标有 [bbIcon] ，令目标 [bbIcon] 立即衰减1次，然后获得 !B! +V点格挡（V为以此法衰减的层数）。,,17,,,,,25,
 YBTZZ,有本堂主在,COMMON,ATTACK,ENEMY,阴,1, hutaomod:燃血 1。造成 V 点伤害，令其临时失去V点 力量 （V为目标 [bbIcon] 的数量）。,,,,, hutaomod:燃血 1。造成 !D! + V 点伤害，令其临时失去V点 力量 （V为目标 [bbIcon] 的数量）。,4,,
 ZSNG,装神弄鬼,RARE,POWER,SELF,阴,1,你消耗生命后，获得 !M! 点 活力 和 !M! 点格挡。 NL 你回复生命值时，额外回复 !M! 点。,,,2,,,,,3
-YYYX,阴阳有序,UNCOMMON,SKILL,SELF,阳,2, 消耗 。 hutaomod:阴阳 ：每有一张 *「往生堂秘传枪法」 在： NL 摸牌堆，获得1点 力量 ； NL 弃牌堆，获得1点 敏捷 。,,,,, hutaomod:阴阳 ：每有一张 *「往生堂秘传枪法」 在： NL 摸牌堆，获得1点 力量 ； NL 弃牌堆，获得1点 敏捷 。,,,
+YYYX,阴阳有序,UNCOMMON,SKILL,SELF,阳,2, 消耗 。 hutaomod:阴阳 ：每有一张 *「往生堂秘传枪法」 在： NL 摸牌堆，获得1点 力量 ； NL 弃牌堆，获得1点 敏捷 。,,,,1, hutaomod:阴阳 ：每有一张 *「往生堂秘传枪法」 在： NL 摸牌堆，获得1点 力量 ； NL 弃牌堆，获得1点 敏捷 。,,,
 MYWC,命运无常,UNCOMMON,ATTACK,ENEMY,阴,1,造成 !D! 点伤害，若手牌： NL hutaomod:阴盛阳虚 ，将目标的 [bbIcon] 调整至与手牌中 [yinIcon] 牌数相等； NL hutaomod:阳盛阴虚 ，将目标的 [bbIcon] 调整至与手牌中 [yangIcon] 牌数相等。,4,,,, 保留 。造成 !D! 点伤害，若手牌： NL hutaomod:阴盛阳虚 ，将目标的 [bbIcon] 调整至与手牌中 [yinIcon] 牌数相等； NL hutaomod:阳盛阴虚 ，将目标的 [bbIcon] 调整至与手牌中 [yangIcon] 牌数相等； NL hutaomod:阴阳平衡 ，将目标的 [bbIcon] 调整至与手牌数相等。,,,
 SLBS,生老病死,UNCOMMON,SKILL,ENEMY,,1,将 [siIcon] 数调整至与目标 [bbIcon] 数量相等，并获得等量格挡。,,,,0, 保留 。将 [siIcon] 数调整至与目标 [bbIcon] 数量相等，并获得等量格挡。,,,
-TDWX,天地万象,RARE,SKILL,ENEMY,阳,3, stslib:墓地 。 消耗 。获得1张 *「尽在吾辈」 ，以下三个变量中每有两项相等，额外获得1张：1. {!Y!|0=Y|@=!Y!} ；2. 手牌中 [yangIcon] 牌数；3. 目标 [bbIcon] 数。,,,,, stslib:墓地 。 消耗 。 保留 。获得1张 *「尽在吾辈+」 ，以下三个变量中每有两项相等，额外获得1张：1. {!Y!|0=Y|@=!Y!} ；2. 手牌中 [yangIcon] 牌数；3. 目标 [bbIcon] 数。,,,
-JZWB,尽在吾辈,SPECIAL,ATTACK,ENEMY,阴,0,造成 !D! 点伤害，施加 !M! 层 [bbIcon] ，获得摸牌堆顶的牌。弃牌堆中每有一张 *「尽在吾辈」 ，数值+1。,8,,3,,,12,,4
+TDWX,天地万象,RARE,SKILL,ENEMY,阳,3, stslib:墓地 。 消耗 。获得1张 *「尽在吾辈」 ，以下三个变量中每有两项相等，额外获得2张：1. {!Y!|0=Y|@=!Y!} ；2. 手牌中 [yangIcon] 牌数；3. 目标 [bbIcon] 数。,,,,, stslib:墓地 。 消耗 。 保留 。获得1张 *「尽在吾辈+」 ，以下三个变量中每有两项相等，额外获得1张：1. {!Y!|0=Y|@=!Y!} ；2. 手牌中 [yangIcon] 牌数；3. 目标 [bbIcon] 数。,,,
+JZWB,尽在吾辈,SPECIAL,ATTACK,ENEMY,阴,0,造成 !D! 点伤害，施加 !M! 层 [bbIcon] ，获得摸牌堆顶的牌。弃牌堆中每有一张 *「尽在吾辈」 ，数值+1。,8,,2,,,12,,3
 SNYC,送你一程,COMMON,ATTACK,ENEMY,阴,1, hutaomod:燃血 1，造成 !D! 点伤害，若其有 [bbIcon] ，则摸 !M! 张牌。,8,,2,,,9,,3
-HDJ,海灯节,UNCOMMON,POWER,SELF,阳,2, hutaomod:燃血 1。获得 *「往生堂秘传枪法」 时，摸1张牌。,,,1,2, 固有 。 hutaomod:燃血 1。获得 *「往生堂秘传枪法」 时，摸1张牌。,,,
+HDJ,海灯节,RARE,POWER,SELF,阳,2, hutaomod:燃血 1。获得 *「往生堂秘传枪法」 时，摸1张牌。,,,1,2, 固有 。 hutaomod:燃血 1。获得 *「往生堂秘传枪法」 时，摸1张牌。,,,
 BAHX,彼岸花香,COMMON,SKILL,ENEMY,阴,1, hutaomod:燃血 1，令目标的 [bbIcon] 立即衰减一次，然后施加 !M! 层 [bbIcon] 。,,,6,,,,,8
 DDYS,多多益善,UNCOMMON,SKILL,SELF,阴,2,获得 !B! 点格挡，将 !M! 张 *「往生堂秘传枪法」 加入摸牌堆。,,21,2,,获得 !B! 点格挡，将 !M! 张 *「往生堂秘传枪法+」 加入摸牌堆。,,27,
 CXHTF,春曦画桃符,RARE,SKILL,SELF,阳,1, 消耗 。 hutaomod:燃血 2，获得 [E] [E] ， hutaomod:阴阳 ：摸 !M! 张牌 。,,,2,,,,,4

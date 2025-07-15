@@ -43,13 +43,13 @@ public class SignatureLibCore implements EditStringsSubscriber, PostInitializeSu
 	public void receivePostInitialize() {
 		UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("SignatureLib:ModPanel");
 
-		BaseMod.registerModBadge(
+		/*BaseMod.registerModBadge(
 				ImageMaster.loadImage("SignatureLib/badge.png"),
 				uiStrings.TEXT[0],
 				"antileaf",
 				uiStrings.TEXT[1],
 				ConfigHelper.createConfigPanel()
-		);
+		);*/
 	}
 
 	public static void postPostInitialize() {

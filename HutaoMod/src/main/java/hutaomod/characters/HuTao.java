@@ -1,5 +1,7 @@
 package hutaomod.characters;
 
+import basemod.IUIElement;
+import basemod.ModLabeledToggleButton;
 import basemod.abstracts.CustomMultiPageFtue;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
@@ -220,6 +222,7 @@ public class HuTao extends CustomPlayer {
     @Override
     public void doCharSelectScreenSelectEffect() {
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
+        CardCrawlGame.sound.play(getCustomModeCharacterButtonSoundKey());
     }
 
     // 碎心图片
@@ -317,13 +320,19 @@ public class HuTao extends CustomPlayer {
             ModHelper.playSound("kehu");
         }
     }
-    
+
     void tutorialCheck() {
-        if (AbstractDungeon.floorNum <= 2 && HuTaoModConfig.doShowTutorial) {
+        if (AbstractDungeon.floorNum <= 1 && HuTaoModConfig.doShowTutorial) {
             ModHelper.addEffectAbstract(() -> {
                 AbstractDungeon.ftue = new CustomMultiPageFtue(ftues, tutTexts);
             });
+            for (IUIElement uiElement : HuTaoMod.config.getUpdateElements()) {
+                if (uiElement instanceof ModLabeledToggleButton) {
+                    ((ModLabeledToggleButton) uiElement).toggle.toggle();
+                }
+            }
             HuTaoModConfig.doShowTutorial = false;
+            HuTaoMod.config.save();
         }
     }
 
